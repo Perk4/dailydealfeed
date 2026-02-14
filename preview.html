@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DailyDealFeed - Video Preview</title>
+    <title>DailyDealFeed - V2 Video Preview</title>
     <style>
-        body { font-family: -apple-system, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        body { font-family: -apple-system, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #0a0a0a; color: #fff; }
         h1 { text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .card h3 { margin: 0 0 8px 0; }
-        .card video { width: 100%; border-radius: 8px; }
-        .caption { background: #f0f0f0; padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 14px; white-space: pre-wrap; }
-        .status { text-align: center; padding: 8px; background: #fff3cd; border-radius: 4px; margin-bottom: 20px; }
-        .approve-btn { background: #28a745; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 12px; }
-        .reject-btn { background: #dc3545; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 12px; margin-left: 8px; }
+        .badge { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4px 12px; border-radius: 12px; font-size: 12px; margin-left: 8px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .card { background: #1a1a1a; border-radius: 16px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .card h3 { margin: 0 0 12px 0; font-size: 16px; }
+        .card video { width: 100%; border-radius: 12px; background: #000; }
+        .meta { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+        .meta span { background: #333; padding: 4px 10px; border-radius: 6px; font-size: 12px; }
+        .meta .voice { background: #28a745; }
+        .caption { background: #222; padding: 14px; border-radius: 10px; margin-top: 14px; font-size: 13px; white-space: pre-wrap; line-height: 1.5; }
+        .status { text-align: center; padding: 12px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; margin-bottom: 24px; font-weight: 600; }
+        .note { text-align: center; color: #888; margin-top: 30px; font-size: 14px; }
     </style>
 </head>
 <body>
-    <h1>📦 Batch 1 - Video Preview</h1>
-    <div class="status">⏳ Awaiting approval - Review videos below</div>
+    <h1>📦 V2 Batch <span class="badge">🎙️ WITH VOICEOVER</span></h1>
+    <div class="status">🎬 5 videos ready for review — Products 6-10</div>
     
     <div class="grid">
         <div class="card">
-            <h3>1. LED Moon Night Light - $20</h3>
+            <h3>6. The Pink Stuff Miracle Cleaning Paste - $9.97</h3>
             <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_1_1771087343778.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_6_1771102774254.mp4" type="video/mp4">
             </video>
-            <div class="caption"><strong>IG:</strong> When the vibes finally hit different
+            <div class="meta">
+                <span class="voice">🎙️ Voiceover</span>
+                <span>🧹 Cleaning</span>
+                <span>shocked vibe</span>
+            </div>
+            <div class="caption"><strong>Hook:</strong> The before/after that broke me
 
-LED Moon Night Light $20
+The Pink Stuff Miracle Cleaning Paste $9.97
 
 🔗 Link in bio!
 
@@ -35,13 +43,18 @@ LED Moon Night Light $20
         </div>
         
         <div class="card">
-            <h3>2. Mini Bluetooth Pocket Printer - $40</h3>
+            <h3>7. Bissell Little Green Portable Carpet Cleaner - $81.59</h3>
             <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_2_1771087415891.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_7_1771102824713.mp4" type="video/mp4">
             </video>
-            <div class="caption"><strong>IG:</strong> The gadget that changed my photo game
+            <div class="meta">
+                <span class="voice">🎙️ Voiceover</span>
+                <span>🧹 Cleaning</span>
+                <span>shocked vibe</span>
+            </div>
+            <div class="caption"><strong>Hook:</strong> What came out of my couch... I'm disturbed
 
-Mini Bluetooth Pocket Printer $40
+Bissell Little Green Portable Carpet Cleaner $81.59
 
 🔗 Link in bio!
 
@@ -49,13 +62,18 @@ Mini Bluetooth Pocket Printer $40
         </div>
         
         <div class="card">
-            <h3>3. Multi-Device Charging Stand - $30</h3>
+            <h3>8. Cloud Magnetic Key Holder - $11.99</h3>
             <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_3_1771087500477.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_8_1771102880120.mp4" type="video/mp4">
             </video>
-            <div class="caption"><strong>IG:</strong> Cord chaos? Never heard of it
+            <div class="meta">
+                <span class="voice">🎙️ Voiceover</span>
+                <span>🏠 Home</span>
+                <span>cozy vibe</span>
+            </div>
+            <div class="caption"><strong>Hook:</strong> The cutest solution to my lost keys problem
 
-Multi-Device Charging Stand $30
+Cloud Magnetic Key Holder $11.99
 
 🔗 Link in bio!
 
@@ -63,13 +81,18 @@ Multi-Device Charging Stand $30
         </div>
         
         <div class="card">
-            <h3>4. Light Therapy Lamp - $50</h3>
+            <h3>9. Ribbed Glass Drinking Cups Set of 6 - $23.99</h3>
             <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_4_1771087649249.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_9_1771102945236.mp4" type="video/mp4">
             </video>
-            <div class="caption"><strong>IG:</strong> My seasonal depression hack nobody talks about
+            <div class="meta">
+                <span class="voice">🎙️ Voiceover</span>
+                <span>🏠 Home</span>
+                <span>reveal vibe</span>
+            </div>
+            <div class="caption"><strong>Hook:</strong> You need to see this
 
-Light Therapy Lamp $50
+Ribbed Glass Drinking Cups Set of 6 $23.99
 
 🔗 Link in bio!
 
@@ -77,13 +100,18 @@ Light Therapy Lamp $50
         </div>
         
         <div class="card">
-            <h3>5. Self-Stirring Mug - $18</h3>
+            <h3>10. Dash Mini Waffle Maker - $14.99</h3>
             <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_5_1771087696822.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_10_1771103015922.mp4" type="video/mp4">
             </video>
-            <div class="caption"><strong>IG:</strong> When you're too tired to stir your coffee
+            <div class="meta">
+                <span class="voice">🎙️ Voiceover</span>
+                <span>🍳 Kitchen</span>
+                <span>reveal vibe</span>
+            </div>
+            <div class="caption"><strong>Hook:</strong> Mini waffles that changed my mornings
 
-Self-Stirring Mug $18
+Dash Mini Waffle Maker $14.99
 
 🔗 Link in bio!
 
@@ -91,8 +119,9 @@ Self-Stirring Mug $18
         </div>
     </div>
     
-    <div style="text-align: center; margin-top: 30px;">
-        <p>After reviewing, let Biz know which videos are approved!</p>
+    <div class="note">
+        <p>🔊 Turn on sound — all videos have TTS voiceover!</p>
+        <p>After reviewing, let Biz know your feedback.</p>
     </div>
 </body>
 </html>
