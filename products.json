@@ -1,0 +1,155 @@
+{
+  "lastUpdated": "2026-02-14",
+  "products": [
+    {
+      "id": "1",
+      "name": "LED Moon Night Light",
+      "category": "tech",
+      "price": "$20",
+      "image": "https://m.media-amazon.com/images/I/71yQ9d7DVcL._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B07FDXY48N",
+      "tagline": "My room at 3am now vs before",
+      "featured": true
+    },
+    {
+      "id": "2",
+      "name": "Mini Bluetooth Pocket Printer",
+      "category": "tech",
+      "price": "$40",
+      "image": "https://m.media-amazon.com/images/I/61YfG-HXWUL._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B08BNPVNZT",
+      "tagline": "Turned my phone pics into stickers in 10 seconds",
+      "featured": true
+    },
+    {
+      "id": "3",
+      "name": "Multi-Device Charging Stand",
+      "category": "tech",
+      "price": "$30",
+      "image": "https://m.media-amazon.com/images/I/71rXfV7xrNL._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B09WDQZF7V",
+      "tagline": "Finally fixed my nightstand situation",
+      "featured": false
+    },
+    {
+      "id": "4",
+      "name": "Light Therapy Lamp",
+      "category": "tech",
+      "price": "$50",
+      "image": "https://m.media-amazon.com/images/I/61BL7XKFCIL._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B075H39NDL",
+      "tagline": "My seasonal depression hack that actually works",
+      "featured": true
+    },
+    {
+      "id": "5",
+      "name": "Self-Stirring Mug",
+      "category": "tech",
+      "price": "$18",
+      "image": "https://m.media-amazon.com/images/I/61SOJG5QM5L._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B00ZRCZ3L0",
+      "tagline": "For the lazy people who get it",
+      "featured": false
+    },
+    {
+      "id": "6",
+      "name": "The Pink Stuff",
+      "category": "home",
+      "price": "$10",
+      "image": "https://m.media-amazon.com/images/I/71K0Z4rdTpL._SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B07NL6VPP3",
+      "tagline": "This $10 paste vs my disgusting stove",
+      "featured": true
+    },
+    {
+      "id": "7",
+      "name": "Bissell Little Green",
+      "category": "home",
+      "price": "$75",
+      "image": "https://m.media-amazon.com/images/I/71I1j4yFR0L._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B0016HF5GK",
+      "tagline": "What came out of my couch is disturbing",
+      "featured": true
+    },
+    {
+      "id": "8",
+      "name": "Cloud Key Holder",
+      "category": "home",
+      "price": "$12",
+      "image": "https://m.media-amazon.com/images/I/61Jl3lZRfVL._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B009FUF6P8",
+      "tagline": "Never losing my keys again because of this cloud",
+      "featured": false
+    },
+    {
+      "id": "9",
+      "name": "Ribbed Glass Cups Set",
+      "category": "home",
+      "price": "$25",
+      "image": "https://m.media-amazon.com/images/I/71VD0xjefML._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B09NLFGFLM",
+      "tagline": "The cups that made my kitchen look expensive",
+      "featured": false
+    },
+    {
+      "id": "10",
+      "name": "Dash Mini Waffle Maker",
+      "category": "home",
+      "price": "$17",
+      "image": "https://m.media-amazon.com/images/I/71KYZJXdZuL._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B00RGMCGYU",
+      "tagline": "The TikTok waffle maker but it's actually worth it",
+      "featured": true
+    },
+    {
+      "id": "11",
+      "name": "Starface Pimple Patches",
+      "category": "wellness",
+      "price": "$15",
+      "image": "https://m.media-amazon.com/images/I/51Ciy3lVWBL._SL1000_.jpg",
+      "link": "https://www.amazon.com/dp/B07YGX2YMY",
+      "tagline": "Made having acne kind of cute?",
+      "featured": true
+    },
+    {
+      "id": "12",
+      "name": "Ice Roller for Face",
+      "category": "wellness",
+      "price": "$12",
+      "image": "https://m.media-amazon.com/images/I/61IVBExu5jL._SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B07WK1WPRJ",
+      "tagline": "My face at 7am after this thing",
+      "featured": false
+    },
+    {
+      "id": "13",
+      "name": "Foot Peel Mask",
+      "category": "wellness",
+      "price": "$20",
+      "image": "https://m.media-amazon.com/images/I/71gM9n2cV4L._SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B00CHWJVYY",
+      "tagline": "Warning: don't watch this while eating",
+      "featured": false
+    },
+    {
+      "id": "14",
+      "name": "Cloud Slides",
+      "category": "wellness",
+      "price": "$24",
+      "image": "https://m.media-amazon.com/images/I/61gZeOsqXLL._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B09TKHYPWD",
+      "tagline": "I refused to believe the hype until I tried them",
+      "featured": true
+    },
+    {
+      "id": "15",
+      "name": "Loop Earplugs",
+      "category": "wellness",
+      "price": "$38",
+      "image": "https://m.media-amazon.com/images/I/61cPZdqTC+L._AC_SL1500_.jpg",
+      "link": "https://www.amazon.com/dp/B0BYP5HKZ9",
+      "tagline": "How I hear the music and keep my hearing",
+      "featured": false
+    }
+  ]
+}
