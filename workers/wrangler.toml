@@ -1,0 +1,7 @@
+name = "dailydealfeed-tts"
+main = "tts-worker.js"
+compatibility_date = "2024-01-01"
+account_id = "6a93f4e0f785a77f95436f494bb13fa3"
+
+[ai]
+binding = "AI"

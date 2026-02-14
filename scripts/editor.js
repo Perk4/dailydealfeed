@@ -276,7 +276,51 @@ function findExternalTTSAudio(input, tempDir) {
 }
 
 /**
- * Generate voiceover audio (tries external TTS first, falls back to espeak)
+ * Generate TTS using Cloudflare Workers AI (Deepgram Aura-1)
+ */
+async function generateTTSCloudflare(text, outputPath, speaker = 'luna') {
+  console.log('🎙️  Generating TTS with Cloudflare Workers AI (Deepgram Aura-1)...');
+  
+  const TTS_WORKER_URL = 'https://dailydealfeed-tts.prtl.workers.dev';
+  
+  return new Promise((resolve, reject) => {
+    const postData = JSON.stringify({ text, speaker, format: 'base64' });
+    
+    const req = https.request(TTS_WORKER_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(postData),
+      },
+    }, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          if (json.audio) {
+            // Decode base64 and save as MP3
+            const audioBuffer = Buffer.from(json.audio, 'base64');
+            fs.writeFileSync(outputPath, audioBuffer);
+            console.log(`🎙️  TTS generated with ${json.speaker} voice (${audioBuffer.length} bytes)`);
+            resolve(outputPath);
+          } else {
+            reject(new Error(json.error || 'No audio in response'));
+          }
+        } catch (e) {
+          reject(e);
+        }
+      });
+    });
+    
+    req.on('error', reject);
+    req.write(postData);
+    req.end();
+  });
+}
+
+/**
+ * Generate voiceover audio (Cloudflare Workers AI first, espeak fallback)
  */
 async function generateVoiceover(input, outputPath) {
   // Check for pre-generated audio first
@@ -291,8 +335,14 @@ async function generateVoiceover(input, outputPath) {
   const voiceoverText = getCombinedVoiceoverText(input);
   console.log(`🎙️  Voiceover script: "${voiceoverText}"`);
   
-  // Use espeak-ng as fallback
-  return generateTTSEspeak(voiceoverText, outputPath);
+  // Try Cloudflare Workers AI (Deepgram Aura-1) first
+  try {
+    return await generateTTSCloudflare(voiceoverText, outputPath, 'luna');
+  } catch (err) {
+    console.log(`⚠️  Cloudflare TTS failed: ${err.message}, falling back to espeak-ng`);
+    // Fall back to espeak-ng
+    return generateTTSEspeak(voiceoverText, outputPath);
+  }
 }
 
 // ============================================

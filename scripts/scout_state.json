@@ -16,7 +16,7 @@
     "10"
   ],
   "categoryRotationIndex": 2,
-  "lastRun": "2026-02-14T21:03:35.921Z",
+  "lastRun": "2026-02-14T21:32:36.016Z",
   "usedClipIds": [
     "reveal-004",
     "trans-002",
@@ -34,6 +34,7 @@
     "shock-001",
     "transform-002",
     "reveal-001",
-    "reaction-001"
+    "reaction-001",
+    "reveal-002"
   ]
 }
