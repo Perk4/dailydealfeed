@@ -1,6 +1,6 @@
 {
-  "lastProductId": "1",
-  "lastCategory": "tech",
+  "lastProductId": "10",
+  "lastCategory": "home",
   "usedProductIds": [
     "1",
     "6",
@@ -10,10 +10,13 @@
     "3",
     "4",
     "5",
-    "14"
+    "14",
+    "8",
+    "9",
+    "10"
   ],
-  "categoryRotationIndex": 1,
-  "lastRun": "2026-02-14T18:43:10.472Z",
+  "categoryRotationIndex": 2,
+  "lastRun": "2026-02-14T21:03:35.921Z",
   "usedClipIds": [
     "reveal-004",
     "trans-002",
@@ -23,6 +26,14 @@
     "trans-001",
     "cozy-003",
     "shock-005",
-    "trans-003"
+    "trans-003",
+    "shock-006",
+    "shock-002",
+    "transform-001",
+    "shock-003",
+    "shock-001",
+    "transform-002",
+    "reveal-001",
+    "reaction-001"
   ]
 }
