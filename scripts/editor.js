@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Editor Agent — Video Assembly Module
+ * Editor Agent — Video Assembly Module (with TTS Voiceover)
  * For DailyDealFeed Reels Pipeline
  *
  * Creates vertical videos (9:16, 15-30 sec) ready for TikTok/IG Reels.
- * Output includes video, thumbnail, and post metadata JSON.
+ * Now includes TTS voiceover for hooks and product info.
  *
  * Usage:
  *   node editor.js                          # Process from stdin JSON
@@ -20,6 +20,7 @@
  *   "product_price": "$20",
  *   "meme_url": "https://media.giphy.com/...",
  *   "voiceover_script": "Finally fixed my room situation...",
+ *   "voiceover_audio": "/path/to/voiceover.mp3",  // Optional: pre-generated audio
  *   "ig_caption": "...",
  *   "tiktok_caption": "...",
  *   "hook_angle": "room transformation"
@@ -32,7 +33,7 @@
  *   └── post_[product_id]_[timestamp].json
  */
 
-const { execSync, spawn } = require('child_process');
+const { execSync, spawn, spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
@@ -53,6 +54,14 @@ const HOOK_DURATION = 3;
 const PRODUCT_DURATION = 12;
 const CTA_DURATION = 5;
 const TOTAL_DURATION = HOOK_DURATION + PRODUCT_DURATION + CTA_DURATION; // 20 seconds
+
+// TTS Configuration
+const TTS_CONFIG = {
+  voice: 'en-us',
+  speed: 150,          // Words per minute
+  pitch: 50,           // 0-99
+  useExternalTTS: true // Try external TTS first (OpenClaw/ElevenLabs)
+};
 
 // Colors (hex without #)
 const COLORS = {
@@ -139,6 +148,20 @@ function ffmpeg(args, options = {}) {
   }
 }
 
+// Run FFprobe to get audio duration
+function getAudioDuration(audioPath) {
+  try {
+    const result = execSync(
+      `ffprobe -v error -show_entries format=duration -of csv=p=0 "${audioPath}"`,
+      { encoding: 'utf8' }
+    );
+    return parseFloat(result.trim());
+  } catch (err) {
+    console.error(`FFprobe error: ${err.message}`);
+    return 0;
+  }
+}
+
 // Escape text for FFmpeg drawtext filter
 function escapeText(text) {
   return text
@@ -150,6 +173,131 @@ function escapeText(text) {
     .replace(/%/g, '\\%')
     .replace(/\$/g, '\\$');  // Escape $ for shell
 }
+
+// ============================================
+// TTS VOICEOVER GENERATION
+// ============================================
+
+/**
+ * Generate voiceover script from input data
+ */
+function generateVoiceoverScript(input) {
+  const parts = [];
+  
+  // Hook (0-3 seconds) - Short, attention-grabbing
+  const hook = input.hook_angle || input.voiceover_script || 'Check this out';
+  parts.push({
+    text: hook,
+    section: 'hook',
+    startTime: 0,
+    duration: HOOK_DURATION
+  });
+  
+  // Product description (3-15 seconds) - Product name and price
+  const productDesc = `${input.product_name}. Only ${input.product_price || 'a few bucks'}.`;
+  parts.push({
+    text: productDesc,
+    section: 'product',
+    startTime: HOOK_DURATION,
+    duration: PRODUCT_DURATION
+  });
+  
+  // CTA (15-20 seconds)
+  parts.push({
+    text: 'Link in bio.',
+    section: 'cta',
+    startTime: HOOK_DURATION + PRODUCT_DURATION,
+    duration: CTA_DURATION
+  });
+  
+  return parts;
+}
+
+/**
+ * Generate combined voiceover text
+ */
+function getCombinedVoiceoverText(input) {
+  const hook = input.hook_angle || input.voiceover_script || 'Check this out';
+  const productDesc = `${input.product_name}. Only ${input.product_price || 'a few bucks'}.`;
+  const cta = 'Link in bio.';
+  
+  // Add pauses between sections using commas/periods
+  return `${hook}... ${productDesc}... ${cta}`;
+}
+
+/**
+ * Generate TTS audio using espeak-ng (fallback)
+ */
+function generateTTSEspeak(text, outputPath) {
+  console.log('🎙️  Generating TTS with espeak-ng...');
+  
+  const wavPath = outputPath.replace(/\.[^.]+$/, '.wav');
+  
+  try {
+    // Generate WAV with espeak-ng
+    execSync(
+      `espeak-ng -v ${TTS_CONFIG.voice} -s ${TTS_CONFIG.speed} -p ${TTS_CONFIG.pitch} -w "${wavPath}" "${text.replace(/"/g, '\\"')}"`,
+      { stdio: 'pipe' }
+    );
+    
+    // Convert to MP3 with better quality
+    ffmpeg(`-i "${wavPath}" -acodec libmp3lame -ab 128k "${outputPath}"`);
+    
+    // Cleanup WAV
+    if (fs.existsSync(wavPath)) fs.unlinkSync(wavPath);
+    
+    return outputPath;
+  } catch (err) {
+    console.error(`TTS generation error: ${err.message}`);
+    return null;
+  }
+}
+
+/**
+ * Check if external TTS file exists (pre-generated via OpenClaw)
+ */
+function findExternalTTSAudio(input, tempDir) {
+  // Check if voiceover_audio was provided
+  if (input.voiceover_audio && fs.existsSync(input.voiceover_audio)) {
+    console.log('🎙️  Using pre-generated voiceover audio');
+    return input.voiceover_audio;
+  }
+  
+  // Check for OpenClaw TTS output in temp directories
+  const ttsPattern = /\/tmp\/tts-[^/]+\/voice-\d+\.mp3/;
+  if (input.voiceover_audio && ttsPattern.test(input.voiceover_audio)) {
+    if (fs.existsSync(input.voiceover_audio)) {
+      console.log('🎙️  Using OpenClaw TTS audio');
+      return input.voiceover_audio;
+    }
+  }
+  
+  return null;
+}
+
+/**
+ * Generate voiceover audio (tries external TTS first, falls back to espeak)
+ */
+async function generateVoiceover(input, outputPath) {
+  // Check for pre-generated audio first
+  const externalAudio = findExternalTTSAudio(input, TEMP_DIR);
+  if (externalAudio) {
+    // Copy to our temp location
+    fs.copyFileSync(externalAudio, outputPath);
+    return outputPath;
+  }
+  
+  // Generate voiceover text
+  const voiceoverText = getCombinedVoiceoverText(input);
+  console.log(`🎙️  Voiceover script: "${voiceoverText}"`);
+  
+  // Use espeak-ng as fallback
+  return generateTTSEspeak(voiceoverText, outputPath);
+}
+
+// ============================================
+// VIDEO CREATION FUNCTIONS
+// ============================================
 
 // Create a solid color background video
 function createBackgroundVideo(outputPath, duration) {
@@ -235,7 +383,56 @@ function addHookText(inputPath, outputPath, hookText) {
   ffmpeg(`-i "${inputPath}" -vf "${filter}" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
 }
 
-// Main editor function
+// ============================================
+// AUDIO MIXING
+// ============================================
+
+/**
+ * Mix voiceover audio with video
+ * @param {string} videoPath - Path to the video file (no audio)
+ * @param {string} audioPath - Path to the voiceover audio
+ * @param {string} outputPath - Path for the output video with audio
+ */
+function mixAudioWithVideo(videoPath, audioPath, outputPath) {
+  console.log('🔊 Mixing voiceover with video...');
+  
+  const audioDuration = getAudioDuration(audioPath);
+  console.log(`   Audio duration: ${audioDuration.toFixed(2)}s`);
+  
+  // Mix audio with video
+  // Use -shortest to end when the shortest stream ends
+  // Add slight delay and volume adjustment for better quality
+  try {
+    ffmpeg(
+      `-i "${videoPath}" -i "${audioPath}" ` +
+      `-filter_complex "[1:a]adelay=200|200,volume=1.5,apad[a]" ` +
+      `-map 0:v -map "[a]" ` +
+      `-c:v copy -c:a aac -b:a 192k ` +
+      `-shortest "${outputPath}"`
+    );
+    return true;
+  } catch (err) {
+    console.error('Audio mixing failed, trying simpler approach...');
+    
+    // Fallback: Simple audio overlay
+    try {
+      ffmpeg(
+        `-i "${videoPath}" -i "${audioPath}" ` +
+        `-c:v copy -c:a aac -b:a 128k ` +
+        `-shortest "${outputPath}"`
+      );
+      return true;
+    } catch (err2) {
+      console.error('Simple audio mixing also failed:', err2.message);
+      return false;
+    }
+  }
+}
+
+// ============================================
+// MAIN EDITOR FUNCTION
+// ============================================
+
 async function editVideo(input) {
   console.log(`\n🎬 Editor: Starting video assembly for "${input.product_name}"`);
   
@@ -261,6 +458,8 @@ async function editVideo(input) {
   const tempShowcase = path.join(TEMP_DIR, `showcase_${timestamp}.mp4`);
   const tempCTA = path.join(TEMP_DIR, `cta_${timestamp}.mp4`);
   const tempConcat = path.join(TEMP_DIR, `concat_${timestamp}.mp4`);
+  const tempVoiceover = path.join(TEMP_DIR, `voiceover_${timestamp}.mp3`);
+  const tempVideoNoAudio = path.join(TEMP_DIR, `video_noaudio_${timestamp}.mp4`);
   
   try {
     // Step 1: Download assets
@@ -293,15 +492,36 @@ async function editVideo(input) {
     console.log('🔗 Concatenating segments...');
     concatenateVideos([tempHookText, tempShowcase, tempCTA], tempConcat);
     
-    // Step 6: Final encoding (ensure proper format)
-    console.log('🎥 Final encoding...');
-    ffmpeg(`-i "${tempConcat}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart "${videoPath}"`);
+    // Step 6: Generate or use voiceover
+    console.log('🎙️  Preparing voiceover...');
+    const voiceoverPath = await generateVoiceover(input, tempVoiceover);
     
-    // Step 7: Generate thumbnail
-    console.log('🖼️ Generating thumbnail...');
+    // Step 7: Final encoding with voiceover
+    console.log('🎥 Final encoding...');
+    
+    if (voiceoverPath && fs.existsSync(voiceoverPath)) {
+      // Create video without audio first
+      ffmpeg(`-i "${tempConcat}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
+      
+      // Mix voiceover with video
+      const mixSuccess = mixAudioWithVideo(tempVideoNoAudio, voiceoverPath, videoPath);
+      
+      if (!mixSuccess) {
+        console.log('⚠️  Voiceover mixing failed, creating video without audio');
+        ffmpeg(`-i "${tempConcat}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart "${videoPath}"`);
+      } else {
+        console.log('✅ Voiceover added successfully!');
+      }
+    } else {
+      console.log('⚠️  No voiceover available, creating silent video');
+      ffmpeg(`-i "${tempConcat}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart "${videoPath}"`);
+    }
+    
+    // Step 8: Generate thumbnail
+    console.log('🖼️  Generating thumbnail...');
     generateThumbnail(videoPath, thumbPath, HOOK_DURATION + 2);
     
-    // Step 8: Create post metadata
+    // Step 9: Create post metadata
     console.log('📝 Creating post metadata...');
     const postData = {
       video_path: videoPath,
@@ -314,6 +534,8 @@ async function editVideo(input) {
       ig_caption: input.ig_caption || generateDefaultCaption(input, 'ig'),
       tiktok_caption: input.tiktok_caption || generateDefaultCaption(input, 'tiktok'),
       hook_angle: input.hook_angle,
+      voiceover_script: getCombinedVoiceoverText(input),
+      has_voiceover: voiceoverPath && fs.existsSync(videoPath),
       duration_seconds: TOTAL_DURATION,
       created_at: new Date().toISOString(),
       ready_for_posting: true
@@ -323,19 +545,28 @@ async function editVideo(input) {
     
     // Cleanup temp files
     console.log('🧹 Cleaning up...');
-    cleanupTempFiles([tempMeme, tempProduct, tempHook, tempHookText, tempShowcase, tempCTA, tempConcat]);
+    cleanupTempFiles([
+      tempMeme, tempProduct, tempHook, tempHookText, 
+      tempShowcase, tempCTA, tempConcat, tempVoiceover,
+      tempVideoNoAudio
+    ]);
     
     console.log(`\n✅ Video assembly complete!`);
     console.log(`   📹 Video: ${videoPath}`);
     console.log(`   🖼️  Thumb: ${thumbPath}`);
-    console.log(`   📄 Post:  ${postPath}\n`);
+    console.log(`   📄 Post:  ${postPath}`);
+    console.log(`   🎙️  Voiceover: ${postData.has_voiceover ? 'Yes' : 'No'}\n`);
     
     return postData;
     
   } catch (error) {
     console.error(`\n❌ Error during video assembly: ${error.message}`);
     // Cleanup on error
-    cleanupTempFiles([tempMeme, tempProduct, tempHook, tempHookText, tempShowcase, tempCTA, tempConcat]);
+    cleanupTempFiles([
+      tempMeme, tempProduct, tempHook, tempHookText, 
+      tempShowcase, tempCTA, tempConcat, tempVoiceover,
+      tempVideoNoAudio
+    ]);
     throw error;
   }
 }
@@ -460,7 +691,7 @@ async function main() {
     
     // No input - show help
     console.log(`
-DailyDealFeed Editor - Video Assembly Module
+DailyDealFeed Editor - Video Assembly Module (with TTS Voiceover)
 
 Usage:
   node editor.js --test                  # Run test with sample data
@@ -468,8 +699,13 @@ Usage:
   node editor.js --input input.json      # Process from JSON file
   echo '{"..."}' | node editor.js        # Process from stdin
 
+TTS Voiceover:
+  - Automatically generates voiceover from hook_angle + product info
+  - Or provide pre-generated audio via "voiceover_audio" in input JSON
+  - Uses espeak-ng as fallback TTS engine
+
 Output:
-  Creates video, thumbnail, and post metadata in output/ folder
+  Creates video (with voiceover), thumbnail, and post metadata in output/ folder
 `);
     
   } catch (error) {
@@ -479,7 +715,7 @@ Output:
 }
 
 // Export for module use
-module.exports = { editVideo, runFromScout, runTest };
+module.exports = { editVideo, runFromScout, runTest, generateVoiceover, getCombinedVoiceoverText };
 
 // Run if called directly
 if (require.main === module) {

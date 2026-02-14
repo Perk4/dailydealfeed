@@ -1,0 +1,366 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "updated": "2026-02-14",
+    "description": "Viral-style hook clips for DailyDealFeed videos",
+    "sources": {
+      "mixkit": "https://mixkit.co - Free stock video, commercial use allowed under Mixkit License",
+      "pexels": "https://www.pexels.com - Free stock video, commercial use allowed",
+      "coverr": "https://coverr.co - Free stock video, commercial use allowed",
+      "pixabay": "https://pixabay.com - Royalty-free, no attribution required"
+    },
+    "usage": "2-4 second clips for reels hooks. Download once, cache locally."
+  },
+  "clips": {
+    "shocked": [
+      {
+        "id": "shock-001",
+        "name": "Man hands on head shock",
+        "source": "mixkit",
+        "sourceId": "4508",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-surprised-man-with-hands-on-head-4508-large.mp4",
+        "duration": 4,
+        "vibe": "Pure WTF moment - hands on head classic",
+        "hookStyle": "reveal_reaction"
+      },
+      {
+        "id": "shock-002",
+        "name": "Shocked woman park",
+        "source": "mixkit",
+        "sourceId": "46376",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-shocked-woman-in-a-park-46376-large.mp4",
+        "duration": 3,
+        "vibe": "Outdoor shock reaction",
+        "hookStyle": "discovery"
+      },
+      {
+        "id": "shock-003",
+        "name": "Frustrated woman computer",
+        "source": "mixkit",
+        "sourceId": "25575",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-young-very-frustrated-woman-in-front-of-her-computer-25575-large.mp4",
+        "duration": 4,
+        "vibe": "Relatable tech frustration",
+        "hookStyle": "problem_intro"
+      },
+      {
+        "id": "shock-004",
+        "name": "Couple shocked movie",
+        "source": "mixkit",
+        "sourceId": "49366",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-shocked-couple-watching-a-movie-49366-large.mp4",
+        "duration": 3,
+        "vibe": "Joint reaction moment",
+        "hookStyle": "reveal_reaction"
+      },
+      {
+        "id": "shock-005",
+        "name": "Surprised woman green screen",
+        "source": "mixkit",
+        "sourceId": "46380",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-surprised-woman-with-a-green-background-46380-large.mp4",
+        "duration": 3,
+        "vibe": "Clean keying option for edits",
+        "hookStyle": "versatile"
+      },
+      {
+        "id": "shock-006",
+        "name": "Very surprised happy woman",
+        "source": "mixkit",
+        "sourceId": "43831",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-very-surprised-happy-woman-43831-large.mp4",
+        "duration": 4,
+        "vibe": "Positive shock - good news energy",
+        "hookStyle": "positive_reveal"
+      }
+    ],
+    "fail": [
+      {
+        "id": "fail-001",
+        "name": "Domino effect",
+        "source": "mixkit",
+        "sourceId": "5246",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-domino-effect-5246-large.mp4",
+        "duration": 4,
+        "vibe": "Satisfying chain reaction",
+        "hookStyle": "setup_payoff"
+      },
+      {
+        "id": "fail-002",
+        "name": "Crying emoji office drama",
+        "source": "mixkit",
+        "sourceId": "100837",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-crying-emoji-reaction-to-workplace-drama-100837-large.mp4",
+        "duration": 4,
+        "vibe": "Relatable office pain",
+        "hookStyle": "empathy_hook"
+      },
+      {
+        "id": "fail-003",
+        "name": "Employees scolded emoji",
+        "source": "mixkit",
+        "sourceId": "100841",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-emoji-reactions-of-scolded-office-employees-100841-large.mp4",
+        "duration": 4,
+        "vibe": "Group reaction fail",
+        "hookStyle": "relatable_struggle"
+      },
+      {
+        "id": "fail-004",
+        "name": "Sad emoji office scolding",
+        "source": "mixkit",
+        "sourceId": "100838",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-sad-emoji-reaction-to-office-scolding-100838-large.mp4",
+        "duration": 3,
+        "vibe": "Solo disappointment",
+        "hookStyle": "problem_intro"
+      }
+    ],
+    "reveal": [
+      {
+        "id": "reveal-001",
+        "name": "Playing cards spread cascade",
+        "source": "mixkit",
+        "sourceId": "100386",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-spread-of-playing-cards-on-table-100386-large.mp4",
+        "duration": 3,
+        "vibe": "Satisfying visual cascade",
+        "hookStyle": "transformation"
+      },
+      {
+        "id": "reveal-002",
+        "name": "Couple laptop surprise",
+        "source": "mixkit",
+        "sourceId": "9228",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-couple-surprised-by-what-they-see-on-their-laptop-9228-large.mp4",
+        "duration": 4,
+        "vibe": "Discovery moment",
+        "hookStyle": "reveal_reaction"
+      },
+      {
+        "id": "reveal-003",
+        "name": "Door surprise friends",
+        "source": "mixkit",
+        "sourceId": "51522",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-a-young-man-opens-the-door-and-finds-a-surprise-51522-large.mp4",
+        "duration": 4,
+        "vibe": "Surprise reveal energy",
+        "hookStyle": "positive_reveal"
+      },
+      {
+        "id": "reveal-004",
+        "name": "Soup taste reaction",
+        "source": "mixkit",
+        "sourceId": "12158",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-tasting-his-wifes-soup-12158-large.mp4",
+        "duration": 3,
+        "vibe": "Taste test satisfaction",
+        "hookStyle": "satisfaction"
+      }
+    ],
+    "reaction": [
+      {
+        "id": "react-001",
+        "name": "Excited video call girl",
+        "source": "mixkit",
+        "sourceId": "8745",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-excited-girl-talking-on-video-call-with-her-cell-phone-8745-large.mp4",
+        "duration": 4,
+        "vibe": "Genuine excitement energy",
+        "hookStyle": "enthusiasm"
+      },
+      {
+        "id": "react-002",
+        "name": "Movie theater audience tender",
+        "source": "mixkit",
+        "sourceId": "100283",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-movie-theater-audience-reacting-100283-large.mp4",
+        "duration": 4,
+        "vibe": "Collective reaction",
+        "hookStyle": "emotional_response"
+      },
+      {
+        "id": "react-003",
+        "name": "Happy emoji employees",
+        "source": "mixkit",
+        "sourceId": "100843",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-employees-with-happy-emoji-faces-masks-100843-large.mp4",
+        "duration": 4,
+        "vibe": "Celebration reaction",
+        "hookStyle": "positive_outcome"
+      },
+      {
+        "id": "react-004",
+        "name": "VR man reaching reaction",
+        "source": "mixkit",
+        "sourceId": "267",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-man-moves-with-virtual-reality-glasses-267-large.mp4",
+        "duration": 4,
+        "vibe": "Tech amazement",
+        "hookStyle": "discovery"
+      },
+      {
+        "id": "react-005",
+        "name": "Young people dancing intensely",
+        "source": "mixkit",
+        "sourceId": "4606",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-young-people-dancing-intensely-4606-large.mp4",
+        "duration": 3,
+        "vibe": "Energy and vibe",
+        "hookStyle": "lifestyle"
+      }
+    ],
+    "twist": [
+      {
+        "id": "twist-001",
+        "name": "Skydiver mountain glide",
+        "source": "mixkit",
+        "sourceId": "4647",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-skydiver-flying-over-a-mountain-range-4647-large.mp4",
+        "duration": 4,
+        "vibe": "Unexpected POV shift",
+        "hookStyle": "dramatic_intro"
+      },
+      {
+        "id": "twist-002",
+        "name": "Woman singing kitchen ladle",
+        "source": "mixkit",
+        "sourceId": "101072",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-young-woman-singing-in-the-kitchen-101072-large.mp4",
+        "duration": 3,
+        "vibe": "Quirky relatable moment",
+        "hookStyle": "lifestyle"
+      },
+      {
+        "id": "twist-003",
+        "name": "Man toothbrush mic mirror",
+        "source": "mixkit",
+        "sourceId": "101308",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-man-dancing-in-the-mirror-101308-large.mp4",
+        "duration": 4,
+        "vibe": "Relatable daily quirk",
+        "hookStyle": "lifestyle"
+      },
+      {
+        "id": "twist-004",
+        "name": "Woman mopping singing",
+        "source": "mixkit",
+        "sourceId": "101066",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-woman-singing-and-having-fun-while-mopping-101066-large.mp4",
+        "duration": 4,
+        "vibe": "Chores turned fun",
+        "hookStyle": "transformation"
+      },
+      {
+        "id": "twist-005",
+        "name": "Cute boy surprised park",
+        "source": "mixkit",
+        "sourceId": "33637",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-cute-boy-surprised-in-a-park-portrait-33637-large.mp4",
+        "duration": 3,
+        "vibe": "Innocent surprise",
+        "hookStyle": "discovery"
+      }
+    ],
+    "cozy": [
+      {
+        "id": "cozy-001",
+        "name": "Couple playing grass",
+        "source": "mixkit",
+        "sourceId": "4688",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-a-cute-couple-playing-on-the-grass-4688-large.mp4",
+        "duration": 4,
+        "vibe": "Relaxed couple energy",
+        "hookStyle": "lifestyle"
+      },
+      {
+        "id": "cozy-002",
+        "name": "Woman singing mirror",
+        "source": "mixkit",
+        "sourceId": "101074",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-woman-singing-in-front-of-the-mirror-101074-large.mp4",
+        "duration": 4,
+        "vibe": "Self-care vibes",
+        "hookStyle": "lifestyle"
+      },
+      {
+        "id": "cozy-003",
+        "name": "Coworkers laughing",
+        "source": "mixkit",
+        "sourceId": "4872",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-two-coworkers-talking-and-laughing-4872-large.mp4",
+        "duration": 4,
+        "vibe": "Friendly workplace",
+        "hookStyle": "social"
+      }
+    ],
+    "transformation": [
+      {
+        "id": "trans-001",
+        "name": "Tennis ball slow motion bounce",
+        "source": "mixkit",
+        "sourceId": "101289",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-tennis-ball-bouncing-in-slow-motion-101289-large.mp4",
+        "duration": 3,
+        "vibe": "Slow-mo satisfying",
+        "hookStyle": "visual_hook"
+      },
+      {
+        "id": "trans-002",
+        "name": "Ping pong action strike",
+        "source": "mixkit",
+        "sourceId": "101288",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-ping-pong-paddle-striking-ball-in-mid-game-action-101288-large.mp4",
+        "duration": 3,
+        "vibe": "Action energy",
+        "hookStyle": "dynamic"
+      },
+      {
+        "id": "trans-003",
+        "name": "Pregnancy test positive joy",
+        "source": "mixkit",
+        "sourceId": "100984",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-exciting-pregnancy-news-with-emoji-reactions-100984-large.mp4",
+        "duration": 4,
+        "vibe": "Life-changing moment",
+        "hookStyle": "emotional_reveal"
+      }
+    ]
+  },
+  "vibeMapping": {
+    "tech": ["shocked", "reveal", "reaction"],
+    "home": ["reveal", "cozy", "transformation", "twist"],
+    "wellness": ["transformation", "cozy", "reaction"],
+    "cleaning": ["reveal", "transformation", "shocked"],
+    "kitchen": ["cozy", "reveal", "twist"],
+    "lifestyle": ["cozy", "twist", "reaction"],
+    "beauty": ["transformation", "reveal", "reaction"],
+    "gadget": ["shocked", "reveal", "reaction"]
+  },
+  "productSpecific": {
+    "The Pink Stuff": {
+      "preferredVibes": ["transformation", "reveal", "shocked"],
+      "preferredStyles": ["before_after", "satisfying_clean"]
+    },
+    "Bissell Little Green": {
+      "preferredVibes": ["shocked", "reveal", "transformation"],
+      "preferredStyles": ["gross_reveal", "satisfying_clean"]
+    },
+    "LED Moon Night Light": {
+      "preferredVibes": ["cozy", "reveal", "transformation"],
+      "preferredStyles": ["room_reveal", "mood_shift"]
+    },
+    "Self-Stirring Mug": {
+      "preferredVibes": ["twist", "reaction", "cozy"],
+      "preferredStyles": ["lazy_hack", "lifestyle"]
+    },
+    "Cloud Slides": {
+      "preferredVibes": ["cozy", "reaction", "reveal"],
+      "preferredStyles": ["comfort_test", "satisfaction"]
+    },
+    "Foot Peel Mask": {
+      "preferredVibes": ["shocked", "transformation", "reveal"],
+      "preferredStyles": ["gross_satisfying", "before_after"]
+    }
+  }
+}

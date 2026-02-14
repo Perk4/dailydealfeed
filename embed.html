@@ -112,10 +112,34 @@
     line-height: 1.4;
   }
   
+  /* Price styling */
+  .ddf-card-price-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  
   .ddf-card-price {
     font-size: 1.2rem;
     font-weight: 700;
     color: #2d8f2d;
+  }
+  
+  .ddf-card-original-price {
+    font-size: 0.95rem;
+    color: #999;
+    text-decoration: line-through;
+  }
+  
+  .ddf-discount-badge {
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+    color: white;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 600;
   }
   
   .ddf-featured-badge {
@@ -128,6 +152,75 @@
     margin-left: 8px;
     font-weight: 600;
     text-transform: uppercase;
+  }
+  
+  /* Coupon styling */
+  .ddf-coupon {
+    background: linear-gradient(135deg, #fffef0 0%, #fff9e6 100%);
+    border: 2px dashed #e6a700;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    position: relative;
+  }
+  
+  .ddf-coupon::before {
+    content: "✂️";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 14px;
+    background: #fff;
+    padding: 0 4px;
+  }
+  
+  .ddf-coupon-label {
+    font-size: 0.7rem;
+    color: #996600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+  
+  .ddf-coupon-code {
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #b35c00;
+    background: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid #e6a700;
+    letter-spacing: 1px;
+  }
+  
+  .ddf-coupon-copy {
+    background: #ffc107;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .ddf-coupon-copy:hover {
+    background: #ffca2c;
+    transform: scale(1.05);
+  }
+  
+  .ddf-coupon-copy.copied {
+    background: #28a745;
+    color: white;
   }
   
   .ddf-loading {
@@ -161,6 +254,14 @@
     .ddf-card-image {
       height: 180px;
     }
+    
+    .ddf-coupon {
+      flex-wrap: wrap;
+    }
+    
+    .ddf-coupon-code {
+      font-size: 0.9rem;
+    }
   }
 </style>
 
@@ -188,6 +289,80 @@
   let allProducts = [];
   let currentFilter = 'all';
   
+  // Copy coupon code to clipboard
+  window.ddfCopyCode = function(code, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const btn = event.currentTarget;
+    
+    navigator.clipboard.writeText(code).then(() => {
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '✓ Copied!';
+      btn.classList.add('copied');
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(err => {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = code;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        btn.innerHTML = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '📋 Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      } catch (e) {
+        console.error('Copy failed', e);
+      }
+      document.body.removeChild(textArea);
+    });
+  };
+  
+  // Format price display
+  function formatPrice(product) {
+    const currentPrice = product.price;
+    const originalPrice = product.original_price;
+    const discount = product.discount_percent;
+    
+    let html = `<span class="ddf-card-price">${currentPrice}</span>`;
+    
+    if (originalPrice && originalPrice !== currentPrice) {
+      html += ` <span class="ddf-card-original-price">${originalPrice}</span>`;
+    }
+    
+    if (discount) {
+      html += ` <span class="ddf-discount-badge">-${discount}%</span>`;
+    }
+    
+    return html;
+  }
+  
+  // Generate coupon HTML
+  function formatCoupon(product) {
+    if (!product.coupon_code) return '';
+    
+    const code = product.coupon_code;
+    return `
+      <div class="ddf-coupon" onclick="event.stopPropagation();">
+        <div>
+          <div class="ddf-coupon-label">Use code at checkout</div>
+          <span class="ddf-coupon-code">${code}</span>
+        </div>
+        <button class="ddf-coupon-copy" onclick="ddfCopyCode('${code}', event)">📋 Copy</button>
+      </div>
+    `;
+  }
+  
   // Track clicks
   function trackClick(product) {
     console.log('[DDF Click]', {
@@ -195,6 +370,7 @@
       name: product.name,
       category: product.category,
       price: product.price,
+      coupon_code: product.coupon_code || null,
       timestamp: new Date().toISOString()
     });
     // Future: Add GA4 event here
@@ -233,7 +409,10 @@
             ${product.featured ? '<span class="ddf-featured-badge">Hot</span>' : ''}
           </h3>
           <p class="ddf-card-tagline">"${product.tagline}"</p>
-          <div class="ddf-card-price">${product.price}</div>
+          <div class="ddf-card-price-row">
+            ${formatPrice(product)}
+          </div>
+          ${formatCoupon(product)}
         </div>
       </a>
     `).join('');
