@@ -17,8 +17,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
-const http = require('http');
 
 // Paths
 const SCRIPT_DIR = __dirname;
@@ -34,106 +32,107 @@ if (!fs.existsSync(CLIPS_CACHE_DIR)) {
 }
 
 // Product vibe mappings based on taglines and categories
+// Keys support partial matching (searched as substring in product name)
 const PRODUCT_VIBES = {
-  "LED Moon Night Light": {
+  "Moon Lamp": {
     vibes: ["cozy", "transformation"],
     hookTemplates: [
       "POV: Your room transformation at 3am",
       "When the vibes finally hit different",
     ]
   },
-  "Mini Bluetooth Pocket Printer": {
+  "Pocket Printer": {
     vibes: ["shocked", "reaction"],
     hookTemplates: [
       "Wait this actually works?!",
       "The gadget that changed my photo game",
     ]
   },
-  "Multi-Device Charging Stand": {
+  "Charging Station": {
     vibes: ["reveal", "reaction"],
     hookTemplates: [
       "Finally found the nightstand solution",
       "Cord chaos? Never heard of it",
     ]
   },
-  "Light Therapy Lamp": {
+  "Light Therapy": {
     vibes: ["transformation", "reaction"],
     hookTemplates: [
       "My seasonal depression hack nobody talks about",
       "The $50 that saved my winter",
     ]
   },
-  "Self-Stirring Mug": {
+  "Self Stirring": {
     vibes: ["twist", "cozy"],
     hookTemplates: [
       "For my fellow lazy people who get it",
       "When you're too tired to stir your coffee",
     ]
   },
-  "The Pink Stuff": {
+  "Pink Stuff": {
     vibes: ["transformation", "shocked", "reveal"],
     hookTemplates: [
       "This $10 paste vs my disgusting stove",
       "The before/after that broke me",
     ]
   },
-  "Bissell Little Green": {
+  "Little Green": {
     vibes: ["shocked", "transformation", "reveal"],
     hookTemplates: [
       "What came out of my couch... I'm disturbed",
       "Don't watch this while eating (but you will)",
     ]
   },
-  "Cloud Key Holder": {
+  "Key Holder": {
     vibes: ["cozy", "twist"],
     hookTemplates: [
       "The cutest solution to my lost keys problem",
       "This little cloud fixed my life",
     ]
   },
-  "Ribbed Glass Cups": {
+  "Glass Cups": {
     vibes: ["reveal", "transformation"],
     hookTemplates: [
       "How I made my kitchen look expensive for $25",
       "The aesthetic glow-up nobody asked for",
     ]
   },
-  "Dash Mini Waffle Maker": {
+  "Waffle Maker": {
     vibes: ["cozy", "reaction"],
     hookTemplates: [
       "The TikTok waffle maker - is it actually worth it?",
       "Mini waffles that changed my mornings",
     ]
   },
-  "Starface Pimple Patches": {
+  "Pimple Patches": {
     vibes: ["twist", "reaction"],
     hookTemplates: [
       "Making acne kinda cute somehow?",
       "The patch that made me stop caring about breakouts",
     ]
   },
-  "Ice Roller for Face": {
+  "Ice Roller": {
     vibes: ["transformation", "reaction"],
     hookTemplates: [
       "My face at 7am vs after this thing",
       "The $12 morning routine game changer",
     ]
   },
-  "Foot Peel Mask": {
+  "Foot Peel": {
     vibes: ["shocked", "transformation"],
     hookTemplates: [
       "Warning: this is disturbing (but satisfying)",
       "DO NOT watch this while eating",
     ]
   },
-  "Cloud Slides": {
+  "Cloud Pillow": {
     vibes: ["cozy", "reaction"],
     hookTemplates: [
       "I refused to believe the hype... until now",
       "Why everyone and their mom has these",
     ]
   },
-  "Loop Earplugs": {
+  "Loop": {
     vibes: ["reaction", "reveal"],
     hookTemplates: [
       "How I protect my hearing without missing the music",
@@ -165,120 +164,75 @@ function loadClipsLibrary() {
 }
 
 /**
- * Download a clip to local cache
+ * Get local path for a clip (check cache or return null)
+ * For manual caching, use: yt-dlp -o "clips/cache/%(id)s.mp4" URL
  */
-function downloadClip(clip) {
-  return new Promise((resolve, reject) => {
-    const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
-    
-    // Check if already cached and valid (> 10KB)
-    if (fs.existsSync(cacheFile)) {
-      const stats = fs.statSync(cacheFile);
-      if (stats.size > 10000) {
-        resolve(cacheFile);
-        return;
-      }
-      // Invalid cache, remove it
-      fs.unlinkSync(cacheFile);
+function getClipLocalPath(clip) {
+  const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
+  
+  if (fs.existsSync(cacheFile)) {
+    const stats = fs.statSync(cacheFile);
+    if (stats.size > 10000) {
+      return cacheFile;
     }
+  }
+  
+  return null; // Use clip.url for streaming
+}
 
-    const url = clip.url;
-    const parsedUrl = new URL(url);
-    const protocol = url.startsWith('https') ? https : http;
+/**
+ * Try to download a clip using yt-dlp (best method for protected video sites)
+ */
+async function downloadClipYtdlp(clip) {
+  const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
+  
+  // Check if already cached and valid
+  if (fs.existsSync(cacheFile)) {
+    const stats = fs.statSync(cacheFile);
+    if (stats.size > 10000) {
+      return cacheFile;
+    }
+    fs.unlinkSync(cacheFile);
+  }
+  
+  // Construct source page URL for yt-dlp
+  let pageUrl;
+  if (clip.source === 'mixkit') {
+    pageUrl = `https://mixkit.co/free-stock-video/${clip.sourceId}/`;
+  } else if (clip.source === 'pexels') {
+    pageUrl = `https://www.pexels.com/video/${clip.sourceId}/`;
+  } else {
+    pageUrl = clip.url;
+  }
+  
+  return new Promise((resolve, reject) => {
+    const { spawn } = require('child_process');
+    const ytdlp = spawn('yt-dlp', [
+      '-f', 'best[height<=720]',
+      '-o', cacheFile,
+      '--no-playlist',
+      pageUrl
+    ]);
     
-    console.log(`Downloading ${clip.id}: ${clip.name}...`);
+    let stderr = '';
+    ytdlp.stderr.on('data', (data) => { stderr += data; });
     
-    const options = {
-      hostname: parsedUrl.hostname,
-      path: parsedUrl.pathname + parsedUrl.search,
-      method: 'GET',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'video/mp4,video/*;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5',
-        'Referer': 'https://mixkit.co/',
-      }
-    };
-    
-    const file = fs.createWriteStream(cacheFile);
-    
-    const handleResponse = (response) => {
-      // Handle redirects
-      if (response.statusCode === 301 || response.statusCode === 302 || response.statusCode === 307) {
-        const redirectUrl = response.headers.location;
-        const fullUrl = redirectUrl.startsWith('http') ? redirectUrl : `https://${parsedUrl.hostname}${redirectUrl}`;
-        const redirectParsed = new URL(fullUrl);
-        const redirectProtocol = fullUrl.startsWith('https') ? https : http;
-        
-        const redirectOptions = {
-          hostname: redirectParsed.hostname,
-          path: redirectParsed.pathname + redirectParsed.search,
-          method: 'GET',
-          headers: options.headers
-        };
-        
-        redirectProtocol.get(redirectOptions, handleResponse).on('error', (err) => {
-          fs.unlink(cacheFile, () => {});
-          reject(err);
-        });
-        return;
-      }
-      
-      if (response.statusCode !== 200) {
-        fs.unlink(cacheFile, () => {});
-        reject(new Error(`HTTP ${response.statusCode}`));
-        return;
-      }
-      
-      response.pipe(file);
-      file.on('finish', () => {
-        file.close();
-        // Verify file size
-        const stats = fs.statSync(cacheFile);
-        if (stats.size < 10000) {
-          fs.unlink(cacheFile, () => {});
-          reject(new Error('Downloaded file too small, likely error page'));
-          return;
-        }
+    ytdlp.on('close', (code) => {
+      if (code === 0 && fs.existsSync(cacheFile)) {
         resolve(cacheFile);
-      });
-    };
-    
-    const request = protocol.get(options, handleResponse);
-    
-    request.on('error', (err) => {
-      fs.unlink(cacheFile, () => {});
-      reject(err);
+      } else {
+        reject(new Error(`yt-dlp failed: ${stderr || 'unknown error'}`));
+      }
     });
     
-    request.setTimeout(60000, () => {
-      request.destroy();
-      fs.unlink(cacheFile, () => {});
-      reject(new Error('Download timeout'));
+    ytdlp.on('error', (err) => {
+      reject(new Error(`yt-dlp not found: ${err.message}`));
     });
   });
 }
 
 /**
- * Get local path for a clip (download if needed)
- */
-async function getClipLocalPath(clip) {
-  const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
-  
-  if (fs.existsSync(cacheFile)) {
-    return cacheFile;
-  }
-  
-  try {
-    return await downloadClip(clip);
-  } catch (err) {
-    console.warn(`Failed to download ${clip.id}: ${err.message}`);
-    return null;
-  }
-}
-
-/**
- * Pre-cache all clips
+ * Pre-cache all clips using yt-dlp
  */
 async function cacheAllClips() {
   const library = loadClipsLibrary();
@@ -287,18 +241,50 @@ async function cacheAllClips() {
   let skipped = 0;
   let failed = 0;
   
+  // Check if yt-dlp is available
+  const { execSync } = require('child_process');
+  try {
+    execSync('which yt-dlp', { stdio: 'ignore' });
+  } catch {
+    console.log('⚠️  yt-dlp not found. Install with: pip install yt-dlp');
+    console.log('\nManual download alternative:');
+    console.log('Visit each URL in clips.json and download manually to clips/cache/\n');
+    
+    // Print URLs for manual download
+    for (const vibe of Object.keys(clips)) {
+      console.log(`\n=== ${vibe.toUpperCase()} ===`);
+      for (const clip of clips[vibe]) {
+        const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
+        if (fs.existsSync(cacheFile) && fs.statSync(cacheFile).size > 10000) {
+          console.log(`✓ ${clip.id} (cached)`);
+        } else {
+          let pageUrl;
+          if (clip.source === 'mixkit') {
+            pageUrl = `https://mixkit.co/free-stock-video/${clip.sourceId}/`;
+          } else {
+            pageUrl = clip.url;
+          }
+          console.log(`  ${clip.id}: ${pageUrl}`);
+        }
+      }
+    }
+    return;
+  }
+  
   for (const vibe of Object.keys(clips)) {
     for (const clip of clips[vibe]) {
       const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
       
-      if (fs.existsSync(cacheFile)) {
+      if (fs.existsSync(cacheFile) && fs.statSync(cacheFile).size > 10000) {
         console.log(`✓ Already cached: ${clip.id}`);
         skipped++;
         continue;
       }
       
+      console.log(`Downloading ${clip.id}: ${clip.name}...`);
+      
       try {
-        await downloadClip(clip);
+        await downloadClipYtdlp(clip);
         console.log(`✓ Downloaded: ${clip.id}`);
         downloaded++;
       } catch (err) {
@@ -306,8 +292,8 @@ async function cacheAllClips() {
         failed++;
       }
       
-      // Small delay between downloads to be respectful
-      await new Promise(r => setTimeout(r, 500));
+      // Delay between downloads to be respectful
+      await new Promise(r => setTimeout(r, 1000));
     }
   }
   
@@ -432,10 +418,16 @@ function findClip(product, state) {
   const productName = product.name;
   const productCategory = product.category;
   
-  // Get vibes for this product
-  const vibeConfig = PRODUCT_VIBES[productName] || null;
-  let targetVibes;
+  // Get vibes for this product (partial match on product name)
+  let vibeConfig = null;
+  for (const [key, config] of Object.entries(PRODUCT_VIBES)) {
+    if (productName.toLowerCase().includes(key.toLowerCase())) {
+      vibeConfig = config;
+      break;
+    }
+  }
   
+  let targetVibes;
   if (vibeConfig) {
     targetVibes = vibeConfig.vibes;
   } else {
@@ -496,7 +488,7 @@ function findClip(product, state) {
   };
 }
 
-async function scout(productId = null) {
+function scout(productId = null) {
   const products = loadProducts();
   const state = loadState();
 
@@ -506,8 +498,8 @@ async function scout(productId = null) {
   // Find clip
   const { clip, vibe, hook } = findClip(product, state);
   
-  // Get local path (download if needed)
-  const localPath = await getClipLocalPath(clip);
+  // Get local path (if cached)
+  const localPath = getClipLocalPath(clip);
 
   // Update state
   state.lastProductId = product.id;
@@ -599,7 +591,7 @@ async function main() {
     productId = parseInt(args[pidIdx + 1], 10);
   }
 
-  const result = await scout(productId);
+  const result = scout(productId);
   
   if (args.includes('--pretty')) {
     console.log(JSON.stringify(result, null, 2));

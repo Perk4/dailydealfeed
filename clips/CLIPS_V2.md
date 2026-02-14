@@ -1,5 +1,7 @@
 # DailyDealFeed Clips Library V2
 
+> **Scout V2 Upgrade** - Viral-style hooks instead of generic Giphy GIFs
+
 ## Overview
 
 This is the upgraded clip sourcing system for @dailydealfeed videos. Instead of generic Giphy GIFs, we now use curated viral-style video clips that are:
@@ -57,11 +59,6 @@ Before/after energy, slow-mo satisfying, change moments
 node scripts/scout.js --pretty
 ```
 
-### Pre-cache all clips (run once)
-```bash
-node scripts/scout.js --cache-all
-```
-
 ### View library stats
 ```bash
 node scripts/scout.js --clip-stats
@@ -71,6 +68,25 @@ node scripts/scout.js --clip-stats
 ```bash
 node scripts/scout.js --product-id 5 --pretty
 ```
+
+### Pre-cache all clips
+The video sites (Mixkit, Pexels) require browser-based downloads. Options:
+
+**Option 1: Use yt-dlp (recommended)**
+```bash
+pip install yt-dlp
+node scripts/scout.js --cache-all
+```
+
+**Option 2: Manual download**
+```bash
+node scripts/scout.js --cache-all  # Lists URLs if yt-dlp not installed
+```
+Then visit each URL and download to `clips/cache/{clip-id}.mp4`
+
+**Option 3: Use streaming URLs directly**
+The video pipeline can use `clip_url` directly without local caching.
+FFmpeg and most video editors can stream from URLs.
 
 ## Output Format
 
