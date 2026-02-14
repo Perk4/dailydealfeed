@@ -6,6 +6,21 @@ _Hourly check-ins and progress updates for the Reels Affiliate project_
 
 ## 2026-02-14
 
+### Session 006 — 22:00 UTC (V2.1 Complete)
+**Status:** 🟢 Pipeline functional
+
+- **V2.1 TTS upgrade:** ✅ Shipped — Cloudflare Workers AI + Deepgram Luna voice
+- **V2.1 batch:** ✅ 5 videos rendered (products 6-10) with voiceover
+- **Preview updated:** ✅ perk4.github.io/dailydealfeed/preview.html
+- **Total output:** 22 videos generated, 10 products covered
+
+**Pipeline status:**
+- Scout ✅ | Writer ✅ | Producer ✅ | Editor ✅ | Publisher ⏳
+
+**Next:** Human review of videos → Publisher agent → First live post
+
+---
+
 ### Session 005 — 14:30 UTC (Scout Done, Writer Started)
 **Status:** 🟢 Cranking
 
