@@ -1,11 +1,13 @@
 {
-  "lastProductId": "7",
-  "lastCategory": "home",
+  "lastProductId": "11",
+  "lastCategory": "wellness",
   "usedProductIds": [
     "1",
     "6",
-    "7"
+    "7",
+    "2",
+    "11"
   ],
-  "categoryRotationIndex": 0,
-  "lastRun": "2026-02-14T14:28:59.410Z"
+  "categoryRotationIndex": 2,
+  "lastRun": "2026-02-14T14:29:37.110Z"
 }
