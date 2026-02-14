@@ -4,12 +4,12 @@
   "products": [
     {
       "id": "1",
-      "name": "Mind-Glowing 3D Moon Lamp",
+      "name": "Mind-Glowing Moon Lamp - 3D Moon Night Light for Kids Bedroom - Globe Nightlight with Multi Color LED, Touch/Remote Control - Birthday Gift for Any Year Old Girls & Boys - Space Decor (4.7 inch)",
       "category": "tech",
-      "price": "$19.99",
-      "original_price": "$29.99",
+      "price": "$19.95",
+      "original_price": "$24.95",
       "discount_percent": "33%",
-      "image": "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=800",
+      "image": "https://m.media-amazon.com/images/I/81vbr4CmnXL.jpg",
       "link": "https://www.amazon.com/dp/B07P13RT14?tag=dailydealfeed-20",
       "asin": "B07P13RT14",
       "tagline": "My room at 3am now vs before",
@@ -18,7 +18,18 @@
       "featured": true,
       "verified": "2026-02-14",
       "image_source": "fallback",
-      "image_updated": "2026-02-14"
+      "image_updated": "2026-02-14",
+      "amazon_images": [
+        "https://m.media-amazon.com/images/I/81LqrwSVp9L._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/713LGM+-EqL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81kGVkNpSSL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81iN4NHwr-L._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81lktBrhQPL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.4,
+      "reviews_count": 7053,
+      "amazon_coupon": null,
+      "last_updated": "2026-02-14T23:16:37.414Z"
     },
     {
       "id": "2",
@@ -94,12 +105,12 @@
     },
     {
       "id": "6",
-      "name": "The Pink Stuff Miracle Cleaning Paste",
+      "name": "Stardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste",
       "category": "home",
-      "price": "$9.97",
-      "original_price": "$12.99",
+      "price": "$4.79",
+      "original_price": "$5.99",
       "discount_percent": "23%",
-      "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=800",
+      "image": "https://m.media-amazon.com/images/I/71JVOV7dQvL.jpg",
       "link": "https://www.amazon.com/dp/B00DU5SRIY?tag=dailydealfeed-20",
       "asin": "B00DU5SRIY",
       "tagline": "This $10 paste vs my disgusting stove",
@@ -108,16 +119,37 @@
       "featured": true,
       "verified": "2026-02-14",
       "image_source": "fallback",
-      "image_updated": "2026-02-14"
+      "image_updated": "2026-02-14",
+      "amazon_images": [
+        "https://m.media-amazon.com/images/I/71rnAz4fIjL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/718iUF9aKVL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/712Otn4NoUL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/716HXFEH84L._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81+gW5E9e3L._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71rnAz4fIjL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/61KPNHTn9TL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81R1Z0i4hRL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81y-oOP-vZL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/719Jah9xSlL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/717rM7Rn-KL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/311ZJtmfjiL._AC_.jpg",
+        "https://m.media-amazon.com/images/I/51SL2U7Q1dL._AC_.jpg",
+        "https://m.media-amazon.com/images/I/513qMOyJqNL._AC_.jpg",
+        "https://m.media-amazon.com/images/I/51uIwqQZ24L._AC_.jpg"
+      ],
+      "rating": 4.4,
+      "reviews_count": 234827,
+      "amazon_coupon": null,
+      "last_updated": "2026-02-14T23:16:51.384Z"
     },
     {
       "id": "7",
-      "name": "Bissell Little Green Portable Carpet Cleaner",
+      "name": "BISSELL Little Green Multi-Purpose Portable Carpet and Upholstery Cleaner, Car and Auto Detailer, with Exclusive Specialty Tools, Green, 1400B",
       "category": "home",
-      "price": "$81.59",
-      "original_price": "$123.59",
+      "price": "$109.99",
+      "original_price": "$129.99",
       "discount_percent": "34%",
-      "image": "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800",
+      "image": "https://m.media-amazon.com/images/I/717X5secGjL.jpg",
       "link": "https://www.amazon.com/dp/B0016HF5GK?tag=dailydealfeed-20",
       "asin": "B0016HF5GK",
       "tagline": "What came out of my couch is disturbing",
@@ -126,7 +158,20 @@
       "featured": true,
       "verified": "2026-02-14",
       "image_source": "fallback",
-      "image_updated": "2026-02-14"
+      "image_updated": "2026-02-14",
+      "amazon_images": [
+        "https://m.media-amazon.com/images/I/81MfoyqdTxL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/91A3ZWJO2hL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81q9QwQDBVL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81u3oswV3eL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71RS9UbZaaL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81DbrtphfTL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/91rmPzyHoTL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.5,
+      "reviews_count": 109857,
+      "amazon_coupon": null,
+      "last_updated": "2026-02-14T23:17:00.912Z"
     },
     {
       "id": "8",
@@ -166,12 +211,12 @@
     },
     {
       "id": "10",
-      "name": "Dash Mini Waffle Maker",
+      "name": "Dash Mini Waffle Maker- Compact Electric Iron for Creative Homemade Treats - Nonstick Surface - Easy-to-Clean - Perfect for Kids & Families - Aqua 4 Inch Aqua",
       "category": "home",
-      "price": "$14.99",
-      "original_price": "$19.99",
+      "price": "$9.89",
+      "original_price": "$10.99",
       "discount_percent": "25%",
-      "image": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800",
+      "image": "https://m.media-amazon.com/images/I/61DjIfXqyeL.jpg",
       "link": "https://www.amazon.com/dp/B01M9I779L?tag=dailydealfeed-20",
       "asin": "B01M9I779L",
       "tagline": "The TikTok waffle maker but it's actually worth it",
@@ -180,7 +225,20 @@
       "featured": true,
       "verified": "2026-02-14",
       "image_source": "fallback",
-      "image_updated": "2026-02-14"
+      "image_updated": "2026-02-14",
+      "amazon_images": [
+        "https://m.media-amazon.com/images/I/814azDjAHIL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81MIFRRCQYL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/710JM2o5XGL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81tIb6OjG5L._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71ss8OeIMtL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71-eDpkrWfL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81XaAKdDPjL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews_count": 146815,
+      "amazon_coupon": null,
+      "last_updated": "2026-02-14T23:17:11.928Z"
     },
     {
       "id": "11",
