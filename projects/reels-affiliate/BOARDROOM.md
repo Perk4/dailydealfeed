@@ -1,36 +1,78 @@
 # Reels Affiliate Boardroom
 
-**Project:** Instagram Reels for @dailydealfeed affiliate products
+**Project:** Automated Instagram/TikTok Reels for @dailydealfeed affiliate products
 **Repo:** github.com/Perk4/dailydealfeed
-**Status:** 🟡 Scaffolding
+**Status:** 🟢 Active — Phase 1 Planning
+**ClawDeck:** [Board 4 - Influencer Marketing](https://clawdeck-lqis.onrender.com/boards/4)
 
 ---
 
-## Overview
+## Pipeline Overview
 
-Create engaging Instagram Reels to promote curated affiliate products from dailydealfeed. Goal: Drive traffic to product links and earn affiliate commissions through Amazon Associates.
+```
+Product → Meme → Script → Assets → Assembly → Post
+   🔍       🔍       ✍️       🎬        🎞️       📱
+ Scout    Scout   Writer  Producer   Editor  Publisher
+```
+
+**Full automation target:**
+1. Select product from products.json
+2. Find trending meme clip (2-4 seconds)
+3. Write voiceover script with hook + CTA
+4. Get product shot from Amazon
+5. Assemble video with discount overlay
+6. Post to IG/TikTok @dailydealfeed
 
 ---
 
-## Phases
+## Agent Roles
 
-### Phase 1: Foundation 🔧
-- [ ] Define reel format/style
-- [ ] Set up content calendar structure
-- [ ] Establish product selection criteria
-- [ ] Create first 3 template scripts
+| Agent | Emoji | Responsibility | Deliverable |
+|-------|-------|----------------|-------------|
+| **Scout** | 🔍 | Product selection + meme hunting | `{product_id, meme_url, hook_angle}` |
+| **Writer** | ✍️ | Voiceover script + captions | `{script, cta, ig_caption, tiktok_caption}` |
+| **Producer** | 🎬 | Amazon asset collection | `{product_image, price, discount_code}` |
+| **Editor** | 🎞️ | Video assembly + TTS | `{final_video_path, thumbnail}` |
+| **Publisher** | 📱 | Post to platforms | `{post_urls, posted_at}` |
+| **Biz** | 🅱️ | Orchestration + QA | Final approval at each stage |
 
-### Phase 2: Production Pipeline 🎬
-- [ ] Automate product-to-script generation
-- [ ] Set up media asset workflow
-- [ ] Create posting schedule
-- [ ] Define engagement tracking metrics
+---
 
-### Phase 3: Scale & Optimize 📈
-- [ ] A/B test reel formats
-- [ ] Analyze conversion data
-- [ ] Refine product selection based on performance
-- [ ] Expand to additional categories
+## Handoff Ritual
+
+Each stage:
+1. Agent receives input from previous stage
+2. Produces deliverable matching success criteria
+3. **Biz validates** before passing to next agent
+4. ❌ Fail → Feedback loop, retry with notes
+5. ✅ Pass → Handoff to next agent
+
+**Success criteria defined per-ticket on ClawDeck.**
+
+---
+
+## Active Tickets (ClawDeck Board 4)
+
+| ID | Ticket | Priority | Status |
+|----|--------|----------|--------|
+| 28 | 🔍 Scout: Product & Meme Selection | High | inbox |
+| 29 | ✍️ Writer: Script & CTA Generator | High | inbox |
+| 30 | 🎬 Producer: Amazon Asset Collector | Medium | inbox |
+| 31 | 🎞️ Editor: Video Assembly Pipeline | Medium | inbox |
+| 32 | 📱 Publisher: IG/TikTok Posting | Low | inbox |
+| 33 | 🔧 Setup: Add missing secrets | High | inbox |
+
+---
+
+## Credentials Status
+
+| Secret | Status | Notes |
+|--------|--------|-------|
+| AGENTMAIL_API_KEY | ✅ Available | In Cloudflare secrets |
+| AGENTMAIL | ❌ Missing | Need email address |
+| AGENTMAIL_PW | ❌ Missing | Need password |
+| AMAZON_STORE_ID | ❌ Missing | For affiliate links |
+| IG/TikTok | ℹ️ | Uses @dailydealfeed + agentmail creds |
 
 ---
 
@@ -38,27 +80,21 @@ Create engaging Instagram Reels to promote curated affiliate products from daily
 
 | Resource | Location |
 |----------|----------|
-| Products JSON | `products.json` (root) |
+| Products JSON | `products.json` (15 products ready) |
 | Landing Page | perk4.github.io/dailydealfeed |
 | Instagram | @dailydealfeed |
+| TikTok | @dailydealfeed |
 | Carrd | dailydealfeed.carrd.co |
 
 ---
 
-## Current Focus
+## Next Steps
 
-**Waiting for:** Initial direction from Perk on:
-- Reel style/format preferences
-- Priority product categories
-- Posting frequency goals
-- Any existing content to reference
-
----
-
-## Session Log
-
-See `boardroom-log.md` for hourly boardroom session history.
+1. **Human:** Add missing secrets to Cloudflare (ticket #33)
+2. **Biz:** Assign Scout ticket to myself, build selection logic
+3. **Biz:** Test meme sourcing APIs/methods
+4. **Biz:** Spawn first sub-agent run once secrets ready
 
 ---
 
-_Last updated: 2026-02-14_
+_Last updated: 2026-02-14 14:10 UTC_
