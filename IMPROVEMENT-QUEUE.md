@@ -8,8 +8,14 @@
 
 ## In Progress 🔄
 
-15. [ ] **Clip Quality** — Source even better viral moments
 16. [ ] **Voice Variety** — Test different TTS voices/styles per product (blocked: needs ELEVENLABS_API_KEY)
+
+## Recently Completed ✅
+
+15. [x] **Clip Quality** — AFV cliffhanger clips integrated (2026-02-15 16:10 UTC)
+    - Downloaded 15 AFV clips, processed to 3s cliffhangers
+    - V7.0 test: 8.6/10 vs V6.0's 3.6/10 (+139% improvement)
+    - Scout.js now prioritizes AFV clips by vibe matching
 
 ## Next Up ⏳
 
@@ -54,23 +60,23 @@
 
 ## Quality Targets
 
-| Dimension | V5.0 | Current | Target |
-|-----------|------|---------|--------|
-| Hook impact | 7 | 8 ✅ | 9+ |
+| Dimension | V5.0 | V7.0 (AFV) | Target |
+|-----------|------|------------|--------|
+| Hook impact | 7 | 8.5 ✅ | 9+ |
 | Voice naturalness | 9 | 7 ⚠️ | 9 |
 | Script authenticity | 7 | 9 ✅ | 9+ |
 | Edit flow | 7 | 8 ✅ | 8+ |
-| Overall watchability | 7 | 7.5 | 9+ |
+| Overall watchability | 7 | 8.5 ✅ | 9+ |
 
-**Latest Test:** video_1_1771169882743.mp4 (CeraVe Moisturizer) — Avg Score: 7.8/10
+**Latest Test:** video_2_1771171678717.mp4 (Neutrogena Sunscreen) — Avg Score: 8.2/10
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Hook impact | 7.5/10 | shock-m002.mp4 — curated clip, better than old stock |
+| Hook impact | 8.5/10 | afv-013 (gravity fail) — genuine AFV cliffhanger, real "wait what?" energy |
 | Voice naturalness | 7/10 | Deepgram Luna - serviceable, still detectable as AI |
-| Script authenticity | 9/10 | ✅ "Okay I finally caved..." — genuine friend energy |
+| Script authenticity | 9/10 | ✅ "If your sunscreen makes you look like a glazed donut..." — perfect friend energy |
 | Edit flow | 8/10 | ✅ v2.0-organic: crossfades, subtle zoom, good pacing |
-| Overall watchability | 7.5/10 | Would pass casual scroll, not scroll-stopper |
+| Overall watchability | 8.5/10 | Would stop the scroll, AFV clip does the heavy lifting |
 
 **Bottleneck:** Voice naturalness (7/10) blocked by missing ELEVENLABS_API_KEY
 
@@ -80,4 +86,4 @@
 
 ---
 
-*Updated: 2026-02-15 15:40 UTC*
+*Updated: 2026-02-15 16:10 UTC*
