@@ -23,7 +23,7 @@ const SCRIPT_DIR = __dirname;
 const PROJECT_DIR = path.join(SCRIPT_DIR, '..');
 const PRODUCTS_FILE = path.join(PROJECT_DIR, 'products.json');
 const STATE_FILE = path.join(SCRIPT_DIR, 'scout_state.json');
-const CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'clips.json');
+const CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'curated.json');
 const CLIPS_CACHE_DIR = path.join(PROJECT_DIR, 'clips', 'cache');
 
 // Ensure cache directory exists
@@ -154,13 +154,29 @@ const CATEGORY_VIBES = {
 
 /**
  * Load clips library from JSON
+ * Transforms curated.json array format to the expected vibe-keyed format
  */
 function loadClipsLibrary() {
   if (!fs.existsSync(CLIPS_FILE)) {
     console.error(`Clips library not found at ${CLIPS_FILE}`);
     process.exit(1);
   }
-  return JSON.parse(fs.readFileSync(CLIPS_FILE, 'utf8'));
+  const library = JSON.parse(fs.readFileSync(CLIPS_FILE, 'utf8'));
+  
+  // If clips is an array (new curated.json format), transform to vibe-keyed object
+  if (Array.isArray(library.clips)) {
+    const clipsByVibe = {};
+    for (const clip of library.clips) {
+      const vibe = clip.vibe;
+      if (!clipsByVibe[vibe]) {
+        clipsByVibe[vibe] = [];
+      }
+      clipsByVibe[vibe].push(clip);
+    }
+    library.clips = clipsByVibe;
+  }
+  
+  return library;
 }
 
 /**

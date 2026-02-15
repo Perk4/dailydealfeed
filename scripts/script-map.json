@@ -1,0 +1,69 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "updated": "2026-02-15",
+    "notes": "Conversational scripts for each product. Hook + product + CTA structure.",
+    "style": "TikTok-native: casual, direct, like talking to a friend"
+  },
+  "scripts": {
+    "1": {
+      "product_id": "1",
+      "product_name": "CeraVe Moisturizing Cream",
+      "hook": "The moisturizer that dermatologists won't shut up about",
+      "product_line": "CeraVe cream. Under 20 bucks for the big tub.",
+      "cta": "Link in bio.",
+      "full_script": "The moisturizer that dermatologists won't shut up about... CeraVe cream. Under 20 bucks for the big tub... Link in bio.",
+      "estimated_duration": 12
+    },
+    "2": {
+      "product_id": "2",
+      "product_name": "Neutrogena Beach Defense SPF 70",
+      "hook": "SPF that doesn't feel like you bathed in oil",
+      "product_line": "Neutrogena Beach Defense. Eight bucks. Actually absorbs.",
+      "cta": "Link in bio.",
+      "full_script": "SPF that doesn't feel like you bathed in oil... Neutrogena Beach Defense. Eight bucks. Actually absorbs... Link in bio.",
+      "estimated_duration": 11
+    },
+    "3": {
+      "product_id": "3",
+      "product_name": "The Pink Stuff",
+      "hook": "This 5 dollar paste versus my disgusting stove",
+      "product_line": "The Pink Stuff. Under 5 bucks. Watch this transformation.",
+      "cta": "Link in bio.",
+      "full_script": "This 5 dollar paste versus my disgusting stove... The Pink Stuff. Under 5 bucks. Watch this transformation... Link in bio.",
+      "estimated_duration": 13
+    },
+    "4": {
+      "product_id": "4",
+      "product_name": "Dash Mini Waffle Maker",
+      "hook": "Mini waffles that actually changed my mornings",
+      "product_line": "Dash waffle maker. 10 bucks. Makes the cutest waffles.",
+      "cta": "Link in bio.",
+      "full_script": "Mini waffles that actually changed my mornings... Dash waffle maker. 10 bucks. Makes the cutest waffles... Link in bio.",
+      "estimated_duration": 12
+    },
+    "5": {
+      "product_id": "5",
+      "product_name": "BISSELL Little Green",
+      "hook": "What came out of my couch... I'm disturbed",
+      "product_line": "Bissell Little Green. Worth every penny of that 110.",
+      "cta": "Link in bio.",
+      "full_script": "What came out of my couch... I'm disturbed... Bissell Little Green. Worth every penny of that 110... Link in bio.",
+      "estimated_duration": 13
+    },
+    "6": {
+      "product_id": "6",
+      "product_name": "Moon Lamp",
+      "hook": "When the vibes finally hit different at 3am",
+      "product_line": "This moon lamp. 20 bucks. Your room will thank you.",
+      "cta": "Link in bio.",
+      "full_script": "When the vibes finally hit different at 3am... This moon lamp. 20 bucks. Your room will thank you... Link in bio.",
+      "estimated_duration": 12
+    }
+  },
+  "defaults": {
+    "hook_fallback": "You need to see this",
+    "cta_default": "Link in bio.",
+    "speaking_rate_wpm": 140
+  }
+}
