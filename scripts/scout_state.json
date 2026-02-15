@@ -1,6 +1,6 @@
 {
-  "lastProductId": "1",
-  "lastCategory": "skincare",
+  "lastProductId": "6",
+  "lastCategory": "home",
   "usedProductIds": [
     "1",
     "6",
@@ -16,7 +16,7 @@
     "10"
   ],
   "categoryRotationIndex": 1,
-  "lastRun": "2026-02-15T16:10:30.330Z",
+  "lastRun": "2026-02-15T17:00:16.009Z",
   "usedClipIds": [
     "cozy-m003",
     "cozy-m004",
@@ -34,6 +34,14 @@
     "afv-007",
     "afv-005",
     "afv-013",
-    "afv-006"
+    "afv-006",
+    "afv-004",
+    "afv-012",
+    "afv-008",
+    "afv-003",
+    "afv-011",
+    "afv-015",
+    "afv-014",
+    "afv-010"
   ]
 }

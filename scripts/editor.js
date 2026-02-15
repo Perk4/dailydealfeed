@@ -920,7 +920,119 @@ function getAvailableMusicTracks() {
 }
 
 /**
- * Select a random music track
+ * Music Vibe Mapping - Maps product characteristics to appropriate tracks
+ * 
+ * Track vibes:
+ *   track01_boogie_funk: Fun/novelty products - groovy, playful, retro
+ *   track02_crazy_train: Action/sports items - high energy, driving
+ *   track03_born_norilsk: General products - upbeat, professional
+ *   track04_upbeat_corporate: Tech/business products - modern, clean
+ *   track05_dynamic_healing: Lifestyle/wellness items - calm, ambient
+ */
+const MUSIC_VIBE_MAP = {
+  // Track -> vibe keywords and categories
+  'track01_boogie_funk.mp3': {
+    vibes: ['fun', 'novelty', 'playful', 'quirky', 'retro', 'groovy', 'funky'],
+    categories: ['toys', 'games', 'party', 'novelty', 'gifts', 'kitchen-fun'],
+    keywords: ['waffle', 'mini', 'cute', 'fun', 'colorful', 'quirky', 'dash', 'funny']
+  },
+  'track02_crazy_train.mp3': {
+    vibes: ['energetic', 'action', 'intense', 'powerful', 'sports', 'workout'],
+    categories: ['sports', 'outdoor', 'fitness', 'tools', 'automotive'],
+    keywords: ['power', 'strong', 'workout', 'sports', 'outdoor', 'action', 'tough']
+  },
+  'track03_born_norilsk.mp3': {
+    vibes: ['upbeat', 'general', 'professional', 'versatile', 'positive'],
+    categories: ['home', 'kitchen', 'cleaning', 'general'],
+    keywords: ['clean', 'pink stuff', 'bissell', 'home', 'household', 'practical']
+  },
+  'track04_upbeat_corporate.mp3': {
+    vibes: ['modern', 'tech', 'clean', 'professional', 'sleek', 'corporate'],
+    categories: ['tech', 'electronics', 'office', 'gadgets', 'smart'],
+    keywords: ['tech', 'smart', 'digital', 'electronic', 'usb', 'bluetooth', 'led', 'phone']
+  },
+  'track05_dynamic_healing.mp3': {
+    vibes: ['calm', 'wellness', 'ambient', 'relaxing', 'cozy', 'soothing', 'lifestyle'],
+    categories: ['beauty', 'skincare', 'wellness', 'sleep', 'self-care', 'spa'],
+    keywords: ['cream', 'moisturizer', 'skincare', 'relax', 'cozy', 'moon', 'night', 'sleep', 'cerave', 'neutrogena', 'spf', 'sunscreen', 'lamp']
+  }
+};
+
+/**
+ * Select music track by product vibe matching
+ * @param {Object} input - Product input data
+ * @returns {string|null} - Path to selected music track
+ */
+function selectMusicByVibe(input) {
+  const tracks = getAvailableMusicTracks();
+  
+  if (tracks.length === 0) {
+    console.log('⚠️  No background music tracks found in music/ folder');
+    return null;
+  }
+  
+  // Extract matching context from input
+  const productName = (input.product_name || '').toLowerCase();
+  const hookAngle = (input.hook_angle || '').toLowerCase();
+  const category = (input.category || input.product_category || '').toLowerCase();
+  const vibe = (input.music_vibe || '').toLowerCase();
+  const fullText = `${productName} ${hookAngle} ${category} ${vibe}`;
+  
+  // Score each track based on matches
+  let bestTrack = null;
+  let bestScore = 0;
+  
+  for (const [trackName, config] of Object.entries(MUSIC_VIBE_MAP)) {
+    let score = 0;
+    
+    // Check explicit vibe match
+    if (vibe && config.vibes.some(v => vibe.includes(v))) {
+      score += 10;
+    }
+    
+    // Check category match
+    if (category && config.categories.some(c => category.includes(c))) {
+      score += 8;
+    }
+    
+    // Check keyword matches in product name and hook
+    for (const keyword of config.keywords) {
+      if (fullText.includes(keyword)) {
+        score += 3;
+      }
+    }
+    
+    // Check vibe keywords in hook angle
+    for (const vibeWord of config.vibes) {
+      if (hookAngle.includes(vibeWord)) {
+        score += 2;
+      }
+    }
+    
+    if (score > bestScore) {
+      bestScore = score;
+      bestTrack = trackName;
+    }
+  }
+  
+  // Find the full path for the selected track
+  let selectedPath = null;
+  if (bestTrack && bestScore > 0) {
+    selectedPath = tracks.find(t => t.endsWith(bestTrack));
+    console.log(`🎵 Music matched by vibe: ${bestTrack} (score: ${bestScore})`);
+  }
+  
+  // Fallback to random if no good match
+  if (!selectedPath) {
+    selectedPath = tracks[Math.floor(Math.random() * tracks.length)];
+    console.log(`🎵 Music (random fallback): ${path.basename(selectedPath)}`);
+  }
+  
+  return selectedPath;
+}
+
+/**
+ * Select a random music track (legacy fallback)
  */
 function selectRandomMusicTrack() {
   const tracks = getAvailableMusicTracks();
@@ -1132,8 +1244,8 @@ async function editVideo(input) {
     // Step 8: Final encoding with voiceover and background music
     console.log('🎥 Final encoding...');
     
-    // Select background music track
-    const musicTrack = MUSIC_CONFIG.enabled ? selectRandomMusicTrack() : null;
+    // Select background music track (vibe-matched to product)
+    const musicTrack = MUSIC_CONFIG.enabled ? selectMusicByVibe(input) : null;
     let hasBackgroundMusic = false;
     
     if (voiceoverPath && fs.existsSync(voiceoverPath)) {
@@ -1403,6 +1515,8 @@ module.exports = {
   getCombinedVoiceoverText,
   getAvailableMusicTracks,
   selectRandomMusicTrack,
+  selectMusicByVibe,  // v2.1 - vibe-based music matching
+  MUSIC_VIBE_MAP,     // Music vibe configuration
   MUSIC_CONFIG,
   EDIT_STYLE  // v2.0 - organic edit settings
 };

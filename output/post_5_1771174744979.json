@@ -1,0 +1,32 @@
+{
+  "video_path": "/root/dailydealfeed/output/video_5_1771174744979.mp4",
+  "video_filename": "video_5_1771174744979.mp4",
+  "thumb_path": "/root/dailydealfeed/output/thumb_5_1771174744979.jpg",
+  "thumb_filename": "thumb_5_1771174744979.jpg",
+  "product_id": "5",
+  "product_name": "BISSELL Little Green Multi-Purpose Portable Carpet and Upholstery Cleaner, Car and Auto Detailer, with Exclusive Specialty Tools, Green, 1400B",
+  "product_price": "$109.99",
+  "ig_caption": "What came out of my couch... I'm disturbed\n\nBISSELL Little Green Multi-Purpose Portable Carpet and Upholstery Cleaner, Car and Auto Detailer, with Exclusive Specialty Tools, Green, 1400B $109.99\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+  "tiktok_caption": "What came out of my couch... I'm disturbed 🤯 BISSELL Little Green Multi-Purpose Portable Carpet and Upholstery Cleaner, Car and Auto Detailer, with Exclusive Specialty Tools, Green, 1400B $109.99 #amazonfinds #tiktokmademebuyit #viral",
+  "hook_angle": "What came out of my couch... I'm disturbed",
+  "voiceover_script": "Okay I need to show you what just came out of my couch... Bissell Little Green. Hundred ten bucks but... look at this. Link in bio.",
+  "has_voiceover": true,
+  "has_background_music": true,
+  "music_track": "track03_born_norilsk.mp3",
+  "duration_seconds": 10,
+  "timing": {
+    "hook": 3,
+    "product": 5,
+    "cta": 2
+  },
+  "created_at": "2026-02-15T17:00:15.901Z",
+  "ready_for_posting": true,
+  "edit_style": {
+    "version": "2.0-organic",
+    "zoom_intensity": 0.05,
+    "text_delay": 0.15,
+    "progress_bar": false,
+    "crossfade": 0.3,
+    "music_volume": 0.15
+  }
+}
