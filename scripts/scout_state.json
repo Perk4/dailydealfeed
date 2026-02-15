@@ -1,6 +1,6 @@
 {
-  "lastProductId": "1",
-  "lastCategory": "skincare",
+  "lastProductId": "6",
+  "lastCategory": "home",
   "usedProductIds": [
     "1",
     "6",
@@ -15,8 +15,8 @@
     "9",
     "10"
   ],
-  "categoryRotationIndex": 0,
-  "lastRun": "2026-02-15T15:07:59.763Z",
+  "categoryRotationIndex": 2,
+  "lastRun": "2026-02-15T15:51:34.941Z",
   "usedClipIds": [
     "cozy-m003",
     "cozy-m004",
@@ -28,6 +28,7 @@
     "shock-m002",
     "shock-m004",
     "reveal-m001",
-    "reveal-m002"
+    "reveal-m002",
+    "afv-001"
   ]
 }

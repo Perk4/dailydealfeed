@@ -24,6 +24,7 @@ const PROJECT_DIR = path.join(SCRIPT_DIR, '..');
 const PRODUCTS_FILE = path.join(PROJECT_DIR, 'products.json');
 const STATE_FILE = path.join(SCRIPT_DIR, 'scout_state.json');
 const CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'curated.json');
+const AFV_CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'processed-manifest.json');
 const CLIPS_CACHE_DIR = path.join(PROJECT_DIR, 'clips', 'cache');
 
 // Ensure cache directory exists
@@ -180,10 +181,61 @@ function loadClipsLibrary() {
 }
 
 /**
+ * Load AFV (America's Funniest Videos) processed clips
+ * These are pre-cropped 9:16 cliffhanger-cut clips ready for use
+ */
+function loadAFVClips() {
+  if (!fs.existsSync(AFV_CLIPS_FILE)) {
+    return null;
+  }
+  
+  const manifest = JSON.parse(fs.readFileSync(AFV_CLIPS_FILE, 'utf8'));
+  
+  // Transform to vibe-keyed format
+  const clipsByVibe = {};
+  for (const clip of manifest.clips) {
+    const vibe = clip.vibe;
+    if (!clipsByVibe[vibe]) {
+      clipsByVibe[vibe] = [];
+    }
+    // Add source info and ensure file path is absolute
+    clipsByVibe[vibe].push({
+      ...clip,
+      source: 'afv',
+      url: path.join(PROJECT_DIR, clip.file),
+      localPath: path.join(PROJECT_DIR, clip.file),
+      hookStyle: 'cliffhanger'
+    });
+  }
+  
+  return {
+    clips: clipsByVibe,
+    metadata: manifest.metadata
+  };
+}
+
+// AFV vibe mapping - maps product vibes to AFV content vibes
+const AFV_VIBE_MAPPING = {
+  shocked: ['fail', 'unexpected', 'construction'],
+  transformation: ['fail', 'outdoor'],
+  reveal: ['unexpected', 'doorbell', 'indoor'],
+  reaction: ['fail', 'kids', 'water'],
+  cozy: ['kids', 'indoor'],
+  twist: ['unexpected', 'ice-slip', 'fail']
+};
+
+/**
  * Get local path for a clip (check cache or return null)
  * For manual caching, use: yt-dlp -o "clips/cache/%(id)s.mp4" URL
  */
 function getClipLocalPath(clip) {
+  // AFV clips are already local - they're pre-processed
+  if (clip.source === 'afv' && clip.localPath) {
+    if (fs.existsSync(clip.localPath)) {
+      return clip.localPath;
+    }
+  }
+  
   const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
   
   if (fs.existsSync(cacheFile)) {
@@ -428,9 +480,11 @@ function selectProduct(products, state, productId = null) {
 
 /**
  * Find the best viral clip for a product
+ * Prioritizes AFV cliffhanger clips for maximum engagement
  */
 function findClip(product, state) {
   const library = loadClipsLibrary();
+  const afvLibrary = loadAFVClips();
   const productName = product.name;
   const productCategory = product.category;
   
@@ -463,17 +517,42 @@ function findClip(product, state) {
     targetVibes = productSpecific.preferredVibes;
   }
   
-  // Get clips from preferred vibes, avoiding recently used
   const recentClipIds = state.usedClipIds?.slice(-10) || [];
   let candidateClips = [];
   
-  for (const vibe of targetVibes) {
-    const vibeClips = library.clips[vibe] || [];
-    const available = vibeClips.filter(c => !recentClipIds.includes(c.id));
-    candidateClips.push(...available.map(c => ({ ...c, matchedVibe: vibe })));
+  // PRIORITY 1: Try AFV clips first (cliffhanger style = max engagement)
+  if (afvLibrary) {
+    // Map product vibes to AFV vibes
+    let afvVibes = [];
+    for (const vibe of targetVibes) {
+      const mapped = AFV_VIBE_MAPPING[vibe] || [vibe];
+      afvVibes.push(...mapped);
+    }
+    afvVibes = [...new Set(afvVibes)]; // Deduplicate
+    
+    for (const vibe of afvVibes) {
+      const vibeClips = afvLibrary.clips[vibe] || [];
+      const available = vibeClips.filter(c => !recentClipIds.includes(c.id));
+      candidateClips.push(...available.map(c => ({ ...c, matchedVibe: vibe, isAFV: true })));
+    }
   }
   
-  // If all candidates are recently used, reset and include all
+  // PRIORITY 2: Fall back to curated clips if no AFV match
+  if (candidateClips.length === 0) {
+    for (const vibe of targetVibes) {
+      const vibeClips = library.clips[vibe] || [];
+      const available = vibeClips.filter(c => !recentClipIds.includes(c.id));
+      candidateClips.push(...available.map(c => ({ ...c, matchedVibe: vibe })));
+    }
+  }
+  
+  // If all candidates are recently used, reset and include all AFV clips first
+  if (candidateClips.length === 0 && afvLibrary) {
+    const allAfvClips = Object.values(afvLibrary.clips).flat();
+    candidateClips.push(...allAfvClips.map(c => ({ ...c, matchedVibe: c.vibe, isAFV: true })));
+  }
+  
+  // Still empty? Fall back to all curated clips
   if (candidateClips.length === 0) {
     for (const vibe of targetVibes) {
       const vibeClips = library.clips[vibe] || [];
@@ -483,7 +562,7 @@ function findClip(product, state) {
   
   // Select a clip
   if (candidateClips.length === 0) {
-    // Ultimate fallback - any clip
+    // Ultimate fallback - any clip from curated library
     const allClips = Object.values(library.clips).flat();
     const clip = randomChoice(allClips);
     return {
@@ -500,7 +579,8 @@ function findClip(product, state) {
   return {
     clip: selectedClip,
     vibe: selectedClip.matchedVibe,
-    hook: randomChoice(hookTemplates)
+    hook: randomChoice(hookTemplates),
+    isAFV: selectedClip.isAFV || false
   };
 }
 
@@ -512,9 +592,9 @@ function scout(productId = null) {
   const product = selectProduct(products, state, productId);
 
   // Find clip
-  const { clip, vibe, hook } = findClip(product, state);
+  const { clip, vibe, hook, isAFV } = findClip(product, state);
   
-  // Get local path (if cached)
+  // Get local path (if cached or AFV)
   const localPath = getClipLocalPath(clip);
 
   // Update state
@@ -549,13 +629,14 @@ function scout(productId = null) {
     product_featured: product.featured || false,
     // Clip info (V2 upgrade)
     clip_id: clip.id,
-    clip_name: clip.name,
+    clip_name: clip.name || clip.description,
     clip_url: clip.url,
     clip_local_path: localPath,
     clip_source: clip.source,
     clip_vibe: vibe,
     clip_duration: clip.duration,
-    clip_hook_style: clip.hookStyle,
+    clip_hook_style: clip.hookStyle || (isAFV ? 'cliffhanger' : 'reaction'),
+    clip_is_afv: isAFV || false,
     // Hook
     hook_angle: hook,
     // Legacy compatibility

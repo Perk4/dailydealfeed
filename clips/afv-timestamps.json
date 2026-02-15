@@ -1,0 +1,160 @@
+{
+  "source_videos": [
+    {
+      "id": "YFUGXoSxxUQ",
+      "title": "When Things Go From Bad to WORSE! 😭 Funniest Fail",
+      "file": "raw/When Things Go From Bad to WORSE! 😭 Funniest Fail _YFUGXoSxxUQ.mp4",
+      "duration": 1207,
+      "moments": [
+        {
+          "id": "afv-001",
+          "start": "0:26",
+          "end": "0:34",
+          "vibe": "fail",
+          "description": "Two guys chopping wood in backyard near trampoline - one swings axe while other bends down",
+          "impact_moment": "0:32",
+          "notes": "Classic setup for a near-miss or hit"
+        },
+        {
+          "id": "afv-002",
+          "start": "0:52",
+          "end": "0:59",
+          "vibe": "fail",
+          "description": "Man practicing golf swing in home office - Breakfast at Tiffanys poster visible",
+          "impact_moment": "0:57",
+          "notes": "Indoor golf never ends well"
+        },
+        {
+          "id": "afv-003",
+          "start": "1:28",
+          "end": "1:35",
+          "vibe": "kids",
+          "description": "Kid sitting on floor with dropped/broken egg",
+          "impact_moment": "1:32",
+          "notes": "Innocent kitchen fail, relatable content"
+        },
+        {
+          "id": "afv-004",
+          "start": "1:58",
+          "end": "2:06",
+          "vibe": "doorbell",
+          "description": "Delivery person running through rain in suburban neighborhood",
+          "impact_moment": "2:04",
+          "notes": "Ring cam style - likely slip incoming"
+        },
+        {
+          "id": "afv-005",
+          "start": "3:55",
+          "end": "4:05",
+          "vibe": "outdoor",
+          "description": "Security cam view of porch with Jeep in driveway",
+          "impact_moment": "4:02",
+          "notes": "Wait for the unexpected moment"
+        },
+        {
+          "id": "afv-006",
+          "start": "5:30",
+          "end": "5:40",
+          "vibe": "fail",
+          "description": "Outdoor scene with potential pratfall setup",
+          "impact_moment": "5:37",
+          "notes": "Review for exact fail timing"
+        },
+        {
+          "id": "afv-007",
+          "start": "8:15",
+          "end": "8:25",
+          "vibe": "unexpected",
+          "description": "Surprise moment from compilation",
+          "impact_moment": "8:22",
+          "notes": "Verify on review"
+        }
+      ]
+    },
+    {
+      "id": "ZmkR5mCiyxo",
+      "title": "Gravity WINS Every Time | Best Funny Video Compilation",
+      "file": "raw/Gravity WINS Every Time ｜ Best Funny Video Compila_ZmkR5mCiyxo.mp4",
+      "duration": 1185,
+      "moments": [
+        {
+          "id": "afv-008",
+          "start": "0:42",
+          "end": "0:50",
+          "vibe": "construction",
+          "description": "Person carrying tarp/material falls at construction site with dumpster",
+          "impact_moment": "0:47",
+          "notes": "Gravity theme - perfect fall"
+        },
+        {
+          "id": "afv-009",
+          "start": "1:42",
+          "end": "1:50",
+          "vibe": "ice-slip",
+          "description": "Man walking on icy driveway toward Jeep Renegade - slip setup",
+          "impact_moment": "1:48",
+          "notes": "Classic ice slip - viral format"
+        },
+        {
+          "id": "afv-010",
+          "start": "3:12",
+          "end": "3:20",
+          "vibe": "water",
+          "description": "Boat scene with people laughing at lakeside",
+          "impact_moment": "3:17",
+          "notes": "Genuine joy/surprise moment"
+        },
+        {
+          "id": "afv-011",
+          "start": "4:42",
+          "end": "4:52",
+          "vibe": "outdoor",
+          "description": "Man spilling bag of ice in suburban driveway while landscaper watches",
+          "impact_moment": "4:48",
+          "notes": "Everyday fail, relatable"
+        },
+        {
+          "id": "afv-012",
+          "start": "5:42",
+          "end": "5:52",
+          "vibe": "indoor",
+          "description": "Interior with staircase - security cam footage",
+          "impact_moment": "5:48",
+          "notes": "Review for fall/pet/kid moment"
+        },
+        {
+          "id": "afv-013",
+          "start": "7:15",
+          "end": "7:25",
+          "vibe": "fail",
+          "description": "Gravity compilation moment",
+          "impact_moment": "7:22",
+          "notes": "Verify timing on review"
+        },
+        {
+          "id": "afv-014",
+          "start": "9:30",
+          "end": "9:40",
+          "vibe": "unexpected",
+          "description": "Surprise fall or stumble",
+          "impact_moment": "9:37",
+          "notes": "Review for best cut point"
+        },
+        {
+          "id": "afv-015",
+          "start": "12:00",
+          "end": "12:10",
+          "vibe": "outdoor",
+          "description": "Outdoor fail compilation moment",
+          "impact_moment": "12:07",
+          "notes": "Strong finish clip potential"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-15",
+    "status": "needs_manual_review",
+    "notes": "Timestamps estimated from frame analysis. Review each clip before final extraction. Some moments need exact timing verification."
+  }
+}

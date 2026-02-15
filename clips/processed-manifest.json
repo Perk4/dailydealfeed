@@ -1,0 +1,115 @@
+{
+  "clips": [
+    {
+      "id": "afv-001",
+      "file": "clips/processed/afv-001.mp4",
+      "vibe": "fail",
+      "duration": 3.0,
+      "description": "Two guys chopping wood in backyard near trampoline - one swings axe while other bends down"
+    },
+    {
+      "id": "afv-002",
+      "file": "clips/processed/afv-002.mp4",
+      "vibe": "fail",
+      "duration": 3.0,
+      "description": "Man practicing golf swing in home office - Breakfast at Tiffanys poster visible"
+    },
+    {
+      "id": "afv-003",
+      "file": "clips/processed/afv-003.mp4",
+      "vibe": "kids",
+      "duration": 3.0,
+      "description": "Kid sitting on floor with dropped/broken egg"
+    },
+    {
+      "id": "afv-004",
+      "file": "clips/processed/afv-004.mp4",
+      "vibe": "doorbell",
+      "duration": 3.0,
+      "description": "Delivery person running through rain in suburban neighborhood"
+    },
+    {
+      "id": "afv-005",
+      "file": "clips/processed/afv-005.mp4",
+      "vibe": "outdoor",
+      "duration": 3.0,
+      "description": "Security cam view of porch with Jeep in driveway"
+    },
+    {
+      "id": "afv-006",
+      "file": "clips/processed/afv-006.mp4",
+      "vibe": "fail",
+      "duration": 3.0,
+      "description": "Outdoor scene with potential pratfall setup"
+    },
+    {
+      "id": "afv-007",
+      "file": "clips/processed/afv-007.mp4",
+      "vibe": "unexpected",
+      "duration": 3.0,
+      "description": "Surprise moment from compilation"
+    },
+    {
+      "id": "afv-008",
+      "file": "clips/processed/afv-008.mp4",
+      "vibe": "construction",
+      "duration": 3.0,
+      "description": "Person carrying tarp/material falls at construction site with dumpster"
+    },
+    {
+      "id": "afv-009",
+      "file": "clips/processed/afv-009.mp4",
+      "vibe": "ice-slip",
+      "duration": 3.0,
+      "description": "Man walking on icy driveway toward Jeep Renegade - slip setup"
+    },
+    {
+      "id": "afv-010",
+      "file": "clips/processed/afv-010.mp4",
+      "vibe": "water",
+      "duration": 3.0,
+      "description": "Boat scene with people laughing at lakeside"
+    },
+    {
+      "id": "afv-011",
+      "file": "clips/processed/afv-011.mp4",
+      "vibe": "outdoor",
+      "duration": 3.0,
+      "description": "Man spilling bag of ice in suburban driveway while landscaper watches"
+    },
+    {
+      "id": "afv-012",
+      "file": "clips/processed/afv-012.mp4",
+      "vibe": "indoor",
+      "duration": 3.0,
+      "description": "Interior with staircase - security cam footage"
+    },
+    {
+      "id": "afv-013",
+      "file": "clips/processed/afv-013.mp4",
+      "vibe": "fail",
+      "duration": 3.0,
+      "description": "Gravity compilation moment"
+    },
+    {
+      "id": "afv-014",
+      "file": "clips/processed/afv-014.mp4",
+      "vibe": "unexpected",
+      "duration": 3.0,
+      "description": "Surprise fall or stumble"
+    },
+    {
+      "id": "afv-015",
+      "file": "clips/processed/afv-015.mp4",
+      "vibe": "outdoor",
+      "duration": 3.0,
+      "description": "Outdoor fail compilation moment"
+    }
+  ],
+  "metadata": {
+    "generated": "2026-02-15T15:50:00Z",
+    "format": "9:16 portrait (1080x1920)",
+    "clipStyle": "cliffhanger",
+    "notes": "All clips are ~3 seconds, ending just before the impact moment for maximum engagement"
+  }
+}
