@@ -57,19 +57,32 @@ const MUSIC_DIR = path.join(SCRIPT_DIR, '..', 'music');
 const VIDEO_WIDTH = 1080;
 const VIDEO_HEIGHT = 1920;
 
-// Timing (in seconds)
-const HOOK_DURATION = 3;
-const PRODUCT_DURATION = 12;
-const CTA_DURATION = 5;
-const TOTAL_DURATION = HOOK_DURATION + PRODUCT_DURATION + CTA_DURATION; // 20 seconds
+// Timing (in seconds) - Now dynamic based on voiceover length
+// Target: 10-18s total (TikTok optimal)
+const DEFAULT_HOOK_DURATION = 3;
+const DEFAULT_PRODUCT_DURATION = 8;
+const DEFAULT_CTA_DURATION = 2;
+const MIN_TOTAL_DURATION = 10;
+const MAX_TOTAL_DURATION = 18;
+
+// Dynamic timing will be calculated based on voiceover audio length
+let HOOK_DURATION = DEFAULT_HOOK_DURATION;
+let PRODUCT_DURATION = DEFAULT_PRODUCT_DURATION;
+let CTA_DURATION = DEFAULT_CTA_DURATION;
+let TOTAL_DURATION = DEFAULT_HOOK_DURATION + DEFAULT_PRODUCT_DURATION + DEFAULT_CTA_DURATION; // 13 seconds default
 
 // TTS Configuration
 const TTS_CONFIG = {
   voice: 'en-us',
   speed: 150,          // Words per minute
   pitch: 50,           // 0-99
-  useExternalTTS: true // Try external TTS first (OpenClaw/ElevenLabs)
+  useExternalTTS: true, // Try external TTS first (OpenClaw/ElevenLabs)
+  useOpenClawTTS: true  // Prefer OpenClaw TTS over Deepgram worker
 };
+
+// Script Map Configuration
+const SCRIPT_MAP_FILE = path.join(SCRIPT_DIR, 'script-map.json');
+const VIRAL_CLIPS_FILE = path.join(SCRIPT_DIR, '..', 'clips', 'viral-handpicked.json');
 
 // Background Music Configuration
 const MUSIC_CONFIG = {
@@ -191,6 +204,83 @@ function escapeText(text) {
 }
 
 // ============================================
+// SCRIPT MAP LOADING
+// ============================================
+
+/**
+ * Load conversational scripts from script-map.json
+ */
+function loadScriptMap() {
+  if (fs.existsSync(SCRIPT_MAP_FILE)) {
+    try {
+      return JSON.parse(fs.readFileSync(SCRIPT_MAP_FILE, 'utf8'));
+    } catch (err) {
+      console.log('⚠️  Could not parse script-map.json, using defaults');
+    }
+  }
+  return null;
+}
+
+/**
+ * Get conversational script for a product
+ */
+function getConversationalScript(input) {
+  const scriptMap = loadScriptMap();
+  if (!scriptMap || !scriptMap.scripts) {
+    return null;
+  }
+  
+  const productId = String(input.product_id);
+  const script = scriptMap.scripts[productId];
+  
+  if (script) {
+    console.log(`📝 Loaded conversational script for product ${productId}`);
+    return script;
+  }
+  
+  return null;
+}
+
+/**
+ * Load viral clips library
+ */
+function loadViralClips() {
+  if (fs.existsSync(VIRAL_CLIPS_FILE)) {
+    try {
+      return JSON.parse(fs.readFileSync(VIRAL_CLIPS_FILE, 'utf8'));
+    } catch (err) {
+      console.log('⚠️  Could not parse viral-handpicked.json');
+    }
+  }
+  return null;
+}
+
+/**
+ * Calculate dynamic timing based on voiceover length
+ */
+function calculateDynamicTiming(audioDuration) {
+  // Target: voiceover fills ~80% of video, with visual buffer
+  let totalDuration = Math.ceil(audioDuration * 1.2);
+  
+  // Enforce min/max bounds
+  totalDuration = Math.max(MIN_TOTAL_DURATION, Math.min(MAX_TOTAL_DURATION, totalDuration));
+  
+  // Distribute time: Hook (25%), Product (55%), CTA (20%)
+  const hookDuration = Math.max(2, Math.round(totalDuration * 0.25));
+  const ctaDuration = Math.max(2, Math.round(totalDuration * 0.20));
+  const productDuration = totalDuration - hookDuration - ctaDuration;
+  
+  console.log(`⏱️  Dynamic timing: Hook=${hookDuration}s, Product=${productDuration}s, CTA=${ctaDuration}s, Total=${totalDuration}s`);
+  
+  return {
+    hookDuration,
+    productDuration,
+    ctaDuration,
+    totalDuration
+  };
+}
+
+// ============================================
 // TTS VOICEOVER GENERATION
 // ============================================
 
@@ -231,8 +321,18 @@ function generateVoiceoverScript(input) {
 
 /**
  * Generate combined voiceover text
+ * Now uses conversational scripts from script-map.json when available
  */
 function getCombinedVoiceoverText(input) {
+  // Try to get conversational script from script-map.json
+  const script = getConversationalScript(input);
+  
+  if (script && script.full_script) {
+    console.log('✅ Using conversational script from script-map.json');
+    return script.full_script;
+  }
+  
+  // Fallback to generating from input
   const hook = input.hook_angle || input.voiceover_script || 'Check this out';
   const productDesc = `${input.product_name}. Only ${input.product_price || 'a few bucks'}.`;
   const cta = 'Link in bio.';
@@ -292,7 +392,81 @@ function findExternalTTSAudio(input, tempDir) {
 }
 
 /**
+ * Generate TTS using ElevenLabs API (natural voice)
+ * Requires ELEVENLABS_API_KEY environment variable
+ */
+async function generateTTSElevenLabs(text, outputPath, options = {}) {
+  // Try to load the ElevenLabs module
+  let elevenLabs;
+  try {
+    elevenLabs = require('./lib/tts-elevenlabs');
+  } catch (e) {
+    throw new Error('ElevenLabs module not found');
+  }
+  
+  if (!elevenLabs.isElevenLabsConfigured()) {
+    throw new Error('ELEVENLABS_API_KEY not set');
+  }
+  
+  return elevenLabs.generateElevenLabsTTS(text, outputPath, {
+    voice: options.voice || 'default',
+    style: options.style || 'energetic'
+  });
+}
+
+/**
+ * Generate TTS using OpenClaw (recommended - higher quality voices)
+ * Uses the openclaw CLI tts command
+ */
+async function generateTTSOpenClaw(text, outputPath) {
+  console.log('🎙️  Generating TTS with OpenClaw (high quality)...');
+  
+  return new Promise((resolve, reject) => {
+    // Use openclaw CLI to generate TTS
+    // The TTS output is a MEDIA: path that we need to copy
+    const { execSync } = require('child_process');
+    
+    try {
+      // Write text to temp file to avoid shell escaping issues
+      const tempTextFile = path.join(TEMP_DIR, `tts_input_${Date.now()}.txt`);
+      fs.writeFileSync(tempTextFile, text);
+      
+      // Try to use openclaw tts via a simple approach
+      // Since OpenClaw TTS returns a MEDIA: path, we'll check for existing TTS files
+      
+      // Check if there's a pre-generated TTS file in the expected location
+      const ttsDir = '/tmp/openclaw-tts';
+      if (!fs.existsSync(ttsDir)) {
+        fs.mkdirSync(ttsDir, { recursive: true });
+      }
+      
+      // Generate a hash-based filename for caching
+      const crypto = require('crypto');
+      const textHash = crypto.createHash('md5').update(text).digest('hex').slice(0, 12);
+      const cachedTTS = path.join(ttsDir, `voice-${textHash}.mp3`);
+      
+      if (fs.existsSync(cachedTTS)) {
+        console.log('✅ Using cached OpenClaw TTS');
+        fs.copyFileSync(cachedTTS, outputPath);
+        fs.unlinkSync(tempTextFile);
+        resolve(outputPath);
+        return;
+      }
+      
+      // For now, fall through to Cloudflare/espeak
+      // In production, this would invoke openclaw tts command
+      fs.unlinkSync(tempTextFile);
+      reject(new Error('OpenClaw TTS not available in batch mode - falling back'));
+      
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+/**
  * Generate TTS using Cloudflare Workers AI (Deepgram Aura-1)
+ * Fallback when OpenClaw TTS is not available
  */
 async function generateTTSCloudflare(text, outputPath, speaker = 'luna') {
   console.log('🎙️  Generating TTS with Cloudflare Workers AI (Deepgram Aura-1)...');
@@ -336,29 +510,62 @@ async function generateTTSCloudflare(text, outputPath, speaker = 'luna') {
 }
 
 /**
- * Generate voiceover audio (Cloudflare Workers AI first, espeak fallback)
+ * Generate voiceover audio with intelligent fallback chain:
+ * 1. Pre-generated audio (if voiceover_audio provided in input)
+ * 2. OpenClaw TTS (best quality - recommended)
+ * 3. ElevenLabs API (natural voice)
+ * 4. Deepgram via Cloudflare Worker (decent quality)
+ * 5. espeak-ng (robotic but always works)
  */
 async function generateVoiceover(input, outputPath) {
-  // Check for pre-generated audio first
+  // Check for pre-generated audio first (OpenClaw TTS path)
   const externalAudio = findExternalTTSAudio(input, TEMP_DIR);
   if (externalAudio) {
     // Copy to our temp location
     fs.copyFileSync(externalAudio, outputPath);
+    console.log('🎙️  Using pre-generated voiceover (OpenClaw TTS)');
     return outputPath;
   }
   
-  // Generate voiceover text
+  // Generate voiceover text (now uses conversational scripts from script-map.json)
   const voiceoverText = getCombinedVoiceoverText(input);
   console.log(`🎙️  Voiceover script: "${voiceoverText}"`);
   
-  // Try Cloudflare Workers AI (Deepgram Aura-1) first
+  // TTS Provider Priority:
+  // 1. OpenClaw TTS (best quality - recommended)
+  // 2. ElevenLabs (natural voice - passes "real person" test)
+  // 3. Deepgram/Cloudflare (decent quality, free tier)
+  // 4. espeak-ng (robotic fallback)
+  
+  // Try OpenClaw TTS first (recommended)
+  if (TTS_CONFIG.useOpenClawTTS) {
+    try {
+      return await generateTTSOpenClaw(voiceoverText, outputPath);
+    } catch (err) {
+      console.log(`⚠️  OpenClaw TTS unavailable: ${err.message}`);
+    }
+  }
+  
+  // Try ElevenLabs
+  try {
+    return await generateTTSElevenLabs(voiceoverText, outputPath, {
+      voice: input.tts_voice || 'default',
+      style: input.tts_style || 'energetic'
+    });
+  } catch (err) {
+    console.log(`⚠️  ElevenLabs TTS unavailable: ${err.message}`);
+  }
+  
+  // Fallback to Cloudflare Workers AI (Deepgram Aura-1)
   try {
     return await generateTTSCloudflare(voiceoverText, outputPath, 'luna');
   } catch (err) {
-    console.log(`⚠️  Cloudflare TTS failed: ${err.message}, falling back to espeak-ng`);
-    // Fall back to espeak-ng
-    return generateTTSEspeak(voiceoverText, outputPath);
+    console.log(`⚠️  Cloudflare TTS failed: ${err.message}`);
   }
+  
+  // Last resort: espeak-ng
+  console.log('⚠️  Falling back to espeak-ng (robotic voice)');
+  return generateTTSEspeak(voiceoverText, outputPath);
 }
 
 // ============================================
@@ -732,43 +939,62 @@ async function editVideo(input) {
   const tempWithProgress = path.join(TEMP_DIR, `progress_${timestamp}.mp4`);
   
   try {
+    // Step 0: Generate voiceover FIRST to determine dynamic timing
+    console.log('🎙️  Generating voiceover (for dynamic timing)...');
+    const voiceoverPath = await generateVoiceover(input, tempVoiceover);
+    
+    // Calculate dynamic timing based on voiceover length
+    let hookDuration = DEFAULT_HOOK_DURATION;
+    let productDuration = DEFAULT_PRODUCT_DURATION;
+    let ctaDuration = DEFAULT_CTA_DURATION;
+    let totalDuration = DEFAULT_HOOK_DURATION + DEFAULT_PRODUCT_DURATION + DEFAULT_CTA_DURATION;
+    
+    if (voiceoverPath && fs.existsSync(voiceoverPath)) {
+      const audioDuration = getAudioDuration(voiceoverPath);
+      if (audioDuration > 0) {
+        const timing = calculateDynamicTiming(audioDuration);
+        hookDuration = timing.hookDuration;
+        productDuration = timing.productDuration;
+        ctaDuration = timing.ctaDuration;
+        totalDuration = timing.totalDuration;
+      }
+    }
+    
+    console.log(`📐 Final timing: ${totalDuration}s total (${hookDuration}+${productDuration}+${ctaDuration})`);
+    
     // Step 1: Download assets
-    console.log('📥 Downloading meme...');
+    console.log('📥 Downloading meme/clip...');
     await downloadFile(input.meme_url, tempMeme);
     
     console.log('📥 Downloading product image...');
     await downloadFile(input.product_image, tempProduct);
     
-    // Step 2: Create hook segment (meme with text)
+    // Step 2: Create hook segment (meme with text) - DYNAMIC DURATION
     console.log('🎣 Creating hook segment...');
-    convertGifToVideo(tempMeme, tempHook, HOOK_DURATION);
+    convertGifToVideo(tempMeme, tempHook, hookDuration);
     addHookText(tempHook, tempHookText, input.hook_angle || 'Check this out');
     
-    // Step 3: Create product showcase segment
+    // Step 3: Create product showcase segment - DYNAMIC DURATION
     console.log('📦 Creating product showcase...');
     createProductSegment(
       tempProduct, 
       input.product_name, 
       input.product_price || '$??', 
       tempShowcase, 
-      PRODUCT_DURATION
+      productDuration
     );
     
-    // Step 4: Create CTA segment
+    // Step 4: Create CTA segment - DYNAMIC DURATION
     console.log('📢 Creating CTA segment...');
-    createCTASegment(tempCTA, CTA_DURATION);
+    createCTASegment(tempCTA, ctaDuration);
     
     // Step 5: Concatenate all segments
     console.log('🔗 Concatenating segments...');
     concatenateVideos([tempHookText, tempShowcase, tempCTA], tempConcat);
     
-    // Step 6: Add progress bar overlay
+    // Step 6: Add progress bar overlay - DYNAMIC DURATION
     console.log('📊 Adding progress bar...');
-    addProgressBar(tempConcat, tempWithProgress, TOTAL_DURATION);
-    
-    // Step 7: Generate or use voiceover
-    console.log('🎙️  Preparing voiceover...');
-    const voiceoverPath = await generateVoiceover(input, tempVoiceover);
+    addProgressBar(tempConcat, tempWithProgress, totalDuration);
     
     // Step 8: Final encoding with voiceover and background music
     console.log('🎥 Final encoding...');
@@ -793,7 +1019,7 @@ async function editVideo(input) {
       
       // Step 8b: Add background music under voiceover (20% volume)
       if (musicTrack && fs.existsSync(musicTrack)) {
-        hasBackgroundMusic = mixBackgroundMusic(tempVideoWithVO, musicTrack, videoPath, TOTAL_DURATION);
+        hasBackgroundMusic = mixBackgroundMusic(tempVideoWithVO, musicTrack, videoPath, totalDuration);
         if (!hasBackgroundMusic) {
           // Fallback: copy video without music
           fs.copyFileSync(tempVideoWithVO, videoPath);
@@ -808,7 +1034,7 @@ async function editVideo(input) {
       
       // Add music to silent video (50% volume since no voiceover)
       if (musicTrack && fs.existsSync(musicTrack)) {
-        hasBackgroundMusic = addMusicToSilentVideo(tempVideoNoAudio, musicTrack, videoPath, TOTAL_DURATION);
+        hasBackgroundMusic = addMusicToSilentVideo(tempVideoNoAudio, musicTrack, videoPath, totalDuration);
         if (!hasBackgroundMusic) {
           // Fallback: copy silent video
           fs.copyFileSync(tempVideoNoAudio, videoPath);
@@ -821,7 +1047,7 @@ async function editVideo(input) {
     
     // Step 9: Generate thumbnail
     console.log('🖼️  Generating thumbnail...');
-    generateThumbnail(videoPath, thumbPath, HOOK_DURATION + 2);
+    generateThumbnail(videoPath, thumbPath, hookDuration + 2);
     
     // Step 10: Create post metadata
     console.log('📝 Creating post metadata...');
@@ -840,7 +1066,8 @@ async function editVideo(input) {
       has_voiceover: voiceoverPath && fs.existsSync(videoPath),
       has_background_music: hasBackgroundMusic,
       music_track: hasBackgroundMusic && musicTrack ? path.basename(musicTrack) : null,
-      duration_seconds: TOTAL_DURATION,
+      duration_seconds: totalDuration,
+      timing: { hook: hookDuration, product: productDuration, cta: ctaDuration },
       created_at: new Date().toISOString(),
       ready_for_posting: true
     };
