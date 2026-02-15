@@ -1,203 +1,147 @@
 {
   "_meta": {
-    "version": "3.0",
+    "version": "4.0",
     "updated": "2026-02-15",
-    "curator": "viral-clips-curator",
-    "notes": "A-tier viral-style hook clips. 2-4 sec, attention-grabbing, works standalone.",
+    "curator": "clip-cacher-agent",
+    "notes": "Migrated to Mixkit sources for reliable direct downloads. All clips cached locally in clips/cache/. Use first 2-4 sec for hooks.",
     "sources": {
-      "pexels": "Royalty-free, commercial use OK. Direct download via yt-dlp or API.",
-      "pixabay": "Royalty-free, no attribution required.",
-      "coverr": "Royalty-free premium clips."
+      "mixkit": "Royalty-free, commercial use OK. Direct download from assets.mixkit.co."
     },
-    "downloadInstructions": "Use yt-dlp: yt-dlp -o 'clips/cache/%(id)s.mp4' <url>"
+    "downloadInstructions": "curl -sL -o 'clips/cache/{id}.mp4' 'https://assets.mixkit.co/videos/{sourceId}/{sourceId}-720.mp4'"
   },
   "clips": [
     {
-      "id": "shock-001",
-      "url": "https://www.pexels.com/video/4587767/",
-      "source": "pexels",
-      "sourceId": "4587767",
+      "id": "shock-m001",
+      "url": "https://mixkit.co/free-stock-video/worried-and-sad-woman-outdoors-8739/",
+      "source": "mixkit",
+      "sourceId": "8739",
       "vibe": "shocked",
       "duration": 3,
-      "description": "Man with jaw-drop shocked expression, close-up face"
+      "description": "Woman with worried/shocked expression - hands to face"
     },
     {
-      "id": "shock-002",
-      "url": "https://www.pexels.com/video/7327401/",
-      "source": "pexels",
-      "sourceId": "7327401",
+      "id": "shock-m002",
+      "url": "https://mixkit.co/free-stock-video/924/",
+      "source": "mixkit",
+      "sourceId": "924",
       "vibe": "shocked",
       "duration": 3,
-      "description": "Girl hands on head shocked reaction - dramatic"
+      "description": "Person with emotional expression"
     },
     {
-      "id": "shock-003",
-      "url": "https://www.pexels.com/video/8626645/",
-      "source": "pexels",
-      "sourceId": "8626645",
+      "id": "shock-m003",
+      "url": "https://mixkit.co/free-stock-video/4829/",
+      "source": "mixkit",
+      "sourceId": "4829",
       "vibe": "shocked",
       "duration": 3,
-      "description": "Man with glasses shocked face, hand on cheek"
+      "description": "Close-up emotional reaction shot"
     },
     {
-      "id": "shock-004",
-      "url": "https://www.pexels.com/video/10149031/",
-      "source": "pexels",
-      "sourceId": "10149031",
+      "id": "shock-m004",
+      "url": "https://mixkit.co/free-stock-video/46448/",
+      "source": "mixkit",
+      "sourceId": "46448",
       "vibe": "shocked",
       "duration": 3,
-      "description": "Woman saying WOW - surprised happy expression"
+      "description": "Surprised expression"
     },
     {
-      "id": "shock-005",
-      "url": "https://www.pexels.com/video/5198102/",
-      "source": "pexels",
-      "sourceId": "5198102",
-      "vibe": "shocked",
-      "duration": 3,
-      "description": "Young man shocked looking at phone screen"
-    },
-    {
-      "id": "fail-001",
-      "url": "https://www.pexels.com/video/2791953/",
-      "source": "pexels",
-      "sourceId": "2791953",
-      "vibe": "fail",
-      "duration": 4,
-      "description": "Skateboarder fails trick and falls - relatable fail"
-    },
-    {
-      "id": "fail-002",
-      "url": "https://www.pexels.com/video/5658914/",
-      "source": "pexels",
-      "sourceId": "5658914",
-      "vibe": "fail",
-      "duration": 3,
-      "description": "Person frustrated at laptop - work fail moment"
-    },
-    {
-      "id": "fail-003",
-      "url": "https://www.pexels.com/video/6775258/",
-      "source": "pexels",
-      "sourceId": "6775258",
-      "vibe": "fail",
-      "duration": 3,
-      "description": "Coffee spill on desk - morning fail vibes"
-    },
-    {
-      "id": "fail-004",
-      "url": "https://www.pexels.com/video/5971092/",
-      "source": "pexels",
-      "sourceId": "5971092",
-      "vibe": "fail",
-      "duration": 3,
-      "description": "Frustrated person face palm moment"
-    },
-    {
-      "id": "fail-005",
-      "url": "https://www.pexels.com/video/8721021/",
-      "source": "pexels",
-      "sourceId": "8721021",
-      "vibe": "fail",
-      "duration": 4,
-      "description": "Person dropping phone - relatable tech fail"
-    },
-    {
-      "id": "reveal-001",
-      "url": "https://www.pexels.com/video/3945065/",
-      "source": "pexels",
-      "sourceId": "3945065",
-      "vibe": "reveal",
-      "duration": 3,
-      "description": "Satisfying cleaning transformation - before/after"
-    },
-    {
-      "id": "reveal-002",
-      "url": "https://www.pexels.com/video/4108083/",
-      "source": "pexels",
-      "sourceId": "4108083",
-      "vibe": "reveal",
-      "duration": 3,
-      "description": "Unboxing hands opening package - reveal moment"
-    },
-    {
-      "id": "reveal-003",
-      "url": "https://www.pexels.com/video/5699294/",
-      "source": "pexels",
-      "sourceId": "5699294",
-      "vibe": "reveal",
-      "duration": 4,
-      "description": "Room light transformation - aesthetic glow up"
-    },
-    {
-      "id": "reveal-004",
-      "url": "https://www.pexels.com/video/4108084/",
-      "source": "pexels",
-      "sourceId": "4108084",
-      "vibe": "reveal",
-      "duration": 3,
-      "description": "Gift reveal excitement - package opening moment"
-    },
-    {
-      "id": "reveal-005",
-      "url": "https://www.pexels.com/video/5673012/",
-      "source": "pexels",
-      "sourceId": "5673012",
-      "vibe": "reveal",
-      "duration": 3,
-      "description": "Skincare routine reveal - beauty transformation"
-    },
-    {
-      "id": "reaction-001",
-      "url": "https://www.pexels.com/video/4584804/",
-      "source": "pexels",
-      "sourceId": "4584804",
+      "id": "react-m001",
+      "url": "https://mixkit.co/free-stock-video/4151/",
+      "source": "mixkit",
+      "sourceId": "4151",
       "vibe": "reaction",
       "duration": 3,
-      "description": "Woman excited happy expression - genuine joy"
+      "description": "Celebration moment"
     },
     {
-      "id": "reaction-002",
-      "url": "https://www.pexels.com/video/6194810/",
-      "source": "pexels",
-      "sourceId": "6194810",
+      "id": "react-m002",
+      "url": "https://mixkit.co/free-stock-video/4157/",
+      "source": "mixkit",
+      "sourceId": "4157",
       "vibe": "reaction",
       "duration": 3,
-      "description": "Man celebrating success - fist pump energy"
+      "description": "Excited reaction"
     },
     {
-      "id": "reaction-003",
-      "url": "https://www.pexels.com/video/6396120/",
-      "source": "pexels",
-      "sourceId": "6396120",
+      "id": "react-m003",
+      "url": "https://mixkit.co/free-stock-video/4152/",
+      "source": "mixkit",
+      "sourceId": "4152",
       "vibe": "reaction",
       "duration": 3,
-      "description": "People celebrating with confetti - party vibes"
+      "description": "Happy celebration"
     },
     {
-      "id": "reaction-004",
-      "url": "https://www.pexels.com/video/6194825/",
-      "source": "pexels",
-      "sourceId": "6194825",
+      "id": "react-m004",
+      "url": "https://mixkit.co/free-stock-video/341/",
+      "source": "mixkit",
+      "sourceId": "341",
       "vibe": "reaction",
       "duration": 3,
-      "description": "Excited team celebrating - raised arms victory"
+      "description": "Victory/celebration moment"
     },
     {
-      "id": "reaction-005",
-      "url": "https://www.pexels.com/video/8542576/",
-      "source": "pexels",
-      "sourceId": "8542576",
-      "vibe": "reaction",
+      "id": "fail-m001",
+      "url": "https://mixkit.co/free-stock-video/sad-girl-sitting-on-the-floor-25586/",
+      "source": "mixkit",
+      "sourceId": "25586",
+      "vibe": "fail",
       "duration": 3,
-      "description": "Happy person looking at phone - excited reaction"
+      "description": "Frustrated person on floor"
+    },
+    {
+      "id": "fail-m002",
+      "url": "https://mixkit.co/free-stock-video/25589/",
+      "source": "mixkit",
+      "sourceId": "25589",
+      "vibe": "fail",
+      "duration": 3,
+      "description": "Emotional frustration"
+    },
+    {
+      "id": "fail-m003",
+      "url": "https://mixkit.co/free-stock-video/42253/",
+      "source": "mixkit",
+      "sourceId": "42253",
+      "vibe": "fail",
+      "duration": 3,
+      "description": "Fail/disappointment moment"
+    },
+    {
+      "id": "reveal-m001",
+      "url": "https://mixkit.co/free-stock-video/4708/",
+      "source": "mixkit",
+      "sourceId": "4708",
+      "vibe": "reveal",
+      "duration": 3,
+      "description": "Reveal/unboxing moment"
+    },
+    {
+      "id": "reveal-m002",
+      "url": "https://mixkit.co/free-stock-video/33031/",
+      "source": "mixkit",
+      "sourceId": "33031",
+      "vibe": "reveal",
+      "duration": 3,
+      "description": "Discovery reveal"
+    },
+    {
+      "id": "reveal-m003",
+      "url": "https://mixkit.co/free-stock-video/18272/",
+      "source": "mixkit",
+      "sourceId": "18272",
+      "vibe": "reveal",
+      "duration": 3,
+      "description": "Transformation reveal"
     }
   ],
   "vibeMap": {
-    "shocked": ["shock-001", "shock-002", "shock-003", "shock-004", "shock-005"],
-    "fail": ["fail-001", "fail-002", "fail-003", "fail-004", "fail-005"],
-    "reveal": ["reveal-001", "reveal-002", "reveal-003", "reveal-004", "reveal-005"],
-    "reaction": ["reaction-001", "reaction-002", "reaction-003", "reaction-004", "reaction-005"]
+    "shocked": ["shock-m001", "shock-m002", "shock-m003", "shock-m004"],
+    "fail": ["fail-m001", "fail-m002", "fail-m003"],
+    "reveal": ["reveal-m001", "reveal-m002", "reveal-m003"],
+    "reaction": ["react-m001", "react-m002", "react-m003", "react-m004"]
   },
   "productVibeMapping": {
     "cleaning": ["shocked", "reveal"],

@@ -1,125 +1,125 @@
 {
   "_meta": {
-    "version": "1.0",
+    "version": "2.0",
     "updated": "2026-02-15",
-    "notes": "Symlink-style reference to curated.json - the actual viral clips library",
+    "notes": "Migrated to Mixkit sources. All clips cached in clips/cache/. Symlinks to curated.json.",
     "source": "curated.json"
   },
   "clips": [
     {
-      "id": "shock-001",
-      "url": "https://www.pexels.com/video/4587767/",
-      "source": "pexels",
-      "sourceId": "4587767",
+      "id": "shock-m001",
+      "url": "https://mixkit.co/free-stock-video/worried-and-sad-woman-outdoors-8739/",
+      "source": "mixkit",
+      "sourceId": "8739",
       "vibe": "shocked",
       "duration": 3,
-      "description": "Man with jaw-drop shocked expression"
+      "description": "Woman with worried/shocked expression"
     },
     {
-      "id": "shock-002",
-      "url": "https://www.pexels.com/video/7327401/",
-      "source": "pexels",
-      "sourceId": "7327401",
+      "id": "shock-m002",
+      "url": "https://mixkit.co/free-stock-video/924/",
+      "source": "mixkit",
+      "sourceId": "924",
       "vibe": "shocked",
       "duration": 3,
-      "description": "Girl hands on head shocked reaction"
+      "description": "Person with emotional expression"
     },
     {
-      "id": "reveal-001",
-      "url": "https://www.pexels.com/video/3945065/",
-      "source": "pexels",
-      "sourceId": "3945065",
-      "vibe": "reveal",
+      "id": "shock-m003",
+      "url": "https://mixkit.co/free-stock-video/4829/",
+      "source": "mixkit",
+      "sourceId": "4829",
+      "vibe": "shocked",
       "duration": 3,
-      "description": "Satisfying cleaning transformation"
+      "description": "Close-up emotional reaction shot"
     },
     {
-      "id": "reveal-002",
-      "url": "https://www.pexels.com/video/4108083/",
-      "source": "pexels",
-      "sourceId": "4108083",
-      "vibe": "reveal",
-      "duration": 3,
-      "description": "Unboxing hands opening package"
-    },
-    {
-      "id": "reveal-003",
-      "url": "https://www.pexels.com/video/5699294/",
-      "source": "pexels",
-      "sourceId": "5699294",
-      "vibe": "reveal",
-      "duration": 4,
-      "description": "Room light transformation"
-    },
-    {
-      "id": "reaction-001",
-      "url": "https://www.pexels.com/video/4584804/",
-      "source": "pexels",
-      "sourceId": "4584804",
+      "id": "react-m001",
+      "url": "https://mixkit.co/free-stock-video/4151/",
+      "source": "mixkit",
+      "sourceId": "4151",
       "vibe": "reaction",
       "duration": 3,
-      "description": "Woman excited happy expression"
+      "description": "Celebration moment"
     },
     {
-      "id": "reaction-002",
-      "url": "https://www.pexels.com/video/6194810/",
-      "source": "pexels",
-      "sourceId": "6194810",
+      "id": "react-m002",
+      "url": "https://mixkit.co/free-stock-video/4157/",
+      "source": "mixkit",
+      "sourceId": "4157",
       "vibe": "reaction",
       "duration": 3,
-      "description": "Man celebrating success"
+      "description": "Excited reaction"
     },
     {
-      "id": "fail-001",
-      "url": "https://www.pexels.com/video/5658914/",
-      "source": "pexels",
-      "sourceId": "5658914",
+      "id": "react-m003",
+      "url": "https://mixkit.co/free-stock-video/4152/",
+      "source": "mixkit",
+      "sourceId": "4152",
+      "vibe": "reaction",
+      "duration": 3,
+      "description": "Happy celebration"
+    },
+    {
+      "id": "fail-m001",
+      "url": "https://mixkit.co/free-stock-video/sad-girl-sitting-on-the-floor-25586/",
+      "source": "mixkit",
+      "sourceId": "25586",
       "vibe": "fail",
       "duration": 3,
-      "description": "Person frustrated at laptop"
+      "description": "Frustrated person"
     },
     {
-      "id": "fail-002",
-      "url": "https://www.pexels.com/video/6775258/",
-      "source": "pexels",
-      "sourceId": "6775258",
+      "id": "fail-m002",
+      "url": "https://mixkit.co/free-stock-video/25589/",
+      "source": "mixkit",
+      "sourceId": "25589",
       "vibe": "fail",
       "duration": 3,
-      "description": "Coffee spill - morning fail"
+      "description": "Emotional frustration"
     },
     {
-      "id": "shock-003",
-      "url": "https://www.pexels.com/video/10149031/",
-      "source": "pexels",
-      "sourceId": "10149031",
-      "vibe": "shocked",
-      "duration": 3,
-      "description": "Woman saying WOW"
-    },
-    {
-      "id": "reveal-004",
-      "url": "https://www.pexels.com/video/5673012/",
-      "source": "pexels",
-      "sourceId": "5673012",
+      "id": "reveal-m001",
+      "url": "https://mixkit.co/free-stock-video/4708/",
+      "source": "mixkit",
+      "sourceId": "4708",
       "vibe": "reveal",
       "duration": 3,
-      "description": "Skincare routine reveal"
+      "description": "Reveal/unboxing moment"
     },
     {
-      "id": "reaction-003",
-      "url": "https://www.pexels.com/video/8542576/",
-      "source": "pexels",
-      "sourceId": "8542576",
+      "id": "reveal-m002",
+      "url": "https://mixkit.co/free-stock-video/33031/",
+      "source": "mixkit",
+      "sourceId": "33031",
+      "vibe": "reveal",
+      "duration": 3,
+      "description": "Discovery reveal"
+    },
+    {
+      "id": "reveal-m003",
+      "url": "https://mixkit.co/free-stock-video/18272/",
+      "source": "mixkit",
+      "sourceId": "18272",
+      "vibe": "reveal",
+      "duration": 3,
+      "description": "Transformation reveal"
+    },
+    {
+      "id": "react-m004",
+      "url": "https://mixkit.co/free-stock-video/341/",
+      "source": "mixkit",
+      "sourceId": "341",
       "vibe": "reaction",
       "duration": 3,
-      "description": "Happy person looking at phone"
+      "description": "Victory celebration"
     }
   ],
   "vibeMap": {
-    "shocked": ["shock-001", "shock-002", "shock-003"],
-    "reveal": ["reveal-001", "reveal-002", "reveal-003", "reveal-004"],
-    "reaction": ["reaction-001", "reaction-002", "reaction-003"],
-    "fail": ["fail-001", "fail-002"]
+    "shocked": ["shock-m001", "shock-m002", "shock-m003"],
+    "reveal": ["reveal-m001", "reveal-m002", "reveal-m003"],
+    "reaction": ["react-m001", "react-m002", "react-m003", "react-m004"],
+    "fail": ["fail-m001", "fail-m002"]
   },
   "productVibeMapping": {
     "skincare": ["reveal", "reaction"],

@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "product_id": "1",
+      "product_name": "CeraVe Moisturizing Cream",
+      "product_image": "https://m.media-amazon.com/images/I/61EidjXUBrL.jpg",
+      "product_price": "$18.96",
+      "meme_url": "https://media.giphy.com/media/3o7TKsQ8BVh0bvOnJu/giphy.gif",
+      "hook_angle": "The moisturizer that dermatologists won't shut up about"
+    },
+    {
+      "product_id": "2",
+      "product_name": "Neutrogena Beach Defense SPF 70",
+      "product_image": "https://m.media-amazon.com/images/I/61oKizAFcIL.jpg",
+      "product_price": "$8.29",
+      "meme_url": "https://media.giphy.com/media/l0ExdMHUDKteztyfe/giphy.gif",
+      "hook_angle": "SPF that doesn't feel like you bathed in oil"
+    },
+    {
+      "product_id": "3",
+      "product_name": "The Pink Stuff",
+      "product_image": "https://m.media-amazon.com/images/I/71JVOV7dQvL.jpg",
+      "product_price": "$4.79",
+      "meme_url": "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
+      "hook_angle": "This 5 dollar paste versus my disgusting stove"
+    },
+    {
+      "product_id": "4",
+      "product_name": "Dash Mini Waffle Maker",
+      "product_image": "https://m.media-amazon.com/images/I/61DjIfXqyeL.jpg",
+      "product_price": "$9.89",
+      "meme_url": "https://media.giphy.com/media/xT9DPpf0zTqRASyzTi/giphy.gif",
+      "hook_angle": "Mini waffles that actually changed my mornings"
+    },
+    {
+      "product_id": "5",
+      "product_name": "BISSELL Little Green",
+      "product_image": "https://m.media-amazon.com/images/I/717X5secGjL.jpg",
+      "product_price": "$109.99",
+      "meme_url": "https://media.giphy.com/media/l2JdTkHW1KZPz2yUE/giphy.gif",
+      "hook_angle": "What came out of my couch... I'm disturbed"
+    },
+    {
+      "product_id": "6",
+      "product_name": "Moon Lamp",
+      "product_image": "https://m.media-amazon.com/images/I/81vbr4CmnXL.jpg",
+      "product_price": "$19.95",
+      "meme_url": "https://media.giphy.com/media/xUOwGmG2pRfFZUmdVe/giphy.gif",
+      "hook_angle": "When the vibes finally hit different at 3am"
+    }
+  ]
+}

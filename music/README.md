@@ -4,99 +4,97 @@
 This folder contains royalty-free background music tracks for product videos.
 Music plays at **20-30% volume** underneath TTS voiceover for a professional sound.
 
-## 🎵 Required Tracks (5 minimum)
+## 🎵 Downloaded Tracks
 
-Download upbeat, TikTok-style tracks (15-30 seconds each):
+| Filename | Style | Duration | Source | License |
+|----------|-------|----------|--------|---------|
+| `track01_boogie_funk.mp3` | Funky/Upbeat | ~2 min | Archive.org | CC-BY-ND 3.0 |
+| `track02_crazy_train.mp3` | Energetic Rock | ~2.5 min | Archive.org | CC-BY-ND 3.0 |
+| `track03_born_norilsk.mp3` | Upbeat Blues | ~3.5 min | Archive.org | CC-BY-ND 3.0 |
+| `track04_upbeat_corporate.mp3` | Corporate/Modern | ~4 min | Archive.org | **CC0 (Public Domain)** |
+| `track05_dynamic_healing.mp3` | Ambient/Chill | ~8 min | Archive.org | **CC0 (Public Domain)** |
 
-| Filename | Style | Use Case |
-|----------|-------|----------|
-| `track01_trending.mp3` | Upbeat/Trendy | Product reveals |
-| `track02_chill.mp3` | Lo-fi Chill | Lifestyle products |
-| `track03_energetic.mp3` | High Energy | Flash deals |
-| `track04_minimal.mp3` | Minimal/Clean | Tech products |
-| `track05_fun.mp3` | Fun/Quirky | Novelty items |
+## 📋 Recommended Use
 
-## 📥 Recommended Sources (Royalty-Free, No Attribution Required)
+| Track | Best For | Vibe |
+|-------|----------|------|
+| `track01_boogie_funk.mp3` | Fun/novelty products | Groovy, playful, retro feel |
+| `track02_crazy_train.mp3` | Action/sports items | High energy, driving beat |
+| `track03_born_norilsk.mp3` | General products | Upbeat, professional |
+| `track04_upbeat_corporate.mp3` | Tech/business products | Modern, clean, corporate |
+| `track05_dynamic_healing.mp3` | Lifestyle/wellness items | Calm, ambient, loopable |
 
-### Pixabay Music (Best for TikTok vibes)
-- **URL:** https://pixabay.com/music/search/tiktok%20viral/
-- **License:** Pixabay License (free for commercial, no attribution)
-- **Tip:** Search "trending" or "tiktok" for upbeat tracks
-- Filter by duration: 15-30 seconds
+## 📜 License Details
 
-### Uppbeat (Free tier available)
-- **URL:** https://uppbeat.io/
-- **License:** Free with attribution on free tier
-- **Tip:** Great for modern, trendy sounds
+### CC0 (Public Domain) - tracks 04 & 05
+- ✅ FREE for commercial use
+- ✅ No attribution required
+- ✅ No restrictions
 
-### YouTube Audio Library
-- **URL:** https://studio.youtube.com/channel/UC/music
-- **License:** Free for YouTube (check each track)
-- **Tip:** Filter by "Mood: Bright/Happy"
+### CC-BY-ND 3.0 - tracks 01, 02, 03
+- ✅ FREE for commercial use
+- ⚠️ Attribution required (credit the artist)
+- ⚠️ No derivatives (can't remix, but CAN use as background music)
 
-### Free Music Archive
-- **URL:** https://freemusicarchive.org/
-- **License:** Creative Commons (varies by track)
-- **Tip:** Look for CC0 or CC-BY tracks
+**For TikTok/social media:** All tracks are safe to use. The BY-ND license allows using the music as-is in your videos.
 
-### Chosic
-- **URL:** https://www.chosic.com/free-music/all/
-- **License:** Creative Commons
-- **Tip:** Good categorization by mood
+## 🔗 Track Sources
 
-## 🔧 Download Script
+1. **track01_boogie_funk.mp3** - Dickey F - "Fedot's Boogie"
+   - Source: https://archive.org/details/CcMusicForCommercialUse
+   - Artist: Dickey F (via Jamendo)
 
-Run this to download sample tracks from Pixabay (requires manual steps):
+2. **track02_crazy_train.mp3** - Dickey F - "Crazy Train"
+   - Source: https://archive.org/details/CcMusicForCommercialUse
+   - Artist: Dickey F (via Jamendo)
 
-```bash
-# Option 1: Manual download from Pixabay
-# 1. Go to https://pixabay.com/music/search/tiktok%20viral/
-# 2. Download 5 tracks you like
-# 3. Rename them: track01_*.mp3, track02_*.mp3, etc.
-# 4. Place in this folder
+3. **track03_born_norilsk.mp3** - Dickey F - "Born In Norilsk"
+   - Source: https://archive.org/details/CcMusicForCommercialUse
+   - Artist: Dickey F (via Jamendo)
 
-# Option 2: Use yt-dlp for YouTube Audio Library
-yt-dlp -x --audio-format mp3 "YOUTUBE_AUDIO_LIBRARY_URL" -o "track01_trending.mp3"
-```
+4. **track04_upbeat_corporate.mp3** - Lite Saturation - "Upbeat Corporate"
+   - Source: https://archive.org/details/upbeat-corporate-120-bpm-full
+   - Artist: Lite Saturation
+   - License: CC0 (Public Domain) - **No attribution needed**
 
-## 🎚️ Technical Requirements
+5. **track05_dynamic_healing.mp3** - AquaOmni/Karlo WondeRa - "Dynamic Healing"
+   - Source: https://archive.org/details/Aquaomni-Khvdr-MusicCollectionIv
+   - Artist: AquaOmni (Karlo WondeRa)
+   - License: CC0 (Public Domain) - **No attribution needed**
 
-- **Format:** MP3 (128-320kbps)
-- **Duration:** 15-30 seconds (loops for longer videos)
-- **Style:** Upbeat, modern, TikTok-friendly
-- **Volume:** Tracks should be normalized (the editor will lower to 20%)
+## 🎚️ Technical Specs
+
+- **Format:** MP3 (96-320 kbps)
+- **Sample Rate:** 44.1 kHz
+- **Channels:** Mono/Stereo
+- **Duration:** 2-8 minutes (loopable)
 
 ## 🔄 How Music is Used
 
-The `editor.js` script:
-1. Randomly selects a track from this folder
-2. Loops it to match video duration (if needed)
-3. Mixes at 20% volume under TTS voiceover
-4. Outputs final video with voiceover + background music
+The video editor will:
+1. Randomly select a track from this folder
+2. Trim/loop to match video duration
+3. Mix at 20% volume under TTS voiceover
+4. Fade in/out for smooth transitions
 
-```javascript
-// From editor.js - music mixing
-ffmpeg -i video.mp4 -i music.mp3 \
-  -filter_complex "[1:a]volume=0.2,aloop=loop=-1:size=44100*20[music];[0:a][music]amix=inputs=2:duration=first" \
-  -c:v copy output.mp4
-```
+## ⚠️ Important Notes
 
-## ⚠️ Copyright Notes
+- **Tracks 04 & 05 are CC0** - Safest for commercial use, no attribution needed
+- Tracks 01-03 require attribution if used - include artist credit in video description
+- All tracks are longer than 15 seconds and will be trimmed/looped automatically
+- Keep this README updated when adding new tracks
 
-- **ALWAYS** verify the license before downloading
-- Keep a record of where each track came from
-- For Pixabay: No attribution required
-- For CC-BY: Credit the artist in video description
-- **AVOID:** Tracks with NC (Non-Commercial) restriction
+## 🎯 Adding More Tracks
 
-## 📝 Track Sources Log
+For future tracks, prioritize:
+1. **CC0 / Public Domain** - No attribution needed
+2. **CC-BY** - Attribution required but OK for commercial
+3. **Avoid NC (Non-Commercial)** licenses for product videos
 
-| Track | Source | License | Artist |
-|-------|--------|---------|--------|
-| track01_*.mp3 | | | |
-| track02_*.mp3 | | | |
-| track03_*.mp3 | | | |
-| track04_*.mp3 | | | |
-| track05_*.mp3 | | | |
+Good sources:
+- Archive.org (filter by license)
+- Pixabay Music (requires Cloudflare bypass)
+- Uppbeat.io (free tier with attribution)
 
-*Fill this in as you download tracks*
+---
+*Last updated: 2026-02-15*
