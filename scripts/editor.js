@@ -3,7 +3,17 @@
  * Editor Agent — Video Assembly Module (with TTS Voiceover + Motion Effects)
  * For DailyDealFeed Reels Pipeline
  * 
- * VERSION: V9 (2026-02-15)
+ * VERSION: V10 (2026-02-15)
+ * V10 CHANGES:
+ *   - REDESIGNED: Price overlay now looks like a STICKER, not PowerPoint!
+ *   - Sticker features:
+ *     • Hot pink background (vibrant, attention-grabbing)
+ *     • Drop shadow (depth, feels physical)
+ *     • Fire emoji 🔥 for urgency
+ *     • Bounce-in animation (pops up with overshoot)
+ *     • White text on pink (high contrast)
+ *   - Product name is now subtler (secondary to price sticker)
+ *
  * V9 CHANGES:
  *   - FIXED: Voiceover timing - now DELAYED to start after hook
  *   - FIXED: AFV clip original audio is PRESERVED for hook segment
@@ -675,59 +685,118 @@ function convertGifToVideo(inputPath, outputPath, duration, options = {}) {
 }
 
 // Create product showcase segment with image and text
-// V8: Enhanced with prominent price/discount overlay (bottom center with background)
+// V10: STICKER-STYLE price overlay - looks like a casual label, not PowerPoint
+// Features: drop shadow, emoji, vibrant colors, slight bounce animation
 function createProductSegment(imagePath, productName, price, outputPath, duration) {
   // Scale image to fit nicely (about 60% of width)
   const imgWidth = Math.floor(VIDEO_WIDTH * 0.8);
   const imgHeight = Math.floor(imgWidth * 0.75); // 4:3 aspect
-  const imgY = Math.floor(VIDEO_HEIGHT * 0.22); // V8: Slightly higher to make room for price
+  const imgY = Math.floor(VIDEO_HEIGHT * 0.20); // Higher to make room for sticker
   
-  // Text positioning - V8: Price is now the HERO element
-  const nameY = imgY + imgHeight + 60;
-  const priceY = Math.floor(VIDEO_HEIGHT * 0.78); // V8: Bottom center, prominent position
+  // Text positioning
+  const nameY = imgY + imgHeight + 50;
+  const priceY = Math.floor(VIDEO_HEIGHT * 0.76); // Bottom area for sticker
   
   const escapedName = escapeText(productName);
   const escapedPrice = escapeText(price);
   
-  // Ken Burns: slow zoom in effect - REDUCED for organic feel
-  // zoompan outputs at 25fps, d=frames, s=output size
+  // Ken Burns: slow zoom in effect
   const fps = 25;
   const frames = duration * fps;
-  // Zoom from 1.0 to 1.05 slowly (was 1.12 - now subtler)
   const zoomMax = 1 + EDIT_STYLE.zoomIntensity;
   const zoomExpr = `min(1+${EDIT_STYLE.zoomIntensity}*on/${frames}\\,${zoomMax})`;
   
-  // Create background with Ken Burns zoom on image and animated text
-  // Text animations: delayed fade-in for organic "after audio" feel
-  const textDelay = EDIT_STYLE.textDelaySeconds; // Text appears AFTER audio cue
-  const textFadeIn = 0.4; // seconds for fade (slightly faster)
-  const textSlideDistance = 25; // pixels to slide up (subtler)
+  // Text animations
+  const textDelay = EDIT_STYLE.textDelaySeconds;
+  const textFadeIn = 0.4;
+  const textSlideDistance = 25;
   
-  // Alpha expression: delay first, then fade in (appears AFTER spoken word)
+  // Product name fade in
   const nameAlpha = `if(lt(t\\,${textDelay})\\,0\\,if(lt(t\\,${textDelay + textFadeIn})\\,(t-${textDelay})/${textFadeIn}\\,1))`;
-  // V8: Price appears faster and stays prominent
-  const priceAlpha = `if(lt(t\\,0.1)\\,0\\,if(lt(t\\,0.5)\\,(t-0.1)/0.4\\,1))`;
-  
-  // Y position with slide-up effect
   const nameYExpr = `${nameY}+${textSlideDistance}*max(0\\,1-t/${textFadeIn})`;
   
-  // V8: Price box dimensions for background
-  const priceBoxWidth = 400;
-  const priceBoxHeight = 100;
-  const priceBoxX = Math.floor((VIDEO_WIDTH - priceBoxWidth) / 2);
-  const priceBoxY = priceY - 25;
+  // ============================================
+  // V10: STICKER-STYLE PRICE OVERLAY
+  // ============================================
+  // 
+  // Design principles:
+  // - Drop shadow (multiple offset text layers)
+  // - Vibrant gradient-feel colors (hot pink + yellow combo)
+  // - Fire emoji 🔥 for urgency
+  // - Bounce-in animation (scale + position)
+  // - Rounded-feel box (large padding makes corners irrelevant)
+  //
+  // Animation timeline:
+  // 0.0-0.2s: Pop in from below with overshoot
+  // 0.2-0.4s: Settle to final position with slight bounce
+  // 0.4s+:    Static
   
+  // Sticker colors (vibrant, not corporate)
+  const stickerBgColor = 'ff1493'; // Hot pink / deep pink
+  const stickerTextColor = 'ffffff'; // White text
+  const stickerShadowColor = '000000'; // Black shadow
+  const fireEmoji = '🔥';
+  
+  // Sticker dimensions - larger and more prominent
+  const stickerPadH = 40; // Horizontal padding
+  const stickerPadV = 20; // Vertical padding
+  const stickerFontSize = 72; // Large but not overwhelming
+  const emojiSize = 64;
+  
+  // Price with emoji: "🔥 $19.95"
+  const priceWithEmoji = `${fireEmoji} ${price}`;
+  const escapedPriceEmoji = escapeText(priceWithEmoji);
+  
+  // Bounce animation for sticker (pop-in effect)
+  // Y position: starts 80px below, overshoots by 10px, settles
+  const bounceStart = 0.1; // When bounce starts
+  const bounceDur = 0.35; // Bounce duration
+  const overshoot = 12; // Pixels to overshoot
+  const startOffset = 60; // Pixels below final position
+  
+  // Complex bounce expression:
+  // t < 0.1: hidden below
+  // 0.1 < t < 0.25: moving up (fast)
+  // 0.25 < t < 0.35: slight overshoot bounce
+  // t > 0.35: settled
+  const priceYBounce = `${priceY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,` +
+    `if(lt(t\\,${bounceStart + bounceDur * 0.5})\\,` +
+      `${startOffset}*(1-(t-${bounceStart})/(${bounceDur * 0.5}))-${overshoot}*(t-${bounceStart})/(${bounceDur * 0.5})\\,` +
+    `if(lt(t\\,${bounceStart + bounceDur})\\,` +
+      `-${overshoot}*(1-(t-${bounceStart + bounceDur * 0.5})/(${bounceDur * 0.5}))\\,` +
+    `0)))`;
+  
+  // Alpha for price sticker (quick pop-in)
+  const priceAlpha = `if(lt(t\\,${bounceStart})\\,0\\,if(lt(t\\,${bounceStart + 0.1})\\,(t-${bounceStart})/0.1\\,1))`;
+  
+  // Shadow offset
+  const shadowOffsetX = 4;
+  const shadowOffsetY = 4;
+  
+  // Build the filter complex
+  // Layer order: bg -> image -> name -> sticker shadow -> sticker bg -> sticker text
   const filter = [
+    // Base background
     `color=c=${COLORS.background}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}[bg]`,
-    // Apply Ken Burns zoom to product image
+    
+    // Ken Burns zoom on product image
     `[1:v]scale=${imgWidth*2}:${imgHeight*2}:force_original_aspect_ratio=decrease,zoompan=z='${zoomExpr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=${imgWidth}x${imgHeight}:fps=${fps}[img]`,
     `[bg][img]overlay=(W-w)/2:${imgY}[v1]`,
-    // Product name text (smaller, above price)
-    `[v1]drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=48:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y='${nameYExpr}':alpha='${nameAlpha}'[v2]`,
-    // V8: Price background box (semi-transparent dark) for readability
-    `[v2]drawbox=x=${priceBoxX}:y=${priceBoxY}:w=${priceBoxWidth}:h=${priceBoxHeight}:color=000000@0.7:t=fill[v3]`,
-    // V8: PROMINENT PRICE/DISCOUNT OVERLAY - Large, bold, centered at bottom
-    `[v3]drawtext=fontfile=${FONT_PATH}:text='${escapedPrice}':fontsize=84:fontcolor=${COLORS.accent}:x=(w-text_w)/2:y=${priceY}:alpha='${priceAlpha}'`
+    
+    // Product name (subtle, smaller)
+    `[v1]drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=44:fontcolor=${COLORS.textSecondary}:x=(w-text_w)/2:y='${nameYExpr}':alpha='${nameAlpha}'[v2]`,
+    
+    // === STICKER LAYER 1: Drop shadow (offset dark box) ===
+    `[v2]drawbox=x='(w-360)/2+${shadowOffsetX}':y='${priceY}-24+${shadowOffsetY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=360:h=90:color=${stickerShadowColor}@0.4:t=fill[v3]`,
+    
+    // === STICKER LAYER 2: Main background (vibrant pink) ===
+    `[v3]drawbox=x='(w-360)/2':y='${priceY}-24+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=360:h=90:color=${stickerBgColor}:t=fill[v4]`,
+    
+    // === STICKER LAYER 3: Text shadow (subtle depth) ===
+    `[v4]drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=${stickerFontSize}:fontcolor=${stickerShadowColor}@0.5:x=(w-text_w)/2+2:y='${priceYBounce}+2':alpha='${priceAlpha}'[v5]`,
+    
+    // === STICKER LAYER 4: Main price text (white on pink) ===
+    `[v5]drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=${stickerFontSize}:fontcolor=${stickerTextColor}:x=(w-text_w)/2:y='${priceYBounce}':alpha='${priceAlpha}'`
   ].join(';');
   
   ffmpeg(`-f lavfi -i "color=c=${COLORS.background}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}" -i "${imagePath}" -filter_complex "${filter}" -c:v libx264 -pix_fmt yuv420p -t ${duration} "${outputPath}"`);
@@ -1443,14 +1512,16 @@ async function editVideo(input) {
       timing: { hook: hookDuration, product: productDuration, cta: ctaDuration },
       created_at: new Date().toISOString(),
       ready_for_posting: true,
-      // Edit style tracking (V9 voiceover timing fix)
+      // Edit style tracking (V10 sticker overlay)
       edit_style: {
-        version: 'v9-voiceover-timing',
+        version: 'v10-sticker-overlay',
         changes: [
-          'voiceover_delayed',      // V9: Voiceover starts after hook (at product segment)
-          'hook_audio_preserved',   // V9: AFV clip original audio kept for hook
-          'hook_text_removed',      // No text overlay on clip - cutoff fix
-          'price_overlay_enhanced', // Prominent price box at bottom
+          'price_sticker_style',    // V10: Pink sticker with bounce animation
+          'fire_emoji_added',       // V10: 🔥 emoji on price for urgency
+          'drop_shadow_effect',     // V10: Multiple shadow layers for depth
+          'bounce_animation',       // V10: Pop-in effect with overshoot
+          'voiceover_delayed',      // V9: Voiceover starts after hook
+          'hook_audio_preserved',   // V9: AFV clip original audio kept
           'timing_simplified'       // 5s clip + 5s product + 2s CTA = 12s
         ],
         voiceover_delay_seconds: hookDuration,  // V9: Voiceover starts at this time

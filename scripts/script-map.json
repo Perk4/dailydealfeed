@@ -1,46 +1,46 @@
 {
   "_meta": {
-    "version": "3.0",
+    "version": "4.0",
     "updated": "2026-02-15",
-    "notes": "Conversational voice memo style - varied openers, friend energy",
-    "style": "Mix of openers: 'Okay so...', 'Wait I need to tell you...', 'Dude...', etc."
+    "notes": "NEUTRAL scripts - facts only, no claims, no testimonials",
+    "style": "Product type + one feature/spec + price + CTA"
   },
   "scripts": {
     "1": {
       "product_id": "1",
       "product_name": "CeraVe Moisturizing Cream",
-      "full_script": "Okay so my dermatologist literally recommends this. CeraVe moisturizer, eighteen bucks, link in bio.",
-      "estimated_duration": 8
+      "full_script": "This is a 19-ounce moisturizing cream. Fragrance-free with ceramides. $18.96, link in bio.",
+      "estimated_duration": 7
     },
     "2": {
       "product_id": "2",
       "product_name": "Neutrogena Beach Defense SPF 70",
-      "full_script": "Wait, SPF 70 that actually stays on in water? Eight bucks. You're welcome. Link in bio.",
-      "estimated_duration": 8
+      "full_script": "SPF 70 sunscreen. Water-resistant formula. $8.29, link in bio.",
+      "estimated_duration": 6
     },
     "3": {
       "product_id": "3",
       "product_name": "The Pink Stuff",
-      "full_script": "Dude. The Pink Stuff. It cleans literally everything for five bucks. Just get it. Link in bio.",
-      "estimated_duration": 8
+      "full_script": "This is a multi-surface cleaning paste. 500 grams. $4.79, link in bio.",
+      "estimated_duration": 6
     },
     "4": {
       "product_id": "4",
       "product_name": "Dash Mini Waffle Maker",
-      "full_script": "So this tiny waffle maker? Under ten bucks and it actually works. Perfect single serving. Link in bio.",
-      "estimated_duration": 9
+      "full_script": "Mini waffle maker. Makes one waffle at a time. $9.89, link in bio.",
+      "estimated_duration": 6
     },
     "5": {
       "product_id": "5",
       "product_name": "BISSELL Little Green",
-      "full_script": "Okay I need to show you what came out of my couch. Little Green machine. Hundred ten bucks but trust me. Link in bio.",
-      "estimated_duration": 10
+      "full_script": "Portable carpet cleaner. Works on furniture and car seats. $109.99, link in bio.",
+      "estimated_duration": 6
     },
     "6": {
       "product_id": "6",
       "product_name": "Moon Lamp",
-      "full_script": "This moon lamp has sixteen colors and it's twenty bucks. My room has never looked better. Link in bio.",
-      "estimated_duration": 9
+      "full_script": "16-color moon lamp with remote control. $19.95, link in bio.",
+      "estimated_duration": 5
     }
   },
   "defaults": {
