@@ -23,7 +23,7 @@ const SCRIPT_DIR = __dirname;
 const PROJECT_DIR = path.join(SCRIPT_DIR, '..');
 const PRODUCTS_FILE = path.join(PROJECT_DIR, 'products.json');
 const STATE_FILE = path.join(SCRIPT_DIR, 'scout_state.json');
-const CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'curated.json');
+const CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'clips.json');
 const CLIPS_CACHE_DIR = path.join(PROJECT_DIR, 'clips', 'cache');
 
 // Ensure cache directory exists
@@ -182,7 +182,6 @@ function getClipLocalPath(clip) {
 
 /**
  * Try to download a clip using yt-dlp (best method for protected video sites)
- * V3 UPGRADE: Uses clip.url directly, with sourceId fallback for pexels
  */
 async function downloadClipYtdlp(clip) {
   const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
@@ -196,22 +195,14 @@ async function downloadClipYtdlp(clip) {
     fs.unlinkSync(cacheFile);
   }
   
-  // Use the clip URL directly (curated.json has full URLs)
-  let pageUrl = clip.url;
-  
-  // Fallback: construct URL from sourceId if needed
-  if (!pageUrl && clip.sourceId) {
-    if (clip.source === 'pexels') {
-      pageUrl = `https://www.pexels.com/video/${clip.sourceId}/`;
-    } else if (clip.source === 'mixkit') {
-      pageUrl = `https://mixkit.co/free-stock-video/${clip.sourceId}/`;
-    } else if (clip.source === 'pixabay') {
-      pageUrl = `https://pixabay.com/videos/id-${clip.sourceId}/`;
-    }
-  }
-  
-  if (!pageUrl) {
-    throw new Error('No valid URL found for clip');
+  // Construct source page URL for yt-dlp
+  let pageUrl;
+  if (clip.source === 'mixkit') {
+    pageUrl = `https://mixkit.co/free-stock-video/${clip.sourceId}/`;
+  } else if (clip.source === 'pexels') {
+    pageUrl = `https://www.pexels.com/video/${clip.sourceId}/`;
+  } else {
+    pageUrl = clip.url;
   }
   
   return new Promise((resolve, reject) => {
@@ -242,11 +233,10 @@ async function downloadClipYtdlp(clip) {
 
 /**
  * Pre-cache all clips using yt-dlp
- * V3 UPGRADE: Works with flat clips array
  */
 async function cacheAllClips() {
   const library = loadClipsLibrary();
-  const clips = library.clips || [];
+  const clips = library.clips;
   let downloaded = 0;
   let skipped = 0;
   let failed = 0;
@@ -258,53 +248,53 @@ async function cacheAllClips() {
   } catch {
     console.log('⚠️  yt-dlp not found. Install with: pip install yt-dlp');
     console.log('\nManual download alternative:');
-    console.log('Visit each URL in curated.json and download manually to clips/cache/\n');
-    
-    // Group by vibe for display
-    const vibeGroups = {};
-    for (const clip of clips) {
-      const vibe = clip.vibe || 'unknown';
-      if (!vibeGroups[vibe]) vibeGroups[vibe] = [];
-      vibeGroups[vibe].push(clip);
-    }
+    console.log('Visit each URL in clips.json and download manually to clips/cache/\n');
     
     // Print URLs for manual download
-    for (const [vibe, vibeClips] of Object.entries(vibeGroups)) {
+    for (const vibe of Object.keys(clips)) {
       console.log(`\n=== ${vibe.toUpperCase()} ===`);
-      for (const clip of vibeClips) {
+      for (const clip of clips[vibe]) {
         const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
         if (fs.existsSync(cacheFile) && fs.statSync(cacheFile).size > 10000) {
           console.log(`✓ ${clip.id} (cached)`);
         } else {
-          console.log(`  ${clip.id}: ${clip.url}`);
+          let pageUrl;
+          if (clip.source === 'mixkit') {
+            pageUrl = `https://mixkit.co/free-stock-video/${clip.sourceId}/`;
+          } else {
+            pageUrl = clip.url;
+          }
+          console.log(`  ${clip.id}: ${pageUrl}`);
         }
       }
     }
     return;
   }
   
-  for (const clip of clips) {
-    const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
-    
-    if (fs.existsSync(cacheFile) && fs.statSync(cacheFile).size > 10000) {
-      console.log(`✓ Already cached: ${clip.id}`);
-      skipped++;
-      continue;
+  for (const vibe of Object.keys(clips)) {
+    for (const clip of clips[vibe]) {
+      const cacheFile = path.join(CLIPS_CACHE_DIR, `${clip.id}.mp4`);
+      
+      if (fs.existsSync(cacheFile) && fs.statSync(cacheFile).size > 10000) {
+        console.log(`✓ Already cached: ${clip.id}`);
+        skipped++;
+        continue;
+      }
+      
+      console.log(`Downloading ${clip.id}: ${clip.name}...`);
+      
+      try {
+        await downloadClipYtdlp(clip);
+        console.log(`✓ Downloaded: ${clip.id}`);
+        downloaded++;
+      } catch (err) {
+        console.log(`✗ Failed: ${clip.id} - ${err.message}`);
+        failed++;
+      }
+      
+      // Delay between downloads to be respectful
+      await new Promise(r => setTimeout(r, 1000));
     }
-    
-    console.log(`Downloading ${clip.id}: ${clip.description || clip.id}...`);
-    
-    try {
-      await downloadClipYtdlp(clip);
-      console.log(`✓ Downloaded: ${clip.id}`);
-      downloaded++;
-    } catch (err) {
-      console.log(`✗ Failed: ${clip.id} - ${err.message}`);
-      failed++;
-    }
-    
-    // Delay between downloads to be respectful
-    await new Promise(r => setTimeout(r, 1000));
   }
   
   console.log(`\nCache complete: ${downloaded} downloaded, ${skipped} already cached, ${failed} failed`);
@@ -312,49 +302,35 @@ async function cacheAllClips() {
 
 /**
  * Show clip library statistics
- * V3 UPGRADE: Works with flat clips array
  */
 function showClipStats() {
   const library = loadClipsLibrary();
-  const clips = library.clips || [];
+  const clips = library.clips;
   
   console.log('\n📊 Clip Library Stats\n');
-  console.log(`Version: ${library._meta?.version || 'unknown'}`);
-  console.log(`Updated: ${library._meta?.updated || 'unknown'}`);
-  console.log(`Curator: ${library._meta?.curator || 'unknown'}`);
+  console.log(`Version: ${library._meta.version}`);
+  console.log(`Updated: ${library._meta.updated}`);
   console.log('\nClips by vibe:');
   
-  // Group clips by vibe
-  const vibeGroups = {};
-  for (const clip of clips) {
-    const vibe = clip.vibe || 'unknown';
-    if (!vibeGroups[vibe]) vibeGroups[vibe] = [];
-    vibeGroups[vibe].push(clip);
-  }
-  
-  let total = clips.length;
+  let total = 0;
   let cached = 0;
   
-  for (const [vibe, vibeClips] of Object.entries(vibeGroups)) {
-    const cachedCount = vibeClips.filter(c => 
+  for (const vibe of Object.keys(clips)) {
+    const count = clips[vibe].length;
+    total += count;
+    
+    const cachedCount = clips[vibe].filter(c => 
       fs.existsSync(path.join(CLIPS_CACHE_DIR, `${c.id}.mp4`))
     ).length;
     cached += cachedCount;
     
-    console.log(`  ${vibe.padEnd(15)} ${vibeClips.length} clips (${cachedCount} cached)`);
+    console.log(`  ${vibe.padEnd(15)} ${count} clips (${cachedCount} cached)`);
   }
   
   console.log(`\nTotal: ${total} clips (${cached} cached locally)`);
-  
-  if (library._meta?.sources) {
-    console.log(`\nSources used:`);
-    for (const [source, desc] of Object.entries(library._meta.sources)) {
-      console.log(`  ${source}: ${desc}`);
-    }
-  }
-  
-  if (library._meta?.notes) {
-    console.log(`\nNotes: ${library._meta.notes}`);
+  console.log(`\nSources used:`);
+  for (const [source, desc] of Object.entries(library._meta.sources)) {
+    console.log(`  ${source}: ${desc}`);
   }
 }
 
@@ -436,7 +412,6 @@ function selectProduct(products, state, productId = null) {
 
 /**
  * Find the best viral clip for a product
- * V3 UPGRADE: Uses curated.json with flat clips array + vibeMap
  */
 function findClip(product, state) {
   const library = loadClipsLibrary();
@@ -456,9 +431,8 @@ function findClip(product, state) {
   if (vibeConfig) {
     targetVibes = vibeConfig.vibes;
   } else {
-    // Use curated.json productVibeMapping or fallback to CATEGORY_VIBES
-    const productVibeMapping = library.productVibeMapping || {};
-    targetVibes = productVibeMapping[productCategory] || CATEGORY_VIBES[productCategory] || ["shocked", "reaction"];
+    // Fallback to category-based vibes
+    targetVibes = CATEGORY_VIBES[productCategory] || ["shocked", "reveal"];
   }
   
   // Get hooks
@@ -467,35 +441,40 @@ function findClip(product, state) {
     "This changed everything"
   ];
   
-  // V3: Clips are in flat array with 'vibe' property
-  const allClips = library.clips || [];
+  // Check for product-specific preferences in clips library
+  const productSpecific = library.productSpecific?.[productName];
+  if (productSpecific?.preferredVibes) {
+    targetVibes = productSpecific.preferredVibes;
+  }
   
   // Get clips from preferred vibes, avoiding recently used
   const recentClipIds = state.usedClipIds?.slice(-10) || [];
   let candidateClips = [];
   
   for (const vibe of targetVibes) {
-    // Filter clips matching this vibe
-    const vibeClips = allClips.filter(c => c.vibe === vibe);
+    const vibeClips = library.clips[vibe] || [];
     const available = vibeClips.filter(c => !recentClipIds.includes(c.id));
     candidateClips.push(...available.map(c => ({ ...c, matchedVibe: vibe })));
   }
   
-  // If all candidates are recently used, reset and include all matching vibes
+  // If all candidates are recently used, reset and include all
   if (candidateClips.length === 0) {
     for (const vibe of targetVibes) {
-      const vibeClips = allClips.filter(c => c.vibe === vibe);
+      const vibeClips = library.clips[vibe] || [];
       candidateClips.push(...vibeClips.map(c => ({ ...c, matchedVibe: vibe })));
     }
   }
   
   // Select a clip
   if (candidateClips.length === 0) {
-    // Ultimate fallback - any clip from the library
+    // Ultimate fallback - any clip
+    const allClips = Object.values(library.clips).flat();
     const clip = randomChoice(allClips);
     return {
       clip,
-      vibe: clip?.vibe || 'shocked',
+      vibe: Object.keys(library.clips).find(v => 
+        library.clips[v].some(c => c.id === clip.id)
+      ),
       hook: randomChoice(hookTemplates)
     };
   }
@@ -543,7 +522,6 @@ function scout(productId = null) {
   saveState(state);
 
   // Build output (snake_case for JSON output as specified)
-  // V3 UPGRADE: Uses description instead of name, vibe as hookStyle
   return {
     product_id: product.id,
     product_name: product.name,
@@ -553,17 +531,15 @@ function scout(productId = null) {
     product_image: product.image,
     product_tagline: product.tagline,
     product_featured: product.featured || false,
-    // Clip info (V3 curated clips)
+    // Clip info (V2 upgrade)
     clip_id: clip.id,
-    clip_name: clip.description || clip.name || clip.id,
+    clip_name: clip.name,
     clip_url: clip.url,
     clip_local_path: localPath,
     clip_source: clip.source,
-    clip_source_id: clip.sourceId,
     clip_vibe: vibe,
     clip_duration: clip.duration,
-    clip_hook_style: vibe, // vibe IS the hook style in V3
-    clip_description: clip.description,
+    clip_hook_style: clip.hookStyle,
     // Hook
     hook_angle: hook,
     // Legacy compatibility
