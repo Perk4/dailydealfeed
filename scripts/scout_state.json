@@ -1,6 +1,6 @@
 {
-  "lastProductId": "3",
-  "lastCategory": "home",
+  "lastProductId": "4",
+  "lastCategory": "kitchen",
   "usedProductIds": [
     "1",
     "6",
@@ -16,7 +16,7 @@
     "10"
   ],
   "categoryRotationIndex": 0,
-  "lastRun": "2026-02-15T14:31:04.723Z",
+  "lastRun": "2026-02-15T14:42:09.360Z",
   "usedClipIds": [
     "cozy-m003",
     "cozy-m004",

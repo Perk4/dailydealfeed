@@ -744,16 +744,11 @@ function concatenateVideosWithCrossfade(inputPaths, outputPath, crossfadeDuratio
   
   try {
     // Use xfade filter for smooth transitions between clips
-    // xfade: transition=fade creates natural blend
+    // Important: Normalize all inputs to same framerate (25fps) for xfade to work
     const inputs = inputPaths.map(p => `-i "${p}"`).join(' ');
-    
-    // Build filter chain for 3 segments: v0 xfade v1, then result xfade v2
-    // Offset is calculated as (clip_duration - crossfade_duration)
-    // For simplicity, we'll use a fixed offset approach
     
     if (inputPaths.length === 3) {
       // Three clips: hook, product, cta
-      // We need to know durations - get them with ffprobe
       const getDuration = (path) => {
         try {
           const result = execSync(
@@ -762,26 +757,30 @@ function concatenateVideosWithCrossfade(inputPaths, outputPath, crossfadeDuratio
           );
           return parseFloat(result.trim()) || 3;
         } catch (e) {
-          return 3; // fallback
+          return 3;
         }
       };
       
       const dur0 = getDuration(inputPaths[0]);
       const dur1 = getDuration(inputPaths[1]);
       
-      // First xfade offset: duration of first clip minus crossfade
+      // Offsets for xfade
       const offset1 = Math.max(0.5, dur0 - crossfadeDuration);
-      // Second xfade offset: offset1 + dur1 - crossfade
       const offset2 = Math.max(1, offset1 + dur1 - crossfadeDuration);
       
+      // Normalize all streams to 25fps with settb, then xfade
+      // fps=25,settb=1/25 ensures consistent timebase for xfade
       const filter = [
-        `[0:v][1:v]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset1}[v01]`,
-        `[v01][2:v]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset2}[vout]`
+        `[0:v]fps=25,settb=1/25[v0]`,
+        `[1:v]fps=25,settb=1/25[v1]`,
+        `[2:v]fps=25,settb=1/25[v2]`,
+        `[v0][v1]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset1}[v01]`,
+        `[v01][v2]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset2}[vout]`
       ].join(';');
       
       ffmpeg(`${inputs} -filter_complex "${filter}" -map "[vout]" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
+      console.log(`✅ Crossfade applied (${crossfadeDuration}s fade between segments)`);
     } else {
-      // Fallback to simple concat for other cases
       concatenateVideos(inputPaths, outputPath);
     }
   } catch (err) {

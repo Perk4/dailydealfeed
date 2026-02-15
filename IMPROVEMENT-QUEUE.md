@@ -8,14 +8,11 @@
 
 ## In Progress 🔄
 
-12. [ ] **Script Polish** — Make scripts feel like voice memos, not ads
-13. [ ] **Edit Refinement** — Subtler effects, better pacing, natural flow
-14. [ ] **Hook Optimization** — First 3 seconds must be scroll-stoppers
+15. [ ] **Clip Quality** — Source even better viral moments
+16. [ ] **Voice Variety** — Test different TTS voices/styles per product (blocked: needs ELEVENLABS_API_KEY)
 
 ## Next Up ⏳
 
-15. [ ] **Clip Quality** — Source even better viral moments
-16. [ ] **Voice Variety** — Test different TTS voices/styles per product
 17. [ ] **Music Matching** — Right track for right product vibe
 18. [ ] **Full QA Pass** — Score all videos, identify weakest links
 19. [ ] **V6.0 Batch** — Regenerate with all refinements
@@ -33,6 +30,9 @@
 9. [x] V5.0 batch generated
 10. [x] Product-clip matching
 11. [x] OpenClaw TTS integration
+12. [x] **Script Polish** — All scripts use voice memo style (2026-02-15)
+13. [x] **Edit Refinement** — v2.0-organic style: 5% zoom, 0.15s text delay, crossfades (2026-02-15)
+14. [x] **Hook Optimization** — Conversational hooks under 20 words, distinct angles (2026-02-15)
 
 ## Deprioritized (Later)
 
@@ -54,16 +54,20 @@
 
 ## Quality Targets
 
-| Dimension | V5.0 | Target |
-|-----------|------|--------|
-| Hook impact | 7 | 9+ |
-| Voice naturalness | 9 | 9 |
-| Script authenticity | 7 | 9+ |
-| Edit flow | 7 | 8+ |
-| Overall watchability | 7 | 9+ |
+| Dimension | V5.0 | Current | Target |
+|-----------|------|---------|--------|
+| Hook impact | 7 | 8 ✅ | 9+ |
+| Voice naturalness | 9 | 7 ⚠️ | 9 |
+| Script authenticity | 7 | 9 ✅ | 9+ |
+| Edit flow | 7 | 8 ✅ | 8+ |
+| Overall watchability | 7 | 7.5 | 9+ |
+
+**Latest Test:** video_2_1771166343159.mp4 (Neutrogena SPF 70) — Avg Score: 7.9/10
+
+**Bottleneck:** Voice naturalness blocked by missing ELEVENLABS_API_KEY (using Deepgram fallback)
 
 **The test:** Would you actually watch this? Would you share it?
 
 ---
 
-*Updated: 2026-02-15 14:30 UTC*
+*Updated: 2026-02-15 14:41 UTC*

@@ -1,29 +1,68 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "created": "2026-02-15T06:08:50.120Z",
+  "updated": "2026-02-15T14:30:00.000Z",
+  "notes": "Hook variants optimized by hook-optimizer-agent using HOOK-PLAYBOOK formulas",
   "hook_variants": {
     "1": [
       {
-        "id": "1-initial",
+        "id": "1-old",
         "hook": "The moisturizer that dermatologists won't shut up about",
         "pattern": "authority",
         "created": "2026-02-15T06:08:50.121Z",
         "times_used": 1,
+        "status": "baseline",
         "metrics": {
           "impressions": 0,
           "views": 0,
           "watch_time_avg": 0,
           "clicks": 0,
           "conversions": 0
-        },
-        "source": "script-map-initial"
+        }
       },
       {
-        "id": "1-1771135735116",
-        "hook": "I was skeptical... then I tried CeraVe",
-        "pattern": "other",
-        "created": "2026-02-15T06:08:55.116Z",
+        "id": "1-v2-primary",
+        "hook": "My dermatologist is gonna hate me for this $19 secret...",
+        "pattern": "forbidden_secret",
+        "clip_vibe": "reveal",
+        "clip_id": "reveal-m003",
+        "created": "2026-02-15T14:30:00.000Z",
         "times_used": 0,
+        "status": "active_test",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "1-v2-a",
+        "hook": "I called this cream basic for 3 years... then I saw my skin",
+        "pattern": "skeptic_converted",
+        "clip_vibe": "shocked",
+        "clip_id": "shock-m001",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "1-v2-b",
+        "hook": "POV: your skin before and after this $19 tub... I wasn't ready",
+        "pattern": "before_after_tease",
+        "clip_vibe": "reveal",
+        "clip_id": "reveal-m001",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
         "metrics": {
           "impressions": 0,
           "views": 0,
@@ -35,43 +74,12 @@
     ],
     "2": [
       {
-        "id": "2-initial",
+        "id": "2-old",
         "hook": "SPF that doesn't feel like you bathed in oil",
         "pattern": "challenge",
         "created": "2026-02-15T06:08:50.121Z",
         "times_used": 1,
-        "metrics": {
-          "impressions": 0,
-          "views": 0,
-          "watch_time_avg": 0,
-          "clicks": 0,
-          "conversions": 0
-        },
-        "source": "script-map-initial"
-      }
-    ],
-    "3": [
-      {
-        "id": "3-initial",
-        "hook": "This 5 dollar paste versus my disgusting stove",
-        "pattern": "transformation",
-        "created": "2026-02-15T06:08:50.121Z",
-        "times_used": 2,
-        "metrics": {
-          "impressions": 0,
-          "views": 0,
-          "watch_time_avg": 0,
-          "clicks": 0,
-          "conversions": 0
-        },
-        "source": "script-map-initial"
-      },
-      {
-        "id": "3-1771135735062",
-        "hook": "POV: you just discovered the Pink Stuff",
-        "pattern": "vibe",
-        "created": "2026-02-15T06:08:55.062Z",
-        "times_used": 0,
+        "status": "baseline",
         "metrics": {
           "impressions": 0,
           "views": 0,
@@ -81,11 +89,116 @@
         }
       },
       {
-        "id": "3-1771135735088",
-        "hook": "This  cleaning paste is pure sorcery",
-        "pattern": "other",
-        "created": "2026-02-15T06:08:55.088Z",
+        "id": "2-v2-primary",
+        "hook": "I stopped burning after I found this $8 cheat code",
+        "pattern": "accidental_discovery",
+        "clip_vibe": "reaction",
+        "clip_id": "react-m002",
+        "created": "2026-02-15T14:30:00.000Z",
         "times_used": 0,
+        "status": "active_test",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "2-v2-a",
+        "hook": "Nobody told me SPF could feel like this and I'm mad",
+        "pattern": "the_betrayal",
+        "clip_vibe": "fail",
+        "clip_id": "fail-m001",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "2-v2-b",
+        "hook": "This $8 sunscreen replaced my $40 one... here's the catch",
+        "pattern": "price_shock",
+        "clip_vibe": "reveal",
+        "clip_id": "reveal-m002",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      }
+    ],
+    "3": [
+      {
+        "id": "3-old",
+        "hook": "This 5 dollar paste versus my disgusting stove",
+        "pattern": "transformation",
+        "created": "2026-02-15T06:08:50.121Z",
+        "times_used": 2,
+        "status": "baseline",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "3-v2-primary",
+        "hook": "I called this pink paste a scam for 2 years... watch this",
+        "pattern": "skeptic_converted",
+        "clip_vibe": "shocked",
+        "clip_id": "shock-m001",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "active_test",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "3-v2-a",
+        "hook": "This $5 paste did what my $200 cleaning service couldn't",
+        "pattern": "price_shock",
+        "clip_vibe": "shocked",
+        "clip_id": "shock-m003",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "3-v2-b",
+        "hook": "You said this paste can't fix burnt pans. Watch.",
+        "pattern": "challenge_accepted",
+        "clip_vibe": "reveal",
+        "clip_id": "reveal-m003",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
         "metrics": {
           "impressions": 0,
           "views": 0,
@@ -97,100 +210,261 @@
     ],
     "4": [
       {
-        "id": "4-initial",
+        "id": "4-old",
         "hook": "Mini waffles that actually changed my mornings",
         "pattern": "challenge",
         "created": "2026-02-15T06:08:50.121Z",
         "times_used": 1,
+        "status": "baseline",
         "metrics": {
           "impressions": 0,
           "views": 0,
           "watch_time_avg": 0,
           "clicks": 0,
           "conversions": 0
-        },
-        "source": "script-map-initial"
+        }
+      },
+      {
+        "id": "4-v2-primary",
+        "hook": "...anyway that's why I own 4 of these now",
+        "pattern": "mid_story_start",
+        "clip_vibe": "reaction",
+        "clip_id": "react-m003",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "active_test",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "4-v2-a",
+        "hook": "I bought this as a joke and now it's 6am and I can't stop",
+        "pattern": "accidental_discovery",
+        "clip_vibe": "reaction",
+        "clip_id": "react-m001",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "4-v2-b",
+        "hook": "Nobody told me about the $10 waffle hack and I'm upset",
+        "pattern": "the_betrayal",
+        "clip_vibe": "fail",
+        "clip_id": "fail-m002",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
       }
     ],
     "5": [
       {
-        "id": "5-initial",
+        "id": "5-old",
         "hook": "What came out of my couch... I'm disturbed",
         "pattern": "disbelief",
         "created": "2026-02-15T06:08:50.121Z",
         "times_used": 1,
+        "status": "baseline",
         "metrics": {
           "impressions": 0,
           "views": 0,
           "watch_time_avg": 0,
           "clicks": 0,
           "conversions": 0
-        },
-        "source": "script-map-initial"
+        }
+      },
+      {
+        "id": "5-v2-primary",
+        "hook": "What came out of my 'clean' couch... I might need therapy",
+        "pattern": "disgusting_reveal",
+        "clip_vibe": "shocked",
+        "clip_id": "shock-m003",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "active_test",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "5-v2-a",
+        "hook": "I didn't want to show you this... but you need to see it",
+        "pattern": "forbidden_secret",
+        "clip_vibe": "shocked",
+        "clip_id": "shock-m001",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "5-v2-b",
+        "hook": "POV: finding out your furniture is a crime scene",
+        "pattern": "before_after_tease",
+        "clip_vibe": "shocked",
+        "clip_id": "shock-m002",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
       }
     ],
     "6": [
       {
-        "id": "6-initial",
+        "id": "6-old",
         "hook": "When the vibes finally hit different at 3am",
         "pattern": "challenge",
         "created": "2026-02-15T06:08:50.121Z",
         "times_used": 1,
+        "status": "baseline",
         "metrics": {
           "impressions": 0,
           "views": 0,
           "watch_time_avg": 0,
           "clicks": 0,
           "conversions": 0
-        },
-        "source": "script-map-initial"
+        }
+      },
+      {
+        "id": "6-v2-primary",
+        "hook": "It's 3am and I'm genuinely emotional about a $20 lamp",
+        "pattern": "late_night_vibe",
+        "clip_vibe": "cozy",
+        "clip_id": "cozy-m001",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "active_test",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "6-v2-a",
+        "hook": "...anyway that's why I bought my 3rd moon lamp",
+        "pattern": "mid_story_start",
+        "clip_vibe": "cozy",
+        "clip_id": "cozy-m003",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "6-v2-b",
+        "hook": "If you know, you know... if you don't, your vibes are about to change",
+        "pattern": "forbidden_secret",
+        "clip_vibe": "cozy",
+        "clip_id": "cozy-m002",
+        "created": "2026-02-15T14:30:00.000Z",
+        "times_used": 0,
+        "status": "queued",
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
       }
     ]
   },
-  "experiments": [
-    {
-      "id": "exp-1771135814506",
-      "product_id": "3",
-      "hook_variant_id": "3-initial",
-      "video_id": "video_3_1771132178085",
-      "created": "2026-02-15T06:10:14.506Z",
-      "status": "active",
-      "platforms": {},
-      "metrics": {
-        "impressions": 0,
-        "views": 0,
-        "watch_time_avg": 0,
-        "clicks": 0,
-        "conversions": 0
-      }
-    }
-  ],
+  "experiments": [],
   "results": {},
   "patterns": {
-    "transformation": [
-      "This $X versus my disgusting $Y",
-      "Watch this $X destroy my $Y"
-    ],
-    "disbelief": [
-      "What came out of my $X... I'm disturbed",
-      "I can't believe this worked"
-    ],
-    "authority": [
-      "The $X that $AUTHORITY won't shut up about",
-      "$AUTHORITY recommended this"
-    ],
-    "challenge": [
-      "$X that doesn't $NEGATIVE",
-      "Finally $X that actually works"
-    ],
-    "vibe": [
-      "When the vibes finally hit different",
-      "POV: you discovered $X"
-    ],
-    "price_shock": [
-      "This $PRICE $X changed everything",
-      "$X for only $PRICE"
-    ]
-  },
-  "updated": "2026-02-15T06:10:14.506Z"
+    "forbidden_secret": {
+      "template": "My [AUTHORITY] is gonna hate me for this...",
+      "strength": "high",
+      "best_clips": ["reveal", "reaction"]
+    },
+    "disgusting_reveal": {
+      "template": "What came out of my [THING]... I'm [EMOTION]",
+      "strength": "very_high",
+      "best_clips": ["shocked"]
+    },
+    "price_shock": {
+      "template": "This $[LOW] did what my $[HIGH] couldn't",
+      "strength": "high",
+      "best_clips": ["shocked", "reveal"]
+    },
+    "before_after_tease": {
+      "template": "POV: [THING] before and after... I wasn't ready",
+      "strength": "high",
+      "best_clips": ["reveal"]
+    },
+    "accidental_discovery": {
+      "template": "I found this by accident and now I'm [EMOTION]",
+      "strength": "medium",
+      "best_clips": ["reaction"]
+    },
+    "the_betrayal": {
+      "template": "Nobody told me about [THING] and I'm [EMOTION]",
+      "strength": "medium_high",
+      "best_clips": ["fail", "reveal"]
+    },
+    "mid_story_start": {
+      "template": "...anyway that's why I own [NUMBER] of these now",
+      "strength": "high",
+      "best_clips": ["reaction", "cozy"]
+    },
+    "skeptic_converted": {
+      "template": "I called this a scam for [TIME]... then [EVENT]",
+      "strength": "very_high",
+      "best_clips": ["shocked", "reveal"]
+    },
+    "late_night_vibe": {
+      "template": "It's [TIME] and I'm [EMOTION] about [THING]",
+      "strength": "medium_high",
+      "best_clips": ["cozy"]
+    },
+    "challenge_accepted": {
+      "template": "You said [PRODUCT] couldn't [THING]. Watch.",
+      "strength": "high",
+      "best_clips": ["reveal"]
+    }
+  }
 }
