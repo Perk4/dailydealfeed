@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-02-15T05:38:31.988Z",
-  "updated": "2026-02-15T16:09:39.531Z",
+  "updated": "2026-02-15T18:10:48.750Z",
   "settings": {
     "platforms": [
       "tiktok",
@@ -789,6 +789,74 @@
         }
       },
       "fileSize": 1611686,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771179048750_mxelhuhkh",
+      "videoPath": "/root/dailydealfeed/output/video_1_1771178994263.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_1_1771178994263.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_1_1771178994263.json",
+      "addedAt": "2026-02-15T18:10:48.750Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_1_1771178994263.mp4",
+        "video_filename": "video_1_1771178994263.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_1_1771178994263.jpg",
+        "thumb_filename": "thumb_1_1771178994263.jpg",
+        "product_id": "1",
+        "product_name": "CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1)",
+        "product_price": "$18.96",
+        "ig_caption": "This changed everything\n\nCeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "This changed everything 🤯 CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "This changed everything",
+        "voiceover_script": "Next up we have this moisturizer dermatologists actually recommend. $18.96 with the link in bio.",
+        "has_voiceover": true,
+        "has_background_music": false,
+        "music_track": null,
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T18:10:48.654Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v8-simplified",
+          "changes": [
+            "hook_text_removed",
+            "music_disabled",
+            "price_overlay_enhanced",
+            "timing_simplified"
+          ],
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": false
+        }
+      },
+      "fileSize": 713943,
       "platforms": {
         "tiktok": {
           "status": "pending",

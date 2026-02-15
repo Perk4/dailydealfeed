@@ -25,15 +25,24 @@
 
 ## Next Up ⏳
 
-18. [~] **Full QA Pass** — In progress (2026-02-15 17:40 UTC)
+18. [~] **Full QA Pass** — In progress (2026-02-15 18:10 UTC)
     - BISSELL Little Green (video_5): 8.0/10 avg
       - Hook: 8.5/10 ("What came out of my couch...I'm disturbed" - curiosity hook)
       - Voice: 7/10 (Deepgram Luna - serviceable but detectable)
       - Script: 8.5/10 ("Okay I need to show you..." - natural friend energy)
       - Edit: 8/10 (v2.0-organic, crossfades, subtle zoom)
       - Watchability: 8/10 (solid, voice is bottleneck)
-    - **Bottleneck:** Voice naturalness (7/10) - blocked by ELEVENLABS_API_KEY
-    - All videos using AFV clips + vibe-matched music = quality baseline established
+    - CeraVe Moisturizing Cream (video_1_1771178994263): 7.4/10 avg
+      - Hook: 8/10 (afv-001 clip - good cliffhanger)
+      - Voice: 7/10 (Deepgram Luna - still the bottleneck)
+      - Script: 7/10 ("Next up we have..." - generic opener, less personality)
+      - Edit: 7.5/10 (v8-simplified, crossfades but NO MUSIC)
+      - Watchability: 7.5/10 (music disabled = feels emptier)
+    - **Issues Found:**
+      - Script-map.json uses generic "Next up we have..." template (regression)
+      - v8-simplified disabled background music (was working in v7)
+      - Voice blocked by missing ELEVENLABS_API_KEY
+    - **Next Action:** Restore music integration + vary script openers
 
 19. [ ] **V7.0 Batch** — Regenerate with all refinements (music vibe matching + AFV clips)
 
@@ -82,15 +91,17 @@
 | Edit flow | 7 | 8 ✅ | 8+ |
 | Overall watchability | 7 | 8.5 ✅ | 9+ |
 
-**Latest Test:** video_2_1771171678717.mp4 (Neutrogena Sunscreen) — Avg Score: 8.2/10
+**Latest Test:** video_1_1771178994263.mp4 (CeraVe Moisturizer) — Avg Score: 7.4/10
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Hook impact | 8.5/10 | afv-013 (gravity fail) — genuine AFV cliffhanger, real "wait what?" energy |
-| Voice naturalness | 7/10 | Deepgram Luna - serviceable, still detectable as AI |
-| Script authenticity | 9/10 | ✅ "If your sunscreen makes you look like a glazed donut..." — perfect friend energy |
-| Edit flow | 8/10 | ✅ v2.0-organic: crossfades, subtle zoom, good pacing |
-| Overall watchability | 8.5/10 | Would stop the scroll, AFV clip does the heavy lifting |
+| Hook impact | 8/10 | afv-001 — decent cliffhanger |
+| Voice naturalness | 7/10 | Deepgram Luna - still detectable |
+| Script authenticity | 7/10 | ⚠️ "Next up we have..." — generic, lacks personality |
+| Edit flow | 7.5/10 | ⚠️ v8-simplified disabled music (regression) |
+| Overall watchability | 7.5/10 | Weaker than v7.0 — music + script variety needed |
+
+**Regression Alert:** v8-simplified removed music integration. Previous v7.0 scored 8.2/10 with music.
 
 **Bottleneck:** Voice naturalness (7/10) blocked by missing ELEVENLABS_API_KEY
 
