@@ -3,7 +3,15 @@
  * Editor Agent — Video Assembly Module (with TTS Voiceover + Motion Effects)
  * For DailyDealFeed Reels Pipeline
  * 
- * VERSION: V8 (2026-02-15)
+ * VERSION: V9 (2026-02-15)
+ * V9 CHANGES:
+ *   - FIXED: Voiceover timing - now DELAYED to start after hook
+ *   - FIXED: AFV clip original audio is PRESERVED for hook segment
+ *   - Audio flow: [0-5s] AFV original audio | [5s+] Voiceover starts
+ *   - Updated convertGifToVideo() to preserve MP4 audio
+ *   - Updated concatenation to preserve hook audio
+ *   - Updated mixAudioWithVideo() with delay + mix options
+ *
  * V8 CHANGES:
  *   - REMOVED: Hook text overlay (was getting cut off in 9:16 portrait)
  *   - REMOVED: Background music mixing (deprioritized for video quality)
@@ -630,7 +638,10 @@ function createBackgroundVideo(outputPath, duration) {
 }
 
 // Convert GIF to video with proper scaling
-function convertGifToVideo(inputPath, outputPath, duration) {
+// V9: Added preserveAudio option to keep original audio for AFV clips (hook segment)
+function convertGifToVideo(inputPath, outputPath, duration, options = {}) {
+  const { preserveAudio = false } = options;
+  
   // Detect input type by extension
   const ext = path.extname(inputPath).toLowerCase();
   const isGif = ext === '.gif';
@@ -639,18 +650,27 @@ function convertGifToVideo(inputPath, outputPath, duration) {
   // Scale to fit video width, crop/pad to match dimensions
   const scaleFilter = `scale=${VIDEO_WIDTH}:-1:force_original_aspect_ratio=decrease,pad=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:(ow-iw)/2:(oh-ih)/2:color=${COLORS.background}`;
   
+  // Audio flag: -an strips audio, omit to keep it
+  const audioFlag = preserveAudio ? '' : '-an';
+  
   if (isGif) {
-    // For GIFs: use loop filter
+    // For GIFs: use loop filter (no audio to preserve)
     const filter = `${scaleFilter},loop=loop=-1:size=1000,trim=duration=${duration}`;
     ffmpeg(`-i "${inputPath}" -vf "${filter}" -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
   } else if (isMp4) {
     // For MP4s: use stream_loop for seamless looping, then trim
+    // V9: Preserve audio if requested (for AFV clip hook)
     const filter = `${scaleFilter},trim=duration=${duration}`;
-    ffmpeg(`-stream_loop -1 -i "${inputPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
+    if (preserveAudio) {
+      // Keep original audio from the MP4
+      ffmpeg(`-stream_loop -1 -i "${inputPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p -c:a aac -b:a 128k "${outputPath}"`);
+    } else {
+      ffmpeg(`-stream_loop -1 -i "${inputPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
+    }
   } else {
     // Fallback: try the GIF approach (works for most formats)
     const filter = `${scaleFilter},trim=duration=${duration}`;
-    ffmpeg(`-i "${inputPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
+    ffmpeg(`-i "${inputPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p ${audioFlag} "${outputPath}"`);
   }
 }
 
@@ -747,19 +767,30 @@ function createCTASegment(outputPath, duration) {
 }
 
 // Concatenate video segments (hard cut)
-function concatenateVideos(inputPaths, outputPath) {
+// V9: Added preserveFirstAudio option to keep hook audio
+function concatenateVideos(inputPaths, outputPath, options = {}) {
+  const { preserveFirstAudio = false } = options;
+  
   // Create concat file
   const concatFile = path.join(TEMP_DIR, 'concat.txt');
   const content = inputPaths.map(p => `file '${p}'`).join('\n');
   fs.writeFileSync(concatFile, content);
   
-  ffmpeg(`-f concat -safe 0 -i "${concatFile}" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
+  if (preserveFirstAudio) {
+    // V9: Preserve audio from first input (hook segment)
+    ffmpeg(`-f concat -safe 0 -i "${concatFile}" -c:v libx264 -pix_fmt yuv420p -c:a aac -b:a 128k "${outputPath}"`);
+  } else {
+    ffmpeg(`-f concat -safe 0 -i "${concatFile}" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
+  }
 }
 
 // Concatenate video segments with crossfade transitions (smoother flow)
-function concatenateVideosWithCrossfade(inputPaths, outputPath, crossfadeDuration = 0.3) {
+// V9: Added preserveFirstAudio option to keep hook audio
+function concatenateVideosWithCrossfade(inputPaths, outputPath, crossfadeDuration = 0.3, options = {}) {
+  const { preserveFirstAudio = false } = options;
+  
   if (inputPaths.length < 2) {
-    return concatenateVideos(inputPaths, outputPath);
+    return concatenateVideos(inputPaths, outputPath, { preserveFirstAudio });
   }
   
   try {
@@ -769,10 +800,10 @@ function concatenateVideosWithCrossfade(inputPaths, outputPath, crossfadeDuratio
     
     if (inputPaths.length === 3) {
       // Three clips: hook, product, cta
-      const getDuration = (path) => {
+      const getDuration = (filePath) => {
         try {
           const result = execSync(
-            `ffprobe -v error -show_entries format=duration -of csv=p=0 "${path}"`,
+            `ffprobe -v error -show_entries format=duration -of csv=p=0 "${filePath}"`,
             { encoding: 'utf8' }
           );
           return parseFloat(result.trim()) || 3;
@@ -788,24 +819,43 @@ function concatenateVideosWithCrossfade(inputPaths, outputPath, crossfadeDuratio
       const offset1 = Math.max(0.5, dur0 - crossfadeDuration);
       const offset2 = Math.max(1, offset1 + dur1 - crossfadeDuration);
       
-      // Normalize all streams to 25fps with settb, then xfade
-      // fps=25,settb=1/25 ensures consistent timebase for xfade
-      const filter = [
-        `[0:v]fps=25,settb=1/25[v0]`,
-        `[1:v]fps=25,settb=1/25[v1]`,
-        `[2:v]fps=25,settb=1/25[v2]`,
-        `[v0][v1]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset1}[v01]`,
-        `[v01][v2]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset2}[vout]`
-      ].join(';');
+      // V9: Build filter - video xfade + optional audio preservation
+      let filter;
+      let audioMapping = '';
       
-      ffmpeg(`${inputs} -filter_complex "${filter}" -map "[vout]" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
-      console.log(`✅ Crossfade applied (${crossfadeDuration}s fade between segments)`);
+      if (preserveFirstAudio) {
+        // Normalize all video streams to 25fps with settb, then xfade
+        // Also pad audio from first input to cover full duration
+        // Audio from inputs 1 and 2 are silenced (they're product/CTA with no audio)
+        const totalDuration = dur0 + dur1 + getDuration(inputPaths[2]) - 2 * crossfadeDuration;
+        filter = [
+          `[0:v]fps=25,settb=1/25[v0]`,
+          `[1:v]fps=25,settb=1/25[v1]`,
+          `[2:v]fps=25,settb=1/25[v2]`,
+          `[v0][v1]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset1}[v01]`,
+          `[v01][v2]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset2}[vout]`,
+          // Pad audio from hook to cover video duration (silence after hook)
+          `[0:a]apad=whole_dur=${totalDuration}[aout]`
+        ].join(';');
+        audioMapping = '-map "[aout]" -c:a aac -b:a 128k';
+      } else {
+        filter = [
+          `[0:v]fps=25,settb=1/25[v0]`,
+          `[1:v]fps=25,settb=1/25[v1]`,
+          `[2:v]fps=25,settb=1/25[v2]`,
+          `[v0][v1]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset1}[v01]`,
+          `[v01][v2]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset2}[vout]`
+        ].join(';');
+      }
+      
+      ffmpeg(`${inputs} -filter_complex "${filter}" -map "[vout]" ${audioMapping} -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
+      console.log(`✅ Crossfade applied (${crossfadeDuration}s fade between segments)${preserveFirstAudio ? ' with hook audio' : ''}`);
     } else {
-      concatenateVideos(inputPaths, outputPath);
+      concatenateVideos(inputPaths, outputPath, { preserveFirstAudio });
     }
   } catch (err) {
     console.log(`⚠️  Crossfade failed, falling back to hard cut: ${err.message}`);
-    concatenateVideos(inputPaths, outputPath);
+    concatenateVideos(inputPaths, outputPath, { preserveFirstAudio });
   }
 }
 
@@ -877,35 +927,73 @@ function addProgressBar(inputPath, outputPath, duration) {
 
 /**
  * Mix voiceover audio with video
- * @param {string} videoPath - Path to the video file (no audio)
+ * V9: Now supports delaying voiceover to start after hook segment
+ * 
+ * @param {string} videoPath - Path to the video file (may have audio from hook)
  * @param {string} audioPath - Path to the voiceover audio
  * @param {string} outputPath - Path for the output video with audio
+ * @param {Object} options - Mixing options
+ * @param {number} options.voiceoverDelay - Delay voiceover start by N seconds (default: 0)
+ * @param {boolean} options.keepOriginalAudio - Mix with existing video audio (default: false)
  */
-function mixAudioWithVideo(videoPath, audioPath, outputPath) {
+function mixAudioWithVideo(videoPath, audioPath, outputPath, options = {}) {
+  const { voiceoverDelay = 0, keepOriginalAudio = false } = options;
+  
   console.log('🔊 Mixing voiceover with video...');
   
   const audioDuration = getAudioDuration(audioPath);
-  console.log(`   Audio duration: ${audioDuration.toFixed(2)}s`);
+  console.log(`   Voiceover duration: ${audioDuration.toFixed(2)}s`);
+  console.log(`   Voiceover delay: ${voiceoverDelay.toFixed(2)}s (starts when product shows)`);
   
-  // Mix audio with video
-  // Use -shortest to end when the shortest stream ends
-  // Add slight delay and volume adjustment for better quality
+  // Calculate delay in milliseconds for adelay filter
+  const delayMs = Math.round(voiceoverDelay * 1000);
+  
   try {
-    ffmpeg(
-      `-i "${videoPath}" -i "${audioPath}" ` +
-      `-filter_complex "[1:a]adelay=200|200,volume=1.5,apad[a]" ` +
-      `-map 0:v -map "[a]" ` +
-      `-c:v copy -c:a aac -b:a 192k ` +
-      `-shortest "${outputPath}"`
-    );
-    return true;
-  } catch (err) {
-    console.error('Audio mixing failed, trying simpler approach...');
-    
-    // Fallback: Simple audio overlay
-    try {
+    if (keepOriginalAudio) {
+      // V9: Mix voiceover with original audio from hook segment
+      // - Original audio plays for first N seconds (hook)
+      // - Voiceover starts after delay (when product shows)
+      // - After delay: original audio fades, voiceover takes over
+      console.log('   Mixing: Hook audio + delayed voiceover');
+      
+      // Complex filter:
+      // [1:a] = voiceover, delay it by hookDuration
+      // [0:a] = original audio from video (hook), fade it out at hook end
+      // Then amix them together
+      const fadeOutStart = Math.max(0, voiceoverDelay - 0.5); // Start fade 0.5s before voiceover
+      const fadeOutDur = 0.5;
+      
       ffmpeg(
         `-i "${videoPath}" -i "${audioPath}" ` +
+        `-filter_complex "` +
+        `[0:a]afade=t=out:st=${fadeOutStart}:d=${fadeOutDur}[orig];` +
+        `[1:a]adelay=${delayMs}|${delayMs},volume=1.5,apad[vo];` +
+        `[orig][vo]amix=inputs=2:duration=longest:dropout_transition=2[aout]" ` +
+        `-map 0:v -map "[aout]" ` +
+        `-c:v copy -c:a aac -b:a 192k ` +
+        `-shortest "${outputPath}"`
+      );
+    } else {
+      // Simple case: just add delayed voiceover (no original audio to preserve)
+      ffmpeg(
+        `-i "${videoPath}" -i "${audioPath}" ` +
+        `-filter_complex "[1:a]adelay=${delayMs}|${delayMs},volume=1.5,apad[a]" ` +
+        `-map 0:v -map "[a]" ` +
+        `-c:v copy -c:a aac -b:a 192k ` +
+        `-shortest "${outputPath}"`
+      );
+    }
+    return true;
+  } catch (err) {
+    console.error('Audio mixing failed:', err.message);
+    
+    // Fallback: Simple audio overlay with delay
+    try {
+      console.log('   Trying simpler approach with delay...');
+      ffmpeg(
+        `-i "${videoPath}" -i "${audioPath}" ` +
+        `-filter_complex "[1:a]adelay=${delayMs}|${delayMs}[a]" ` +
+        `-map 0:v -map "[a]" ` +
         `-c:v copy -c:a aac -b:a 128k ` +
         `-shortest "${outputPath}"`
       );
@@ -1227,8 +1315,10 @@ async function editVideo(input) {
     
     // Step 2: Create hook segment (clip only, no text) - V8 SIMPLIFIED
     // V8: REMOVED hook text overlay - gets cut off in 9:16 portrait mode
-    console.log('🎣 Creating hook segment (clip only)...');
-    convertGifToVideo(tempMeme, tempHook, hookDuration);
+    // V9: PRESERVE original audio from AFV clip for hook segment!
+    console.log('🎣 Creating hook segment (clip with ORIGINAL AUDIO)...');
+    const isVideoClip = tempMeme.endsWith('.mp4') || tempMeme.endsWith('.m4v') || tempMeme.endsWith('.mov');
+    convertGifToVideo(tempMeme, tempHook, hookDuration, { preserveAudio: isVideoClip });
     // V8: Hook text overlay REMOVED - was causing cutoff issues in portrait
     // addHookText(tempHook, tempHookText, input.hook_angle || 'Check this out');
     // Use hook clip directly without text overlay
@@ -1249,11 +1339,12 @@ async function editVideo(input) {
     createCTASegment(tempCTA, ctaDuration);
     
     // Step 5: Concatenate all segments with crossfade transitions
+    // V9: Preserve audio from hook segment (first input) if it's a video clip
     console.log('🔗 Concatenating segments...');
     if (EDIT_STYLE.crossfadeDuration > 0) {
-      concatenateVideosWithCrossfade([tempHookText, tempShowcase, tempCTA], tempConcat, EDIT_STYLE.crossfadeDuration);
+      concatenateVideosWithCrossfade([tempHookText, tempShowcase, tempCTA], tempConcat, EDIT_STYLE.crossfadeDuration, { preserveFirstAudio: isVideoClip });
     } else {
-      concatenateVideos([tempHookText, tempShowcase, tempCTA], tempConcat);
+      concatenateVideos([tempHookText, tempShowcase, tempCTA], tempConcat, { preserveFirstAudio: isVideoClip });
     }
     
     // Step 6: Progress bar overlay (optional - disabled for organic feel)
@@ -1272,18 +1363,31 @@ async function editVideo(input) {
     const musicTrack = MUSIC_CONFIG.enabled ? selectMusicByVibe(input) : null;
     let hasBackgroundMusic = false;
     
+    // V9: Check if hook clip has original audio that we need to preserve
+    const hookHasAudio = isVideoClip; // MP4/video clips have audio to preserve
+    
     if (voiceoverPath && fs.existsSync(voiceoverPath)) {
-      // Create video without audio first (using progress bar version)
-      ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
+      // V9: Keep original audio from concatenated video (hook segment has audio)
+      // Don't strip audio with -an if hook has original audio
+      if (hookHasAudio) {
+        console.log('🔊 Preserving hook audio, video already has audio track...');
+        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -c:a copy "${tempVideoNoAudio}"`);
+      } else {
+        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
+      }
       
-      // Mix voiceover with video
-      const mixSuccess = mixAudioWithVideo(tempVideoNoAudio, voiceoverPath, tempVideoWithVO);
+      // V9: Mix voiceover with video, DELAYING voiceover to start after hook
+      // This way: [0-hookDuration] = original AFV audio, [hookDuration+] = voiceover
+      const mixSuccess = mixAudioWithVideo(tempVideoNoAudio, voiceoverPath, tempVideoWithVO, {
+        voiceoverDelay: hookDuration,     // Delay voiceover by hook duration
+        keepOriginalAudio: hookHasAudio   // Mix with original audio if present
+      });
       
       if (!mixSuccess) {
         console.log('⚠️  Voiceover mixing failed, creating video without audio');
         ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart "${tempVideoWithVO}"`);
       } else {
-        console.log('✅ Voiceover added successfully!');
+        console.log('✅ Voiceover added successfully (delayed to product segment)!');
       }
       
       // Step 8b: Add background music under voiceover (20% volume)
@@ -1339,15 +1443,18 @@ async function editVideo(input) {
       timing: { hook: hookDuration, product: productDuration, cta: ctaDuration },
       created_at: new Date().toISOString(),
       ready_for_posting: true,
-      // Edit style tracking (V8 refinements)
+      // Edit style tracking (V9 voiceover timing fix)
       edit_style: {
-        version: 'v8-simplified',
+        version: 'v9-voiceover-timing',
         changes: [
+          'voiceover_delayed',      // V9: Voiceover starts after hook (at product segment)
+          'hook_audio_preserved',   // V9: AFV clip original audio kept for hook
           'hook_text_removed',      // No text overlay on clip - cutoff fix
-          'music_disabled',         // Background music removed - quality focus
           'price_overlay_enhanced', // Prominent price box at bottom
           'timing_simplified'       // 5s clip + 5s product + 2s CTA = 12s
         ],
+        voiceover_delay_seconds: hookDuration,  // V9: Voiceover starts at this time
+        hook_has_original_audio: isVideoClip,   // V9: True if hook plays AFV audio
         zoom_intensity: EDIT_STYLE.zoomIntensity,
         text_delay: EDIT_STYLE.textDelaySeconds,
         progress_bar: EDIT_STYLE.progressBarEnabled,

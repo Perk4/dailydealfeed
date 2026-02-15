@@ -1,0 +1,95 @@
+{
+  "clips": [
+    {
+      "id": "shorts-IrNVDZGixL4",
+      "file": "clips/shorts/short_IrNVDZGixL4.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 10,
+      "width": 480,
+      "height": 854,
+      "has_audio": true
+    },
+    {
+      "id": "shorts-SLFoJ4SbqkE",
+      "file": "clips/shorts/short_SLFoJ4SbqkE.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 11,
+      "width": 608,
+      "height": 1080,
+      "has_audio": true
+    },
+    {
+      "id": "shorts-_N7X9k9HbZU",
+      "file": "clips/shorts/short__N7X9k9HbZU.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 11,
+      "width": 480,
+      "height": 854,
+      "has_audio": true
+    },
+    {
+      "id": "shorts-d7U4H89RZQk",
+      "file": "clips/shorts/short_d7U4H89RZQk.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 10,
+      "width": 470,
+      "height": 854,
+      "has_audio": true
+    },
+    {
+      "id": "shorts-ig_Nh9ilsBI",
+      "file": "clips/shorts/short_ig_Nh9ilsBI.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 5,
+      "width": 466,
+      "height": 854,
+      "has_audio": true
+    },
+    {
+      "id": "shorts-mqNm9fqbFJ4",
+      "file": "clips/shorts/short_mqNm9fqbFJ4.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 10,
+      "width": 480,
+      "height": 854,
+      "has_audio": true
+    },
+    {
+      "id": "shorts-sJLAuLuyvIg",
+      "file": "clips/shorts/short_sJLAuLuyvIg.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 5,
+      "width": 466,
+      "height": 854,
+      "has_audio": true
+    },
+    {
+      "id": "shorts-xksFkVxxl-0",
+      "file": "clips/shorts/short_xksFkVxxl-0.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 11,
+      "width": 480,
+      "height": 854,
+      "has_audio": true
+    },
+    {
+      "id": "shorts-ztq8tAtmw0M",
+      "file": "clips/shorts/short_ztq8tAtmw0M.mp4",
+      "source": "youtube_shorts",
+      "vibe": "funny",
+      "duration": 10,
+      "width": 720,
+      "height": 1080,
+      "has_audio": true
+    }
+  ],
+  "total": 9
+}

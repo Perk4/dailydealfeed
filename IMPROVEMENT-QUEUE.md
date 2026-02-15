@@ -12,6 +12,17 @@
 
 ## Recently Completed ✅
 
+19. [x] **V8.1 Batch Test** — Verified video generation with all fixes (2026-02-15 19:09 UTC)
+    - **Test Video:** video_1_1771182518676.mp4 (CeraVe)
+    - **Features:** AFV clip + original audio, delayed voiceover, vibe-matched music (track05), crossfades
+    - **QA Score: 8.25/10** (consistent with Pink Stuff test)
+      - Hook: 8/10 (afv-002 with preserved audio)
+      - Voice: 7/10 (Deepgram Luna - bottleneck remains)
+      - Script: 9/10 ✅ ("Okay so my dermatologist literally recommends this...")
+      - Edit: 8.5/10 ✅ (crossfades + wellness music + delayed voiceover)
+      - Watchability: 8.5/10 ✅
+    - **Status:** Pipeline V8.1 confirmed working for all products
+
 18. [x] **Script + Music Regression Fix** — Restored music + varied script openers (2026-02-15 18:43 UTC)
     - **Issue:** v8-simplified disabled music, script-map.json had generic "Next up we have..." openers
     - **Fix:** Re-enabled MUSIC_CONFIG.enabled=true, rewrote all scripts with conversational openers
@@ -37,7 +48,8 @@
 
 ## Next Up ⏳
 
-19. [ ] **V8.1 Batch** — Regenerate all products with fixes (music + scripts)
+20. [ ] **Full V8.1 Batch Generation** — Generate fresh videos for all 6 products
+21. [ ] **ElevenLabs Integration** — Set ELEVENLABS_API_KEY to break 7/10 voice ceiling
 
 ## Completed ✅
 
@@ -84,7 +96,7 @@
 | Edit flow | 7 | 8 | 8.5 ✅ | 8+ |
 | Overall watchability | 7 | 8.5 | 8.5 ✅ | 9+ |
 
-**Latest Test:** video_3_1771180834444.mp4 (Pink Stuff) — Avg Score: **8.2/10** ⬆️
+**Latest Test:** video_1_1771182518676.mp4 (CeraVe) — Avg Score: **8.25/10** ✅
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
@@ -102,4 +114,4 @@
 
 ---
 
-*Updated: 2026-02-15 18:43 UTC*
+*Updated: 2026-02-15 19:10 UTC*

@@ -25,6 +25,7 @@ const PRODUCTS_FILE = path.join(PROJECT_DIR, 'products.json');
 const STATE_FILE = path.join(SCRIPT_DIR, 'scout_state.json');
 const CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'curated.json');
 const AFV_CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'processed-manifest.json');
+const SHORTS_CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'shorts-manifest.json');
 const CLIPS_CACHE_DIR = path.join(PROJECT_DIR, 'clips', 'cache');
 
 // Ensure cache directory exists
@@ -222,6 +223,51 @@ const AFV_VIBE_MAPPING = {
   reaction: ['fail', 'kids', 'water'],
   cozy: ['kids', 'indoor'],
   twist: ['unexpected', 'ice-slip', 'fail']
+};
+
+/**
+ * Load YouTube Shorts clips (pre-downloaded 9:16 vertical clips)
+ * These are already in the correct format for reels
+ */
+function loadShortsClips() {
+  if (!fs.existsSync(SHORTS_CLIPS_FILE)) {
+    return null;
+  }
+  
+  const manifest = JSON.parse(fs.readFileSync(SHORTS_CLIPS_FILE, 'utf8'));
+  
+  // Transform to vibe-keyed format
+  const clipsByVibe = {};
+  for (const clip of manifest.clips) {
+    const vibe = clip.vibe;
+    if (!clipsByVibe[vibe]) {
+      clipsByVibe[vibe] = [];
+    }
+    // Add source info and ensure file path is absolute
+    clipsByVibe[vibe].push({
+      ...clip,
+      source: 'youtube_shorts',
+      url: path.join(PROJECT_DIR, clip.file),
+      localPath: path.join(PROJECT_DIR, clip.file),
+      hookStyle: 'viral',
+      isVertical: true
+    });
+  }
+  
+  return {
+    clips: clipsByVibe,
+    total: manifest.total
+  };
+}
+
+// Shorts vibe mapping - maps product vibes to shorts content vibes
+const SHORTS_VIBE_MAPPING = {
+  shocked: ['funny', 'fail'],
+  transformation: ['funny'],
+  reveal: ['funny'],
+  reaction: ['funny', 'fail'],
+  cozy: ['funny'],
+  twist: ['funny', 'fail']
 };
 
 /**
@@ -480,11 +526,12 @@ function selectProduct(products, state, productId = null) {
 
 /**
  * Find the best viral clip for a product
- * Prioritizes AFV cliffhanger clips for maximum engagement
+ * Prioritizes: AFV cliffhanger clips > YouTube Shorts (vertical) > curated clips
  */
 function findClip(product, state) {
   const library = loadClipsLibrary();
   const afvLibrary = loadAFVClips();
+  const shortsLibrary = loadShortsClips();
   const productName = product.name;
   const productCategory = product.category;
   
