@@ -1,0 +1,575 @@
+{
+  "version": "1.0",
+  "created": "2026-02-15T05:38:31.988Z",
+  "updated": "2026-02-15T05:42:08.042Z",
+  "settings": {
+    "platforms": [
+      "tiktok",
+      "instagram",
+      "youtube"
+    ],
+    "defaultPriority": "normal",
+    "postsPerDay": {
+      "tiktok": 3,
+      "instagram": 2,
+      "youtube": 1
+    },
+    "optimalPostTimes": {
+      "tiktok": [
+        "09:00",
+        "12:00",
+        "19:00"
+      ],
+      "instagram": [
+        "11:00",
+        "17:00"
+      ],
+      "youtube": [
+        "14:00"
+      ]
+    }
+  },
+  "queue": [
+    {
+      "id": "post_1771133911988_lnnl9el9v",
+      "videoPath": "/root/dailydealfeed/output/video_1_1771127177058.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_1_1771127177058.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_1_1771127177058.json",
+      "addedAt": "2026-02-15T05:38:31.988Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_1_1771127177058.mp4",
+        "video_filename": "video_1_1771127177058.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_1_1771127177058.jpg",
+        "thumb_filename": "thumb_1_1771127177058.jpg",
+        "product_id": "1",
+        "product_name": "CeraVe Moisturizing Cream",
+        "product_price": "$18.96",
+        "ig_caption": "The moisturizer that dermatologists won't shut up about\n\nCeraVe Moisturizing Cream $18.96\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "The moisturizer that dermatologists won't shut up about 🤯 CeraVe Moisturizing Cream $18.96 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "The moisturizer that dermatologists won't shut up about",
+        "voiceover_script": "The moisturizer that dermatologists won't shut up about... CeraVe cream. Under 20 bucks for the big tub... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track01_boogie_funk.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T03:47:12.502Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 499052,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771133911989_fickebtyq",
+      "videoPath": "/root/dailydealfeed/output/video_2_1771127232503.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_2_1771127232503.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_2_1771127232503.json",
+      "addedAt": "2026-02-15T05:38:31.989Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_2_1771127232503.mp4",
+        "video_filename": "video_2_1771127232503.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_2_1771127232503.jpg",
+        "thumb_filename": "thumb_2_1771127232503.jpg",
+        "product_id": "2",
+        "product_name": "Neutrogena Beach Defense SPF 70",
+        "product_price": "$8.29",
+        "ig_caption": "SPF that doesn't feel like you bathed in oil\n\nNeutrogena Beach Defense SPF 70 $8.29\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "SPF that doesn't feel like you bathed in oil 🤯 Neutrogena Beach Defense SPF 70 $8.29 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "SPF that doesn't feel like you bathed in oil",
+        "voiceover_script": "SPF that doesn't feel like you bathed in oil... Neutrogena Beach Defense. Eight bucks. Actually absorbs... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track01_boogie_funk.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T03:48:17.487Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 908716,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771133911989_ae5zvlyqh",
+      "videoPath": "/root/dailydealfeed/output/video_3_1771127297493.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_3_1771127297493.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_3_1771127297493.json",
+      "addedAt": "2026-02-15T05:38:31.989Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_3_1771127297493.mp4",
+        "video_filename": "video_3_1771127297493.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_3_1771127297493.jpg",
+        "thumb_filename": "thumb_3_1771127297493.jpg",
+        "product_id": "3",
+        "product_name": "The Pink Stuff",
+        "product_price": "$4.79",
+        "ig_caption": "This 5 dollar paste versus my disgusting stove\n\nThe Pink Stuff $4.79\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "This 5 dollar paste versus my disgusting stove 🤯 The Pink Stuff $4.79 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "This 5 dollar paste versus my disgusting stove",
+        "voiceover_script": "This 5 dollar paste versus my disgusting stove... The Pink Stuff. Under 5 bucks. Watch this transformation... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track03_born_norilsk.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T03:49:57.893Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 1768184,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771133911989_58hzqjv81",
+      "videoPath": "/root/dailydealfeed/output/video_3_1771130441458.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_3_1771130441458.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_3_1771130441458.json",
+      "addedAt": "2026-02-15T05:38:31.989Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_3_1771130441458.mp4",
+        "video_filename": "video_3_1771130441458.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_3_1771130441458.jpg",
+        "thumb_filename": "thumb_3_1771130441458.jpg",
+        "product_id": "3",
+        "product_name": "Stardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste",
+        "product_price": "$4.79",
+        "ig_caption": "This 5 dollar paste versus my disgusting stove\n\nStardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste $4.79\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "This 5 dollar paste versus my disgusting stove 🤯 Stardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste $4.79 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "This 5 dollar paste versus my disgusting stove",
+        "voiceover_script": "This 5 dollar paste versus my disgusting stove... The Pink Stuff. Under 5 bucks. Watch this transformation... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track02_crazy_train.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T04:42:09.406Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 1161185,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771133911990_0jyogu988",
+      "videoPath": "/root/dailydealfeed/output/video_3_1771132178085.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_3_1771132178085.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_3_1771132178085.json",
+      "addedAt": "2026-02-15T05:38:31.990Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_3_1771132178085.mp4",
+        "video_filename": "video_3_1771132178085.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_3_1771132178085.jpg",
+        "thumb_filename": "thumb_3_1771132178085.jpg",
+        "product_id": "3",
+        "product_name": "The Pink Stuff",
+        "product_price": "$4.79",
+        "ig_caption": "This $5 paste vs my disgusting stove 🧽\n\nThe Pink Stuff - $4.79\n\n🔗 Link in bio!\n\n#thepinkstuff #cleaning #tiktokmademebuyit #amazonfinds",
+        "tiktok_caption": "This $5 paste vs my disgusting stove 🤯 #thepinkstuff #cleaningtiktok #amazonfinds",
+        "hook_angle": "This 5 dollar paste versus my disgusting stove",
+        "voiceover_script": "This 5 dollar paste versus my disgusting stove... The Pink Stuff. Under 5 bucks. Watch this transformation... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track01_boogie_funk.mp3",
+        "duration_seconds": 12,
+        "timing": {
+          "hook": 3,
+          "product": 7,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T05:11:09.008Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 1259989,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771133911990_tzcdwceo3",
+      "videoPath": "/root/dailydealfeed/output/video_4_1771127397901.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_4_1771127397901.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_4_1771127397901.json",
+      "addedAt": "2026-02-15T05:38:31.990Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_4_1771127397901.mp4",
+        "video_filename": "video_4_1771127397901.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_4_1771127397901.jpg",
+        "thumb_filename": "thumb_4_1771127397901.jpg",
+        "product_id": "4",
+        "product_name": "Dash Mini Waffle Maker",
+        "product_price": "$9.89",
+        "ig_caption": "Mini waffles that actually changed my mornings\n\nDash Mini Waffle Maker $9.89\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "Mini waffles that actually changed my mornings 🤯 Dash Mini Waffle Maker $9.89 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "Mini waffles that actually changed my mornings",
+        "voiceover_script": "Mini waffles that actually changed my mornings... Dash waffle maker. 10 bucks. Makes the cutest waffles... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track05_dynamic_healing.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T03:50:44.865Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 623066,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771133911991_g0gh5l109",
+      "videoPath": "/root/dailydealfeed/output/video_5_1771127444868.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_5_1771127444868.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_5_1771127444868.json",
+      "addedAt": "2026-02-15T05:38:31.991Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_5_1771127444868.mp4",
+        "video_filename": "video_5_1771127444868.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_5_1771127444868.jpg",
+        "thumb_filename": "thumb_5_1771127444868.jpg",
+        "product_id": "5",
+        "product_name": "BISSELL Little Green",
+        "product_price": "$109.99",
+        "ig_caption": "What came out of my couch... I'm disturbed\n\nBISSELL Little Green $109.99\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "What came out of my couch... I'm disturbed 🤯 BISSELL Little Green $109.99 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "What came out of my couch... I'm disturbed",
+        "voiceover_script": "What came out of my couch... I'm disturbed... Bissell Little Green. Worth every penny of that 110... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track02_crazy_train.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T03:51:30.668Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 455462,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771133911991_gzfzjc7hu",
+      "videoPath": "/root/dailydealfeed/output/video_6_1771127490669.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_6_1771127490669.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_6_1771127490669.json",
+      "addedAt": "2026-02-15T05:38:31.991Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_6_1771127490669.mp4",
+        "video_filename": "video_6_1771127490669.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_6_1771127490669.jpg",
+        "thumb_filename": "thumb_6_1771127490669.jpg",
+        "product_id": "6",
+        "product_name": "Moon Lamp",
+        "product_price": "$19.95",
+        "ig_caption": "When the vibes finally hit different at 3am\n\nMoon Lamp $19.95\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "When the vibes finally hit different at 3am 🤯 Moon Lamp $19.95 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "When the vibes finally hit different at 3am",
+        "voiceover_script": "When the vibes finally hit different at 3am... This moon lamp. 20 bucks. Your room will thank you... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track01_boogie_funk.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T03:52:31.395Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 742502,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771134128018_9bv5idpti",
+      "videoPath": "/root/dailydealfeed/output/video_1_1771134031355.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_1_1771134031355.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_1_1771134031355.json",
+      "addedAt": "2026-02-15T05:42:08.018Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_1_1771134031355.mp4",
+        "video_filename": "video_1_1771134031355.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_1_1771134031355.jpg",
+        "thumb_filename": "thumb_1_1771134031355.jpg",
+        "product_id": "1",
+        "product_name": "CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1)",
+        "product_price": "$18.96",
+        "ig_caption": "The moisturizer that dermatologists won't shut up about\n\nCeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "The moisturizer that dermatologists won't shut up about 🤯 CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "The moisturizer that dermatologists won't shut up about",
+        "voiceover_script": "The moisturizer that dermatologists won't shut up about... CeraVe cream. Under 20 bucks for the big tub... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track04_upbeat_corporate.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T05:41:45.609Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 743460,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771134128042_di0fhvxa8",
+      "videoPath": "/root/dailydealfeed/output/video_6_1771133939184.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_6_1771133939184.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_6_1771133939184.json",
+      "addedAt": "2026-02-15T05:42:08.042Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_6_1771133939184.mp4",
+        "video_filename": "video_6_1771133939184.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_6_1771133939184.jpg",
+        "thumb_filename": "thumb_6_1771133939184.jpg",
+        "product_id": "6",
+        "product_name": "Mind-Glowing Moon Lamp - 3D Moon Night Light for Kids Bedroom - Globe Nightlight with Multi Color LED, Touch/Remote Control - Birthday Gift for Any Year Old Girls & Boys - Space Decor (4.7 inch)",
+        "product_price": "$19.95",
+        "ig_caption": "When the vibes finally hit different at 3am\n\nMind-Glowing Moon Lamp - 3D Moon Night Light for Kids Bedroom - Globe Nightlight with Multi Color LED, Touch/Remote Control - Birthday Gift for Any Year Old Girls & Boys - Space Decor (4.7 inch) $19.95\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "When the vibes finally hit different at 3am 🤯 Mind-Glowing Moon Lamp - 3D Moon Night Light for Kids Bedroom - Globe Nightlight with Multi Color LED, Touch/Remote Control - Birthday Gift for Any Year Old Girls & Boys - Space Decor (4.7 inch) $19.95 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "When the vibes finally hit different at 3am",
+        "voiceover_script": "When the vibes finally hit different at 3am... This moon lamp. 20 bucks. Your room will thank you... Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track05_dynamic_healing.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T05:40:15.302Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 863395,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    }
+  ],
+  "history": []
+}
