@@ -87,9 +87,30 @@ const VIRAL_CLIPS_FILE = path.join(SCRIPT_DIR, '..', 'clips', 'viral-handpicked.
 // Background Music Configuration
 const MUSIC_CONFIG = {
   enabled: true,       // Enable background music
-  volume: 0.2,         // 20% volume (low under voiceover)
+  volume: 0.15,        // 15% volume (subtler - doesn't compete with voice)
   fadeIn: 0.5,         // Fade in duration (seconds)
   fadeOut: 1.0,        // Fade out duration (seconds)
+};
+
+// Edit Style Configuration (TikTok-organic feel)
+const EDIT_STYLE = {
+  // Ken Burns zoom - reduced for subtler, organic feel
+  zoomIntensity: 0.05,       // 1.0 to 1.05 (was 0.12 - reduced by 58%)
+  
+  // Text timing - delay after audio cue for spontaneous feel
+  textDelaySeconds: 0.15,    // Text appears 0.15s AFTER the spoken word
+  
+  // Progress bar - can distract from content
+  progressBarEnabled: false, // Disabled for more organic feel
+  
+  // Segment transitions - crossfade for smoother flow
+  crossfadeDuration: 0.3,    // Crossfade between segments (seconds)
+  
+  // Camera shake - subtle energy on hook
+  shakeIntensity: 3,         // Reduced from 4 for subtler movement
+  
+  // Pacing variation
+  hookDurationVariance: 0.3, // Allow ±30% variance in timing
 };
 
 // Colors (hex without #)
@@ -598,11 +619,28 @@ function createBackgroundVideo(outputPath, duration) {
 }
 
 // Convert GIF to video with proper scaling
-function convertGifToVideo(gifPath, outputPath, duration) {
-  // Scale GIF to fit video width, crop/pad to match dimensions
-  const filter = `scale=${VIDEO_WIDTH}:-1:force_original_aspect_ratio=decrease,pad=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:(ow-iw)/2:(oh-ih)/2:color=${COLORS.background},loop=loop=-1:size=1000,trim=duration=${duration}`;
+function convertGifToVideo(inputPath, outputPath, duration) {
+  // Detect input type by extension
+  const ext = path.extname(inputPath).toLowerCase();
+  const isGif = ext === '.gif';
+  const isMp4 = ext === '.mp4' || ext === '.m4v' || ext === '.mov';
   
-  ffmpeg(`-i "${gifPath}" -vf "${filter}" -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
+  // Scale to fit video width, crop/pad to match dimensions
+  const scaleFilter = `scale=${VIDEO_WIDTH}:-1:force_original_aspect_ratio=decrease,pad=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:(ow-iw)/2:(oh-ih)/2:color=${COLORS.background}`;
+  
+  if (isGif) {
+    // For GIFs: use loop filter
+    const filter = `${scaleFilter},loop=loop=-1:size=1000,trim=duration=${duration}`;
+    ffmpeg(`-i "${inputPath}" -vf "${filter}" -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
+  } else if (isMp4) {
+    // For MP4s: use stream_loop for seamless looping, then trim
+    const filter = `${scaleFilter},trim=duration=${duration}`;
+    ffmpeg(`-stream_loop -1 -i "${inputPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
+  } else {
+    // Fallback: try the GIF approach (works for most formats)
+    const filter = `${scaleFilter},trim=duration=${duration}`;
+    ffmpeg(`-i "${inputPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
+  }
 }
 
 // Create product showcase segment with image and text
@@ -620,12 +658,13 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
   const escapedName = escapeText(productName);
   const escapedPrice = escapeText(price);
   
-  // Ken Burns: slow zoom in effect (1.0 to 1.15 over duration)
+  // Ken Burns: slow zoom in effect - REDUCED for organic feel
   // zoompan outputs at 25fps, d=frames, s=output size
   const fps = 25;
   const frames = duration * fps;
-  // Zoom from 1.0 to 1.12 slowly
-  const zoomExpr = `min(1+0.12*on/${frames}\\,1.12)`;
+  // Zoom from 1.0 to 1.05 slowly (was 1.12 - now subtler)
+  const zoomMax = 1 + EDIT_STYLE.zoomIntensity;
+  const zoomExpr = `min(1+${EDIT_STYLE.zoomIntensity}*on/${frames}\\,${zoomMax})`;
   
   // Create background with Ken Burns zoom on image and animated text
   // Text animations: fade in over 0.5s with slight slide up
@@ -946,7 +985,9 @@ async function editVideo(input) {
   const postPath = path.join(OUTPUT_DIR, postFilename);
   
   // Temp files
-  const tempMeme = path.join(TEMP_DIR, `meme_${timestamp}.gif`);
+  // Use proper extension based on input source
+  const memeExt = input.clip_local_path ? path.extname(input.clip_local_path) : '.gif';
+  const tempMeme = path.join(TEMP_DIR, `meme_${timestamp}${memeExt}`);
   const tempProduct = path.join(TEMP_DIR, `product_${timestamp}.jpg`);
   const tempHook = path.join(TEMP_DIR, `hook_${timestamp}.mp4`);
   const tempHookText = path.join(TEMP_DIR, `hook_text_${timestamp}.mp4`);
@@ -984,7 +1025,13 @@ async function editVideo(input) {
     
     // Step 1: Download assets
     console.log('📥 Downloading meme/clip...');
-    await downloadFile(input.meme_url, tempMeme);
+    // Prefer local cached clip if available
+    if (input.clip_local_path && fs.existsSync(input.clip_local_path)) {
+      console.log(`✓ Using cached clip: ${input.clip_local_path}`);
+      fs.copyFileSync(input.clip_local_path, tempMeme);
+    } else {
+      await downloadFile(input.meme_url, tempMeme);
+    }
     
     console.log('📥 Downloading product image...');
     await downloadFile(input.product_image, tempProduct);
@@ -1158,13 +1205,14 @@ async function runFromScout(productId) {
   console.log(`📦 Getting product assets...`);
   const assets = getProductAssets(productId);
   
-  // Combine data
+  // Combine data (include clip_local_path for cached clips)
   const input = {
     product_id: scoutData.product_id,
     product_name: scoutData.product_name,
     product_image: scoutData.product_image,
     product_price: scoutData.product_price,
     meme_url: scoutData.meme_url,
+    clip_local_path: scoutData.clip_local_path, // Cached MP4 clip path
     hook_angle: scoutData.hook_angle,
     voiceover_script: scoutData.product_tagline,
     ig_caption: null, // Will use default

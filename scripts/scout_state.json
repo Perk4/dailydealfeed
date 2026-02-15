@@ -15,8 +15,8 @@
     "9",
     "10"
   ],
-  "categoryRotationIndex": 2,
-  "lastRun": "2026-02-15T06:40:10.959Z",
+  "categoryRotationIndex": 0,
+  "lastRun": "2026-02-15T14:31:04.723Z",
   "usedClipIds": [
     "cozy-m003",
     "cozy-m004",
@@ -24,6 +24,10 @@
     "cozy-m001",
     "shock-m001",
     "shock-m003",
-    "reveal-m003"
+    "reveal-m003",
+    "shock-m002",
+    "shock-m004",
+    "reveal-m001",
+    "reveal-m002"
   ]
 }

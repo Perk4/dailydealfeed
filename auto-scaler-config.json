@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "created": "2026-02-15T14:27:26.748Z",
+  "thresholds": {
+    "minPendingVideos": 5,
+    "targetPendingVideos": 10,
+    "maxDailyGeneration": 20,
+    "cooldownMinutes": 30
+  },
+  "generation": {
+    "concurrency": 1,
+    "retryAttempts": 2,
+    "retryDelayMs": 5000,
+    "timeoutMs": 120000
+  },
+  "monitoring": {
+    "checkIntervalMinutes": 60,
+    "enableAutoFill": true,
+    "notifyOnGeneration": true,
+    "notifyOnError": true
+  },
+  "quotas": {
+    "date": "2026-02-15",
+    "generated": 0,
+    "failed": 8
+  },
+  "updated": "2026-02-15T14:30:32.493Z"
+}

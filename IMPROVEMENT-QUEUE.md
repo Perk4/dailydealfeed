@@ -1,269 +1,60 @@
-# Improvement Queue — Progressive Disclosure
+# Improvement Queue — Video Quality Focus
 
-## Completed ✅
-1. [x] Script rewrite — conversational tone
-2. [x] Voice quality — OpenClaw TTS recommended
-3. [x] Viral clips — 15 handpicked clips
-4. [x] Edit pacing — dynamic timing, shorter videos
-5. [x] **Integration** — Wire all improvements into unified pipeline
-6. [x] **V5.0 Batch** — Regenerate all 6 videos with improvements ✅
+## Current Priority: Make Videos Actually Good
 
-### V5.0 Batch Results (2026-02-15)
-- **6/6 videos generated successfully**
-- **Features integrated:**
-  - ✅ Conversational scripts from script-map.json
-  - ✅ Deepgram Aura-1 TTS (natural voice)
-  - ✅ Dynamic pacing (8-13s videos)
-  - ✅ Background music (20% volume)
-  - ✅ Progress bar overlay
-  - ✅ Ken Burns zoom effects
-  - ✅ Text animations (fade-in, slide-up)
-
-## Next Up ⏳
-7. [x] Product-clip matching — Test vibe alignment with real viral clips ✅
-8. [x] OpenClaw TTS integration — Switch from Deepgram worker ✅
-9. [x] Posting queue — Semi-automated publishing system ✅
-10. [x] A/B test framework — Track which hooks perform best ✅
-
-### Task 8 Results (2026-02-15 05:11 UTC)
-**OpenClaw TTS Integration Completed:**
-- Created `scripts/lib/tts-openclaw.js` — TTS caching module
-- Updated `editor.js` — Prioritizes OpenClaw TTS cache over Deepgram
-- Agent generates TTS via `tts` tool, caches for batch use
-
-**Test Video Generated:**
-- Product: The Pink Stuff (ID: 3)
-- TTS: OpenClaw (ElevenLabs quality)
-- Duration: 12 seconds (dynamic timing)
-- Output: `video_3_1771132178085.mp4`
-
-**QA Framework Scores (vs Task 7):**
-| Dimension | Before | After |
-|-----------|--------|-------|
-| Hook impact | 9/10 | 9/10 |
-| Voice naturalness | 5/10 | **9/10** ⬆️ |
-| Script authenticity | 9/10 | 9/10 |
-| Edit flow | 7/10 | 7/10 |
-| Overall watchability | 8/10 | **9/10** ⬆️ |
-
-**Key Achievement:**
-- Voice naturalness jumped from 5/10 (Deepgram Aura-1) to 9/10 (OpenClaw/ElevenLabs)
-- Voice now passes the "real person" test — indistinguishable from human creator
-- TTS caching enables batch generation with consistent quality
-
-**Integration Notes:**
-- TTS cache stored in `/root/dailydealfeed/tts-cache/`
-- Agent pre-generates TTS via `tts` tool → saves to cache → editor uses cached audio
-- Fallback chain preserved: OpenClaw cache → ElevenLabs API → Deepgram → espeak-ng
-
-### Task 9 Results (2026-02-15 05:42 UTC)
-**Posting Queue System Completed:**
-- Created `scripts/posting-queue.js` — Full posting queue manager
-
-**Features Implemented:**
-| Feature | Description |
-|---------|-------------|
-| `scan` | Auto-discover all videos in output/ and add to queue |
-| `add` | Add individual video with priority (high/normal/low) |
-| `list` | Filter by status (pending/scheduled/posted/failed) |
-| `next` | Get next video for a platform |
-| `schedule` | Schedule post for specific datetime |
-| `posted` | Mark platform as posted with URL tracking |
-| `daily` | Generate optimal posting schedule |
-| `stats` | Queue statistics across platforms |
-
-**Queue Stats:**
-- 10 videos in queue
-- 3 platforms tracked: TikTok, Instagram, YouTube Shorts
-- Optimal posting times configured per platform
-- Posts per day limits: TikTok 3, Instagram 2, YouTube 1
-
-**Test Video Generated:**
-- Product: CeraVe Moisturizing Cream (ID: 1)
-- Output: `video_1_1771134031355.mp4`
-- Duration: 10 seconds
-- Auto-added to posting queue
-
-**QA Framework Scores:**
-| Dimension | Score |
-|-----------|-------|
-| Hook impact | 5/10 |
-| Script authenticity | 9/10 |
-| Edit flow | 7/10 |
-| Overall vibe | 6/10 |
-
-**Usage Example:**
-```bash
-# Scan all videos into queue
-node scripts/posting-queue.js scan
-
-# Get today's posting schedule
-node scripts/posting-queue.js daily
-
-# Mark video as posted on TikTok
-node scripts/posting-queue.js posted <id> tiktok https://tiktok.com/...
-```
-
-### Task 10 Results (2026-02-15 06:10 UTC)
-**A/B Test Framework Completed:**
-- Created `scripts/ab-testing.js` — Full hook performance tracker
-
-**Features Implemented:**
-| Feature | Description |
-|---------|-------------|
-| `init` | Bootstrap from existing script-map.json |
-| `add` | Add hook variants per product |
-| `select` | Choose hooks via strategy (exploration/exploitation/epsilon_greedy) |
-| `analyze` | Pattern performance analysis |
-| `winners` | Get best-performing hooks per product |
-| `suggest` | Auto-suggest hooks based on winning patterns |
-| `report` | Comprehensive A/B testing report |
-| `record` | Track metrics from posted videos |
-
-**Hook Patterns Detected:**
-- `transformation` — "This $X versus my disgusting $Y"
-- `authority` — "The $X that dermatologists won't shut up about"
-- `challenge` — "$X that doesn't $NEGATIVE"
-- `disbelief` — "What came out of my $X... I'm disturbed"
-- `vibe` — "POV: you discovered $X"
-- `price_shock` — "This $PRICE $X changed everything"
-
-**Initial State:**
-- 9 hook variants tracked across 6 products
-- 1 active experiment (video_3_1771132178085)
-- Exploration strategy prioritizes less-tested hooks
-- Epsilon-greedy (80/20) for balanced optimization
-
-**QA Framework Scores:**
-| Dimension | Score |
-|-----------|-------|
-| Hook impact | 9/10 |
-| Voice naturalness | 9/10 |
-| Script authenticity | 9/10 |
-| Edit flow | 7/10 |
-| Overall watchability | 8/10 |
-
-**Usage Example:**
-```bash
-# Initialize from script-map
-node scripts/ab-testing.js init
-
-# Add hook variant
-node scripts/ab-testing.js add 3 "POV: you just discovered the Pink Stuff"
-
-# Select hook for video (exploration mode)
-node scripts/ab-testing.js select 3 exploration
-
-# Record metrics after posting
-node scripts/ab-testing.js record exp-xxx tiktok '{"views":1000,"clicks":50}'
-
-# Analyze patterns
-node scripts/ab-testing.js analyze
-```
-
-**Integration Notes:**
-- Framework stores data in `/root/dailydealfeed/ab-testing-data.json`
-- Hooks auto-tagged with detected patterns for analysis
-- Metrics aggregate across platforms (TikTok, Instagram, YouTube)
-- As data accumulates, winning patterns emerge automatically
-
-### Task 7 Results (2026-02-15 04:42 UTC)
-**Vibe Alignment Test Completed:**
-- Created `test-vibe-alignment.js` for systematic vibe testing
-- Fixed editor.js to handle local cached clips (not just URLs)
-- Installed ffmpeg for video processing
-
-**Test Video Generated:**
-- Product: The Pink Stuff (ID: 3)
-- Clip: reveal-m003 (reveal vibe)
-- Hook: "This 5 dollar paste versus my disgusting stove"
-- **Vibe Match Score: 9/10** ✅
-
-**QA Framework Scores:**
-| Dimension | Score |
-|-----------|-------|
-| Hook impact | 9/10 |
-| Script authenticity | 9/10 |
-| Edit flow | 7/10 |
-| Overall vibe | 8/10 |
-
-**Key Improvements Made:**
-- ✅ Scout properly matches product category to clip vibes
-- ✅ Editor now uses local cached clips (faster, more reliable)
-- ✅ Conversational scripts from script-map.json working
-- ✅ Dynamic timing based on voiceover length
-- ✅ Background music at 20% volume under voiceover
-
-**Remaining Observation:**
-- Deepgram Aura-1 TTS works but OpenClaw TTS would be better (next task)
-
-## Future 📋
-11. [x] Analytics dashboard — Views, clicks, conversions ✅
-12. [ ] Auto-scaling — Generate videos on demand
-13. [ ] Multi-niche expansion — Tech, beauty, home categories
-14. [ ] Trend detection — Auto-source trending products
-
-### Task 11 Results (2026-02-15 06:38 UTC)
-**Analytics Dashboard Completed:**
-- Created `scripts/analytics-dashboard.js` — Full analytics tracking system
-
-**Features Implemented:**
-| Command | Description |
-|---------|-------------|
-| `summary` | Overview of all metrics (views, clicks, revenue, rates) |
-| `platforms` | Platform comparison (TikTok vs Instagram vs YouTube) |
-| `videos` | Per-video performance breakdown |
-| `products` | Product performance ranking |
-| `hooks` | Hook pattern performance analysis |
-| `trends` | Time-based trends (daily/weekly) |
-| `record` | Record metrics for a video |
-| `roi` | ROI and conversion analysis with funnel |
-| `export` | Export to CSV for external analysis |
-| `init` | Initialize from posting queue |
-
-**Key Metrics Tracked:**
-- Views, likes, comments, shares, saves
-- Clicks, conversions, revenue
-- Click-through rate (CTR), conversion rate (CVR)
-- Engagement rate, average watch time
-- Revenue per click (RPC)
-- Goal progress tracking
-
-**Integration:**
-- Auto-syncs with posting-queue.json
-- Links to ab-testing-data.json for hook analysis
-- Per-video, per-platform, per-product breakdowns
-- ROI analysis with cost estimation
-
-**Initial State:**
-- 10 videos tracked from posting queue
-- 6 products monitored
-- 3 platforms configured (TikTok, Instagram, YouTube)
-- Daily goals set: 10K views, 2% CTR
-
-**Note:** Video generation failed this cycle due to external clip URL issues (Giphy rate limiting). Existing cached clips work; scout needs fallback improvement.
-
-**Usage Example:**
-```bash
-# View summary
-node scripts/analytics-dashboard.js summary
-
-# Record metrics after posting
-node scripts/analytics-dashboard.js record video_3_123 tiktok '{"views":1000,"likes":50,"clicks":10}'
-
-# Check ROI
-node scripts/analytics-dashboard.js roi
-
-# Export for spreadsheet
-node scripts/analytics-dashboard.js export
-```
-
-## Quality Gates
-Each improvement must:
-- [x] Generate test video
-- [x] Score 7+ on QA framework
-- [x] Get human approval before batch generation
+**North Star:** Would a random person think this is a real TikTok or an ad?
 
 ---
-*Updated: 2026-02-15 06:38 UTC*
-*Task 11 complete: Analytics dashboard (10 videos tracked, ROI analysis ready)*
+
+## In Progress 🔄
+
+12. [ ] **Script Polish** — Make scripts feel like voice memos, not ads
+13. [ ] **Edit Refinement** — Subtler effects, better pacing, natural flow
+14. [ ] **Hook Optimization** — First 3 seconds must be scroll-stoppers
+
+## Next Up ⏳
+
+15. [ ] **Clip Quality** — Source even better viral moments
+16. [ ] **Voice Variety** — Test different TTS voices/styles per product
+17. [ ] **Music Matching** — Right track for right product vibe
+18. [ ] **Full QA Pass** — Score all videos, identify weakest links
+19. [ ] **V6.0 Batch** — Regenerate with all refinements
+
+## Completed ✅
+
+1. [x] Script rewrite — conversational tone
+2. [x] Voice quality — OpenClaw TTS recommended
+3. [x] Viral clips — 15 handpicked
+4. [x] Edit pacing — dynamic timing
+5. [x] TTS integration — ElevenLabs fallback chain
+6. [x] Music downloaded — 5 royalty-free tracks
+7. [x] All improvements integrated
+8. [x] Clips cached locally
+9. [x] V5.0 batch generated
+10. [x] Product-clip matching
+11. [x] OpenClaw TTS integration
+
+## Deprioritized (Later)
+
+- [ ] Posting queue — wait until videos are ready
+- [ ] A/B test framework — need real data first
+- [ ] Analytics dashboard — after we start posting
+- [ ] Auto-scaling — premature optimization
+
+---
+
+## Quality Targets
+
+| Dimension | V5.0 | Target |
+|-----------|------|--------|
+| Hook impact | 7 | 9+ |
+| Voice naturalness | 9 | 9 |
+| Script authenticity | 7 | 9+ |
+| Edit flow | 7 | 8+ |
+| Overall watchability | 7 | 9+ |
+
+**The test:** Would you actually watch this? Would you share it?
+
+---
+
+*Updated: 2026-02-15 14:30 UTC*
