@@ -1,11 +1,53 @@
 # Video Production Pipeline — Perfection Plan
 
-## Current Status: v3.0
+## Current Status: v4.0
 - ✅ 6 videos generated
 - ✅ 9:16 vertical format (1080x1920)
-- ✅ Deepgram Luna TTS voiceover
-- ✅ Real Amazon product images
-- ⚠️ Quality needs refinement
+- ✅ Motion effects (zoom, text animation)
+- ⚠️ **Voice quality needs work** — sounds robotic
+- ⚠️ **Editing feels forced** — not natural flow
+- ⚠️ **Clips not viral enough** — need real shock value
+- ⚠️ **Scripts too descriptive** — product titles sound robotic
+
+---
+
+## 🎯 QA Framework
+
+### Quality Gates (must pass before posting)
+
+**1. Hook Test (0-3 seconds)**
+- [ ] Would YOU stop scrolling?
+- [ ] Is the clip genuinely surprising/funny/shocking?
+- [ ] Does it feel like a real viral moment, not stock footage?
+
+**2. Voice Test**
+- [ ] Does it sound like a friend talking, not a robot reading?
+- [ ] Natural pauses and emphasis?
+- [ ] Would you believe a real person recorded this?
+
+**3. Script Test**
+- [ ] Is it conversational, not a product description?
+- [ ] Short punchy lines, not full product titles?
+- [ ] "Chill friend energy" — would you actually say this?
+
+**4. Edit Test**
+- [ ] Does the pacing feel natural?
+- [ ] Are transitions smooth, not jarring?
+- [ ] Does it flow like content you'd watch, not an ad?
+
+**5. Overall Vibe Check**
+- [ ] Would this blend into a real TikTok feed?
+- [ ] Would you share this with a friend?
+- [ ] Does it feel homemade, not corporate?
+
+### Quality Scoring (1-10)
+| Dimension | Current | Target |
+|-----------|---------|--------|
+| Hook impact | 4 | 8+ |
+| Voice naturalness | 5 | 8+ |
+| Script authenticity | 4 | 8+ |
+| Edit flow | 5 | 7+ |
+| Overall watchability | 5 | 8+ |
 
 ---
 
@@ -13,154 +55,132 @@
 
 ### 1. 🔍 SCOUT — Viral Clip Sourcing
 **Current:** Giphy reaction GIFs
-**Problem:** Generic, not "Worldstar/AFV viral" level
-**Target:** Shocking 2-4 second clips that hook instantly
+**Problem:** Generic, predictable, not shocking
+**Target:** Clips that make people go "WTF" or laugh out loud
 
-**Improvements needed:**
-- [ ] Source from Pexels/Pixabay video (direct download URLs)
-- [ ] Curate "shock value" clips manually
-- [ ] Match clip emotion to product category
-- [ ] A/B test different hook styles
+**Quality standard:**
+- Must be genuinely surprising (not "reaction face" stock)
+- Should work standalone without context
+- Think: security cam catches, fail compilations, genuine reactions
 
-**Owner:** Scout Agent
-**Metric:** Hook retention (first 3 sec watch rate)
-
----
-
-### 2. ✍️ WRITER — Hook & Caption Generation
-**Current:** Template-based hooks
-**Problem:** Can feel formulaic
-**Target:** "Chill friend energy" that stops the scroll
-
-**Improvements needed:**
-- [ ] Train on top-performing TikTok hooks
-- [ ] Add personality variations (curious, shocked, excited)
-- [ ] Test hook length (short punchy vs longer story)
-- [ ] Include trending audio references in captions
-
-**Owner:** Writer Agent
-**Metric:** Caption engagement (saves, shares)
+**Improvements:**
+- [ ] **Find 10 REAL viral clips** from Twitter/Reddit compilations
+- [ ] Manual curation over automation
+- [ ] Test: show clip to someone, do they react?
 
 ---
 
-### 3. 🎬 PRODUCER — Product Data
-**Current:** Rainforest API for Amazon data
-**Problem:** ~50% ASIN hit rate
-**Target:** 100% real product images + prices
+### 2. ✍️ WRITER — Script Generation
+**Current:** Full product titles in script
+**Problem:** "CeraVe Moisturizing Cream Body and Face Moisturizer..." sounds robotic
+**Target:** How a friend would actually describe it
 
-**Improvements needed:**
-- [ ] Verify ASINs before adding to catalog
-- [ ] Fallback: Browser screenshot of Amazon page
-- [ ] Track price changes for "PRICE DROP" hooks
-- [ ] Add review count/rating to display
+**Quality standard:**
+- Max 5-7 words for product mention
+- Conversational, not descriptive
+- Include personality/opinion
 
-**Owner:** Producer Agent
-**Metric:** Image accuracy (real Amazon vs placeholder)
+**Examples:**
+| ❌ Robotic | ✅ Natural |
+|------------|-----------|
+| "CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid" | "This CeraVe moisturizer... game changer" |
+| "Bissell Little Green Multi-Purpose Portable Carpet and Upholstery Cleaner" | "The little green machine... trust me" |
+| "Stardrops The Pink Stuff Miracle Cleaning Paste" | "Pink Stuff. Five bucks. Just get it." |
+
+**Improvements:**
+- [ ] Rewrite all scripts to be conversational
+- [ ] Add personality/opinions ("I was skeptical but...")
+- [ ] Use nicknames when products have them
+
+---
+
+### 3. 🎙️ TTS — Voiceover
+**Current:** Deepgram Luna
+**Problem:** Still sounds AI-generated
+**Target:** Indistinguishable from human creator
+
+**Quality standard:**
+- Natural speech rhythm with pauses
+- Emphasis on key words
+- Slight imperfections (not too perfect)
+
+**Improvements:**
+- [ ] **Test ElevenLabs** (more natural, $5/mo starter)
+- [ ] Add SSML pauses: "trust me... <break time='0.5s'/> it works"
+- [ ] Try different voice personalities
+- [ ] Consider: record human voiceovers for best products?
 
 ---
 
 ### 4. 🎞️ EDITOR — Video Assembly
-**Current:** FFmpeg with text overlays
-**Problem:** Static, lacks dynamic energy
-**Target:** TikTok-native feel with motion
+**Current:** Ken Burns zoom, text animations
+**Problem:** Effects feel "applied" not organic
+**Target:** Feels like someone edited on CapCut in 5 minutes
 
-**Improvements needed:**
-- [ ] Add subtle zoom/pan on product images
-- [ ] Text animation (fade in, slide up)
-- [ ] Background music layer (low volume under TTS)
-- [ ] Transition effects between segments
-- [ ] Progress bar / timer indicator
-- [ ] End card with swipe-up gesture animation
+**Quality standard:**
+- Pacing matches energy of clip
+- Text appears when it feels right, not on a timer
+- Music/sound enhances, doesn't distract
 
-**Owner:** Editor Agent
-**Metric:** Watch time, completion rate
-
----
-
-### 5. 🎙️ TTS — Voiceover
-**Current:** Deepgram Aura-1 (Luna voice)
-**Problem:** Good but can sound slightly robotic
-**Target:** Natural, conversational tone
-
-**Improvements needed:**
-- [ ] Test different voices (asteria, athena for variety)
-- [ ] Add pauses for emphasis (... in script)
-- [ ] Speed variation (faster hook, slower CTA)
-- [ ] Consider ElevenLabs for premium quality
-
-**Owner:** TTS Worker
-**Metric:** Voice naturalness rating
+**Improvements:**
+- [ ] Less uniform timing (vary based on content)
+- [ ] Match text timing to voiceover beats
+- [ ] Subtler effects (less obvious zoom)
+- [ ] Study actual TikTok edits for pacing
 
 ---
 
-### 6. 📱 PUBLISHER — Distribution
-**Current:** Manual posting
-**Target:** Semi-automated with approval gate
+### 5. 🎬 PRODUCER — Product Selection
+**Current:** Random popular Amazon products
+**Problem:** Not all products are "TikTok viral" worthy
+**Target:** Products people actually get excited about
 
-**Improvements needed:**
-- [ ] Queue system for pending posts
-- [ ] Scheduling (optimal post times)
-- [ ] Cross-post to IG + TikTok simultaneously
-- [ ] Caption hashtag optimization
-- [ ] Performance tracking webhook
+**Quality standard:**
+- Is this a "TikTok made me buy it" product?
+- Does it have a visual wow factor?
+- Is the price point impulse-buy friendly?
 
-**Owner:** Publisher Agent (TODO)
-**Metric:** Post frequency, reach
-
----
-
-### 7. 🔗 LINK SITE — Bio Link
-**Current:** Mobile-first glassmorphism design
-**Problem:** Needs conversion optimization
-**Target:** Easy tap → Amazon purchase
-
-**Improvements needed:**
-- [ ] Add product category filters
-- [ ] "Hot deals" / "Price drop" badges
-- [ ] Recently viewed tracking
-- [ ] UTM parameters for tracking
-- [ ] A/B test card layouts
-
-**Owner:** Builder Agent
-**Metric:** Click-through rate, conversion
+**Improvements:**
+- [ ] Source from actual TikTok viral product lists
+- [ ] Prioritize products with transformation/reveal potential
+- [ ] Focus on $5-30 price range for impulse buys
 
 ---
 
-## Quality Checklist (per video)
+## Evaluation Process
 
-Before publishing, verify:
-- [ ] Video is 9:16 vertical (1080x1920)
-- [ ] Hook plays in first 3 seconds
-- [ ] Product image is real Amazon photo
-- [ ] Price is current and accurate
-- [ ] TTS audio is clear and synced
-- [ ] CTA "Link in bio" is visible
-- [ ] No copyright issues with clip/music
+### Before Each Batch
+1. Generate 3 test videos
+2. Score each on QA dimensions
+3. Identify weakest element
+4. Fix and regenerate
+5. Only proceed when avg score > 7
 
----
-
-## Agent Cadence
-
-| Agent | Trigger | Output |
-|-------|---------|--------|
-| Scout | New product added | Matched viral clip |
-| Writer | Scout output | Hook + captions |
-| Producer | Product ID | Amazon data + image |
-| Editor | All inputs ready | Final video file |
-| Publisher | Human approval | Live post |
-
-**Boardroom:** Hourly check-in for progress/blockers
+### After Posting
+1. Track: views, watch time, clicks
+2. Identify which videos perform best
+3. Analyze: what made them work?
+4. Feed learnings back into pipeline
 
 ---
 
-## Next Sprint Priorities
+## Night Shift Priorities (Feb 15)
 
-1. **Fix video playback on preview** — Dynamic loading from GitHub
-2. **Add motion to videos** — Zoom, pan, text animation
-3. **Background music** — Royalty-free trending sounds
-4. **Better viral clips** — Manual curation of 20 "A-tier" hooks
-5. **Publisher agent** — Build posting queue + scheduling
+1. **Script Rewrite Agent** — Make all scripts conversational
+2. **Voice Quality Agent** — Test ElevenLabs, find better TTS
+3. **Viral Clip Agent** — Find 10 genuinely shocking clips
+4. **Edit Pacing Agent** — Study TikTok timing, adjust editor
 
 ---
 
-*Last updated: 2026-02-15*
+## Success Criteria
+
+**Ready to post when:**
+- Random person watches and doesn't immediately think "ad"
+- Voice sounds like a real creator
+- Hook makes you want to keep watching
+- You'd actually share it
+
+---
+
+*Last updated: 2026-02-15 02:10 UTC*
