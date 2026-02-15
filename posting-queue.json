@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-02-15T05:38:31.988Z",
-  "updated": "2026-02-15T05:42:08.042Z",
+  "updated": "2026-02-15T14:32:26.665Z",
   "settings": {
     "platforms": [
       "tiktok",
@@ -549,6 +549,60 @@
         "ready_for_posting": true
       },
       "fileSize": 863395,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771165946665_2pmymdzdk",
+      "videoPath": "/root/dailydealfeed/output/video_3_1771165864725.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_3_1771165864725.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_3_1771165864725.json",
+      "addedAt": "2026-02-15T14:32:26.665Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_3_1771165864725.mp4",
+        "video_filename": "video_3_1771165864725.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_3_1771165864725.jpg",
+        "thumb_filename": "thumb_3_1771165864725.jpg",
+        "product_id": "3",
+        "product_name": "Stardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste",
+        "product_price": "$4.79",
+        "ig_caption": "The before/after that broke me\n\nStardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste $4.79\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "The before/after that broke me 🤯 Stardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste $4.79 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "The before/after that broke me",
+        "voiceover_script": "Wait why is no one talking about this five dollar cleaning paste... The Pink Stuff. My stove looks brand new. I'm obsessed. Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track01_boogie_funk.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T14:32:26.570Z",
+        "ready_for_posting": true
+      },
+      "fileSize": 696330,
       "platforms": {
         "tiktok": {
           "status": "pending",

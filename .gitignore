@@ -1,0 +1,16 @@
+# Temp files
+temp/
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+
+# Large generated videos (keep in output but track selectively)
+# output/*.mp4
+# output/*.jpg

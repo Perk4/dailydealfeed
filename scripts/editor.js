@@ -667,13 +667,14 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
   const zoomExpr = `min(1+${EDIT_STYLE.zoomIntensity}*on/${frames}\\,${zoomMax})`;
   
   // Create background with Ken Burns zoom on image and animated text
-  // Text animations: fade in over 0.5s with slight slide up
-  const textFadeIn = 0.5; // seconds for fade
-  const textSlideDistance = 30; // pixels to slide up
+  // Text animations: delayed fade-in for organic "after audio" feel
+  const textDelay = EDIT_STYLE.textDelaySeconds; // Text appears AFTER audio cue
+  const textFadeIn = 0.4; // seconds for fade (slightly faster)
+  const textSlideDistance = 25; // pixels to slide up (subtler)
   
-  // Alpha expression for fade-in: fade in over textFadeIn seconds
-  const nameAlpha = `if(lt(t\\,${textFadeIn})\\,t/${textFadeIn}\\,1)`;
-  const priceAlpha = `if(lt(t\\,${textFadeIn + 0.2})\\,max(0\\,(t-0.2)/${textFadeIn})\\,1)`; // Price fades in 0.2s after name
+  // Alpha expression: delay first, then fade in (appears AFTER spoken word)
+  const nameAlpha = `if(lt(t\\,${textDelay})\\,0\\,if(lt(t\\,${textDelay + textFadeIn})\\,(t-${textDelay})/${textFadeIn}\\,1))`;
+  const priceAlpha = `if(lt(t\\,${textDelay + 0.25})\\,0\\,if(lt(t\\,${textDelay + 0.25 + textFadeIn})\\,(t-${textDelay + 0.25})/${textFadeIn}\\,1))`; // Price 0.25s after name
   
   // Y position with slide-up effect
   const nameYExpr = `${nameY}+${textSlideDistance}*max(0\\,1-t/${textFadeIn})`;
@@ -703,17 +704,19 @@ function createCTASegment(outputPath, duration) {
   const escapedCta = escapeText(ctaText);
   const escapedSub = escapeText(subText);
   
-  // Animation: scale-up bounce effect via alpha fade + slide
-  const fadeIn = 0.4;
-  const slideDistance = 40;
+  // Animation: delayed fade + slide for organic feel
+  const textDelay = EDIT_STYLE.textDelaySeconds;
+  const fadeIn = 0.35; // Slightly faster
+  const slideDistance = 30; // Subtler slide
   
-  // CTA text: fade in with slide up
-  const ctaAlpha = `if(lt(t\\,${fadeIn})\\,t/${fadeIn}\\,1)`;
-  const ctaYExpr = `${ctaY}+${slideDistance}*max(0\\,1-t/${fadeIn})`;
+  // CTA text: delay then fade in with slide up
+  const ctaAlpha = `if(lt(t\\,${textDelay})\\,0\\,if(lt(t\\,${textDelay + fadeIn})\\,(t-${textDelay})/${fadeIn}\\,1))`;
+  const ctaYExpr = `${ctaY}+${slideDistance}*max(0\\,1-(t-${textDelay})/${fadeIn})`;
   
-  // Sub text: delayed fade in
-  const subAlpha = `if(lt(t\\,${fadeIn + 0.3})\\,max(0\\,(t-0.3)/${fadeIn})\\,1)`;
-  const subYExpr = `${subY}+${slideDistance}*max(0\\,1-(t-0.3)/${fadeIn})`;
+  // Sub text: additional delay after CTA
+  const subDelay = textDelay + 0.25;
+  const subAlpha = `if(lt(t\\,${subDelay})\\,0\\,if(lt(t\\,${subDelay + fadeIn})\\,(t-${subDelay})/${fadeIn}\\,1))`;
+  const subYExpr = `${subY}+${slideDistance}*max(0\\,1-(t-${subDelay})/${fadeIn})`;
   
   const filter = [
     `drawtext=fontfile=${FONT_PATH}:text='${escapedCta}':fontsize=96:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y='${ctaYExpr}':alpha='${ctaAlpha}'`,
@@ -723,7 +726,7 @@ function createCTASegment(outputPath, duration) {
   ffmpeg(`-f lavfi -i "color=c=${COLORS.ctaBackground}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}" -vf "${filter}" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
 }
 
-// Concatenate video segments
+// Concatenate video segments (hard cut)
 function concatenateVideos(inputPaths, outputPath) {
   // Create concat file
   const concatFile = path.join(TEMP_DIR, 'concat.txt');
@@ -731,6 +734,60 @@ function concatenateVideos(inputPaths, outputPath) {
   fs.writeFileSync(concatFile, content);
   
   ffmpeg(`-f concat -safe 0 -i "${concatFile}" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
+}
+
+// Concatenate video segments with crossfade transitions (smoother flow)
+function concatenateVideosWithCrossfade(inputPaths, outputPath, crossfadeDuration = 0.3) {
+  if (inputPaths.length < 2) {
+    return concatenateVideos(inputPaths, outputPath);
+  }
+  
+  try {
+    // Use xfade filter for smooth transitions between clips
+    // xfade: transition=fade creates natural blend
+    const inputs = inputPaths.map(p => `-i "${p}"`).join(' ');
+    
+    // Build filter chain for 3 segments: v0 xfade v1, then result xfade v2
+    // Offset is calculated as (clip_duration - crossfade_duration)
+    // For simplicity, we'll use a fixed offset approach
+    
+    if (inputPaths.length === 3) {
+      // Three clips: hook, product, cta
+      // We need to know durations - get them with ffprobe
+      const getDuration = (path) => {
+        try {
+          const result = execSync(
+            `ffprobe -v error -show_entries format=duration -of csv=p=0 "${path}"`,
+            { encoding: 'utf8' }
+          );
+          return parseFloat(result.trim()) || 3;
+        } catch (e) {
+          return 3; // fallback
+        }
+      };
+      
+      const dur0 = getDuration(inputPaths[0]);
+      const dur1 = getDuration(inputPaths[1]);
+      
+      // First xfade offset: duration of first clip minus crossfade
+      const offset1 = Math.max(0.5, dur0 - crossfadeDuration);
+      // Second xfade offset: offset1 + dur1 - crossfade
+      const offset2 = Math.max(1, offset1 + dur1 - crossfadeDuration);
+      
+      const filter = [
+        `[0:v][1:v]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset1}[v01]`,
+        `[v01][2:v]xfade=transition=fade:duration=${crossfadeDuration}:offset=${offset2}[vout]`
+      ].join(';');
+      
+      ffmpeg(`${inputs} -filter_complex "${filter}" -map "[vout]" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
+    } else {
+      // Fallback to simple concat for other cases
+      concatenateVideos(inputPaths, outputPath);
+    }
+  } catch (err) {
+    console.log(`⚠️  Crossfade failed, falling back to hard cut: ${err.message}`);
+    concatenateVideos(inputPaths, outputPath);
+  }
 }
 
 // Generate thumbnail from video
@@ -744,16 +801,17 @@ function addHookText(inputPath, outputPath, hookText) {
   const escapedHook = escapeText(hookText);
   
   // Subtle camera shake: small random-ish displacement using sin waves at different frequencies
-  // This creates organic-feeling movement without being too jarring
-  const shakeIntensity = 4; // pixels of shake
+  // REDUCED for more organic feel - less "produced"
+  const shakeIntensity = EDIT_STYLE.shakeIntensity; // pixels of shake (reduced from 4)
   const shakeX = `${shakeIntensity}*sin(t*15)*sin(t*7)`;
   const shakeY = `${shakeIntensity}*sin(t*12)*cos(t*9)`;
   
-  // Text fade-in with slight slide up
-  const fadeIn = 0.4;
-  const slideDistance = 25;
-  const textAlpha = `if(lt(t\\,${fadeIn})\\,t/${fadeIn}\\,1)`;
-  const textY = `${hookY}+${slideDistance}*max(0\\,1-t/${fadeIn})`;
+  // Text fade-in: delayed to appear AFTER audio (TikTok pattern)
+  const textDelay = EDIT_STYLE.textDelaySeconds;
+  const fadeIn = 0.35;
+  const slideDistance = 20; // Subtler slide
+  const textAlpha = `if(lt(t\\,${textDelay})\\,0\\,if(lt(t\\,${textDelay + fadeIn})\\,(t-${textDelay})/${fadeIn}\\,1))`;
+  const textY = `${hookY}+${slideDistance}*max(0\\,1-(t-${textDelay})/${fadeIn})`;
   
   // Apply shake via crop/pad (slight overscan then offset)
   // First scale up slightly, then crop with shake offset
@@ -935,7 +993,7 @@ function mixBackgroundMusic(videoPath, musicPath, outputPath, duration) {
 function addMusicToSilentVideo(videoPath, musicPath, outputPath, duration) {
   console.log('🎵 Adding background music to silent video...');
   
-  const vol = 0.5; // Higher volume for music-only (no voiceover to compete with)
+  const vol = 0.4; // Higher volume for music-only, but not overwhelming (was 0.5)
   const fadeIn = MUSIC_CONFIG.fadeIn;
   const fadeOut = MUSIC_CONFIG.fadeOut;
   
@@ -1055,13 +1113,22 @@ async function editVideo(input) {
     console.log('📢 Creating CTA segment...');
     createCTASegment(tempCTA, ctaDuration);
     
-    // Step 5: Concatenate all segments
+    // Step 5: Concatenate all segments with crossfade transitions
     console.log('🔗 Concatenating segments...');
-    concatenateVideos([tempHookText, tempShowcase, tempCTA], tempConcat);
+    if (EDIT_STYLE.crossfadeDuration > 0) {
+      concatenateVideosWithCrossfade([tempHookText, tempShowcase, tempCTA], tempConcat, EDIT_STYLE.crossfadeDuration);
+    } else {
+      concatenateVideos([tempHookText, tempShowcase, tempCTA], tempConcat);
+    }
     
-    // Step 6: Add progress bar overlay - DYNAMIC DURATION
-    console.log('📊 Adding progress bar...');
-    addProgressBar(tempConcat, tempWithProgress, totalDuration);
+    // Step 6: Progress bar overlay (optional - disabled for organic feel)
+    if (EDIT_STYLE.progressBarEnabled) {
+      console.log('📊 Adding progress bar...');
+      addProgressBar(tempConcat, tempWithProgress, totalDuration);
+    } else {
+      console.log('📊 Progress bar disabled (organic mode)');
+      fs.copyFileSync(tempConcat, tempWithProgress);
+    }
     
     // Step 8: Final encoding with voiceover and background music
     console.log('🎥 Final encoding...');
@@ -1136,7 +1203,16 @@ async function editVideo(input) {
       duration_seconds: totalDuration,
       timing: { hook: hookDuration, product: productDuration, cta: ctaDuration },
       created_at: new Date().toISOString(),
-      ready_for_posting: true
+      ready_for_posting: true,
+      // Edit style tracking (v2 refinements)
+      edit_style: {
+        version: '2.0-organic',
+        zoom_intensity: EDIT_STYLE.zoomIntensity,
+        text_delay: EDIT_STYLE.textDelaySeconds,
+        progress_bar: EDIT_STYLE.progressBarEnabled,
+        crossfade: EDIT_STYLE.crossfadeDuration,
+        music_volume: MUSIC_CONFIG.volume
+      }
     };
     
     fs.writeFileSync(postPath, JSON.stringify(postData, null, 2));
@@ -1328,7 +1404,8 @@ module.exports = {
   getCombinedVoiceoverText,
   getAvailableMusicTracks,
   selectRandomMusicTrack,
-  MUSIC_CONFIG
+  MUSIC_CONFIG,
+  EDIT_STYLE  // v2.0 - organic edit settings
 };
 
 // Run if called directly

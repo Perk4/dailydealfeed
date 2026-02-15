@@ -39,7 +39,16 @@
 - [ ] Posting queue — wait until videos are ready
 - [ ] A/B test framework — need real data first
 - [ ] Analytics dashboard — after we start posting
-- [ ] Auto-scaling — premature optimization
+- [x] Auto-scaling — completed (scripts/auto-scaler.js)
+
+### Auto-Scaling System (2026-02-15 14:32 UTC)
+**Created:** `scripts/auto-scaler.js` — On-demand video generation
+
+**Commands:** status, generate, fill, batch, quota, config
+
+**Bug Fixes:** Editor now uses cached MP4 clips properly
+
+**Test Video:** video_3_1771165864725.mp4 (10s, voiceover, music)
 
 ---
 

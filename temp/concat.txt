@@ -1,3 +1,0 @@
-file '/root/dailydealfeed/temp/hook_text_1771165864725.mp4'
-file '/root/dailydealfeed/temp/showcase_1771165864725.mp4'
-file '/root/dailydealfeed/temp/cta_1771165864725.mp4'

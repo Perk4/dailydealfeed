@@ -1,0 +1,293 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "updated": "2026-02-15T14:30:00.000Z",
+    "curator": "hook-optimizer-agent",
+    "notes": "Optimized hooks using HOOK-PLAYBOOK formulas. Each product has primary hook + 2 variants for A/B testing. Clips matched to hook emotional energy."
+  },
+  "products": {
+    "1": {
+      "name": "CeraVe Moisturizing Cream",
+      "category": "skincare",
+      "price": "$18.96",
+      "hooks": {
+        "primary": {
+          "opening_line": "My dermatologist is gonna hate me for this $19 secret...",
+          "formula": "forbidden_secret",
+          "clip_vibe": "reveal",
+          "clip_id": "reveal-m003",
+          "why_it_works": "Creates curiosity (what secret?), borrows authority (dermatologist), adds controversy (hate me), price shock"
+        },
+        "variant_a": {
+          "opening_line": "I called this cream basic for 3 years... then I saw my skin",
+          "formula": "skeptic_converted",
+          "clip_vibe": "shocked",
+          "clip_id": "shock-m001",
+          "why_it_works": "Transformation arc in seconds, relatability for skeptics"
+        },
+        "variant_b": {
+          "opening_line": "POV: your skin before and after this $19 tub... I wasn't ready",
+          "formula": "before_after_tease",
+          "clip_vibe": "reveal",
+          "clip_id": "reveal-m001",
+          "why_it_works": "Visual promise, emotional stakes, price anchoring"
+        }
+      },
+      "voiceover_script": "My dermatologist is gonna hate me for this 19 dollar secret... CeraVe moisturizing cream. The big tub. Ceramides and hyaluronic acid for under 20 bucks... Link in bio.",
+      "timing": {
+        "hook_seconds": 2.5,
+        "product_seconds": 5,
+        "cta_seconds": 2
+      }
+    },
+    "2": {
+      "name": "Neutrogena Beach Defense SPF 70",
+      "category": "skincare",
+      "price": "$8.29",
+      "hooks": {
+        "primary": {
+          "opening_line": "I stopped burning after I found this $8 cheat code",
+          "formula": "accidental_discovery",
+          "clip_vibe": "reaction",
+          "clip_id": "react-m002",
+          "why_it_works": "Problem-solution implied, price shock, 'cheat code' energy appeals to young audience"
+        },
+        "variant_a": {
+          "opening_line": "Nobody told me SPF could feel like this and I'm mad",
+          "formula": "the_betrayal",
+          "clip_vibe": "fail",
+          "clip_id": "fail-m001",
+          "why_it_works": "FOMO activation, relatable frustration about past bad sunscreens"
+        },
+        "variant_b": {
+          "opening_line": "This $8 sunscreen replaced my $40 one... here's the catch",
+          "formula": "price_shock",
+          "clip_vibe": "reveal",
+          "clip_id": "reveal-m002",
+          "why_it_works": "Value comparison, 'catch' creates curiosity about a twist"
+        }
+      },
+      "voiceover_script": "I stopped burning after I found this 8 dollar cheat code... Neutrogena Beach Defense. SPF 70 that actually absorbs. No oil slick energy. Link in bio.",
+      "timing": {
+        "hook_seconds": 2,
+        "product_seconds": 5,
+        "cta_seconds": 2
+      }
+    },
+    "3": {
+      "name": "The Pink Stuff",
+      "category": "cleaning",
+      "price": "$4.79",
+      "hooks": {
+        "primary": {
+          "opening_line": "I called this pink paste a scam for 2 years... watch this",
+          "formula": "skeptic_converted",
+          "clip_vibe": "shocked",
+          "clip_id": "shock-m001",
+          "why_it_works": "Addresses skepticism head-on, 'watch this' creates anticipation for proof"
+        },
+        "variant_a": {
+          "opening_line": "This $5 paste did what my $200 cleaning service couldn't",
+          "formula": "price_shock",
+          "clip_vibe": "shocked",
+          "clip_id": "shock-m003",
+          "why_it_works": "Extreme value contrast, implies dramatic transformation"
+        },
+        "variant_b": {
+          "opening_line": "You said this paste can't fix burnt pans. Watch.",
+          "formula": "challenge_accepted",
+          "clip_vibe": "reveal",
+          "clip_id": "reveal-m003",
+          "why_it_works": "Direct challenge creates anticipation, proof-is-coming energy"
+        }
+      },
+      "voiceover_script": "I called this pink paste a scam for 2 years... watch this. The Pink Stuff. Under 5 bucks. This transformation is about to violate you. Link in bio.",
+      "timing": {
+        "hook_seconds": 3,
+        "product_seconds": 5,
+        "cta_seconds": 2
+      }
+    },
+    "4": {
+      "name": "Dash Mini Waffle Maker",
+      "category": "kitchen",
+      "price": "$9.89",
+      "hooks": {
+        "primary": {
+          "opening_line": "...anyway that's why I own 4 of these now",
+          "formula": "mid_story_start",
+          "clip_vibe": "reaction",
+          "clip_id": "react-m003",
+          "why_it_works": "Pattern interrupt (mid-story), curiosity about backstory, implies repeat purchases"
+        },
+        "variant_a": {
+          "opening_line": "I bought this as a joke and now it's 6am and I can't stop",
+          "formula": "accidental_discovery",
+          "clip_vibe": "reaction",
+          "clip_id": "react-m001",
+          "why_it_works": "Relatable impulse buying, obsession energy"
+        },
+        "variant_b": {
+          "opening_line": "Nobody told me about the $10 waffle hack and I'm upset",
+          "formula": "the_betrayal",
+          "clip_vibe": "fail",
+          "clip_id": "fail-m002",
+          "why_it_works": "FOMO, slight outrage creates engagement"
+        }
+      },
+      "voiceover_script": "Anyway that's why I own 4 of these now... Dash Mini Waffle Maker. 10 bucks. The cutest little breakfast you'll ever make. Link in bio.",
+      "timing": {
+        "hook_seconds": 2,
+        "product_seconds": 5,
+        "cta_seconds": 2
+      }
+    },
+    "5": {
+      "name": "BISSELL Little Green",
+      "category": "cleaning",
+      "price": "$109.99",
+      "hooks": {
+        "primary": {
+          "opening_line": "What came out of my 'clean' couch... I might need therapy",
+          "formula": "disgusting_reveal",
+          "clip_vibe": "shocked",
+          "clip_id": "shock-m003",
+          "why_it_works": "Morbid curiosity (most engaging emotion), ironic quotes on 'clean', extreme reaction"
+        },
+        "variant_a": {
+          "opening_line": "I didn't want to show you this... but you need to see it",
+          "formula": "forbidden_secret",
+          "clip_vibe": "shocked",
+          "clip_id": "shock-m001",
+          "why_it_works": "Reluctance implies it's bad, 'need' creates urgency"
+        },
+        "variant_b": {
+          "opening_line": "POV: finding out your furniture is a crime scene",
+          "formula": "before_after_tease",
+          "clip_vibe": "shocked",
+          "clip_id": "shock-m002",
+          "why_it_works": "Dramatic framing, POV format performs well on TikTok"
+        }
+      },
+      "voiceover_script": "What came out of my 'clean' couch... I might need therapy. BISSELL Little Green. Worth every penny of that 110. This is the water that came out. Link in bio.",
+      "timing": {
+        "hook_seconds": 3,
+        "product_seconds": 5,
+        "cta_seconds": 2
+      }
+    },
+    "6": {
+      "name": "Moon Lamp",
+      "category": "home",
+      "price": "$19.95",
+      "hooks": {
+        "primary": {
+          "opening_line": "It's 3am and I'm genuinely emotional about a $20 lamp",
+          "formula": "late_night_vibe",
+          "clip_vibe": "cozy",
+          "clip_id": "cozy-m001",
+          "why_it_works": "Relatable late-night energy, unexpected emotion about mundane object, price anchoring"
+        },
+        "variant_a": {
+          "opening_line": "...anyway that's why I bought my 3rd moon lamp",
+          "formula": "mid_story_start",
+          "clip_vibe": "cozy",
+          "clip_id": "cozy-m003",
+          "why_it_works": "Pattern interrupt, implies obsessive rebuying"
+        },
+        "variant_b": {
+          "opening_line": "If you know, you know... if you don't, your vibes are about to change",
+          "formula": "forbidden_secret",
+          "clip_vibe": "cozy",
+          "clip_id": "cozy-m002",
+          "why_it_works": "Inside joke energy, FOMO, 'vibes' targets aesthetic audience"
+        }
+      },
+      "voiceover_script": "It's 3am and I'm genuinely emotional about a 20 dollar lamp... This moon lamp. 16 colors. Touch control. Your room will literally thank you. Link in bio.",
+      "timing": {
+        "hook_seconds": 3,
+        "product_seconds": 5,
+        "cta_seconds": 2
+      }
+    }
+  },
+  "hook_formulas": {
+    "forbidden_secret": {
+      "template": "My [AUTHORITY] is gonna hate me for this...",
+      "best_for": ["skincare", "wellness", "beauty"],
+      "clip_vibes": ["reveal", "reaction"]
+    },
+    "disgusting_reveal": {
+      "template": "What came out of my [THING]... I'm [EMOTION]",
+      "best_for": ["cleaning", "home"],
+      "clip_vibes": ["shocked"]
+    },
+    "price_shock": {
+      "template": "This $[LOW] did what my $[HIGH] couldn't",
+      "best_for": ["any"],
+      "clip_vibes": ["shocked", "reveal"]
+    },
+    "before_after_tease": {
+      "template": "POV: [THING] before and after... I wasn't ready",
+      "best_for": ["skincare", "cleaning", "transformation"],
+      "clip_vibes": ["reveal"]
+    },
+    "accidental_discovery": {
+      "template": "I found this by accident and now I'm [EMOTION]",
+      "best_for": ["any"],
+      "clip_vibes": ["reaction"]
+    },
+    "the_betrayal": {
+      "template": "Nobody told me about [THING] and I'm [EMOTION]",
+      "best_for": ["trending products"],
+      "clip_vibes": ["fail", "reveal"]
+    },
+    "mid_story_start": {
+      "template": "...anyway that's why I own [NUMBER] of these now",
+      "best_for": ["kitchen", "gadgets", "affordable repeats"],
+      "clip_vibes": ["reaction"]
+    },
+    "skeptic_converted": {
+      "template": "I called this a scam for [TIME]... then [EVENT]",
+      "best_for": ["cleaning", "gadgets", "too-good-to-be-true"],
+      "clip_vibes": ["shocked", "reveal"]
+    },
+    "late_night_vibe": {
+      "template": "It's [TIME] and I'm [EMOTION] about [THING]",
+      "best_for": ["home", "aesthetic", "cozy"],
+      "clip_vibes": ["cozy"]
+    },
+    "challenge_accepted": {
+      "template": "You said [PRODUCT] couldn't [THING]. Watch.",
+      "best_for": ["cleaning", "tech", "demonstrable"],
+      "clip_vibes": ["reveal"]
+    }
+  },
+  "clip_vibe_mapping": {
+    "shocked": {
+      "clip_ids": ["shock-m001", "shock-m002", "shock-m003", "shock-m004"],
+      "emotions": ["disgusted", "surprised", "disturbed", "shocked"],
+      "best_formulas": ["disgusting_reveal", "price_shock", "skeptic_converted"]
+    },
+    "reveal": {
+      "clip_ids": ["reveal-m001", "reveal-m002", "reveal-m003"],
+      "emotions": ["anticipation", "transformation", "discovery"],
+      "best_formulas": ["before_after_tease", "forbidden_secret", "challenge_accepted"]
+    },
+    "reaction": {
+      "clip_ids": ["react-m001", "react-m002", "react-m003", "react-m004"],
+      "emotions": ["excited", "happy", "celebrating", "satisfied"],
+      "best_formulas": ["accidental_discovery", "mid_story_start"]
+    },
+    "cozy": {
+      "clip_ids": ["cozy-m001", "cozy-m002", "cozy-m003", "cozy-m004"],
+      "emotions": ["calm", "intimate", "warm", "aesthetic"],
+      "best_formulas": ["late_night_vibe", "mid_story_start"]
+    },
+    "fail": {
+      "clip_ids": ["fail-m001", "fail-m002", "fail-m003"],
+      "emotions": ["frustrated", "annoyed", "disappointed"],
+      "best_formulas": ["the_betrayal"]
+    }
+  }
+}
