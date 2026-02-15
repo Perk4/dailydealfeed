@@ -126,11 +126,21 @@
 
 ---
 
-*Updated: 2026-02-15 22:02 UTC*
+*Updated: 2026-02-15 22:39 UTC*
 
 ---
 
 ## Cycle Log
+
+**2026-02-15 22:39 UTC — Improvement Cycle Check**
+- Pipeline status: V8.1 stable at 8.25/10 ✅
+- **Fixed:** FFmpeg missing after container refresh — reinstalled
+- **Test Video:** video_1_1771195114666.mp4 (CeraVe, 9.4s, 883KB)
+- Features: AFV hook + original audio, delayed voiceover, track05 music, crossfades
+- QA Score: 8.25/10 (consistent)
+  - Hook: 8/10 | Voice: 7/10 | Script: 9/10 | Edit: 8.5/10 | Watchability: 8.5/10
+- **Blocker persists:** ELEVENLABS_API_KEY not set — voice stuck at 7/10
+- All code improvements complete — waiting on API key to break ceiling
 
 **2026-02-15 22:02 UTC — Improvement Cycle Check**
 - Pipeline status: V8.1 stable at 8.25/10
