@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 /**
- * Editor Agent — Video Assembly Module (with TTS Voiceover)
+ * Editor Agent — Video Assembly Module (with TTS Voiceover + Motion Effects)
  * For DailyDealFeed Reels Pipeline
  *
  * Creates vertical videos (9:16, 15-30 sec) ready for TikTok/IG Reels.
+ * 
+ * Motion Effects (TikTok-native feel):
+ *   - Ken Burns zoom on product images
+ *   - Text fade-in with slide-up animations
+ *   - Subtle camera shake on hook segment
+ *   - Progress bar indicator at bottom
+ *
  * Now includes TTS voiceover for hooks and product info.
  *
  * Usage:
@@ -44,6 +51,7 @@ const SCRIPT_DIR = __dirname;
 const OUTPUT_DIR = path.join(SCRIPT_DIR, '..', 'output');
 const TEMP_DIR = path.join(SCRIPT_DIR, '..', 'temp');
 const ASSETS_DIR = path.join(SCRIPT_DIR, '..', 'assets');
+const MUSIC_DIR = path.join(SCRIPT_DIR, '..', 'music');
 
 // Video dimensions (9:16 vertical)
 const VIDEO_WIDTH = 1080;
@@ -61,6 +69,14 @@ const TTS_CONFIG = {
   speed: 150,          // Words per minute
   pitch: 50,           // 0-99
   useExternalTTS: true // Try external TTS first (OpenClaw/ElevenLabs)
+};
+
+// Background Music Configuration
+const MUSIC_CONFIG = {
+  enabled: true,       // Enable background music
+  volume: 0.2,         // 20% volume (low under voiceover)
+  fadeIn: 0.5,         // Fade in duration (seconds)
+  fadeOut: 1.0,        // Fade out duration (seconds)
 };
 
 // Colors (hex without #)
@@ -363,6 +379,7 @@ function convertGifToVideo(gifPath, outputPath, duration) {
 }
 
 // Create product showcase segment with image and text
+// Now with Ken Burns zoom effect and text fade-in animations
 function createProductSegment(imagePath, productName, price, outputPath, duration) {
   // Scale image to fit nicely (about 60% of width)
   const imgWidth = Math.floor(VIDEO_WIDTH * 0.8);
@@ -376,19 +393,40 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
   const escapedName = escapeText(productName);
   const escapedPrice = escapeText(price);
   
-  // Create background with image overlay and text
+  // Ken Burns: slow zoom in effect (1.0 to 1.15 over duration)
+  // zoompan outputs at 25fps, d=frames, s=output size
+  const fps = 25;
+  const frames = duration * fps;
+  // Zoom from 1.0 to 1.12 slowly
+  const zoomExpr = `min(1+0.12*on/${frames}\\,1.12)`;
+  
+  // Create background with Ken Burns zoom on image and animated text
+  // Text animations: fade in over 0.5s with slight slide up
+  const textFadeIn = 0.5; // seconds for fade
+  const textSlideDistance = 30; // pixels to slide up
+  
+  // Alpha expression for fade-in: fade in over textFadeIn seconds
+  const nameAlpha = `if(lt(t\\,${textFadeIn})\\,t/${textFadeIn}\\,1)`;
+  const priceAlpha = `if(lt(t\\,${textFadeIn + 0.2})\\,max(0\\,(t-0.2)/${textFadeIn})\\,1)`; // Price fades in 0.2s after name
+  
+  // Y position with slide-up effect
+  const nameYExpr = `${nameY}+${textSlideDistance}*max(0\\,1-t/${textFadeIn})`;
+  const priceYExpr = `${priceY}+${textSlideDistance}*max(0\\,1-(t-0.2)/${textFadeIn})`;
+  
   const filter = [
     `color=c=${COLORS.background}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}[bg]`,
-    `[1:v]scale=${imgWidth}:${imgHeight}:force_original_aspect_ratio=decrease,pad=${imgWidth}:${imgHeight}:(ow-iw)/2:(oh-ih)/2:color=${COLORS.background}[img]`,
+    // Apply Ken Burns zoom to product image
+    `[1:v]scale=${imgWidth*2}:${imgHeight*2}:force_original_aspect_ratio=decrease,zoompan=z='${zoomExpr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=${imgWidth}x${imgHeight}:fps=${fps}[img]`,
     `[bg][img]overlay=(W-w)/2:${imgY}[v1]`,
-    `[v1]drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=56:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y=${nameY}[v2]`,
-    `[v2]drawtext=fontfile=${FONT_PATH}:text='${escapedPrice}':fontsize=72:fontcolor=${COLORS.accent}:x=(w-text_w)/2:y=${priceY}`
+    // Text with fade-in and slide-up animation
+    `[v1]drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=56:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y='${nameYExpr}':alpha='${nameAlpha}'[v2]`,
+    `[v2]drawtext=fontfile=${FONT_PATH}:text='${escapedPrice}':fontsize=72:fontcolor=${COLORS.accent}:x=(w-text_w)/2:y='${priceYExpr}':alpha='${priceAlpha}'`
   ].join(';');
   
   ffmpeg(`-f lavfi -i "color=c=${COLORS.background}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}" -i "${imagePath}" -filter_complex "${filter}" -c:v libx264 -pix_fmt yuv420p -t ${duration} "${outputPath}"`);
 }
 
-// Create CTA segment
+// Create CTA segment with animated text
 function createCTASegment(outputPath, duration) {
   const ctaText = 'Link in bio';
   const subText = 'Shop now →';
@@ -399,9 +437,21 @@ function createCTASegment(outputPath, duration) {
   const escapedCta = escapeText(ctaText);
   const escapedSub = escapeText(subText);
   
+  // Animation: scale-up bounce effect via alpha fade + slide
+  const fadeIn = 0.4;
+  const slideDistance = 40;
+  
+  // CTA text: fade in with slide up
+  const ctaAlpha = `if(lt(t\\,${fadeIn})\\,t/${fadeIn}\\,1)`;
+  const ctaYExpr = `${ctaY}+${slideDistance}*max(0\\,1-t/${fadeIn})`;
+  
+  // Sub text: delayed fade in
+  const subAlpha = `if(lt(t\\,${fadeIn + 0.3})\\,max(0\\,(t-0.3)/${fadeIn})\\,1)`;
+  const subYExpr = `${subY}+${slideDistance}*max(0\\,1-(t-0.3)/${fadeIn})`;
+  
   const filter = [
-    `drawtext=fontfile=${FONT_PATH}:text='${escapedCta}':fontsize=96:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y=${ctaY}`,
-    `drawtext=fontfile=${FONT_PATH}:text='${escapedSub}':fontsize=48:fontcolor=${COLORS.accent}:x=(w-text_w)/2:y=${subY}`
+    `drawtext=fontfile=${FONT_PATH}:text='${escapedCta}':fontsize=96:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y='${ctaYExpr}':alpha='${ctaAlpha}'`,
+    `drawtext=fontfile=${FONT_PATH}:text='${escapedSub}':fontsize=48:fontcolor=${COLORS.accent}:x=(w-text_w)/2:y='${subYExpr}':alpha='${subAlpha}'`
   ].join(',');
   
   ffmpeg(`-f lavfi -i "color=c=${COLORS.ctaBackground}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}" -vf "${filter}" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
@@ -422,13 +472,58 @@ function generateThumbnail(videoPath, outputPath, timeOffset = 5) {
   ffmpeg(`-i "${videoPath}" -ss ${timeOffset} -vframes 1 -q:v 2 "${outputPath}"`);
 }
 
-// Add hook text overlay to video
+// Add hook text overlay to video with subtle camera shake for energy
 function addHookText(inputPath, outputPath, hookText) {
   const hookY = Math.floor(VIDEO_HEIGHT * 0.1);
   const escapedHook = escapeText(hookText);
   
-  // Add text with fade in effect
-  const filter = `drawtext=fontfile=${FONT_PATH}:text='${escapedHook}':fontsize=48:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y=${hookY}:alpha='if(lt(t,0.5),t*2,1)'`;
+  // Subtle camera shake: small random-ish displacement using sin waves at different frequencies
+  // This creates organic-feeling movement without being too jarring
+  const shakeIntensity = 4; // pixels of shake
+  const shakeX = `${shakeIntensity}*sin(t*15)*sin(t*7)`;
+  const shakeY = `${shakeIntensity}*sin(t*12)*cos(t*9)`;
+  
+  // Text fade-in with slight slide up
+  const fadeIn = 0.4;
+  const slideDistance = 25;
+  const textAlpha = `if(lt(t\\,${fadeIn})\\,t/${fadeIn}\\,1)`;
+  const textY = `${hookY}+${slideDistance}*max(0\\,1-t/${fadeIn})`;
+  
+  // Apply shake via crop/pad (slight overscan then offset)
+  // First scale up slightly, then crop with shake offset
+  const filter = [
+    // Scale up 2% to give room for shake
+    `scale=${Math.floor(VIDEO_WIDTH * 1.02)}:${Math.floor(VIDEO_HEIGHT * 1.02)}`,
+    // Crop back to original size with shake offset
+    `crop=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:${Math.floor(VIDEO_WIDTH * 0.01)}+${shakeX}:${Math.floor(VIDEO_HEIGHT * 0.01)}+${shakeY}`,
+    // Add text with fade-in and slide
+    `drawtext=fontfile=${FONT_PATH}:text='${escapedHook}':fontsize=48:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y='${textY}':alpha='${textAlpha}'`
+  ].join(',');
+  
+  ffmpeg(`-i "${inputPath}" -vf "${filter}" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
+}
+
+// ============================================
+// PROGRESS BAR OVERLAY
+// ============================================
+
+/**
+ * Add a thin progress bar at the bottom of the video
+ * Shows viewing progress - very TikTok native
+ */
+function addProgressBar(inputPath, outputPath, duration) {
+  const barHeight = 4; // thin progress bar
+  const barY = VIDEO_HEIGHT - barHeight - 20; // 20px from bottom
+  const barColor = COLORS.accent; // accent color
+  
+  // Progress bar width grows from 0 to VIDEO_WIDTH over duration
+  // Using drawbox with dynamic width
+  const filter = [
+    // Draw background bar (subtle gray)
+    `drawbox=x=0:y=${barY}:w=${VIDEO_WIDTH}:h=${barHeight}:color=333333@0.5:t=fill`,
+    // Draw progress bar (grows with time)
+    `drawbox=x=0:y=${barY}:w='${VIDEO_WIDTH}*t/${duration}':h=${barHeight}:color=${barColor}@0.9:t=fill`
+  ].join(',');
   
   ffmpeg(`-i "${inputPath}" -vf "${filter}" -c:v libx264 -pix_fmt yuv420p "${outputPath}"`);
 }
@@ -480,6 +575,129 @@ function mixAudioWithVideo(videoPath, audioPath, outputPath) {
 }
 
 // ============================================
+// BACKGROUND MUSIC
+// ============================================
+
+/**
+ * Get list of available music tracks
+ */
+function getAvailableMusicTracks() {
+  if (!fs.existsSync(MUSIC_DIR)) {
+    console.log('⚠️  Music directory not found, creating...');
+    fs.mkdirSync(MUSIC_DIR, { recursive: true });
+    return [];
+  }
+  
+  const files = fs.readdirSync(MUSIC_DIR);
+  const musicFiles = files.filter(f => 
+    f.endsWith('.mp3') || f.endsWith('.wav') || f.endsWith('.m4a')
+  );
+  
+  return musicFiles.map(f => path.join(MUSIC_DIR, f));
+}
+
+/**
+ * Select a random music track
+ */
+function selectRandomMusicTrack() {
+  const tracks = getAvailableMusicTracks();
+  
+  if (tracks.length === 0) {
+    console.log('⚠️  No background music tracks found in music/ folder');
+    return null;
+  }
+  
+  const selected = tracks[Math.floor(Math.random() * tracks.length)];
+  console.log(`🎵 Selected background music: ${path.basename(selected)}`);
+  return selected;
+}
+
+/**
+ * Mix background music with video (under voiceover)
+ * @param {string} videoPath - Video with voiceover
+ * @param {string} musicPath - Background music track
+ * @param {string} outputPath - Output video path
+ * @param {number} duration - Video duration in seconds
+ */
+function mixBackgroundMusic(videoPath, musicPath, outputPath, duration) {
+  console.log('🎵 Adding background music...');
+  
+  const vol = MUSIC_CONFIG.volume;
+  const fadeIn = MUSIC_CONFIG.fadeIn;
+  const fadeOut = MUSIC_CONFIG.fadeOut;
+  
+  try {
+    // Complex filter:
+    // 1. Loop music to cover video duration
+    // 2. Trim to video duration
+    // 3. Apply volume (20%)
+    // 4. Apply fade in/out
+    // 5. Mix with existing audio (voiceover)
+    const filter = [
+      // Music processing: loop, trim, volume, fade
+      `[1:a]aloop=loop=-1:size=44100*30,atrim=duration=${duration},` +
+      `volume=${vol},` +
+      `afade=t=in:st=0:d=${fadeIn},` +
+      `afade=t=out:st=${duration - fadeOut}:d=${fadeOut}[music]`,
+      // Mix voiceover (original) with music
+      `[0:a][music]amix=inputs=2:duration=first:dropout_transition=2[aout]`
+    ].join(';');
+    
+    ffmpeg(
+      `-i "${videoPath}" -i "${musicPath}" ` +
+      `-filter_complex "${filter}" ` +
+      `-map 0:v -map "[aout]" ` +
+      `-c:v copy -c:a aac -b:a 192k ` +
+      `-shortest "${outputPath}"`
+    );
+    
+    console.log(`✅ Background music added at ${Math.round(vol * 100)}% volume`);
+    return true;
+  } catch (err) {
+    console.error(`⚠️  Background music mixing failed: ${err.message}`);
+    return false;
+  }
+}
+
+/**
+ * Mix background music with silent video (no voiceover)
+ * @param {string} videoPath - Silent video
+ * @param {string} musicPath - Background music track
+ * @param {string} outputPath - Output video path
+ * @param {number} duration - Video duration in seconds
+ */
+function addMusicToSilentVideo(videoPath, musicPath, outputPath, duration) {
+  console.log('🎵 Adding background music to silent video...');
+  
+  const vol = 0.5; // Higher volume for music-only (no voiceover to compete with)
+  const fadeIn = MUSIC_CONFIG.fadeIn;
+  const fadeOut = MUSIC_CONFIG.fadeOut;
+  
+  try {
+    const filter = [
+      `aloop=loop=-1:size=44100*30,atrim=duration=${duration},` +
+      `volume=${vol},` +
+      `afade=t=in:st=0:d=${fadeIn},` +
+      `afade=t=out:st=${duration - fadeOut}:d=${fadeOut}`
+    ].join('');
+    
+    ffmpeg(
+      `-i "${videoPath}" -i "${musicPath}" ` +
+      `-filter_complex "[1:a]${filter}[aout]" ` +
+      `-map 0:v -map "[aout]" ` +
+      `-c:v copy -c:a aac -b:a 192k ` +
+      `-shortest "${outputPath}"`
+    );
+    
+    console.log(`✅ Music added at ${Math.round(vol * 100)}% volume`);
+    return true;
+  } catch (err) {
+    console.error(`⚠️  Music mixing failed: ${err.message}`);
+    return false;
+  }
+}
+
+// ============================================
 // MAIN EDITOR FUNCTION
 // ============================================
 
@@ -510,6 +728,8 @@ async function editVideo(input) {
   const tempConcat = path.join(TEMP_DIR, `concat_${timestamp}.mp4`);
   const tempVoiceover = path.join(TEMP_DIR, `voiceover_${timestamp}.mp3`);
   const tempVideoNoAudio = path.join(TEMP_DIR, `video_noaudio_${timestamp}.mp4`);
+  const tempVideoWithVO = path.join(TEMP_DIR, `video_vo_${timestamp}.mp4`);
+  const tempWithProgress = path.join(TEMP_DIR, `progress_${timestamp}.mp4`);
   
   try {
     // Step 1: Download assets
@@ -542,36 +762,68 @@ async function editVideo(input) {
     console.log('🔗 Concatenating segments...');
     concatenateVideos([tempHookText, tempShowcase, tempCTA], tempConcat);
     
-    // Step 6: Generate or use voiceover
+    // Step 6: Add progress bar overlay
+    console.log('📊 Adding progress bar...');
+    addProgressBar(tempConcat, tempWithProgress, TOTAL_DURATION);
+    
+    // Step 7: Generate or use voiceover
     console.log('🎙️  Preparing voiceover...');
     const voiceoverPath = await generateVoiceover(input, tempVoiceover);
     
-    // Step 7: Final encoding with voiceover
+    // Step 8: Final encoding with voiceover and background music
     console.log('🎥 Final encoding...');
     
+    // Select background music track
+    const musicTrack = MUSIC_CONFIG.enabled ? selectRandomMusicTrack() : null;
+    let hasBackgroundMusic = false;
+    
     if (voiceoverPath && fs.existsSync(voiceoverPath)) {
-      // Create video without audio first
-      ffmpeg(`-i "${tempConcat}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
+      // Create video without audio first (using progress bar version)
+      ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
       
       // Mix voiceover with video
-      const mixSuccess = mixAudioWithVideo(tempVideoNoAudio, voiceoverPath, videoPath);
+      const mixSuccess = mixAudioWithVideo(tempVideoNoAudio, voiceoverPath, tempVideoWithVO);
       
       if (!mixSuccess) {
         console.log('⚠️  Voiceover mixing failed, creating video without audio');
-        ffmpeg(`-i "${tempConcat}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart "${videoPath}"`);
+        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart "${tempVideoWithVO}"`);
       } else {
         console.log('✅ Voiceover added successfully!');
       }
+      
+      // Step 8b: Add background music under voiceover (20% volume)
+      if (musicTrack && fs.existsSync(musicTrack)) {
+        hasBackgroundMusic = mixBackgroundMusic(tempVideoWithVO, musicTrack, videoPath, TOTAL_DURATION);
+        if (!hasBackgroundMusic) {
+          // Fallback: copy video without music
+          fs.copyFileSync(tempVideoWithVO, videoPath);
+        }
+      } else {
+        // No music available, use video with just voiceover
+        fs.copyFileSync(tempVideoWithVO, videoPath);
+      }
     } else {
-      console.log('⚠️  No voiceover available, creating silent video');
-      ffmpeg(`-i "${tempConcat}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart "${videoPath}"`);
+      console.log('⚠️  No voiceover available');
+      ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
+      
+      // Add music to silent video (50% volume since no voiceover)
+      if (musicTrack && fs.existsSync(musicTrack)) {
+        hasBackgroundMusic = addMusicToSilentVideo(tempVideoNoAudio, musicTrack, videoPath, TOTAL_DURATION);
+        if (!hasBackgroundMusic) {
+          // Fallback: copy silent video
+          fs.copyFileSync(tempVideoNoAudio, videoPath);
+        }
+      } else {
+        // No music, no voiceover - silent video
+        fs.copyFileSync(tempVideoNoAudio, videoPath);
+      }
     }
     
-    // Step 8: Generate thumbnail
+    // Step 9: Generate thumbnail
     console.log('🖼️  Generating thumbnail...');
     generateThumbnail(videoPath, thumbPath, HOOK_DURATION + 2);
     
-    // Step 9: Create post metadata
+    // Step 10: Create post metadata
     console.log('📝 Creating post metadata...');
     const postData = {
       video_path: videoPath,
@@ -586,6 +838,8 @@ async function editVideo(input) {
       hook_angle: input.hook_angle,
       voiceover_script: getCombinedVoiceoverText(input),
       has_voiceover: voiceoverPath && fs.existsSync(videoPath),
+      has_background_music: hasBackgroundMusic,
+      music_track: hasBackgroundMusic && musicTrack ? path.basename(musicTrack) : null,
       duration_seconds: TOTAL_DURATION,
       created_at: new Date().toISOString(),
       ready_for_posting: true
@@ -597,15 +851,16 @@ async function editVideo(input) {
     console.log('🧹 Cleaning up...');
     cleanupTempFiles([
       tempMeme, tempProduct, tempHook, tempHookText, 
-      tempShowcase, tempCTA, tempConcat, tempVoiceover,
-      tempVideoNoAudio
+      tempShowcase, tempCTA, tempConcat, tempWithProgress, 
+      tempVoiceover, tempVideoNoAudio, tempVideoWithVO
     ]);
     
     console.log(`\n✅ Video assembly complete!`);
     console.log(`   📹 Video: ${videoPath}`);
     console.log(`   🖼️  Thumb: ${thumbPath}`);
     console.log(`   📄 Post:  ${postPath}`);
-    console.log(`   🎙️  Voiceover: ${postData.has_voiceover ? 'Yes' : 'No'}\n`);
+    console.log(`   🎙️  Voiceover: ${postData.has_voiceover ? 'Yes' : 'No'}`);
+    console.log(`   🎵 Music: ${postData.has_background_music ? postData.music_track : 'No'}\n`);
     
     return postData;
     
@@ -614,8 +869,8 @@ async function editVideo(input) {
     // Cleanup on error
     cleanupTempFiles([
       tempMeme, tempProduct, tempHook, tempHookText, 
-      tempShowcase, tempCTA, tempConcat, tempVoiceover,
-      tempVideoNoAudio
+      tempShowcase, tempCTA, tempConcat, tempWithProgress,
+      tempVoiceover, tempVideoNoAudio, tempVideoWithVO
     ]);
     throw error;
   }
@@ -754,8 +1009,13 @@ TTS Voiceover:
   - Or provide pre-generated audio via "voiceover_audio" in input JSON
   - Uses espeak-ng as fallback TTS engine
 
+Background Music:
+  - Automatically selects random track from music/ folder
+  - Mixed at 20% volume under voiceover (50% if no voiceover)
+  - Add tracks to music/ folder (see music/README.md)
+
 Output:
-  Creates video (with voiceover), thumbnail, and post metadata in output/ folder
+  Creates video (with voiceover + music), thumbnail, and post metadata in output/ folder
 `);
     
   } catch (error) {
@@ -765,7 +1025,16 @@ Output:
 }
 
 // Export for module use
-module.exports = { editVideo, runFromScout, runTest, generateVoiceover, getCombinedVoiceoverText };
+module.exports = { 
+  editVideo, 
+  runFromScout, 
+  runTest, 
+  generateVoiceover, 
+  getCombinedVoiceoverText,
+  getAvailableMusicTracks,
+  selectRandomMusicTrack,
+  MUSIC_CONFIG
+};
 
 // Run if called directly
 if (require.main === module) {
