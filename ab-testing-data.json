@@ -1,0 +1,196 @@
+{
+  "version": "1.0",
+  "created": "2026-02-15T06:08:50.120Z",
+  "hook_variants": {
+    "1": [
+      {
+        "id": "1-initial",
+        "hook": "The moisturizer that dermatologists won't shut up about",
+        "pattern": "authority",
+        "created": "2026-02-15T06:08:50.121Z",
+        "times_used": 1,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        },
+        "source": "script-map-initial"
+      },
+      {
+        "id": "1-1771135735116",
+        "hook": "I was skeptical... then I tried CeraVe",
+        "pattern": "other",
+        "created": "2026-02-15T06:08:55.116Z",
+        "times_used": 0,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      }
+    ],
+    "2": [
+      {
+        "id": "2-initial",
+        "hook": "SPF that doesn't feel like you bathed in oil",
+        "pattern": "challenge",
+        "created": "2026-02-15T06:08:50.121Z",
+        "times_used": 1,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        },
+        "source": "script-map-initial"
+      }
+    ],
+    "3": [
+      {
+        "id": "3-initial",
+        "hook": "This 5 dollar paste versus my disgusting stove",
+        "pattern": "transformation",
+        "created": "2026-02-15T06:08:50.121Z",
+        "times_used": 2,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        },
+        "source": "script-map-initial"
+      },
+      {
+        "id": "3-1771135735062",
+        "hook": "POV: you just discovered the Pink Stuff",
+        "pattern": "vibe",
+        "created": "2026-02-15T06:08:55.062Z",
+        "times_used": 0,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      },
+      {
+        "id": "3-1771135735088",
+        "hook": "This  cleaning paste is pure sorcery",
+        "pattern": "other",
+        "created": "2026-02-15T06:08:55.088Z",
+        "times_used": 0,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        }
+      }
+    ],
+    "4": [
+      {
+        "id": "4-initial",
+        "hook": "Mini waffles that actually changed my mornings",
+        "pattern": "challenge",
+        "created": "2026-02-15T06:08:50.121Z",
+        "times_used": 1,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        },
+        "source": "script-map-initial"
+      }
+    ],
+    "5": [
+      {
+        "id": "5-initial",
+        "hook": "What came out of my couch... I'm disturbed",
+        "pattern": "disbelief",
+        "created": "2026-02-15T06:08:50.121Z",
+        "times_used": 1,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        },
+        "source": "script-map-initial"
+      }
+    ],
+    "6": [
+      {
+        "id": "6-initial",
+        "hook": "When the vibes finally hit different at 3am",
+        "pattern": "challenge",
+        "created": "2026-02-15T06:08:50.121Z",
+        "times_used": 1,
+        "metrics": {
+          "impressions": 0,
+          "views": 0,
+          "watch_time_avg": 0,
+          "clicks": 0,
+          "conversions": 0
+        },
+        "source": "script-map-initial"
+      }
+    ]
+  },
+  "experiments": [
+    {
+      "id": "exp-1771135814506",
+      "product_id": "3",
+      "hook_variant_id": "3-initial",
+      "video_id": "video_3_1771132178085",
+      "created": "2026-02-15T06:10:14.506Z",
+      "status": "active",
+      "platforms": {},
+      "metrics": {
+        "impressions": 0,
+        "views": 0,
+        "watch_time_avg": 0,
+        "clicks": 0,
+        "conversions": 0
+      }
+    }
+  ],
+  "results": {},
+  "patterns": {
+    "transformation": [
+      "This $X versus my disgusting $Y",
+      "Watch this $X destroy my $Y"
+    ],
+    "disbelief": [
+      "What came out of my $X... I'm disturbed",
+      "I can't believe this worked"
+    ],
+    "authority": [
+      "The $X that $AUTHORITY won't shut up about",
+      "$AUTHORITY recommended this"
+    ],
+    "challenge": [
+      "$X that doesn't $NEGATIVE",
+      "Finally $X that actually works"
+    ],
+    "vibe": [
+      "When the vibes finally hit different",
+      "POV: you discovered $X"
+    ],
+    "price_shock": [
+      "This $PRICE $X changed everything",
+      "$X for only $PRICE"
+    ]
+  },
+  "updated": "2026-02-15T06:10:14.506Z"
+}
