@@ -25,7 +25,16 @@
 
 ## Next Up ⏳
 
-18. [ ] **Full QA Pass** — Score all videos, identify weakest links
+18. [~] **Full QA Pass** — In progress (2026-02-15 17:40 UTC)
+    - BISSELL Little Green (video_5): 8.0/10 avg
+      - Hook: 8.5/10 ("What came out of my couch...I'm disturbed" - curiosity hook)
+      - Voice: 7/10 (Deepgram Luna - serviceable but detectable)
+      - Script: 8.5/10 ("Okay I need to show you..." - natural friend energy)
+      - Edit: 8/10 (v2.0-organic, crossfades, subtle zoom)
+      - Watchability: 8/10 (solid, voice is bottleneck)
+    - **Bottleneck:** Voice naturalness (7/10) - blocked by ELEVENLABS_API_KEY
+    - All videos using AFV clips + vibe-matched music = quality baseline established
+
 19. [ ] **V7.0 Batch** — Regenerate with all refinements (music vibe matching + AFV clips)
 
 ## Completed ✅

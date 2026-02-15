@@ -2,8 +2,18 @@
 /**
  * Editor Agent — Video Assembly Module (with TTS Voiceover + Motion Effects)
  * For DailyDealFeed Reels Pipeline
+ * 
+ * VERSION: V8 (2026-02-15)
+ * V8 CHANGES:
+ *   - REMOVED: Hook text overlay (was getting cut off in 9:16 portrait)
+ *   - REMOVED: Background music mixing (deprioritized for video quality)
+ *   - ADDED: Prominent price/discount overlay on product segment
+ *   - SIMPLIFIED: Video structure to ~12 seconds total
+ *     [0-5s]   AFV clip (cliffhanger cut, no text)
+ *     [5-10s]  Product showcase with price overlay
+ *     [10-12s] CTA: "Link in bio"
  *
- * Creates vertical videos (9:16, 15-30 sec) ready for TikTok/IG Reels.
+ * Creates vertical videos (9:16, ~12 sec) ready for TikTok/IG Reels.
  * 
  * Motion Effects (TikTok-native feel):
  *   - Ken Burns zoom on product images
@@ -57,13 +67,13 @@ const MUSIC_DIR = path.join(SCRIPT_DIR, '..', 'music');
 const VIDEO_WIDTH = 1080;
 const VIDEO_HEIGHT = 1920;
 
-// Timing (in seconds) - Now dynamic based on voiceover length
-// Target: 10-18s total (TikTok optimal)
-const DEFAULT_HOOK_DURATION = 3;
-const DEFAULT_PRODUCT_DURATION = 8;
-const DEFAULT_CTA_DURATION = 2;
+// Timing (in seconds) - V8: Simplified 12-second format
+// Structure: [0-5s] AFV clip | [5-10s] Product + Price | [10-12s] CTA
+const DEFAULT_HOOK_DURATION = 5;    // V8: 4-6s clip (was 3s)
+const DEFAULT_PRODUCT_DURATION = 5; // V8: 5s product showcase (was 8s)
+const DEFAULT_CTA_DURATION = 2;     // V8: 2s CTA (unchanged)
 const MIN_TOTAL_DURATION = 10;
-const MAX_TOTAL_DURATION = 18;
+const MAX_TOTAL_DURATION = 14;      // V8: Tighter max (was 18)
 
 // Dynamic timing will be calculated based on voiceover audio length
 let HOOK_DURATION = DEFAULT_HOOK_DURATION;
@@ -85,8 +95,9 @@ const SCRIPT_MAP_FILE = path.join(SCRIPT_DIR, 'script-map.json');
 const VIRAL_CLIPS_FILE = path.join(SCRIPT_DIR, '..', 'clips', 'viral-handpicked.json');
 
 // Background Music Configuration
+// V8: Music disabled - focus on video quality first, deprioritized
 const MUSIC_CONFIG = {
-  enabled: true,       // Enable background music
+  enabled: false,      // V8: DISABLED - deprioritized for video quality
   volume: 0.15,        // 15% volume (subtler - doesn't compete with voice)
   fadeIn: 0.5,         // Fade in duration (seconds)
   fadeOut: 1.0,        // Fade out duration (seconds)
@@ -644,16 +655,16 @@ function convertGifToVideo(inputPath, outputPath, duration) {
 }
 
 // Create product showcase segment with image and text
-// Now with Ken Burns zoom effect and text fade-in animations
+// V8: Enhanced with prominent price/discount overlay (bottom center with background)
 function createProductSegment(imagePath, productName, price, outputPath, duration) {
   // Scale image to fit nicely (about 60% of width)
   const imgWidth = Math.floor(VIDEO_WIDTH * 0.8);
   const imgHeight = Math.floor(imgWidth * 0.75); // 4:3 aspect
-  const imgY = Math.floor(VIDEO_HEIGHT * 0.25);
+  const imgY = Math.floor(VIDEO_HEIGHT * 0.22); // V8: Slightly higher to make room for price
   
-  // Text positioning
-  const nameY = imgY + imgHeight + 80;
-  const priceY = nameY + 100;
+  // Text positioning - V8: Price is now the HERO element
+  const nameY = imgY + imgHeight + 60;
+  const priceY = Math.floor(VIDEO_HEIGHT * 0.78); // V8: Bottom center, prominent position
   
   const escapedName = escapeText(productName);
   const escapedPrice = escapeText(price);
@@ -674,20 +685,29 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
   
   // Alpha expression: delay first, then fade in (appears AFTER spoken word)
   const nameAlpha = `if(lt(t\\,${textDelay})\\,0\\,if(lt(t\\,${textDelay + textFadeIn})\\,(t-${textDelay})/${textFadeIn}\\,1))`;
-  const priceAlpha = `if(lt(t\\,${textDelay + 0.25})\\,0\\,if(lt(t\\,${textDelay + 0.25 + textFadeIn})\\,(t-${textDelay + 0.25})/${textFadeIn}\\,1))`; // Price 0.25s after name
+  // V8: Price appears faster and stays prominent
+  const priceAlpha = `if(lt(t\\,0.1)\\,0\\,if(lt(t\\,0.5)\\,(t-0.1)/0.4\\,1))`;
   
   // Y position with slide-up effect
   const nameYExpr = `${nameY}+${textSlideDistance}*max(0\\,1-t/${textFadeIn})`;
-  const priceYExpr = `${priceY}+${textSlideDistance}*max(0\\,1-(t-0.2)/${textFadeIn})`;
+  
+  // V8: Price box dimensions for background
+  const priceBoxWidth = 400;
+  const priceBoxHeight = 100;
+  const priceBoxX = Math.floor((VIDEO_WIDTH - priceBoxWidth) / 2);
+  const priceBoxY = priceY - 25;
   
   const filter = [
     `color=c=${COLORS.background}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}[bg]`,
     // Apply Ken Burns zoom to product image
     `[1:v]scale=${imgWidth*2}:${imgHeight*2}:force_original_aspect_ratio=decrease,zoompan=z='${zoomExpr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=${imgWidth}x${imgHeight}:fps=${fps}[img]`,
     `[bg][img]overlay=(W-w)/2:${imgY}[v1]`,
-    // Text with fade-in and slide-up animation
-    `[v1]drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=56:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y='${nameYExpr}':alpha='${nameAlpha}'[v2]`,
-    `[v2]drawtext=fontfile=${FONT_PATH}:text='${escapedPrice}':fontsize=72:fontcolor=${COLORS.accent}:x=(w-text_w)/2:y='${priceYExpr}':alpha='${priceAlpha}'`
+    // Product name text (smaller, above price)
+    `[v1]drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=48:fontcolor=${COLORS.textPrimary}:x=(w-text_w)/2:y='${nameYExpr}':alpha='${nameAlpha}'[v2]`,
+    // V8: Price background box (semi-transparent dark) for readability
+    `[v2]drawbox=x=${priceBoxX}:y=${priceBoxY}:w=${priceBoxWidth}:h=${priceBoxHeight}:color=000000@0.7:t=fill[v3]`,
+    // V8: PROMINENT PRICE/DISCOUNT OVERLAY - Large, bold, centered at bottom
+    `[v3]drawtext=fontfile=${FONT_PATH}:text='${escapedPrice}':fontsize=84:fontcolor=${COLORS.accent}:x=(w-text_w)/2:y=${priceY}:alpha='${priceAlpha}'`
   ].join(';');
   
   ffmpeg(`-f lavfi -i "color=c=${COLORS.background}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}" -i "${imagePath}" -filter_complex "${filter}" -c:v libx264 -pix_fmt yuv420p -t ${duration} "${outputPath}"`);
@@ -1205,10 +1225,14 @@ async function editVideo(input) {
     console.log('📥 Downloading product image...');
     await downloadFile(input.product_image, tempProduct);
     
-    // Step 2: Create hook segment (meme with text) - DYNAMIC DURATION
-    console.log('🎣 Creating hook segment...');
+    // Step 2: Create hook segment (clip only, no text) - V8 SIMPLIFIED
+    // V8: REMOVED hook text overlay - gets cut off in 9:16 portrait mode
+    console.log('🎣 Creating hook segment (clip only)...');
     convertGifToVideo(tempMeme, tempHook, hookDuration);
-    addHookText(tempHook, tempHookText, input.hook_angle || 'Check this out');
+    // V8: Hook text overlay REMOVED - was causing cutoff issues in portrait
+    // addHookText(tempHook, tempHookText, input.hook_angle || 'Check this out');
+    // Use hook clip directly without text overlay
+    fs.copyFileSync(tempHook, tempHookText); // Keep downstream paths working
     
     // Step 3: Create product showcase segment - DYNAMIC DURATION
     console.log('📦 Creating product showcase...');
@@ -1315,14 +1339,20 @@ async function editVideo(input) {
       timing: { hook: hookDuration, product: productDuration, cta: ctaDuration },
       created_at: new Date().toISOString(),
       ready_for_posting: true,
-      // Edit style tracking (v2 refinements)
+      // Edit style tracking (V8 refinements)
       edit_style: {
-        version: '2.0-organic',
+        version: 'v8-simplified',
+        changes: [
+          'hook_text_removed',      // No text overlay on clip - cutoff fix
+          'music_disabled',         // Background music removed - quality focus
+          'price_overlay_enhanced', // Prominent price box at bottom
+          'timing_simplified'       // 5s clip + 5s product + 2s CTA = 12s
+        ],
         zoom_intensity: EDIT_STYLE.zoomIntensity,
         text_delay: EDIT_STYLE.textDelaySeconds,
         progress_bar: EDIT_STYLE.progressBarEnabled,
         crossfade: EDIT_STYLE.crossfadeDuration,
-        music_volume: MUSIC_CONFIG.volume
+        music_enabled: MUSIC_CONFIG.enabled
       }
     };
     

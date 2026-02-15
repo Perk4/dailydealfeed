@@ -1,82 +1,49 @@
 {
   "_meta": {
-    "version": "1.1",
+    "version": "2.0",
     "updated": "2026-02-15",
-    "notes": "Polished scripts - varied energy, under 20 word hooks, voice memo vibe",
-    "style": "TikTok-native: casual, opinionated, distinct personalities per script"
+    "notes": "Simple product intros - no testimonials, no opinions",
+    "style": "Clean intro format: 'Next up we have...' + one stat + price/CTA"
   },
   "scripts": {
     "1": {
       "product_id": "1",
       "product_name": "CeraVe Moisturizing Cream",
-      "angle": "skeptic-converted",
-      "hook": "Okay I finally caved and tried the CeraVe everyone talks about",
-      "product_line": "Under 20 for the big tub... my skin is mad I waited this long",
-      "cta": "Link's up",
-      "full_script": "Okay I finally caved and tried the CeraVe everyone talks about... Under 20 for the big tub... my skin is mad I waited this long. Link's up.",
-      "estimated_duration": 11
+      "full_script": "Next up we have this moisturizer dermatologists actually recommend. $18.96 with the link in bio.",
+      "estimated_duration": 8
     },
     "2": {
       "product_id": "2",
       "product_name": "Neutrogena Beach Defense SPF 70",
-      "angle": "relatable-problem",
-      "hook": "If your sunscreen makes you look like a glazed donut",
-      "product_line": "Neutrogena Beach Defense. Eight bucks. Actually dries down",
-      "cta": "Link in bio",
-      "full_script": "If your sunscreen makes you look like a glazed donut... Neutrogena Beach Defense. Eight bucks. Actually dries down. Link in bio.",
+      "full_script": "Next up we have this sunscreen with SPF 70 that's water resistant for 80 minutes. $8.29 with the link in bio.",
       "estimated_duration": 10
     },
     "3": {
       "product_id": "3",
       "product_name": "The Pink Stuff",
-      "angle": "discovery-share",
-      "hook": "Wait why is no one talking about this five dollar cleaning paste",
-      "product_line": "The Pink Stuff. My stove looks brand new. I'm obsessed",
-      "cta": "Link in bio",
-      "full_script": "Wait why is no one talking about this five dollar cleaning paste... The Pink Stuff. My stove looks brand new. I'm obsessed. Link in bio.",
-      "estimated_duration": 11
+      "full_script": "Next up we have this cleaning paste that works on literally any surface. Code on screen for $4.79.",
+      "estimated_duration": 9
     },
     "4": {
       "product_id": "4",
       "product_name": "Dash Mini Waffle Maker",
-      "angle": "casual-flex",
-      "hook": "This little guy's been in my morning rotation for months",
-      "product_line": "Dash waffle maker. Ten bucks. Criminally good waffles",
-      "cta": "Link in bio",
-      "full_script": "This little guy's been in my morning rotation for months... Dash waffle maker. Ten bucks. Criminally good waffles. Link in bio.",
-      "estimated_duration": 10
+      "full_script": "Next up we have this mini waffle maker. Under $10 with the link in bio.",
+      "estimated_duration": 7
     },
     "5": {
       "product_id": "5",
       "product_name": "BISSELL Little Green",
-      "angle": "shocked-reaction",
-      "hook": "Okay I need to show you what just came out of my couch",
-      "product_line": "Bissell Little Green. Hundred ten bucks but... look at this",
-      "cta": "Link in bio",
-      "full_script": "Okay I need to show you what just came out of my couch... Bissell Little Green. Hundred ten bucks but... look at this. Link in bio.",
-      "estimated_duration": 11
+      "full_script": "Next up we have this portable carpet cleaner that works on couches and car seats. $109.99 with the link in bio.",
+      "estimated_duration": 10
     },
     "6": {
       "product_id": "6",
       "product_name": "Moon Lamp",
-      "angle": "casual-flex",
-      "hook": "Been falling asleep to this thing every night for a month",
-      "product_line": "Moon lamp. Twenty bucks. Instant cozy",
-      "cta": "Link in bio",
-      "full_script": "Been falling asleep to this thing every night for a month... Moon lamp. Twenty bucks. Instant cozy. Link in bio.",
+      "full_script": "Next up we have this 3D moon lamp with 16 different colors. $19.95 with the link in bio.",
       "estimated_duration": 9
     }
   },
-  "angles": {
-    "skeptic-converted": "I didn't believe the hype but...",
-    "discovery-share": "Wait why is no one talking about...",
-    "casual-flex": "This has been in my rotation for months",
-    "urgent-tip": "Stop scrolling, you need to know about...",
-    "relatable-problem": "If your [problem], this is it",
-    "shocked-reaction": "You won't believe what I just..."
-  },
   "defaults": {
-    "hook_fallback": "You need to see this",
     "cta_default": "Link in bio.",
     "speaking_rate_wpm": 140
   }
