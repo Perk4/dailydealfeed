@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "version": "4.0",
+    "version": "4.1",
     "updated": "2026-02-15",
     "curator": "clip-cacher-agent",
-    "notes": "Migrated to Mixkit sources for reliable direct downloads. All clips cached locally in clips/cache/. Use first 2-4 sec for hooks.",
+    "notes": "Added 'cozy' vibe clips for Moon Lamp, Waffle Maker, and home products. Added 'transformation' as alias to 'reveal'. All clips cached locally in clips/cache/. Use first 2-4 sec for hooks.",
     "sources": {
       "mixkit": "Royalty-free, commercial use OK. Direct download from assets.mixkit.co."
     },
@@ -135,21 +135,61 @@
       "vibe": "reveal",
       "duration": 3,
       "description": "Transformation reveal"
+    },
+    {
+      "id": "cozy-m001",
+      "url": "https://mixkit.co/free-stock-video/lighting-candles-in-the-dark-3461/",
+      "source": "mixkit",
+      "sourceId": "3461",
+      "vibe": "cozy",
+      "duration": 4,
+      "description": "Lighting candles in the dark - warm ambient glow"
+    },
+    {
+      "id": "cozy-m002",
+      "url": "https://mixkit.co/free-stock-video/flames-in-candles-close-up-3438/",
+      "source": "mixkit",
+      "sourceId": "3438",
+      "vibe": "cozy",
+      "duration": 4,
+      "description": "Candle flames close-up - warm cozy aesthetic"
+    },
+    {
+      "id": "cozy-m003",
+      "url": "https://mixkit.co/free-stock-video/shot-of-burning-candles-in-dark-room-12567/",
+      "source": "mixkit",
+      "sourceId": "12567",
+      "vibe": "cozy",
+      "duration": 4,
+      "description": "Burning candles in dark room - nighttime ambiance"
+    },
+    {
+      "id": "cozy-m004",
+      "url": "https://mixkit.co/free-stock-video/candle-flame-on-black-background-closeup-48919/",
+      "source": "mixkit",
+      "sourceId": "48919",
+      "vibe": "cozy",
+      "duration": 4,
+      "description": "Single candle flame on black - intimate mood lighting"
     }
   ],
   "vibeMap": {
     "shocked": ["shock-m001", "shock-m002", "shock-m003", "shock-m004"],
     "fail": ["fail-m001", "fail-m002", "fail-m003"],
     "reveal": ["reveal-m001", "reveal-m002", "reveal-m003"],
-    "reaction": ["react-m001", "react-m002", "react-m003", "react-m004"]
+    "reaction": ["react-m001", "react-m002", "react-m003", "react-m004"],
+    "cozy": ["cozy-m001", "cozy-m002", "cozy-m003", "cozy-m004"],
+    "transformation": ["reveal-m001", "reveal-m002", "reveal-m003"]
   },
   "productVibeMapping": {
-    "cleaning": ["shocked", "reveal"],
+    "cleaning": ["shocked", "reveal", "transformation"],
     "tech": ["shocked", "reaction"],
-    "home": ["reveal", "reaction"],
-    "wellness": ["reaction", "reveal"],
-    "kitchen": ["reveal", "fail"],
+    "home": ["cozy", "reveal", "reaction"],
+    "wellness": ["cozy", "reaction", "reveal"],
+    "kitchen": ["cozy", "reveal", "reaction"],
     "beauty": ["reveal", "reaction"],
+    "skincare": ["reveal", "reaction"],
+    "lifestyle": ["cozy", "reaction", "reveal"],
     "default": ["shocked", "reaction"]
   }
 }

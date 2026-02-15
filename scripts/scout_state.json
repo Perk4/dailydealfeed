@@ -1,6 +1,6 @@
 {
-  "lastProductId": "1",
-  "lastCategory": "skincare",
+  "lastProductId": "4",
+  "lastCategory": "kitchen",
   "usedProductIds": [
     "1",
     "6",
@@ -15,8 +15,8 @@
     "9",
     "10"
   ],
-  "categoryRotationIndex": 1,
-  "lastRun": "2026-02-15T03:47:56.571Z",
+  "categoryRotationIndex": 0,
+  "lastRun": "2026-02-15T04:42:45.079Z",
   "usedClipIds": [
     "reveal-004",
     "trans-002",
@@ -42,6 +42,16 @@
     "reaction-002",
     "reaction-004",
     "fail-001",
-    "reveal-m001"
+    "reveal-m001",
+    "shock-m003",
+    "shock-m001",
+    "shock-m002",
+    "reveal-m003",
+    "react-m001",
+    "reveal-m002",
+    "react-m002",
+    "shock-m004",
+    "cozy-m002",
+    "cozy-m004"
   ]
 }

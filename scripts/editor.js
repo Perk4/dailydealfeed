@@ -113,13 +113,26 @@ function ensureDirs() {
   });
 }
 
-// Download file from URL
-function downloadFile(url, destPath) {
+// Download file from URL or copy from local path
+function downloadFile(urlOrPath, destPath) {
   return new Promise((resolve, reject) => {
-    const protocol = url.startsWith('https') ? https : http;
+    // Handle local file paths
+    if (urlOrPath.startsWith('/') || urlOrPath.startsWith('./') || urlOrPath.startsWith('../')) {
+      // It's a local file path - copy instead of download
+      if (fs.existsSync(urlOrPath)) {
+        fs.copyFileSync(urlOrPath, destPath);
+        console.log(`   📁 Copied from local cache: ${path.basename(urlOrPath)}`);
+        resolve(destPath);
+      } else {
+        reject(new Error(`Local file not found: ${urlOrPath}`));
+      }
+      return;
+    }
+    
+    const protocol = urlOrPath.startsWith('https') ? https : http;
     const file = fs.createWriteStream(destPath);
     
-    const request = protocol.get(url, { 
+    const request = protocol.get(urlOrPath, { 
       headers: { 'User-Agent': 'DailyDealFeed-Editor/1.0' }
     }, (response) => {
       // Handle redirects
