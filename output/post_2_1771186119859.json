@@ -1,0 +1,41 @@
+{
+  "video_path": "/root/dailydealfeed/output/video_2_1771186119859.mp4",
+  "video_filename": "video_2_1771186119859.mp4",
+  "thumb_path": "/root/dailydealfeed/output/thumb_2_1771186119859.jpg",
+  "thumb_filename": "thumb_2_1771186119859.jpg",
+  "product_id": "2",
+  "product_name": "Neutrogena Sunscreen Lotion Beach Defense SPF 70, Face & Body Sunscreen, Broad Spectrum, Fast Absorbing, 6.7 Fl Oz, Water Resistant 80 Min, Oil-Free, Oxybenzone & Octinoxate Free Sunscreen Lotion 70 SPF 6.7 Fl Oz (Pack of 1)",
+  "product_price": "$8.29",
+  "ig_caption": "You need to see this\n\nNeutrogena Sunscreen Lotion Beach Defense SPF 70, Face & Body Sunscreen, Broad Spectrum, Fast Absorbing, 6.7 Fl Oz, Water Resistant 80 Min, Oil-Free, Oxybenzone & Octinoxate Free Sunscreen Lotion 70 SPF 6.7 Fl Oz (Pack of 1) $8.29\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+  "tiktok_caption": "You need to see this 🤯 Neutrogena Sunscreen Lotion Beach Defense SPF 70, Face & Body Sunscreen, Broad Spectrum, Fast Absorbing, 6.7 Fl Oz, Water Resistant 80 Min, Oil-Free, Oxybenzone & Octinoxate Free Sunscreen Lotion 70 SPF 6.7 Fl Oz (Pack of 1) $8.29 #amazonfinds #tiktokmademebuyit #viral",
+  "hook_angle": "You need to see this",
+  "voiceover_script": "Wait, SPF 70 that actually stays on in water? Eight bucks. You're welcome. Link in bio.",
+  "has_voiceover": true,
+  "has_background_music": true,
+  "music_track": "track05_dynamic_healing.mp3",
+  "duration_seconds": 10,
+  "timing": {
+    "hook": 3,
+    "product": 5,
+    "cta": 2
+  },
+  "created_at": "2026-02-15T20:09:34.045Z",
+  "ready_for_posting": true,
+  "edit_style": {
+    "version": "v9-voiceover-timing",
+    "changes": [
+      "voiceover_delayed",
+      "hook_audio_preserved",
+      "hook_text_removed",
+      "price_overlay_enhanced",
+      "timing_simplified"
+    ],
+    "voiceover_delay_seconds": 3,
+    "hook_has_original_audio": true,
+    "zoom_intensity": 0.05,
+    "text_delay": 0.15,
+    "progress_bar": false,
+    "crossfade": 0.3,
+    "music_enabled": true
+  }
+}

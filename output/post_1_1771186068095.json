@@ -1,0 +1,41 @@
+{
+  "video_path": "/root/dailydealfeed/output/video_1_1771186068095.mp4",
+  "video_filename": "video_1_1771186068095.mp4",
+  "thumb_path": "/root/dailydealfeed/output/thumb_1_1771186068095.jpg",
+  "thumb_filename": "thumb_1_1771186068095.jpg",
+  "product_id": "1",
+  "product_name": "CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1)",
+  "product_price": "$18.96",
+  "ig_caption": "You need to see this\n\nCeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+  "tiktok_caption": "You need to see this 🤯 CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96 #amazonfinds #tiktokmademebuyit #viral",
+  "hook_angle": "You need to see this",
+  "voiceover_script": "Okay so my dermatologist literally recommends this. CeraVe moisturizer, eighteen bucks, link in bio.",
+  "has_voiceover": true,
+  "has_background_music": true,
+  "music_track": "track05_dynamic_healing.mp3",
+  "duration_seconds": 10,
+  "timing": {
+    "hook": 3,
+    "product": 5,
+    "cta": 2
+  },
+  "created_at": "2026-02-15T20:08:39.676Z",
+  "ready_for_posting": true,
+  "edit_style": {
+    "version": "v9-voiceover-timing",
+    "changes": [
+      "voiceover_delayed",
+      "hook_audio_preserved",
+      "hook_text_removed",
+      "price_overlay_enhanced",
+      "timing_simplified"
+    ],
+    "voiceover_delay_seconds": 3,
+    "hook_has_original_audio": true,
+    "zoom_intensity": 0.05,
+    "text_delay": 0.15,
+    "progress_bar": false,
+    "crossfade": 0.3,
+    "music_enabled": true
+  }
+}

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-02-15T05:38:31.988Z",
-  "updated": "2026-02-15T18:10:48.750Z",
+  "updated": "2026-02-15T20:13:58.443Z",
   "settings": {
     "platforms": [
       "tiktok",
@@ -857,6 +857,432 @@
         }
       },
       "fileSize": 713943,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771186119764_kfkawvtzx",
+      "videoPath": "/root/dailydealfeed/output/video_1_1771186068095.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_1_1771186068095.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_1_1771186068095.json",
+      "addedAt": "2026-02-15T20:08:39.764Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_1_1771186068095.mp4",
+        "video_filename": "video_1_1771186068095.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_1_1771186068095.jpg",
+        "thumb_filename": "thumb_1_1771186068095.jpg",
+        "product_id": "1",
+        "product_name": "CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1)",
+        "product_price": "$18.96",
+        "ig_caption": "You need to see this\n\nCeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "You need to see this 🤯 CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "You need to see this",
+        "voiceover_script": "Okay so my dermatologist literally recommends this. CeraVe moisturizer, eighteen bucks, link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track05_dynamic_healing.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T20:08:39.676Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v9-voiceover-timing",
+          "changes": [
+            "voiceover_delayed",
+            "hook_audio_preserved",
+            "hook_text_removed",
+            "price_overlay_enhanced",
+            "timing_simplified"
+          ],
+          "voiceover_delay_seconds": 3,
+          "hook_has_original_audio": true,
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": true
+        }
+      },
+      "fileSize": 847108,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771186174139_42rx9438g",
+      "videoPath": "/root/dailydealfeed/output/video_2_1771186119859.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_2_1771186119859.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_2_1771186119859.json",
+      "addedAt": "2026-02-15T20:09:34.139Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_2_1771186119859.mp4",
+        "video_filename": "video_2_1771186119859.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_2_1771186119859.jpg",
+        "thumb_filename": "thumb_2_1771186119859.jpg",
+        "product_id": "2",
+        "product_name": "Neutrogena Sunscreen Lotion Beach Defense SPF 70, Face & Body Sunscreen, Broad Spectrum, Fast Absorbing, 6.7 Fl Oz, Water Resistant 80 Min, Oil-Free, Oxybenzone & Octinoxate Free Sunscreen Lotion 70 SPF 6.7 Fl Oz (Pack of 1)",
+        "product_price": "$8.29",
+        "ig_caption": "You need to see this\n\nNeutrogena Sunscreen Lotion Beach Defense SPF 70, Face & Body Sunscreen, Broad Spectrum, Fast Absorbing, 6.7 Fl Oz, Water Resistant 80 Min, Oil-Free, Oxybenzone & Octinoxate Free Sunscreen Lotion 70 SPF 6.7 Fl Oz (Pack of 1) $8.29\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "You need to see this 🤯 Neutrogena Sunscreen Lotion Beach Defense SPF 70, Face & Body Sunscreen, Broad Spectrum, Fast Absorbing, 6.7 Fl Oz, Water Resistant 80 Min, Oil-Free, Oxybenzone & Octinoxate Free Sunscreen Lotion 70 SPF 6.7 Fl Oz (Pack of 1) $8.29 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "You need to see this",
+        "voiceover_script": "Wait, SPF 70 that actually stays on in water? Eight bucks. You're welcome. Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track05_dynamic_healing.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T20:09:34.045Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v9-voiceover-timing",
+          "changes": [
+            "voiceover_delayed",
+            "hook_audio_preserved",
+            "hook_text_removed",
+            "price_overlay_enhanced",
+            "timing_simplified"
+          ],
+          "voiceover_delay_seconds": 3,
+          "hook_has_original_audio": true,
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": true
+        }
+      },
+      "fileSize": 963147,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771186233974_qsuw4cy3t",
+      "videoPath": "/root/dailydealfeed/output/video_3_1771186174186.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_3_1771186174186.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_3_1771186174186.json",
+      "addedAt": "2026-02-15T20:10:33.974Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_3_1771186174186.mp4",
+        "video_filename": "video_3_1771186174186.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_3_1771186174186.jpg",
+        "thumb_filename": "thumb_3_1771186174186.jpg",
+        "product_id": "3",
+        "product_name": "Stardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste",
+        "product_price": "$4.79",
+        "ig_caption": "The before/after that broke me\n\nStardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste $4.79\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "The before/after that broke me 🤯 Stardrops - The Pink Stuff - The Miracle All Purpose Cleaning Paste 17.63 Ounce (Pack of 1) Cleaning Paste $4.79 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "The before/after that broke me",
+        "voiceover_script": "Dude. The Pink Stuff. It cleans literally everything for five bucks. Just get it. Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track03_born_norilsk.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T20:10:33.887Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v9-voiceover-timing",
+          "changes": [
+            "voiceover_delayed",
+            "hook_audio_preserved",
+            "hook_text_removed",
+            "price_overlay_enhanced",
+            "timing_simplified"
+          ],
+          "voiceover_delay_seconds": 3,
+          "hook_has_original_audio": true,
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": true
+        }
+      },
+      "fileSize": 1064473,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771186285970_fshzpahx2",
+      "videoPath": "/root/dailydealfeed/output/video_4_1771186234068.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_4_1771186234068.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_4_1771186234068.json",
+      "addedAt": "2026-02-15T20:11:25.970Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_4_1771186234068.mp4",
+        "video_filename": "video_4_1771186234068.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_4_1771186234068.jpg",
+        "thumb_filename": "thumb_4_1771186234068.jpg",
+        "product_id": "4",
+        "product_name": "Dash Mini Waffle Maker- Compact Electric Iron for Creative Homemade Treats - Nonstick Surface - Easy-to-Clean - Perfect for Kids & Families - Aqua 4 Inch Aqua",
+        "product_price": "$9.89",
+        "ig_caption": "The TikTok waffle maker - is it actually worth it?\n\nDash Mini Waffle Maker- Compact Electric Iron for Creative Homemade Treats - Nonstick Surface - Easy-to-Clean - Perfect for Kids & Families - Aqua 4 Inch Aqua $9.89\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "The TikTok waffle maker - is it actually worth it? 🤯 Dash Mini Waffle Maker- Compact Electric Iron for Creative Homemade Treats - Nonstick Surface - Easy-to-Clean - Perfect for Kids & Families - Aqua 4 Inch Aqua $9.89 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "The TikTok waffle maker - is it actually worth it?",
+        "voiceover_script": "So this tiny waffle maker? Under ten bucks and it actually works. Perfect single serving. Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track01_boogie_funk.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T20:11:25.883Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v9-voiceover-timing",
+          "changes": [
+            "voiceover_delayed",
+            "hook_audio_preserved",
+            "hook_text_removed",
+            "price_overlay_enhanced",
+            "timing_simplified"
+          ],
+          "voiceover_delay_seconds": 3,
+          "hook_has_original_audio": true,
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": true
+        }
+      },
+      "fileSize": 810847,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771186345767_tv310uk71",
+      "videoPath": "/root/dailydealfeed/output/video_5_1771186286062.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_5_1771186286062.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_5_1771186286062.json",
+      "addedAt": "2026-02-15T20:12:25.767Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_5_1771186286062.mp4",
+        "video_filename": "video_5_1771186286062.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_5_1771186286062.jpg",
+        "thumb_filename": "thumb_5_1771186286062.jpg",
+        "product_id": "5",
+        "product_name": "BISSELL Little Green Multi-Purpose Portable Carpet and Upholstery Cleaner, Car and Auto Detailer, with Exclusive Specialty Tools, Green, 1400B",
+        "product_price": "$109.99",
+        "ig_caption": "What came out of my couch... I'm disturbed\n\nBISSELL Little Green Multi-Purpose Portable Carpet and Upholstery Cleaner, Car and Auto Detailer, with Exclusive Specialty Tools, Green, 1400B $109.99\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "What came out of my couch... I'm disturbed 🤯 BISSELL Little Green Multi-Purpose Portable Carpet and Upholstery Cleaner, Car and Auto Detailer, with Exclusive Specialty Tools, Green, 1400B $109.99 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "What came out of my couch... I'm disturbed",
+        "voiceover_script": "Okay I need to show you what came out of my couch. Little Green machine. Hundred ten bucks but trust me. Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track03_born_norilsk.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T20:12:25.677Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v9-voiceover-timing",
+          "changes": [
+            "voiceover_delayed",
+            "hook_audio_preserved",
+            "hook_text_removed",
+            "price_overlay_enhanced",
+            "timing_simplified"
+          ],
+          "voiceover_delay_seconds": 3,
+          "hook_has_original_audio": true,
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": true
+        }
+      },
+      "fileSize": 1131223,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771186438442_u87eees2b",
+      "videoPath": "/root/dailydealfeed/output/video_6_1771186379248.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_6_1771186379248.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_6_1771186379248.json",
+      "addedAt": "2026-02-15T20:13:58.442Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_6_1771186379248.mp4",
+        "video_filename": "video_6_1771186379248.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_6_1771186379248.jpg",
+        "thumb_filename": "thumb_6_1771186379248.jpg",
+        "product_id": "6",
+        "product_name": "Mind-Glowing Moon Lamp - 3D Moon Night Light for Kids Bedroom - Globe Nightlight with Multi Color LED, Touch/Remote Control - Birthday Gift for Any Year Old Girls & Boys - Space Decor (4.7 inch)",
+        "product_price": "$19.95",
+        "ig_caption": "When the vibes finally hit different\n\nMind-Glowing Moon Lamp - 3D Moon Night Light for Kids Bedroom - Globe Nightlight with Multi Color LED, Touch/Remote Control - Birthday Gift for Any Year Old Girls & Boys - Space Decor (4.7 inch) $19.95\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "When the vibes finally hit different 🤯 Mind-Glowing Moon Lamp - 3D Moon Night Light for Kids Bedroom - Globe Nightlight with Multi Color LED, Touch/Remote Control - Birthday Gift for Any Year Old Girls & Boys - Space Decor (4.7 inch) $19.95 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "When the vibes finally hit different",
+        "voiceover_script": "This moon lamp has sixteen colors and it's twenty bucks. My room has never looked better. Link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track05_dynamic_healing.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-15T20:13:58.347Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v9-voiceover-timing",
+          "changes": [
+            "voiceover_delayed",
+            "hook_audio_preserved",
+            "hook_text_removed",
+            "price_overlay_enhanced",
+            "timing_simplified"
+          ],
+          "voiceover_delay_seconds": 3,
+          "hook_has_original_audio": true,
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": true
+        }
+      },
+      "fileSize": 916717,
       "platforms": {
         "tiktok": {
           "status": "pending",

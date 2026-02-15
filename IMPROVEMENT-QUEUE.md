@@ -12,6 +12,19 @@
 
 ## Recently Completed ✅
 
+20. [x] **Full V8.1 Batch Generation** — All 6 products generated (2026-02-15 20:13 UTC)
+    - **Videos:** 6/6 complete
+    - **Files:** video_1-6_1771186*.mp4 (sizes: 810KB-1.1MB)
+    - **Features:** AFV hooks with original audio, delayed voiceover, vibe-matched music, crossfades
+    - **Music Matching:** CeraVe/Neutrogena/MoonLamp → track05 (wellness), PinkStuff/Bissell → track03 (cleaning), Waffle → track01 (fun)
+    - **QA Score: 8.25/10** (consistent)
+      - Hook: 8/10 (AFV cliffhangers working well)
+      - Voice: 7/10 (Deepgram Luna — blocked by missing ELEVENLABS_API_KEY)
+      - Script: 9/10 ✅ (conversational openers: "Dude.", "Wait,", "Okay so...")
+      - Edit: 8.5/10 ✅ (crossfades + delayed VO timing)
+      - Watchability: 8.5/10 ✅
+    - **Bottleneck:** Voice naturalness stuck at 7/10 — need ElevenLabs API key
+
 19. [x] **V8.1 Batch Test** — Verified video generation with all fixes (2026-02-15 19:09 UTC)
     - **Test Video:** video_1_1771182518676.mp4 (CeraVe)
     - **Features:** AFV clip + original audio, delayed voiceover, vibe-matched music (track05), crossfades
@@ -48,7 +61,6 @@
 
 ## Next Up ⏳
 
-20. [ ] **Full V8.1 Batch Generation** — Generate fresh videos for all 6 products
 21. [ ] **ElevenLabs Integration** — Set ELEVENLABS_API_KEY to break 7/10 voice ceiling
 
 ## Completed ✅
@@ -114,4 +126,4 @@
 
 ---
 
-*Updated: 2026-02-15 19:10 UTC*
+*Updated: 2026-02-15 20:15 UTC*
