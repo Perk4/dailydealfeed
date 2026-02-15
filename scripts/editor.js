@@ -95,9 +95,9 @@ const SCRIPT_MAP_FILE = path.join(SCRIPT_DIR, 'script-map.json');
 const VIRAL_CLIPS_FILE = path.join(SCRIPT_DIR, '..', 'clips', 'viral-handpicked.json');
 
 // Background Music Configuration
-// V8: Music disabled - focus on video quality first, deprioritized
+// V8.1: Music RE-ENABLED - QA showed v7 with music scored 8.2/10 vs v8's 7.4/10
 const MUSIC_CONFIG = {
-  enabled: false,      // V8: DISABLED - deprioritized for video quality
+  enabled: true,       // V8.1: RE-ENABLED - music adds significant watchability
   volume: 0.15,        // 15% volume (subtler - doesn't compete with voice)
   fadeIn: 0.5,         // Fade in duration (seconds)
   fadeOut: 1.0,        // Fade out duration (seconds)

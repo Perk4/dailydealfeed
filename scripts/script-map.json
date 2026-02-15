@@ -1,45 +1,45 @@
 {
   "_meta": {
-    "version": "2.0",
+    "version": "3.0",
     "updated": "2026-02-15",
-    "notes": "Simple product intros - no testimonials, no opinions",
-    "style": "Clean intro format: 'Next up we have...' + one stat + price/CTA"
+    "notes": "Conversational voice memo style - varied openers, friend energy",
+    "style": "Mix of openers: 'Okay so...', 'Wait I need to tell you...', 'Dude...', etc."
   },
   "scripts": {
     "1": {
       "product_id": "1",
       "product_name": "CeraVe Moisturizing Cream",
-      "full_script": "Next up we have this moisturizer dermatologists actually recommend. $18.96 with the link in bio.",
+      "full_script": "Okay so my dermatologist literally recommends this. CeraVe moisturizer, eighteen bucks, link in bio.",
       "estimated_duration": 8
     },
     "2": {
       "product_id": "2",
       "product_name": "Neutrogena Beach Defense SPF 70",
-      "full_script": "Next up we have this sunscreen with SPF 70 that's water resistant for 80 minutes. $8.29 with the link in bio.",
-      "estimated_duration": 10
+      "full_script": "Wait, SPF 70 that actually stays on in water? Eight bucks. You're welcome. Link in bio.",
+      "estimated_duration": 8
     },
     "3": {
       "product_id": "3",
       "product_name": "The Pink Stuff",
-      "full_script": "Next up we have this cleaning paste that works on literally any surface. Code on screen for $4.79.",
-      "estimated_duration": 9
+      "full_script": "Dude. The Pink Stuff. It cleans literally everything for five bucks. Just get it. Link in bio.",
+      "estimated_duration": 8
     },
     "4": {
       "product_id": "4",
       "product_name": "Dash Mini Waffle Maker",
-      "full_script": "Next up we have this mini waffle maker. Under $10 with the link in bio.",
-      "estimated_duration": 7
+      "full_script": "So this tiny waffle maker? Under ten bucks and it actually works. Perfect single serving. Link in bio.",
+      "estimated_duration": 9
     },
     "5": {
       "product_id": "5",
       "product_name": "BISSELL Little Green",
-      "full_script": "Next up we have this portable carpet cleaner that works on couches and car seats. $109.99 with the link in bio.",
+      "full_script": "Okay I need to show you what came out of my couch. Little Green machine. Hundred ten bucks but trust me. Link in bio.",
       "estimated_duration": 10
     },
     "6": {
       "product_id": "6",
       "product_name": "Moon Lamp",
-      "full_script": "Next up we have this 3D moon lamp with 16 different colors. $19.95 with the link in bio.",
+      "full_script": "This moon lamp has sixteen colors and it's twenty bucks. My room has never looked better. Link in bio.",
       "estimated_duration": 9
     }
   },
