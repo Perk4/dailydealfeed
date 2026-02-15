@@ -1,5 +1,5 @@
 {
-  "lastProductId": "10",
+  "lastProductId": "6",
   "lastCategory": "home",
   "usedProductIds": [
     "1",
@@ -15,8 +15,8 @@
     "9",
     "10"
   ],
-  "categoryRotationIndex": 0,
-  "lastRun": "2026-02-14T23:21:09.387Z",
+  "categoryRotationIndex": 1,
+  "lastRun": "2026-02-15T00:10:03.291Z",
   "usedClipIds": [
     "reveal-004",
     "trans-002",
