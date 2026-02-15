@@ -1,6 +1,6 @@
 {
-  "lastProductId": "2",
-  "lastCategory": "skincare",
+  "lastProductId": "6",
+  "lastCategory": "home",
   "usedProductIds": [
     "1",
     "6",
@@ -15,8 +15,8 @@
     "9",
     "10"
   ],
-  "categoryRotationIndex": 1,
-  "lastRun": "2026-02-15T20:37:38.572Z",
+  "categoryRotationIndex": 2,
+  "lastRun": "2026-02-15T20:42:07.650Z",
   "usedClipIds": [
     "cozy-m003",
     "cozy-m004",
