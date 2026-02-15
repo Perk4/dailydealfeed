@@ -62,12 +62,22 @@
 | Edit flow | 7 | 8 ✅ | 8+ |
 | Overall watchability | 7 | 7.5 | 9+ |
 
-**Latest Test:** video_2_1771166343159.mp4 (Neutrogena SPF 70) — Avg Score: 7.9/10
+**Latest Test:** video_1_1771168079775.mp4 (CeraVe Moisturizer) — Avg Score: 7.7/10
 
-**Bottleneck:** Voice naturalness blocked by missing ELEVENLABS_API_KEY (using Deepgram fallback)
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Hook impact | 7/10 | Stock "shocked" clip, decent but not viral-tier |
+| Voice naturalness | 7/10 | Deepgram Luna - serviceable, still detectable as AI |
+| Script authenticity | 9/10 | ✅ "Okay I finally caved..." — genuine friend energy |
+| Edit flow | 8/10 | ✅ v2.0-organic: crossfades, subtle zoom, good pacing |
+| Overall watchability | 7.5/10 | Would pass casual scroll, not scroll-stopper |
+
+**Bottleneck:** Voice naturalness (7/10) blocked by missing ELEVENLABS_API_KEY
+
+**Clip Quality:** Subagent researching better viral sources (clip-sourcing-v2)
 
 **The test:** Would you actually watch this? Would you share it?
 
 ---
 
-*Updated: 2026-02-15 14:41 UTC*
+*Updated: 2026-02-15 15:09 UTC*
