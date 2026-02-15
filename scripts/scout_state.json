@@ -1,5 +1,5 @@
 {
-  "lastProductId": "6",
+  "lastProductId": "3",
   "lastCategory": "home",
   "usedProductIds": [
     "1",
@@ -16,7 +16,7 @@
     "10"
   ],
   "categoryRotationIndex": 1,
-  "lastRun": "2026-02-15T17:00:16.009Z",
+  "lastRun": "2026-02-15T17:11:23.553Z",
   "usedClipIds": [
     "cozy-m003",
     "cozy-m004",

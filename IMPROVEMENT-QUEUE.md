@@ -12,6 +12,12 @@
 
 ## Recently Completed ✅
 
+17. [x] **Music Matching** — Vibe-based track selection verified (2026-02-15 17:12 UTC)
+    - CeraVe → track05_dynamic_healing (wellness) ✅
+    - Pink Stuff → track03_born_norilsk (cleaning) ✅
+    - Moon Lamp → track05_dynamic_healing (cozy) ✅
+    - selectMusicByVibe() scoring keywords, categories, vibes correctly
+
 15. [x] **Clip Quality** — AFV cliffhanger clips integrated (2026-02-15 16:10 UTC)
     - Downloaded 15 AFV clips, processed to 3s cliffhangers
     - V7.0 test: 8.6/10 vs V6.0's 3.6/10 (+139% improvement)
@@ -19,9 +25,8 @@
 
 ## Next Up ⏳
 
-17. [ ] **Music Matching** — Right track for right product vibe
 18. [ ] **Full QA Pass** — Score all videos, identify weakest links
-19. [ ] **V6.0 Batch** — Regenerate with all refinements
+19. [ ] **V7.0 Batch** — Regenerate with all refinements (music vibe matching + AFV clips)
 
 ## Completed ✅
 
