@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "created": "2026-02-15T06:38:54.819Z",
+  "updated": "2026-02-15T06:38:54.819Z",
+  "videos": {
+    "video_1_1771127177058": {},
+    "video_2_1771127232503": {},
+    "video_3_1771127297493": {},
+    "video_3_1771130441458": {},
+    "video_3_1771132178085": {},
+    "video_4_1771127397901": {},
+    "video_5_1771127444868": {},
+    "video_6_1771127490669": {},
+    "video_1_1771134031355": {},
+    "video_6_1771133939184": {}
+  },
+  "daily": {},
+  "products": {},
+  "platforms": {
+    "tiktok": {
+      "impressions": 0,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": 0,
+      "clicks": 0,
+      "conversions": 0,
+      "revenue": 0,
+      "watchTimeSeconds": 0,
+      "videosPosted": 0
+    },
+    "instagram": {
+      "impressions": 0,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": 0,
+      "clicks": 0,
+      "conversions": 0,
+      "revenue": 0,
+      "watchTimeSeconds": 0,
+      "videosPosted": 0
+    },
+    "youtube": {
+      "impressions": 0,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": 0,
+      "clicks": 0,
+      "conversions": 0,
+      "revenue": 0,
+      "watchTimeSeconds": 0,
+      "videosPosted": 0
+    }
+  },
+  "conversions": [],
+  "goals": {
+    "dailyViews": 10000,
+    "clickRate": 0.02,
+    "conversionRate": 0.01
+  }
+}
