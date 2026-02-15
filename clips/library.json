@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "created": "2026-02-15T22:59:49.527Z",
+  "updated": "2026-02-15T22:59:49.528Z",
+  "clips": [
+    {
+      "sourceId": "iYXT1h0mYlM",
+      "sourceUrl": "https://www.youtube.com/shorts/iYXT1h0mYlM",
+      "title": "Best Funny Memes of the Year! Top 10 😂",
+      "rawPath": "/root/dailydealfeed/clips/raw/iYXT1h0mYlM.mp4",
+      "segments": [
+        "clips/processed/iYXT1h0mYlM_seg000.mp4",
+        "clips/processed/iYXT1h0mYlM_seg001.mp4",
+        "clips/processed/iYXT1h0mYlM_seg002.mp4",
+        "clips/processed/iYXT1h0mYlM_seg003.mp4",
+        "clips/processed/iYXT1h0mYlM_seg004.mp4"
+      ],
+      "metadata": {
+        "duration": 29.281,
+        "width": 1080,
+        "height": 1920,
+        "hasAudio": true,
+        "codec": "av1"
+      },
+      "status": "ready",
+      "segmentCount": 5,
+      "added": "2026-02-15T22:59:49.528Z"
+    }
+  ]
+}
