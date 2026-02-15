@@ -525,7 +525,7 @@ async function generateTTSCloudflare(text, outputPath, speaker = 'luna') {
 /**
  * Generate voiceover audio with intelligent fallback chain:
  * 1. Pre-generated audio (if voiceover_audio provided in input)
- * 2. OpenClaw TTS (best quality - recommended)
+ * 2. OpenClaw TTS cache (best quality - recommended)
  * 3. ElevenLabs API (natural voice)
  * 4. Deepgram via Cloudflare Worker (decent quality)
  * 5. espeak-ng (robotic but always works)
@@ -545,21 +545,28 @@ async function generateVoiceover(input, outputPath) {
   console.log(`🎙️  Voiceover script: "${voiceoverText}"`);
   
   // TTS Provider Priority:
-  // 1. OpenClaw TTS (best quality - recommended)
+  // 1. OpenClaw TTS cache (best quality - recommended)
   // 2. ElevenLabs (natural voice - passes "real person" test)
   // 3. Deepgram/Cloudflare (decent quality, free tier)
   // 4. espeak-ng (robotic fallback)
   
-  // Try OpenClaw TTS first (recommended)
+  // Check OpenClaw TTS cache first (populated by agent)
   if (TTS_CONFIG.useOpenClawTTS) {
     try {
-      return await generateTTSOpenClaw(voiceoverText, outputPath);
+      const { getCachedTTS } = require('./lib/tts-openclaw');
+      const cachedPath = getCachedTTS(voiceoverText);
+      if (cachedPath) {
+        fs.copyFileSync(cachedPath, outputPath);
+        console.log('🎙️  Using cached OpenClaw TTS (ElevenLabs quality)');
+        return outputPath;
+      }
+      console.log('ℹ️  OpenClaw TTS not cached for this script');
     } catch (err) {
-      console.log(`⚠️  OpenClaw TTS unavailable: ${err.message}`);
+      console.log(`⚠️  OpenClaw TTS cache check failed: ${err.message}`);
     }
   }
   
-  // Try ElevenLabs
+  // Try ElevenLabs direct API
   try {
     return await generateTTSElevenLabs(voiceoverText, outputPath, {
       voice: input.tts_voice || 'default',
