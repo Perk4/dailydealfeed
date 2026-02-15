@@ -1,104 +1,178 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DailyDealFeed - V2.2 Real Amazon Images</title>
+    <title>DailyDealFeed - V3 Preview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: -apple-system, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #0a0a0a; color: #fff; }
-        h1 { text-align: center; }
-        .badge { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); padding: 4px 12px; border-radius: 12px; font-size: 12px; margin-left: 8px; }
-        .badge-new { background: linear-gradient(135deg, #28a745 0%, #20c997 100%); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-        .card { background: #1a1a1a; border-radius: 16px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .card h3 { margin: 0 0 12px 0; font-size: 16px; }
-        .card video { width: 100%; border-radius: 12px; background: #000; }
-        .meta { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-        .meta span { background: #333; padding: 4px 10px; border-radius: 6px; font-size: 12px; }
-        .meta .voice { background: #28a745; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .header { text-align: center; margin-bottom: 24px; }
+        .header h1 { font-size: 24px; margin-bottom: 8px; }
+        .header p { color: #888; font-size: 14px; }
+        .badge { 
+            display: inline-block;
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%); 
+            padding: 4px 12px; 
+            border-radius: 12px; 
+            font-size: 11px; 
+            margin-left: 8px;
+            color: #000;
+            font-weight: 600;
+        }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card { 
+            background: #1a1a1a; 
+            border-radius: 16px; 
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .card-header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #333;
+        }
+        .product-img { 
+            width: 60px; 
+            height: 60px; 
+            object-fit: contain; 
+            border-radius: 8px; 
+            background: #fff;
+            padding: 4px;
+        }
+        .product-info h3 { font-size: 14px; margin-bottom: 4px; }
+        .product-info .price { color: #4ade80; font-weight: 700; font-size: 16px; }
+        .video-container {
+            position: relative;
+            background: #000;
+            aspect-ratio: 9/16;
+            max-height: 500px;
+        }
+        .card video { 
+            width: 100%; 
+            height: 100%;
+            object-fit: contain;
+        }
+        .card-footer {
+            padding: 12px 16px;
+            background: #111;
+        }
+        .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+        .meta span { 
+            background: #333; 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            font-size: 11px; 
+        }
+        .meta .voice { background: #4ade80; color: #000; }
         .meta .amazon { background: #ff9900; color: #000; }
-        .caption { background: #222; padding: 14px; border-radius: 10px; margin-top: 14px; font-size: 13px; white-space: pre-wrap; line-height: 1.5; }
-        .status { text-align: center; padding: 12px 20px; background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); border-radius: 8px; margin-bottom: 24px; font-weight: 600; }
-        .note { text-align: center; color: #888; margin-top: 30px; font-size: 14px; }
-        .product-img { width: 100px; height: 100px; object-fit: contain; border-radius: 8px; margin-bottom: 12px; background: #fff; }
+        .footer { 
+            text-align: center; 
+            padding: 32px; 
+            color: #666; 
+            font-size: 12px;
+        }
+        .loading { text-align: center; padding: 40px; color: #888; }
     </style>
 </head>
 <body>
-    <h1>📦 V2.2 <span class="badge">🛒 REAL AMAZON IMAGES</span> <span class="badge badge-new">🎙️ DEEPGRAM</span></h1>
-    <div class="status">🎬 4 videos with REAL Amazon product images + Luna TTS</div>
-    
-    <div class="grid">
-        <div class="card">
-            <img class="product-img" src="https://m.media-amazon.com/images/I/81vbr4CmnXL.jpg" alt="Moon Lamp">
-            <h3>1. Moon Lamp - $19.95</h3>
-            <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_1_1771111065659.mp4" type="video/mp4">
-            </video>
-            <div class="meta">
-                <span class="voice">🎙️ Luna</span>
-                <span class="amazon">🛒 Real Amazon</span>
-            </div>
-            <div class="caption"><strong>Hook:</strong> When the vibes finally hit different
-
-Mind-Glowing Moon Lamp $19.95
-
-🔗 Link in bio!</div>
-        </div>
-        
-        <div class="card">
-            <img class="product-img" src="https://m.media-amazon.com/images/I/71JVOV7dQvL.jpg" alt="Pink Stuff">
-            <h3>6. The Pink Stuff - $4.79</h3>
-            <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_6_1771111143683.mp4" type="video/mp4">
-            </video>
-            <div class="meta">
-                <span class="voice">🎙️ Luna</span>
-                <span class="amazon">🛒 Real Amazon</span>
-            </div>
-            <div class="caption"><strong>Hook:</strong> This $10 paste vs my disgusting stove
-
-Stardrops Pink Stuff $4.79
-
-🔗 Link in bio!</div>
-        </div>
-        
-        <div class="card">
-            <img class="product-img" src="https://m.media-amazon.com/images/I/717X5secGjL.jpg" alt="Bissell Little Green">
-            <h3>7. Bissell Little Green - $109.99</h3>
-            <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_7_1771111207114.mp4" type="video/mp4">
-            </video>
-            <div class="meta">
-                <span class="voice">🎙️ Luna</span>
-                <span class="amazon">🛒 Real Amazon</span>
-            </div>
-            <div class="caption"><strong>Hook:</strong> What came out of my couch... I'm disturbed
-
-Bissell Little Green $109.99
-
-🔗 Link in bio!</div>
-        </div>
-        
-        <div class="card">
-            <img class="product-img" src="https://m.media-amazon.com/images/I/61DjIfXqyeL.jpg" alt="Dash Waffle Maker">
-            <h3>10. Dash Mini Waffle Maker - $9.89</h3>
-            <video controls>
-                <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/video_10_1771111269388.mp4" type="video/mp4">
-            </video>
-            <div class="meta">
-                <span class="voice">🎙️ Luna</span>
-                <span class="amazon">🛒 Real Amazon</span>
-            </div>
-            <div class="caption"><strong>Hook:</strong> Mini waffles that changed my mornings
-
-Dash Mini Waffle Maker $9.89
-
-🔗 Link in bio!</div>
-        </div>
+    <div class="header">
+        <h1>📦 V3.0 Preview <span class="badge">6 VIDEOS</span></h1>
+        <p>Real Amazon images + Luna TTS voiceover + 9:16 vertical format</p>
     </div>
     
-    <div class="note">
-        <p>🔊 Turn on sound — Luna voice from Deepgram Aura-1!</p>
-        <p>🛒 All product images are REAL Amazon listing photos</p>
-        <p>Link site also updated: <a href="https://perk4.github.io/dailydealfeed/embed.html" style="color: #ff9900;">View Products</a></p>
+    <div class="grid" id="grid">
+        <div class="loading">Loading videos...</div>
     </div>
+    
+    <div class="footer">
+        <p>🔊 Turn on sound for voiceover</p>
+        <p>Link site: <a href="embed.html" style="color: #4ade80;">embed.html</a></p>
+    </div>
+
+    <script>
+        const BASE = 'https://raw.githubusercontent.com/Perk4/dailydealfeed/main';
+        
+        async function loadVideos() {
+            try {
+                // Get list of output files
+                const res = await fetch('https://api.github.com/repos/Perk4/dailydealfeed/contents/output');
+                const files = await res.json();
+                
+                // Get products
+                const prodRes = await fetch(`${BASE}/products.json?t=${Date.now()}`);
+                const prodData = await prodRes.json();
+                const products = prodData.products;
+                
+                // Find videos
+                const videos = files.filter(f => f.name.startsWith('video_') && f.name.endsWith('.mp4'));
+                
+                const grid = document.getElementById('grid');
+                grid.innerHTML = '';
+                
+                for (const video of videos) {
+                    const match = video.name.match(/video_(\d+)_/);
+                    if (!match) continue;
+                    
+                    const productId = match[1];
+                    const product = products.find(p => p.id === productId);
+                    if (!product) continue;
+                    
+                    const thumbName = video.name.replace('video_', 'thumb_').replace('.mp4', '.jpg');
+                    
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <img class="product-img" src="${product.image}" alt="${product.name}">
+                            <div class="product-info">
+                                <h3>${truncate(product.name, 40)}</h3>
+                                <div class="price">${product.price}</div>
+                            </div>
+                        </div>
+                        <div class="video-container">
+                            <video controls playsinline preload="metadata">
+                                <source src="${BASE}/output/${video.name}" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta">
+                                <span class="voice">🎙️ Luna TTS</span>
+                                <span class="amazon">🛒 Amazon</span>
+                                <span>9:16 Vertical</span>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+                
+                if (grid.children.length === 0) {
+                    grid.innerHTML = '<div class="loading">No videos found</div>';
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('grid').innerHTML = `<div class="loading">Error: ${err.message}</div>`;
+            }
+        }
+        
+        function truncate(str, len) {
+            return str.length > len ? str.substring(0, len) + '...' : str;
+        }
+        
+        loadVideos();
+    </script>
 </body>
 </html>
