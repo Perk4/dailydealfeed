@@ -12,6 +12,18 @@
 
 ## Recently Completed ✅
 
+18. [x] **Script + Music Regression Fix** — Restored music + varied script openers (2026-02-15 18:43 UTC)
+    - **Issue:** v8-simplified disabled music, script-map.json had generic "Next up we have..." openers
+    - **Fix:** Re-enabled MUSIC_CONFIG.enabled=true, rewrote all scripts with conversational openers
+    - **Test Video:** video_3_1771180834444.mp4 (Pink Stuff)
+    - **QA Score: 8.2/10** (up from 7.4/10!)
+      - Hook: 8/10 (afv-001 cliffhanger)
+      - Voice: 7/10 (Deepgram Luna - still bottleneck)
+      - Script: 9/10 ✅ ("Dude. The Pink Stuff..." - friend energy)
+      - Edit: 8.5/10 ✅ (crossfades + vibe-matched music)
+      - Watchability: 8.5/10 ✅
+    - Music vibe matching working: track03_born_norilsk for cleaning products
+
 17. [x] **Music Matching** — Vibe-based track selection verified (2026-02-15 17:12 UTC)
     - CeraVe → track05_dynamic_healing (wellness) ✅
     - Pink Stuff → track03_born_norilsk (cleaning) ✅
@@ -25,26 +37,7 @@
 
 ## Next Up ⏳
 
-18. [~] **Full QA Pass** — In progress (2026-02-15 18:10 UTC)
-    - BISSELL Little Green (video_5): 8.0/10 avg
-      - Hook: 8.5/10 ("What came out of my couch...I'm disturbed" - curiosity hook)
-      - Voice: 7/10 (Deepgram Luna - serviceable but detectable)
-      - Script: 8.5/10 ("Okay I need to show you..." - natural friend energy)
-      - Edit: 8/10 (v2.0-organic, crossfades, subtle zoom)
-      - Watchability: 8/10 (solid, voice is bottleneck)
-    - CeraVe Moisturizing Cream (video_1_1771178994263): 7.4/10 avg
-      - Hook: 8/10 (afv-001 clip - good cliffhanger)
-      - Voice: 7/10 (Deepgram Luna - still the bottleneck)
-      - Script: 7/10 ("Next up we have..." - generic opener, less personality)
-      - Edit: 7.5/10 (v8-simplified, crossfades but NO MUSIC)
-      - Watchability: 7.5/10 (music disabled = feels emptier)
-    - **Issues Found:**
-      - Script-map.json uses generic "Next up we have..." template (regression)
-      - v8-simplified disabled background music (was working in v7)
-      - Voice blocked by missing ELEVENLABS_API_KEY
-    - **Next Action:** Restore music integration + vary script openers
-
-19. [ ] **V7.0 Batch** — Regenerate with all refinements (music vibe matching + AFV clips)
+19. [ ] **V8.1 Batch** — Regenerate all products with fixes (music + scripts)
 
 ## Completed ✅
 
@@ -83,32 +76,30 @@
 
 ## Quality Targets
 
-| Dimension | V5.0 | V7.0 (AFV) | Target |
-|-----------|------|------------|--------|
-| Hook impact | 7 | 8.5 ✅ | 9+ |
-| Voice naturalness | 9 | 7 ⚠️ | 9 |
-| Script authenticity | 7 | 9 ✅ | 9+ |
-| Edit flow | 7 | 8 ✅ | 8+ |
-| Overall watchability | 7 | 8.5 ✅ | 9+ |
+| Dimension | V5.0 | V7.0 (AFV) | V8.1 (Fixed) | Target |
+|-----------|------|------------|--------------|--------|
+| Hook impact | 7 | 8.5 | 8 | 9+ |
+| Voice naturalness | 9 | 7 ⚠️ | 7 ⚠️ | 9 |
+| Script authenticity | 7 | 9 | 9 ✅ | 9+ |
+| Edit flow | 7 | 8 | 8.5 ✅ | 8+ |
+| Overall watchability | 7 | 8.5 | 8.5 ✅ | 9+ |
 
-**Latest Test:** video_1_1771178994263.mp4 (CeraVe Moisturizer) — Avg Score: 7.4/10
+**Latest Test:** video_3_1771180834444.mp4 (Pink Stuff) — Avg Score: **8.2/10** ⬆️
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Hook impact | 8/10 | afv-001 — decent cliffhanger |
-| Voice naturalness | 7/10 | Deepgram Luna - still detectable |
-| Script authenticity | 7/10 | ⚠️ "Next up we have..." — generic, lacks personality |
-| Edit flow | 7.5/10 | ⚠️ v8-simplified disabled music (regression) |
-| Overall watchability | 7.5/10 | Weaker than v7.0 — music + script variety needed |
+| Hook impact | 8/10 | afv-001 — solid cliffhanger |
+| Voice naturalness | 7/10 | Deepgram Luna - bottleneck |
+| Script authenticity | 9/10 | ✅ "Dude. The Pink Stuff..." — friend energy |
+| Edit flow | 8.5/10 | ✅ Crossfades + vibe-matched music restored |
+| Overall watchability | 8.5/10 | ✅ Significant improvement from 7.4/10 |
 
-**Regression Alert:** v8-simplified removed music integration. Previous v7.0 scored 8.2/10 with music.
+**Regression Fixed:** Music + script variety restored in V8.1
 
 **Bottleneck:** Voice naturalness (7/10) blocked by missing ELEVENLABS_API_KEY
-
-**Clip Quality:** New clips downloaded (react-m002-m004, reveal-m001-m003, shock-m001-m004) — clip-sourcing-v2 subagent stalled but partial progress captured
 
 **The test:** Would you actually watch this? Would you share it?
 
 ---
 
-*Updated: 2026-02-15 16:10 UTC*
+*Updated: 2026-02-15 18:43 UTC*
