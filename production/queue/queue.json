@@ -86,8 +86,10 @@
         "vibe": "satisfying",
         "score": 9.7
       },
-      "status": "pending",
-      "createdAt": "2026-02-16T04:17:21.363Z"
+      "status": "completed",
+      "createdAt": "2026-02-16T04:17:21.363Z",
+      "outputPath": "/root/dailydealfeed/output/video_4_1771220063409.mp4",
+      "qaScore": 10
     },
     {
       "id": 5,
@@ -106,8 +108,10 @@
         "vibe": "cozy",
         "score": 9.7
       },
-      "status": "pending",
-      "createdAt": "2026-02-16T04:17:21.363Z"
+      "status": "completed",
+      "createdAt": "2026-02-16T04:17:21.363Z",
+      "outputPath": "/root/dailydealfeed/output/video_5_1771220115489.mp4",
+      "qaScore": 10
     },
     {
       "id": 6,
