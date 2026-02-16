@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "createdAt": "2026-02-16T04:17:21.364Z",
-  "totalItems": 6,
+  "createdAt": "2026-02-16T12:56:55.422Z",
+  "totalItems": 11,
   "items": [
     {
       "id": 1,
@@ -20,10 +20,8 @@
         "vibe": "cozy",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T04:17:21.363Z",
-      "outputPath": "/root/dailydealfeed/output/video_1_1771215445231.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.421Z"
     },
     {
       "id": 2,
@@ -42,10 +40,8 @@
         "vibe": "satisfying",
         "score": 9.8
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T04:17:21.363Z",
-      "outputPath": "/root/dailydealfeed/output/video_2_1771215543259.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.421Z"
     },
     {
       "id": 3,
@@ -64,10 +60,8 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T04:17:21.363Z",
-      "outputPath": "/root/dailydealfeed/output/video_3_1771215597384.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.421Z"
     },
     {
       "id": 4,
@@ -86,10 +80,8 @@
         "vibe": "satisfying",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T04:17:21.363Z",
-      "outputPath": "/root/dailydealfeed/output/video_4_1771220063409.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.421Z"
     },
     {
       "id": 5,
@@ -108,10 +100,8 @@
         "vibe": "cozy",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T04:17:21.363Z",
-      "outputPath": "/root/dailydealfeed/output/video_5_1771220115489.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.421Z"
     },
     {
       "id": 6,
@@ -130,10 +120,108 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T04:17:21.363Z",
-      "outputPath": "/root/dailydealfeed/output/video_6_1771221185959.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.421Z"
+    },
+    {
+      "id": 7,
+      "product": {
+        "asin": "B0B2RM68G2",
+        "name": "BIODANCE Bio-Collagen Real Deep Mask, Hydrating Overnight Hydrogel Mask, Pore Minimizing, Elasticity",
+        "price": "$19.99",
+        "category": "home",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0B2RM68G2.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B0B2RM68G2?tag=dailydealfeed-20",
+        "best_stat": "TikTok viral favorite"
+      },
+      "clip": {
+        "file": "tt_seg_006.mp4",
+        "path": "clips/shorts/tt_seg_006.mp4",
+        "vibe": "cozy",
+        "score": 9.6
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.422Z"
+    },
+    {
+      "id": 8,
+      "product": {
+        "asin": "B08KT2Z93D",
+        "name": "eos Shea Better Body Lotion Vanilla Cashmere, 24-Hour Moisture Skin Care, Lightweight & Non-Greasy, ",
+        "price": "$19.99",
+        "category": "home",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08KT2Z93D.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B08KT2Z93D?tag=dailydealfeed-20",
+        "best_stat": "TikTok viral favorite"
+      },
+      "clip": {
+        "file": "afv-008.mp4",
+        "path": "clips/processed/afv-008.mp4",
+        "vibe": "satisfying",
+        "score": 9.5
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.422Z"
+    },
+    {
+      "id": 9,
+      "product": {
+        "asin": "B09V7Z4TJG",
+        "name": "medicube Toner Pads Zero Pore Pad 2.0 | Dual-Textured Facial Pad for Exfoliation and Pore Care with ",
+        "price": "$19.99",
+        "category": "home",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09V7Z4TJG.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B09V7Z4TJG?tag=dailydealfeed-20",
+        "best_stat": "TikTok viral favorite"
+      },
+      "clip": {
+        "file": "tt_seg_008.mp4",
+        "path": "clips/shorts/tt_seg_008.mp4",
+        "vibe": "satisfying",
+        "score": 9.4
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.422Z"
+    },
+    {
+      "id": 10,
+      "product": {
+        "asin": "B0DK4Y2YP3",
+        "name": "celimax The Vita A Retinal Shot Tightening Booster | 0.1% Retinal, 3% Matryxyl, High-Strength Retino",
+        "price": "$19.99",
+        "category": "home",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DK4Y2YP3.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B0DK4Y2YP3?tag=dailydealfeed-20",
+        "best_stat": "TikTok viral favorite"
+      },
+      "clip": {
+        "file": "yt_seg_005.mp4",
+        "path": "clips/shorts/yt_seg_005.mp4",
+        "vibe": "satisfying",
+        "score": 9.4
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.422Z"
+    },
+    {
+      "id": 11,
+      "product": {
+        "asin": "B074PVTPBW",
+        "name": "Mighty Patch Original Patch from Hero Cosmetics - #1 Hydrocolloid Acne Pimple Patches for Face, Shri",
+        "price": "$19.99",
+        "category": "home",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B074PVTPBW.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B074PVTPBW?tag=dailydealfeed-20",
+        "best_stat": "TikTok viral favorite"
+      },
+      "clip": {
+        "file": "short_sJLAuLuyvIg.mp4",
+        "path": "clips/shorts/short_sJLAuLuyvIg.mp4",
+        "vibe": "satisfying",
+        "score": 9.3
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T12:56:55.422Z"
     }
   ]
 }
