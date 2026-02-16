@@ -130,8 +130,10 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "pending",
-      "createdAt": "2026-02-16T04:17:21.363Z"
+      "status": "completed",
+      "createdAt": "2026-02-16T04:17:21.363Z",
+      "outputPath": "/root/dailydealfeed/output/video_6_1771221185959.mp4",
+      "qaScore": 10
     }
   ]
 }
