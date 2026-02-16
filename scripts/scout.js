@@ -26,6 +26,7 @@ const STATE_FILE = path.join(SCRIPT_DIR, 'scout_state.json');
 const CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'curated.json');
 const AFV_CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'processed-manifest.json');
 const SHORTS_CLIPS_FILE = path.join(PROJECT_DIR, 'clips', 'shorts-manifest.json');
+const LIBRARY_FILE = path.join(PROJECT_DIR, 'clips', 'library.json');
 const CLIPS_CACHE_DIR = path.join(PROJECT_DIR, 'clips', 'cache');
 
 // Ensure cache directory exists
@@ -155,7 +156,51 @@ const CATEGORY_VIBES = {
 };
 
 /**
- * Load clips library from JSON
+ * Load unified library.json (new primary source)
+ * Falls back to legacy curated.json if library doesn't exist
+ */
+function loadUnifiedLibrary() {
+  if (fs.existsSync(LIBRARY_FILE)) {
+    const library = JSON.parse(fs.readFileSync(LIBRARY_FILE, 'utf8'));
+    
+    // Transform to vibe-keyed format for compatibility
+    const clipsByVibe = {};
+    for (const clip of library.clips || []) {
+      const vibe = clip.vibe || 'funny';
+      if (!clipsByVibe[vibe]) {
+        clipsByVibe[vibe] = [];
+      }
+      clipsByVibe[vibe].push({
+        id: clip.id,
+        url: clip.file ? path.join(PROJECT_DIR, clip.file) : clip.source_url,
+        localPath: clip.file ? path.join(PROJECT_DIR, clip.file) : null,
+        source: clip.source,
+        sourceUrl: clip.source_url,
+        vibe: clip.vibe,
+        duration: clip.duration,
+        description: clip.description || clip.title,
+        hookStyle: clip.cliffhanger_applied ? 'cliffhanger' : 'viral',
+        hasAudio: clip.has_audio,
+        qualityScore: clip.quality_score
+      });
+    }
+    
+    return {
+      clips: clipsByVibe,
+      _meta: {
+        version: library.version,
+        updated: library.updated_at,
+        source: 'library.json'
+      }
+    };
+  }
+  
+  // Fallback to legacy curated.json
+  return loadClipsLibrary();
+}
+
+/**
+ * Load clips library from JSON (legacy)
  * Transforms curated.json array format to the expected vibe-keyed format
  */
 function loadClipsLibrary() {
@@ -526,9 +571,11 @@ function selectProduct(products, state, productId = null) {
 
 /**
  * Find the best viral clip for a product
- * Prioritizes: AFV cliffhanger clips > YouTube Shorts (vertical) > curated clips
+ * Prioritizes: Unified library (with cliffhangers) > AFV clips > YouTube Shorts > curated clips
  */
 function findClip(product, state) {
+  // Try unified library first (includes all migrated clips)
+  const unifiedLibrary = loadUnifiedLibrary();
   const library = loadClipsLibrary();
   const afvLibrary = loadAFVClips();
   const shortsLibrary = loadShortsClips();
@@ -567,8 +614,30 @@ function findClip(product, state) {
   const recentClipIds = state.usedClipIds?.slice(-10) || [];
   let candidateClips = [];
   
-  // PRIORITY 1: Try AFV clips first (cliffhanger style = max engagement)
-  if (afvLibrary) {
+  // PRIORITY 0: Try unified library first (includes all ingested clips with proper vibes)
+  if (unifiedLibrary && unifiedLibrary.clips) {
+    // Map product vibes to standard vibes
+    const standardVibes = targetVibes.map(v => {
+      // Map product vibes to standard clip vibes
+      const vibeMap = {
+        'shocked': 'shocking',
+        'reveal': 'shocking',
+        'reaction': 'funny',
+        'cozy': 'wholesome',
+        'twist': 'shocking'
+      };
+      return vibeMap[v] || v;
+    });
+    
+    for (const vibe of [...new Set(standardVibes)]) {
+      const vibeClips = unifiedLibrary.clips[vibe] || [];
+      const available = vibeClips.filter(c => !recentClipIds.includes(c.id) && c.localPath && fs.existsSync(c.localPath));
+      candidateClips.push(...available.map(c => ({ ...c, matchedVibe: vibe, isUnified: true })));
+    }
+  }
+  
+  // PRIORITY 1: Try AFV clips if not enough from unified library
+  if (candidateClips.length < 3 && afvLibrary) {
     // Map product vibes to AFV vibes
     let afvVibes = [];
     for (const vibe of targetVibes) {
@@ -745,7 +814,7 @@ async function main() {
 }
 
 // Export for module use
-module.exports = { scout, listProducts, loadProducts, findClip, selectProduct, cacheAllClips, loadClipsLibrary };
+module.exports = { scout, listProducts, loadProducts, findClip, selectProduct, cacheAllClips, loadClipsLibrary, loadUnifiedLibrary };
 
 // Run if called directly
 if (require.main === module) {

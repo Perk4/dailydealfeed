@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-02-15T05:38:31.988Z",
-  "updated": "2026-02-15T23:38:34.774Z",
+  "updated": "2026-02-16T00:39:08.650Z",
   "settings": {
     "platforms": [
       "tiktok",
@@ -1502,6 +1502,152 @@
         }
       },
       "fileSize": 884316,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771200517676_nck5mtddq",
+      "videoPath": "/root/dailydealfeed/output/video_1_1771200463180.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_1_1771200463180.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_1_1771200463180.json",
+      "addedAt": "2026-02-16T00:08:37.676Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_1_1771200463180.mp4",
+        "video_filename": "video_1_1771200463180.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_1_1771200463180.jpg",
+        "thumb_filename": "thumb_1_1771200463180.jpg",
+        "product_id": "1",
+        "product_name": "CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1)",
+        "product_price": "$18.96",
+        "ig_caption": "This changed everything\n\nCeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "This changed everything 🤯 CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "This changed everything",
+        "voiceover_script": "This is a 19-ounce moisturizing cream. Fragrance-free with ceramides. $18.96, link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track05_dynamic_healing.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-16T00:08:37.578Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v10-sticker-overlay",
+          "changes": [
+            "price_sticker_style",
+            "fire_emoji_added",
+            "drop_shadow_effect",
+            "bounce_animation",
+            "voiceover_delayed",
+            "hook_audio_preserved",
+            "timing_simplified"
+          ],
+          "voiceover_delay_seconds": 3,
+          "hook_has_original_audio": true,
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": true
+        }
+      },
+      "fileSize": 882987,
+      "platforms": {
+        "tiktok": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "instagram": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        },
+        "youtube": {
+          "status": "pending",
+          "postedAt": null,
+          "url": null
+        }
+      },
+      "scheduledFor": null,
+      "qaScore": null,
+      "notes": null
+    },
+    {
+      "id": "post_1771202348649_btvpzcghu",
+      "videoPath": "/root/dailydealfeed/output/video_1_1771202262284.mp4",
+      "thumbnailPath": "/root/dailydealfeed/output/thumb_1_1771202262284.jpg",
+      "metaPath": "/root/dailydealfeed/output/post_1_1771202262284.json",
+      "addedAt": "2026-02-16T00:39:08.649Z",
+      "status": "pending",
+      "priority": "normal",
+      "productInfo": {
+        "video_path": "/root/dailydealfeed/output/video_1_1771202262284.mp4",
+        "video_filename": "video_1_1771202262284.mp4",
+        "thumb_path": "/root/dailydealfeed/output/thumb_1_1771202262284.jpg",
+        "thumb_filename": "thumb_1_1771202262284.jpg",
+        "product_id": "1",
+        "product_name": "CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1)",
+        "product_price": "$18.96",
+        "ig_caption": "You need to see this\n\nCeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+        "tiktok_caption": "You need to see this 🤯 CeraVe Moisturizing Cream, Body and Face Moisturizer for Dry Skin, Body Cream with Hyaluronic Acid and Ceramides, Daily Moisturizer, Oil-Free, Fragrance Free, Non-Comedogenic, 19 Ounce 19 Ounce (Pack of 1) $18.96 #amazonfinds #tiktokmademebuyit #viral",
+        "hook_angle": "You need to see this",
+        "voiceover_script": "This is a 19-ounce moisturizing cream. Fragrance-free with ceramides. $18.96, link in bio.",
+        "has_voiceover": true,
+        "has_background_music": true,
+        "music_track": "track05_dynamic_healing.mp3",
+        "duration_seconds": 10,
+        "timing": {
+          "hook": 3,
+          "product": 5,
+          "cta": 2
+        },
+        "created_at": "2026-02-16T00:39:08.475Z",
+        "ready_for_posting": true,
+        "edit_style": {
+          "version": "v10-sticker-overlay",
+          "changes": [
+            "price_sticker_style",
+            "fire_emoji_added",
+            "drop_shadow_effect",
+            "bounce_animation",
+            "voiceover_delayed",
+            "hook_audio_preserved",
+            "timing_simplified"
+          ],
+          "voiceover_delay_seconds": 3,
+          "hook_has_original_audio": true,
+          "zoom_intensity": 0.05,
+          "text_delay": 0.15,
+          "progress_bar": false,
+          "crossfade": 0.3,
+          "music_enabled": true
+        }
+      },
+      "fileSize": 1893076,
       "platforms": {
         "tiktok": {
           "status": "pending",

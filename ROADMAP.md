@@ -46,17 +46,22 @@
 
 ## 🔄 In Progress
 
-### 1. Clip Ingestion Pipeline (Agent Running)
+### 1. Clip Ingestion Pipeline ✅ COMPLETE
 **Goal:** Production-ready `ingest-clips.js` for automated clip acquisition
 
 | Phase | Description | Status |
 |-------|-------------|--------|
-| 1 | Foundation + Download | 🔄 In Progress |
-| 2 | Quality Filtering | ⏳ Pending |
-| 3 | Cliffhanger Detection | ⏳ Pending |
-| 4 | Auto Vibe Tagging | ⏳ Pending |
-| 5 | Unified Library Integration | ⏳ Pending |
-| 6 | CLI Polish + Documentation | ⏳ Pending |
+| 1 | Foundation + Download | ✅ Done |
+| 2 | Quality Filtering | ✅ Done |
+| 3 | Cliffhanger Detection | ✅ Done |
+| 4 | Auto Vibe Tagging | ✅ Done |
+| 5 | Unified Library Integration | ✅ Done (71 clips) |
+| 6 | CLI Polish + Documentation | ✅ Done |
+
+### 2. Amazon Screen Recorder ✅ COMPLETE
+- `scripts/amazon-recorder.js` — records Amazon mobile page
+- Test recordings: CeraVe (239KB), Pink Stuff (218KB)
+- Ready to integrate with editor.js
 
 ---
 
