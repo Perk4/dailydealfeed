@@ -1,6 +1,6 @@
 {
-  "lastProductId": "3",
-  "lastCategory": "footwear",
+  "lastProductId": "4",
+  "lastCategory": "beauty",
   "usedProductIds": [
     "1",
     "6",
@@ -15,8 +15,8 @@
     "9",
     "10"
   ],
-  "categoryRotationIndex": 1,
-  "lastRun": "2026-02-16T01:08:44.753Z",
+  "categoryRotationIndex": 2,
+  "lastRun": "2026-02-16T01:12:49.788Z",
   "usedClipIds": [
     "cozy-m003",
     "cozy-m004",
@@ -43,6 +43,8 @@
     "afv-015",
     "afv-014",
     "afv-010",
-    "shorts-ztq8tAtmw0M"
+    "shorts-ztq8tAtmw0M",
+    "shorts-sJLAuLuyvIg",
+    "shorts-_N7X9k9HbZU"
   ]
 }

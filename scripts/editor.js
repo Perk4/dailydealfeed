@@ -657,8 +657,9 @@ function convertGifToVideo(inputPath, outputPath, duration, options = {}) {
   const isGif = ext === '.gif';
   const isMp4 = ext === '.mp4' || ext === '.m4v' || ext === '.mov';
   
-  // Scale to fit video width, crop/pad to match dimensions
-  const scaleFilter = `scale=${VIDEO_WIDTH}:-1:force_original_aspect_ratio=decrease,pad=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:(ow-iw)/2:(oh-ih)/2:color=${COLORS.background}`;
+  // Scale to fit within video dimensions, then pad to exact size
+  // V11: Fixed to handle portrait clips (scaled height > 1920)
+  const scaleFilter = `scale=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:force_original_aspect_ratio=decrease,pad=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:(ow-iw)/2:(oh-ih)/2:color=${COLORS.background}`;
   
   // Audio flag: -an strips audio, omit to keep it
   const audioFlag = preserveAudio ? '' : '-an';
