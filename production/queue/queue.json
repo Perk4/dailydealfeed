@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "createdAt": "2026-02-16T12:56:55.422Z",
-  "totalItems": 11,
+  "createdAt": "2026-02-16T16:22:58.822Z",
+  "totalItems": 16,
   "items": [
     {
       "id": 1,
@@ -21,8 +21,8 @@
         "score": 9.9
       },
       "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.421Z",
-      "outputPath": "/root/dailydealfeed/output/video_1_1771248239411.mp4",
+      "createdAt": "2026-02-16T16:22:58.821Z",
+      "outputPath": "/root/dailydealfeed/output/video_1_1771259044316.mp4",
       "qaScore": 10
     },
     {
@@ -43,8 +43,8 @@
         "score": 9.8
       },
       "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.421Z",
-      "outputPath": "/root/dailydealfeed/output/video_2_1771248330685.mp4",
+      "createdAt": "2026-02-16T16:22:58.821Z",
+      "outputPath": "/root/dailydealfeed/output/video_2_1771259135827.mp4",
       "qaScore": 10
     },
     {
@@ -64,10 +64,8 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.421Z",
-      "outputPath": "/root/dailydealfeed/output/video_3_1771248389335.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.821Z"
     },
     {
       "id": 4,
@@ -86,10 +84,8 @@
         "vibe": "satisfying",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.421Z",
-      "outputPath": "/root/dailydealfeed/output/video_4_1771251821866.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.821Z"
     },
     {
       "id": 5,
@@ -108,10 +104,8 @@
         "vibe": "cozy",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.421Z",
-      "outputPath": "/root/dailydealfeed/output/video_5_1771251873016.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.821Z"
     },
     {
       "id": 6,
@@ -130,10 +124,8 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.421Z",
-      "outputPath": "/root/dailydealfeed/output/video_6_1771253580578.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.821Z"
     },
     {
       "id": 7,
@@ -152,10 +144,8 @@
         "vibe": "cozy",
         "score": 9.6
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.422Z",
-      "outputPath": "/root/dailydealfeed/output/video_7_1771253655826.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.821Z"
     },
     {
       "id": 8,
@@ -174,10 +164,8 @@
         "vibe": "satisfying",
         "score": 9.5
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.422Z",
-      "outputPath": "/root/dailydealfeed/output/video_8_1771255380018.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.821Z"
     },
     {
       "id": 9,
@@ -196,10 +184,8 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.422Z",
-      "outputPath": "/root/dailydealfeed/output/video_9_1771255491349.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.822Z"
     },
     {
       "id": 10,
@@ -218,10 +204,8 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.422Z",
-      "outputPath": "/root/dailydealfeed/output/video_10_1771257179826.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.822Z"
     },
     {
       "id": 11,
@@ -240,10 +224,108 @@
         "vibe": "satisfying",
         "score": 9.3
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T12:56:55.422Z",
-      "outputPath": "/root/dailydealfeed/output/video_11_1771257334274.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.822Z"
+    },
+    {
+      "id": 12,
+      "product": {
+        "asin": "B0B2QNQPKL",
+        "name": "Shark Slides Anti-Slip",
+        "price": "$16.99",
+        "category": "footwear",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0B2QNQPKL.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B0B2QNQPKL?tag=dailydealfeed-20",
+        "best_stat": "Viral shark design"
+      },
+      "clip": {
+        "file": "yt_seg_003.mp4",
+        "path": "clips/shorts/yt_seg_003.mp4",
+        "vibe": "funny",
+        "score": 9.2
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.822Z"
+    },
+    {
+      "id": 13,
+      "product": {
+        "asin": "B09GFJ6HRW",
+        "name": "Makeup Eraser Original Pink",
+        "price": "$20.00",
+        "category": "beauty",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09GFJ6HRW.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B09GFJ6HRW?tag=dailydealfeed-20",
+        "best_stat": "Removes 100% of makeup"
+      },
+      "clip": {
+        "file": "short_d7U4H89RZQk.mp4",
+        "path": "clips/shorts/short_d7U4H89RZQk.mp4",
+        "vibe": "satisfying",
+        "score": 8.3
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.822Z"
+    },
+    {
+      "id": 14,
+      "product": {
+        "asin": "B0B5WRJP8B",
+        "name": "Air Fryer 4.2 Qt Digital LED",
+        "price": "$49.99",
+        "category": "kitchen",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0B5WRJP8B.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B0B5WRJP8B?tag=dailydealfeed-20",
+        "best_stat": "95% less oil than frying"
+      },
+      "clip": {
+        "file": "tt_seg_019.mp4",
+        "path": "clips/shorts/tt_seg_019.mp4",
+        "vibe": "satisfying",
+        "score": 7.8
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.822Z"
+    },
+    {
+      "id": 15,
+      "product": {
+        "asin": "B00BGSH8PU",
+        "name": "BYPHASSE Face Mist with Rose Water",
+        "price": "$8.99",
+        "category": "skincare",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00BGSH8PU.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B00BGSH8PU?tag=dailydealfeed-20",
+        "best_stat": "Natural rose extract"
+      },
+      "clip": {
+        "file": "yt_seg_000.mp4",
+        "path": "clips/shorts/yt_seg_000.mp4",
+        "vibe": "cozy",
+        "score": 8.9
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.822Z"
+    },
+    {
+      "id": 16,
+      "product": {
+        "asin": "B0CQHZ8LFR",
+        "name": "Beauty of Joseon Relief Sun SPF50",
+        "price": "$17.00",
+        "category": "skincare",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CQHZ8LFR.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B0CQHZ8LFR?tag=dailydealfeed-20",
+        "best_stat": "Rice + probiotics formula"
+      },
+      "clip": {
+        "file": "short_mqNm9fqbFJ4.mp4",
+        "path": "clips/shorts/short_mqNm9fqbFJ4.mp4",
+        "vibe": "cozy",
+        "score": 7.9
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T16:22:58.822Z"
     }
   ]
 }

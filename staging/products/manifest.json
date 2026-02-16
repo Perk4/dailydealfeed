@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-02-16T12:56:51.943Z",
+  "updatedAt": "2026-02-16T16:22:58.790Z",
   "products": [
     {
       "asin": "B00PBX3L7K",
@@ -127,6 +127,66 @@
       "image_url": "https://images-na.ssl-images-amazon.com/images/P/B074PVTPBW.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B074PVTPBW?tag=dailydealfeed-20",
       "best_stat": "TikTok viral favorite"
+    },
+    {
+      "asin": "B0B2QNQPKL",
+      "name": "Shark Slides Anti-Slip",
+      "price": "$16.99",
+      "category": "footwear",
+      "status": "approved",
+      "validatedAt": "2026-02-16T16:22:58.789Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0B2QNQPKL.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B0B2QNQPKL?tag=dailydealfeed-20",
+      "best_stat": "Viral shark design"
+    },
+    {
+      "asin": "B09GFJ6HRW",
+      "name": "Makeup Eraser Original Pink",
+      "price": "$20.00",
+      "category": "beauty",
+      "status": "approved",
+      "validatedAt": "2026-02-16T16:22:58.790Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09GFJ6HRW.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B09GFJ6HRW?tag=dailydealfeed-20",
+      "best_stat": "Removes 100% of makeup"
+    },
+    {
+      "asin": "B0B5WRJP8B",
+      "name": "Air Fryer 4.2 Qt Digital LED",
+      "price": "$49.99",
+      "category": "kitchen",
+      "status": "approved",
+      "validatedAt": "2026-02-16T16:22:58.790Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0B5WRJP8B.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B0B5WRJP8B?tag=dailydealfeed-20",
+      "best_stat": "95% less oil than frying"
+    },
+    {
+      "asin": "B00BGSH8PU",
+      "name": "BYPHASSE Face Mist with Rose Water",
+      "price": "$8.99",
+      "category": "skincare",
+      "status": "approved",
+      "validatedAt": "2026-02-16T16:22:58.790Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00BGSH8PU.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B00BGSH8PU?tag=dailydealfeed-20",
+      "best_stat": "Natural rose extract"
+    },
+    {
+      "asin": "B0CQHZ8LFR",
+      "name": "Beauty of Joseon Relief Sun SPF50",
+      "price": "$17.00",
+      "category": "skincare",
+      "status": "approved",
+      "validatedAt": "2026-02-16T16:22:58.790Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CQHZ8LFR.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B0CQHZ8LFR?tag=dailydealfeed-20",
+      "best_stat": "Rice + probiotics formula"
     }
   ]
 }
