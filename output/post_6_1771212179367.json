@@ -1,8 +1,8 @@
 {
-  "video_path": "/root/dailydealfeed/output/video_6_1771205795710.mp4",
-  "video_filename": "video_6_1771205795710.mp4",
-  "thumb_path": "/root/dailydealfeed/output/thumb_6_1771205795710.jpg",
-  "thumb_filename": "thumb_6_1771205795710.jpg",
+  "video_path": "/root/dailydealfeed/output/video_6_1771212179367.mp4",
+  "video_filename": "video_6_1771212179367.mp4",
+  "thumb_path": "/root/dailydealfeed/output/thumb_6_1771212179367.jpg",
+  "thumb_filename": "thumb_6_1771212179367.jpg",
   "product_id": "6",
   "product_name": "Scrub Daddy Original Sponge",
   "product_price": "$3.88",
@@ -19,7 +19,7 @@
     "product": 5,
     "cta": 2
   },
-  "created_at": "2026-02-16T01:38:02.846Z",
+  "created_at": "2026-02-16T03:24:25.251Z",
   "ready_for_posting": true,
   "edit_style": {
     "version": "v10-sticker-overlay",

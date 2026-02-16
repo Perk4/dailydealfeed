@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "createdAt": "2026-02-16T01:36:35.648Z",
+  "createdAt": "2026-02-16T03:22:56.543Z",
   "totalItems": 6,
-  "pendingItems": 5,
+  "pendingItems": 1,
   "completedItems": 0,
   "items": [
     {
-      "id": "item_1771205795644_B00ELWABHE",
+      "id": "item_1771212176542_B00ELWABHE",
       "product": {
         "id": "6",
         "asin": "B00ELWABHE",
@@ -27,20 +27,20 @@
       },
       "matchScore": 52.63,
       "status": "needs-review",
-      "createdAt": "2026-02-16T01:36:35.644Z",
+      "createdAt": "2026-02-16T03:22:56.542Z",
       "outputPath": "/root/dailydealfeed/output/amazon_B00ELWABHE.mp4",
       "qaScore": 4,
-      "startedAt": "2026-02-16T01:36:35.678Z",
+      "startedAt": "2026-02-16T03:22:59.335Z",
       "qaIssues": [
         "Short duration: 6.0s (expected 10-15s)",
         "No audio track",
         "Very small file: 0.16 MB"
       ],
-      "completedAt": "2026-02-16T01:38:02.980Z",
+      "completedAt": "2026-02-16T03:24:25.431Z",
       "finalPath": "/root/dailydealfeed/output/rejected/amazon_B00ELWABHE.mp4"
     },
     {
-      "id": "item_1771205795644_B00PBX3L7K",
+      "id": "item_1771212176542_B00PBX3L7K",
       "product": {
         "id": "1",
         "asin": "B00PBX3L7K",
@@ -60,14 +60,21 @@
         "has_audio": true
       },
       "matchScore": 42.75,
-      "status": "in-progress",
-      "createdAt": "2026-02-16T01:36:35.644Z",
-      "outputPath": null,
-      "qaScore": null,
-      "startedAt": "2026-02-16T01:38:03.033Z"
+      "status": "needs-review",
+      "createdAt": "2026-02-16T03:22:56.542Z",
+      "outputPath": "/root/dailydealfeed/output/amazon_B00PBX3L7K.mp4",
+      "qaScore": 4,
+      "startedAt": "2026-02-16T03:24:25.437Z",
+      "qaIssues": [
+        "Short duration: 6.0s (expected 10-15s)",
+        "No audio track",
+        "Very small file: 0.18 MB"
+      ],
+      "completedAt": "2026-02-16T03:26:13.862Z",
+      "finalPath": "/root/dailydealfeed/output/rejected/amazon_B00PBX3L7K.mp4"
     },
     {
-      "id": "item_1771205795644_B07GXDZ5VZ",
+      "id": "item_1771212176542_B07GXDZ5VZ",
       "product": {
         "id": "2",
         "asin": "B07GXDZ5VZ",
@@ -87,13 +94,21 @@
         "has_audio": true
       },
       "matchScore": 47.38,
-      "status": "pending",
-      "createdAt": "2026-02-16T01:36:35.644Z",
-      "outputPath": null,
-      "qaScore": null
+      "status": "needs-review",
+      "createdAt": "2026-02-16T03:22:56.542Z",
+      "outputPath": "/root/dailydealfeed/output/amazon_B07GXDZ5VZ.mp4",
+      "qaScore": 4,
+      "startedAt": "2026-02-16T03:26:13.916Z",
+      "qaIssues": [
+        "Short duration: 6.0s (expected 10-15s)",
+        "No audio track",
+        "Very small file: 0.23 MB"
+      ],
+      "completedAt": "2026-02-16T03:27:58.613Z",
+      "finalPath": "/root/dailydealfeed/output/rejected/amazon_B07GXDZ5VZ.mp4"
     },
     {
-      "id": "item_1771205795645_B07JM39NS1",
+      "id": "item_1771212176542_B07JM39NS1",
       "product": {
         "id": "4",
         "asin": "B07JM39NS1",
@@ -113,13 +128,21 @@
         "has_audio": true
       },
       "matchScore": 47.25,
-      "status": "pending",
-      "createdAt": "2026-02-16T01:36:35.645Z",
-      "outputPath": null,
-      "qaScore": null
+      "status": "needs-review",
+      "createdAt": "2026-02-16T03:22:56.542Z",
+      "outputPath": "/root/dailydealfeed/output/amazon_B07JM39NS1.mp4",
+      "qaScore": 4,
+      "startedAt": "2026-02-16T03:27:58.616Z",
+      "qaIssues": [
+        "Short duration: 6.0s (expected 10-15s)",
+        "No audio track",
+        "Very small file: 0.14 MB"
+      ],
+      "completedAt": "2026-02-16T03:29:20.422Z",
+      "finalPath": "/root/dailydealfeed/output/rejected/amazon_B07JM39NS1.mp4"
     },
     {
-      "id": "item_1771205795645_B09TKMK2RW",
+      "id": "item_1771212176542_B09TKMK2RW",
       "product": {
         "id": "3",
         "asin": "B09TKMK2RW",
@@ -139,13 +162,21 @@
         "has_audio": true
       },
       "matchScore": 52.63,
-      "status": "pending",
-      "createdAt": "2026-02-16T01:36:35.645Z",
-      "outputPath": null,
-      "qaScore": null
+      "status": "needs-review",
+      "createdAt": "2026-02-16T03:22:56.542Z",
+      "outputPath": "/root/dailydealfeed/output/amazon_B09TKMK2RW.mp4",
+      "qaScore": 4,
+      "startedAt": "2026-02-16T03:29:20.424Z",
+      "qaIssues": [
+        "Short duration: 6.0s (expected 10-15s)",
+        "No audio track",
+        "Very small file: 0.16 MB"
+      ],
+      "completedAt": "2026-02-16T03:31:19.850Z",
+      "finalPath": "/root/dailydealfeed/output/rejected/amazon_B09TKMK2RW.mp4"
     },
     {
-      "id": "item_1771205795648_B0BQ83Q8JN",
+      "id": "item_1771212176543_B0BQ83Q8JN",
       "product": {
         "id": "5",
         "asin": "B0BQ83Q8JN",
@@ -165,10 +196,11 @@
         "has_audio": true
       },
       "matchScore": 42.75,
-      "status": "pending",
-      "createdAt": "2026-02-16T01:36:35.648Z",
+      "status": "in-progress",
+      "createdAt": "2026-02-16T03:22:56.543Z",
       "outputPath": null,
-      "qaScore": null
+      "qaScore": null,
+      "startedAt": "2026-02-16T03:31:19.852Z"
     }
   ]
 }
