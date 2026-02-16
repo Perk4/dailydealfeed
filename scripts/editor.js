@@ -802,6 +802,72 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
   ffmpeg(`-f lavfi -i "color=c=${COLORS.background}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}" -i "${imagePath}" -filter_complex "${filter}" -c:v libx264 -pix_fmt yuv420p -t ${duration} "${outputPath}"`);
 }
 
+// V11: Create product showcase from Amazon screen recording with price sticker overlay
+function createProductSegmentFromVideo(videoPath, productName, price, outputPath, duration) {
+  const escapedName = escapeText(productName);
+  const escapedPrice = escapeText(price);
+  
+  // V10-style sticker colors
+  const stickerBgColor = 'ff1493'; // Hot pink
+  const stickerTextColor = 'ffffff'; // White
+  const stickerShadowColor = '000000'; // Black shadow
+  const fireEmoji = '🔥';
+  
+  // Price with emoji
+  const priceWithEmoji = `${fireEmoji} ${price}`;
+  const escapedPriceEmoji = escapeText(priceWithEmoji);
+  
+  // Positioning
+  const nameY = Math.floor(VIDEO_HEIGHT * 0.12); // Top area for name
+  const priceY = Math.floor(VIDEO_HEIGHT * 0.76); // Bottom area for sticker
+  
+  // Bounce animation timing
+  const bounceStart = 0.1;
+  const bounceDur = 0.35;
+  const startOffset = 60;
+  
+  // Text animations
+  const textDelay = EDIT_STYLE.textDelaySeconds || 0.15;
+  const textFadeIn = 0.4;
+  
+  // Name fade in
+  const nameAlpha = `if(lt(t\\,${textDelay})\\,0\\,if(lt(t\\,${textDelay + textFadeIn})\\,(t-${textDelay})/${textFadeIn}\\,1))`;
+  
+  // Price sticker alpha
+  const priceAlpha = `if(lt(t\\,${bounceStart})\\,0\\,if(lt(t\\,${bounceStart + 0.1})\\,(t-${bounceStart})/0.1\\,1))`;
+  
+  // Price sticker Y position with bounce
+  const priceYBounce = `${priceY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,` +
+    `if(lt(t\\,${bounceStart + bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))`;
+  
+  // Shadow offset
+  const shadowOffsetX = 4;
+  const shadowOffsetY = 4;
+  
+  // Build filter: scale video to fit, add overlays
+  const filter = [
+    // Scale and pad Amazon recording to 9:16
+    `scale=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:force_original_aspect_ratio=decrease,pad=${VIDEO_WIDTH}:${VIDEO_HEIGHT}:(ow-iw)/2:(oh-ih)/2:color=${COLORS.background}`,
+    
+    // Product name (top, subtle)
+    `drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=44:fontcolor=${COLORS.textSecondary}:x=(w-text_w)/2:y=${nameY}:alpha='${nameAlpha}'`,
+    
+    // Sticker shadow box
+    `drawbox=x='(w-360)/2+${shadowOffsetX}':y='${priceY}-24+${shadowOffsetY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=360:h=90:color=${stickerShadowColor}@0.4:t=fill`,
+    
+    // Sticker background (pink)
+    `drawbox=x='(w-360)/2':y='${priceY}-24+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=360:h=90:color=${stickerBgColor}:t=fill`,
+    
+    // Price text shadow
+    `drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=72:fontcolor=${stickerShadowColor}@0.5:x=(w-text_w)/2+2:y='${priceYBounce}+2':alpha='${priceAlpha}'`,
+    
+    // Price text (white on pink)
+    `drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=72:fontcolor=${stickerTextColor}:x=(w-text_w)/2:y='${priceYBounce}':alpha='${priceAlpha}'`
+  ].join(',');
+  
+  ffmpeg(`-i "${videoPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);
+}
+
 // Create CTA segment with animated text
 function createCTASegment(outputPath, duration) {
   const ctaText = 'Link in bio';
@@ -1369,6 +1435,25 @@ async function editVideo(input) {
     
     console.log(`📐 Final timing: ${totalDuration}s total (${hookDuration}+${productDuration}+${ctaDuration})`);
     
+    // V11: Check for Amazon screen recording FIRST (before downloading assets)
+    let amazonRecording = null;
+    try {
+      const productsPath = path.join(SCRIPT_DIR, '..', 'products.json');
+      if (fs.existsSync(productsPath)) {
+        const productsData = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+        const product = productsData.products.find(p => p.id === String(productId));
+        if (product && product.asin) {
+          const amazonPath = path.join(OUTPUT_DIR, `amazon_${product.asin}.mp4`);
+          if (fs.existsSync(amazonPath)) {
+            amazonRecording = amazonPath;
+            console.log(`📱 Found Amazon recording: ${amazonPath}`);
+          }
+        }
+      }
+    } catch (e) {
+      console.log(`⚠️  Could not check for Amazon recording: ${e.message}`);
+    }
+    
     // Step 1: Download assets
     console.log('📥 Downloading meme/clip...');
     // Prefer local cached clip if available
@@ -1379,8 +1464,13 @@ async function editVideo(input) {
       await downloadFile(input.meme_url, tempMeme);
     }
     
-    console.log('📥 Downloading product image...');
-    await downloadFile(input.product_image, tempProduct);
+    // V11: Only download product image if no Amazon recording (fallback)
+    if (!amazonRecording) {
+      console.log('📥 Downloading product image...');
+      await downloadFile(input.product_image, tempProduct);
+    } else {
+      console.log('📱 Skipping product image download (using Amazon recording)');
+    }
     
     // Step 2: Create hook segment (clip only, no text) - V8 SIMPLIFIED
     // V8: REMOVED hook text overlay - gets cut off in 9:16 portrait mode
@@ -1394,14 +1484,28 @@ async function editVideo(input) {
     fs.copyFileSync(tempHook, tempHookText); // Keep downstream paths working
     
     // Step 3: Create product showcase segment - DYNAMIC DURATION
-    console.log('📦 Creating product showcase...');
-    createProductSegment(
-      tempProduct, 
-      input.product_name, 
-      input.product_price || '$??', 
-      tempShowcase, 
-      productDuration
-    );
+    // V11: Use Amazon recording if available (checked earlier)
+    if (amazonRecording) {
+      // V11: Use Amazon screen recording with price overlay
+      console.log('📦 Creating product showcase from Amazon recording...');
+      createProductSegmentFromVideo(
+        amazonRecording,
+        input.product_name,
+        input.product_price || '$??',
+        tempShowcase,
+        productDuration
+      );
+    } else {
+      // Fallback: Create product showcase from static image
+      console.log('📦 Creating product showcase from image...');
+      createProductSegment(
+        tempProduct, 
+        input.product_name, 
+        input.product_price || '$??', 
+        tempShowcase, 
+        productDuration
+      );
+    }
     
     // Step 4: Create CTA segment - DYNAMIC DURATION
     console.log('📢 Creating CTA segment...');

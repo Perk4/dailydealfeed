@@ -1,46 +1,46 @@
 {
   "_meta": {
-    "version": "4.0",
-    "updated": "2026-02-15",
-    "notes": "NEUTRAL scripts - facts only, no claims, no testimonials",
+    "version": "5.0",
+    "updated": "2026-02-16",
+    "notes": "V11 - NEW products, neutral scripts only",
     "style": "Product type + one feature/spec + price + CTA"
   },
   "scripts": {
     "1": {
       "product_id": "1",
-      "product_name": "CeraVe Moisturizing Cream",
-      "full_script": "This is a 19-ounce moisturizing cream. Fragrance-free with ceramides. $18.96, link in bio.",
-      "estimated_duration": 7
+      "product_name": "COSRX Snail Mucin",
+      "full_script": "Snail mucin essence. 96% snail secretion filtrate. $21.99, link in bio.",
+      "estimated_duration": 6
     },
     "2": {
       "product_id": "2",
-      "product_name": "Neutrogena Beach Defense SPF 70",
-      "full_script": "SPF 70 sunscreen. Water-resistant formula. $8.29, link in bio.",
+      "product_name": "Ice Roller",
+      "full_script": "Ice roller for face. Stays cold for 10 minutes. $9.99, link in bio.",
       "estimated_duration": 6
     },
     "3": {
       "product_id": "3",
-      "product_name": "The Pink Stuff",
-      "full_script": "This is a multi-surface cleaning paste. 500 grams. $4.79, link in bio.",
+      "product_name": "Cloud Slides",
+      "full_script": "Cloud slides. 4.5 centimeter thick cushion. $23.99, link in bio.",
       "estimated_duration": 6
     },
     "4": {
       "product_id": "4",
-      "product_name": "Dash Mini Waffle Maker",
-      "full_script": "Mini waffle maker. Makes one waffle at a time. $9.89, link in bio.",
+      "product_name": "Laneige Lip Mask",
+      "full_script": "Lip sleeping mask. Berry extract with vitamin C. $24, link in bio.",
       "estimated_duration": 6
     },
     "5": {
       "product_id": "5",
-      "product_name": "BISSELL Little Green",
-      "full_script": "Portable carpet cleaner. Works on furniture and car seats. $109.99, link in bio.",
+      "product_name": "Stanley Tumbler",
+      "full_script": "Stanley tumbler. 40 ounces, keeps ice for 2 days. $45, link in bio.",
       "estimated_duration": 6
     },
     "6": {
       "product_id": "6",
-      "product_name": "Moon Lamp",
-      "full_script": "16-color moon lamp with remote control. $19.95, link in bio.",
-      "estimated_duration": 5
+      "product_name": "Scrub Daddy",
+      "full_script": "Scrub Daddy sponge. Texture changes with water temperature. $3.88, link in bio.",
+      "estimated_duration": 6
     }
   },
   "defaults": {

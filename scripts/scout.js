@@ -739,9 +739,9 @@ function scout(productId = null) {
     product_name: product.name,
     product_category: product.category,
     product_price: product.price,
-    product_link: product.link,
-    product_image: product.image,
-    product_tagline: product.tagline,
+    product_link: product.link || product.affiliate_link,
+    product_image: product.image || product.image_url,
+    product_tagline: product.tagline || product.best_stat,
     product_featured: product.featured || false,
     // Clip info (V2 upgrade)
     clip_id: clip.id,

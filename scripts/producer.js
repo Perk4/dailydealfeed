@@ -124,7 +124,7 @@ async function getProductAssets(productId, options = {}) {
   }
   
   // Build affiliate link with tag
-  let affiliateLink = product.link;
+  let affiliateLink = product.link || product.affiliate_link || `https://www.amazon.com/dp/${asin}`;
   if (!affiliateLink.includes(STORE_ID)) {
     const separator = affiliateLink.includes('?') ? '&' : '?';
     affiliateLink = `${affiliateLink}${separator}tag=${STORE_ID}`;

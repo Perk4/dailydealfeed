@@ -1,6 +1,6 @@
 {
-  "lastProductId": "1",
-  "lastCategory": "skincare",
+  "lastProductId": "3",
+  "lastCategory": "footwear",
   "usedProductIds": [
     "1",
     "6",
@@ -16,7 +16,7 @@
     "10"
   ],
   "categoryRotationIndex": 1,
-  "lastRun": "2026-02-16T00:37:42.281Z",
+  "lastRun": "2026-02-16T01:08:44.753Z",
   "usedClipIds": [
     "cozy-m003",
     "cozy-m004",
@@ -42,6 +42,7 @@
     "afv-011",
     "afv-015",
     "afv-014",
-    "afv-010"
+    "afv-010",
+    "shorts-ztq8tAtmw0M"
   ]
 }
