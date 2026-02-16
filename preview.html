@@ -108,8 +108,8 @@
         
         async function loadVideos() {
             try {
-                // Get list of output files
-                const res = await fetch('https://api.github.com/repos/Perk4/dailydealfeed/contents/output');
+                // Get list of output files from approved folder
+                const res = await fetch('https://api.github.com/repos/Perk4/dailydealfeed/contents/output/approved');
                 const files = await res.json();
                 
                 // Get products
@@ -145,7 +145,7 @@
                         </div>
                         <div class="video-container">
                             <video controls playsinline preload="metadata">
-                                <source src="${BASE}/output/${video.name}" type="video/mp4">
+                                <source src="${BASE}/output/approved/${video.name}" type="video/mp4">
                             </video>
                         </div>
                         <div class="card-footer">
