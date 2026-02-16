@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-02-16T16:22:58.790Z",
+  "updatedAt": "2026-02-16T21:22:59.864Z",
   "products": [
     {
       "asin": "B00PBX3L7K",
@@ -187,6 +187,66 @@
       "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CQHZ8LFR.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B0CQHZ8LFR?tag=dailydealfeed-20",
       "best_stat": "Rice + probiotics formula"
+    },
+    {
+      "asin": "B0BZ8QYZMM",
+      "name": "Mini Portable Projector 1080P",
+      "price": "$79.99",
+      "category": "tech",
+      "status": "approved",
+      "validatedAt": "2026-02-16T21:22:59.864Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BZ8QYZMM.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B0BZ8QYZMM?tag=dailydealfeed-20",
+      "best_stat": "100\" screen anywhere"
+    },
+    {
+      "asin": "B09QCG8H1S",
+      "name": "White Noise Machine with Night Light",
+      "price": "$24.99",
+      "category": "home",
+      "status": "approved",
+      "validatedAt": "2026-02-16T21:22:59.864Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09QCG8H1S.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B09QCG8H1S?tag=dailydealfeed-20",
+      "best_stat": "32 soothing sounds"
+    },
+    {
+      "asin": "B07P4HMNXR",
+      "name": "Bar Keepers Friend Powder Cleanser",
+      "price": "$8.99",
+      "category": "cleaning",
+      "status": "approved",
+      "validatedAt": "2026-02-16T21:22:59.864Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07P4HMNXR.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B07P4HMNXR?tag=dailydealfeed-20",
+      "best_stat": "Removes rust instantly"
+    },
+    {
+      "asin": "B09QFF2TT4",
+      "name": "Cloud Pillow Slides Slippers",
+      "price": "$19.99",
+      "category": "footwear",
+      "status": "approved",
+      "validatedAt": "2026-02-16T21:22:59.864Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09QFF2TT4.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B09QFF2TT4?tag=dailydealfeed-20",
+      "best_stat": "4.5cm EVA cushion"
+    },
+    {
+      "asin": "B08KRQYDTW",
+      "name": "Stardrops Spray Bottles Set",
+      "price": "$14.99",
+      "category": "cleaning",
+      "status": "approved",
+      "validatedAt": "2026-02-16T21:22:59.864Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08KRQYDTW.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B08KRQYDTW?tag=dailydealfeed-20",
+      "best_stat": "Refillable + eco-friendly"
     }
   ]
 }

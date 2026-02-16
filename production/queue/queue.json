@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "createdAt": "2026-02-16T16:22:58.822Z",
-  "totalItems": 16,
+  "createdAt": "2026-02-16T21:22:59.966Z",
+  "totalItems": 21,
   "items": [
     {
       "id": 1,
@@ -21,8 +21,8 @@
         "score": 9.9
       },
       "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.821Z",
-      "outputPath": "/root/dailydealfeed/output/video_1_1771259044316.mp4",
+      "createdAt": "2026-02-16T21:22:59.964Z",
+      "outputPath": "/root/dailydealfeed/output/video_1_1771276980081.mp4",
       "qaScore": 10
     },
     {
@@ -43,8 +43,8 @@
         "score": 9.8
       },
       "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.821Z",
-      "outputPath": "/root/dailydealfeed/output/video_2_1771259135827.mp4",
+      "createdAt": "2026-02-16T21:22:59.965Z",
+      "outputPath": "/root/dailydealfeed/output/video_2_1771277072339.mp4",
       "qaScore": 10
     },
     {
@@ -65,8 +65,8 @@
         "score": 9.9
       },
       "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.821Z",
-      "outputPath": "/root/dailydealfeed/output/video_3_1771260781128.mp4",
+      "createdAt": "2026-02-16T21:22:59.965Z",
+      "outputPath": "/root/dailydealfeed/output/video_3_1771277128837.mp4",
       "qaScore": 10
     },
     {
@@ -86,10 +86,8 @@
         "vibe": "satisfying",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.821Z",
-      "outputPath": "/root/dailydealfeed/output/video_4_1771260848280.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.965Z"
     },
     {
       "id": 5,
@@ -108,10 +106,8 @@
         "vibe": "cozy",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.821Z",
-      "outputPath": "/root/dailydealfeed/output/video_5_1771262578650.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.965Z"
     },
     {
       "id": 6,
@@ -130,10 +126,8 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.821Z",
-      "outputPath": "/root/dailydealfeed/output/video_6_1771262645092.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.965Z"
     },
     {
       "id": 7,
@@ -152,10 +146,8 @@
         "vibe": "cozy",
         "score": 9.6
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.821Z",
-      "outputPath": "/root/dailydealfeed/output/video_7_1771264382207.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.965Z"
     },
     {
       "id": 8,
@@ -174,10 +166,8 @@
         "vibe": "satisfying",
         "score": 9.5
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.821Z",
-      "outputPath": "/root/dailydealfeed/output/video_8_1771264467398.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     },
     {
       "id": 9,
@@ -196,10 +186,8 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.822Z",
-      "outputPath": "/root/dailydealfeed/output/video_9_1771270352161.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     },
     {
       "id": 10,
@@ -218,10 +206,8 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.822Z",
-      "outputPath": "/root/dailydealfeed/output/video_10_1771270449834.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     },
     {
       "id": 11,
@@ -240,10 +226,8 @@
         "vibe": "satisfying",
         "score": 9.3
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.822Z",
-      "outputPath": "/root/dailydealfeed/output/video_11_1771271579808.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     },
     {
       "id": 12,
@@ -262,10 +246,8 @@
         "vibe": "funny",
         "score": 9.2
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.822Z",
-      "outputPath": "/root/dailydealfeed/output/video_12_1771271692358.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     },
     {
       "id": 13,
@@ -284,10 +266,8 @@
         "vibe": "satisfying",
         "score": 8.3
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.822Z",
-      "outputPath": "/root/dailydealfeed/output/video_13_1771273380439.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     },
     {
       "id": 14,
@@ -306,10 +286,8 @@
         "vibe": "satisfying",
         "score": 7.8
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.822Z",
-      "outputPath": "/root/dailydealfeed/output/video_14_1771273466038.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     },
     {
       "id": 15,
@@ -328,10 +306,8 @@
         "vibe": "cozy",
         "score": 8.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.822Z",
-      "outputPath": "/root/dailydealfeed/output/video_15_1771275179978.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     },
     {
       "id": 16,
@@ -350,10 +326,108 @@
         "vibe": "cozy",
         "score": 7.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T16:22:58.822Z",
-      "outputPath": "/root/dailydealfeed/output/video_16_1771275292487.mp4",
-      "qaScore": 8
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
+    },
+    {
+      "id": 17,
+      "product": {
+        "asin": "B0BZ8QYZMM",
+        "name": "Mini Portable Projector 1080P",
+        "price": "$79.99",
+        "category": "tech",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BZ8QYZMM.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B0BZ8QYZMM?tag=dailydealfeed-20",
+        "best_stat": "100\" screen anywhere"
+      },
+      "clip": {
+        "file": "short_ig_Nh9ilsBI.mp4",
+        "path": "clips/shorts/short_ig_Nh9ilsBI.mp4",
+        "vibe": "satisfying",
+        "score": 7.7
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
+    },
+    {
+      "id": 18,
+      "product": {
+        "asin": "B09QCG8H1S",
+        "name": "White Noise Machine with Night Light",
+        "price": "$24.99",
+        "category": "home",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09QCG8H1S.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B09QCG8H1S?tag=dailydealfeed-20",
+        "best_stat": "32 soothing sounds"
+      },
+      "clip": {
+        "file": "tt_seg_028.mp4",
+        "path": "clips/shorts/tt_seg_028.mp4",
+        "vibe": "cozy",
+        "score": 7.8
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
+    },
+    {
+      "id": 19,
+      "product": {
+        "asin": "B07P4HMNXR",
+        "name": "Bar Keepers Friend Powder Cleanser",
+        "price": "$8.99",
+        "category": "cleaning",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07P4HMNXR.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B07P4HMNXR?tag=dailydealfeed-20",
+        "best_stat": "Removes rust instantly"
+      },
+      "clip": {
+        "file": "iYXT1h0mYlM_seg001.mp4",
+        "path": "clips/processed/iYXT1h0mYlM_seg001.mp4",
+        "vibe": "satisfying",
+        "score": 7.6
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
+    },
+    {
+      "id": 20,
+      "product": {
+        "asin": "B09QFF2TT4",
+        "name": "Cloud Pillow Slides Slippers",
+        "price": "$19.99",
+        "category": "footwear",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09QFF2TT4.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B09QFF2TT4?tag=dailydealfeed-20",
+        "best_stat": "4.5cm EVA cushion"
+      },
+      "clip": {
+        "file": "short__N7X9k9HbZU.mp4",
+        "path": "clips/shorts/short__N7X9k9HbZU.mp4",
+        "vibe": "funny",
+        "score": 7.6
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
+    },
+    {
+      "id": 21,
+      "product": {
+        "asin": "B08KRQYDTW",
+        "name": "Stardrops Spray Bottles Set",
+        "price": "$14.99",
+        "category": "cleaning",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08KRQYDTW.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B08KRQYDTW?tag=dailydealfeed-20",
+        "best_stat": "Refillable + eco-friendly"
+      },
+      "clip": {
+        "file": "tt_seg_017.mp4",
+        "path": "clips/shorts/tt_seg_017.mp4",
+        "vibe": "funny",
+        "score": 7.6
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T21:22:59.966Z"
     }
   ]
 }
