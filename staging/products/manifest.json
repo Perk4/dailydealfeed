@@ -1,72 +1,72 @@
 {
-  "approvedProducts": [
+  "version": "1.0",
+  "updatedAt": "2026-02-16T04:15:00Z",
+  "products": [
     {
-      "id": "1",
       "asin": "B00PBX3L7K",
       "name": "COSRX Snail Mucin 96% Power Repairing Essence",
       "price": "$21.99",
-      "livePrice": "$17.99",
       "category": "skincare",
+      "status": "approved",
+      "validatedAt": "2026-02-16T04:05:00Z",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00PBX3L7K.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B00PBX3L7K?tag=dailydealfeed-20",
-      "score": 1
+      "best_stat": "96% snail secretion filtrate"
     },
     {
-      "id": "2",
       "asin": "B07GXDZ5VZ",
       "name": "Ice Roller for Face & Eye Puffiness Relief",
       "price": "$9.99",
-      "livePrice": null,
       "category": "beauty",
+      "status": "approved",
+      "validatedAt": "2026-02-16T04:05:00Z",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07GXDZ5VZ.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B07GXDZ5VZ?tag=dailydealfeed-20",
-      "score": 0.6
+      "best_stat": "Stays cold for 10+ minutes"
     },
     {
-      "id": "3",
       "asin": "B09TKMK2RW",
       "name": "Cloud Slides Pillow Slippers",
       "price": "$23.99",
-      "livePrice": null,
       "category": "footwear",
+      "status": "approved",
+      "validatedAt": "2026-02-16T04:05:00Z",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09TKMK2RW.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B09TKMK2RW?tag=dailydealfeed-20",
-      "score": 0.6
+      "best_stat": "4.5cm thick EVA cushion"
     },
     {
-      "id": "4",
       "asin": "B07JM39NS1",
       "name": "Laneige Lip Sleeping Mask",
       "price": "$24.00",
-      "livePrice": null,
       "category": "beauty",
+      "status": "approved",
+      "validatedAt": "2026-02-16T04:05:00Z",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07JM39NS1.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B07JM39NS1?tag=dailydealfeed-20",
-      "score": 0.6
+      "best_stat": "Berry extract + vitamin C"
     },
     {
-      "id": "5",
       "asin": "B0BQ83Q8JN",
       "name": "Stanley Quencher H2.0 Tumbler 40oz",
       "price": "$45.00",
-      "livePrice": null,
       "category": "drinkware",
+      "status": "approved",
+      "validatedAt": "2026-02-16T04:05:00Z",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BQ83Q8JN.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B0BQ83Q8JN?tag=dailydealfeed-20",
-      "score": 0.6
+      "best_stat": "Keeps ice 2+ days"
     },
     {
-      "id": "6",
       "asin": "B00ELWABHE",
       "name": "Scrub Daddy Original Sponge",
       "price": "$3.88",
-      "livePrice": null,
       "category": "cleaning",
+      "status": "approved",
+      "validatedAt": "2026-02-16T04:05:00Z",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00ELWABHE.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B00ELWABHE?tag=dailydealfeed-20",
-      "score": 0.6
+      "best_stat": "FlexTexture changes with water temp"
     }
-  ],
-  "rejectedProducts": [],
-  "summary": {
-    "total": 6,
-    "approved": 6,
-    "rejected": 0,
-    "approvalRate": "100.0%"
-  },
-  "generatedAt": "2026-02-16T01:30:26.965Z"
+  ]
 }

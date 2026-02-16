@@ -1,30 +1,11 @@
 {
-  "id": "2",
-  "name": "Ice Roller for Face & Eye Puffiness Relief",
   "asin": "B07GXDZ5VZ",
+  "name": "Ice Roller for Face & Eye Puffiness Relief",
   "price": "$9.99",
   "category": "beauty",
+  "status": "approved",
+  "validatedAt": "2026-02-16T04:05:00Z",
   "image_url": "https://m.media-amazon.com/images/I/61yFdLIh7TL._SL1500_.jpg",
-  "best_stat": "Stays cold for 10+ minutes",
   "affiliate_link": "https://www.amazon.com/dp/B07GXDZ5VZ?tag=dailydealfeed-20",
-  "validation": {
-    "valid": true,
-    "score": 0.6,
-    "passedChecks": 3,
-    "checks": {
-      "asin_format": true,
-      "page_exists": true,
-      "images_loaded": true,
-      "price_found": false,
-      "in_stock": false
-    },
-    "liveData": {
-      "title": null,
-      "price": null,
-      "image_count": 3,
-      "availability": null
-    },
-    "errors": [],
-    "validatedAt": "2026-02-16T01:30:52.379Z"
-  }
+  "best_stat": "Stays cold for 10+ minutes"
 }

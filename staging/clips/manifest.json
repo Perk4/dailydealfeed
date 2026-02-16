@@ -1,0 +1,798 @@
+{
+  "version": "1.0",
+  "updatedAt": "2026-02-16T04:05:00Z",
+  "clips": [
+    {
+      "file": "afv-001.mp4",
+      "path": "clips/processed/afv-001.mp4",
+      "vibe": "satisfying",
+      "score": 7.2,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.01,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-002.mp4",
+      "path": "clips/processed/afv-002.mp4",
+      "vibe": "cute",
+      "score": 7.1,
+      "status": "approved",
+      "metadata": {
+        "duration": 3.13,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-003.mp4",
+      "path": "clips/processed/afv-003.mp4",
+      "vibe": "funny",
+      "score": 7,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.01,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-004.mp4",
+      "path": "clips/processed/afv-004.mp4",
+      "vibe": "chaotic",
+      "score": 9.9,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.01,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-005.mp4",
+      "path": "clips/processed/afv-005.mp4",
+      "vibe": "win",
+      "score": 9.8,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.01,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-006.mp4",
+      "path": "clips/processed/afv-006.mp4",
+      "vibe": "cozy",
+      "score": 9.7,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.01,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-007.mp4",
+      "path": "clips/processed/afv-007.mp4",
+      "vibe": "fail",
+      "score": 9.6,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.01,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-008.mp4",
+      "path": "clips/processed/afv-008.mp4",
+      "vibe": "satisfying",
+      "score": 9.5,
+      "status": "approved",
+      "metadata": {
+        "duration": 3.13,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-010.mp4",
+      "path": "clips/processed/afv-010.mp4",
+      "vibe": "funny",
+      "score": 7.2,
+      "status": "approved",
+      "metadata": {
+        "duration": 3,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-011.mp4",
+      "path": "clips/processed/afv-011.mp4",
+      "vibe": "chaotic",
+      "score": 7.1,
+      "status": "approved",
+      "metadata": {
+        "duration": 3,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-012.mp4",
+      "path": "clips/processed/afv-012.mp4",
+      "vibe": "win",
+      "score": 7,
+      "status": "approved",
+      "metadata": {
+        "duration": 3,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-013.mp4",
+      "path": "clips/processed/afv-013.mp4",
+      "vibe": "cozy",
+      "score": 9.9,
+      "status": "approved",
+      "metadata": {
+        "duration": 3,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-014.mp4",
+      "path": "clips/processed/afv-014.mp4",
+      "vibe": "fail",
+      "score": 9.8,
+      "status": "approved",
+      "metadata": {
+        "duration": 3,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "afv-015.mp4",
+      "path": "clips/processed/afv-015.mp4",
+      "vibe": "satisfying",
+      "score": 9.7,
+      "status": "approved",
+      "metadata": {
+        "duration": 3,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "iYXT1h0mYlM_seg000.mp4",
+      "path": "clips/processed/iYXT1h0mYlM_seg000.mp4",
+      "vibe": "fail",
+      "score": 7.7,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.34,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "iYXT1h0mYlM_seg001.mp4",
+      "path": "clips/processed/iYXT1h0mYlM_seg001.mp4",
+      "vibe": "satisfying",
+      "score": 7.6,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.9,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "iYXT1h0mYlM_seg002.mp4",
+      "path": "clips/processed/iYXT1h0mYlM_seg002.mp4",
+      "vibe": "cute",
+      "score": 7.5,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.78,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "iYXT1h0mYlM_seg003.mp4",
+      "path": "clips/processed/iYXT1h0mYlM_seg003.mp4",
+      "vibe": "funny",
+      "score": 7.4,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.15,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "iYXT1h0mYlM_seg004.mp4",
+      "path": "clips/processed/iYXT1h0mYlM_seg004.mp4",
+      "vibe": "chaotic",
+      "score": 7.3,
+      "status": "approved",
+      "metadata": {
+        "duration": 4.15,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "short_IrNVDZGixL4.mp4",
+      "path": "clips/shorts/short_IrNVDZGixL4.mp4",
+      "vibe": "cute",
+      "score": 7.7,
+      "status": "approved",
+      "metadata": {
+        "duration": 10.57,
+        "width": 480,
+        "height": 854
+      }
+    },
+    {
+      "file": "short_SLFoJ4SbqkE.mp4",
+      "path": "clips/shorts/short_SLFoJ4SbqkE.mp4",
+      "vibe": "win",
+      "score": 8.6,
+      "status": "approved",
+      "metadata": {
+        "duration": 11.24,
+        "width": 608,
+        "height": 1080
+      }
+    },
+    {
+      "file": "short__N7X9k9HbZU.mp4",
+      "path": "clips/shorts/short__N7X9k9HbZU.mp4",
+      "vibe": "funny",
+      "score": 7.6,
+      "status": "approved",
+      "metadata": {
+        "duration": 11.24,
+        "width": 480,
+        "height": 854
+      }
+    },
+    {
+      "file": "short_d7U4H89RZQk.mp4",
+      "path": "clips/shorts/short_d7U4H89RZQk.mp4",
+      "vibe": "satisfying",
+      "score": 8.3,
+      "status": "approved",
+      "metadata": {
+        "duration": 10.15,
+        "width": 470,
+        "height": 854
+      }
+    },
+    {
+      "file": "short_ig_Nh9ilsBI.mp4",
+      "path": "clips/shorts/short_ig_Nh9ilsBI.mp4",
+      "vibe": "satisfying",
+      "score": 7.7,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.11,
+        "width": 466,
+        "height": 854
+      }
+    },
+    {
+      "file": "short_mqNm9fqbFJ4.mp4",
+      "path": "clips/shorts/short_mqNm9fqbFJ4.mp4",
+      "vibe": "cozy",
+      "score": 7.9,
+      "status": "approved",
+      "metadata": {
+        "duration": 10.03,
+        "width": 480,
+        "height": 854
+      }
+    },
+    {
+      "file": "short_sJLAuLuyvIg.mp4",
+      "path": "clips/shorts/short_sJLAuLuyvIg.mp4",
+      "vibe": "satisfying",
+      "score": 9.3,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.11,
+        "width": 466,
+        "height": 854
+      }
+    },
+    {
+      "file": "short_xksFkVxxl-0.mp4",
+      "path": "clips/shorts/short_xksFkVxxl-0.mp4",
+      "vibe": "satisfying",
+      "score": 9.8,
+      "status": "approved",
+      "metadata": {
+        "duration": 11.24,
+        "width": 480,
+        "height": 854
+      }
+    },
+    {
+      "file": "short_ztq8tAtmw0M.mp4",
+      "path": "clips/shorts/short_ztq8tAtmw0M.mp4",
+      "vibe": "chaotic",
+      "score": 8.9,
+      "status": "approved",
+      "metadata": {
+        "duration": 10.1,
+        "width": 720,
+        "height": 1080
+      }
+    },
+    {
+      "file": "tt_7607070679359442198.mp4",
+      "path": "clips/shorts/tt_7607070679359442198.mp4",
+      "vibe": "cute",
+      "score": 9.2,
+      "status": "approved",
+      "metadata": {
+        "duration": 187.9,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_000.mp4",
+      "path": "clips/shorts/tt_seg_000.mp4",
+      "vibe": "fail",
+      "score": 7.2,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.93,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_001.mp4",
+      "path": "clips/shorts/tt_seg_001.mp4",
+      "vibe": "satisfying",
+      "score": 7.1,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.57,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_002.mp4",
+      "path": "clips/shorts/tt_seg_002.mp4",
+      "vibe": "cute",
+      "score": 7,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_003.mp4",
+      "path": "clips/shorts/tt_seg_003.mp4",
+      "vibe": "funny",
+      "score": 9.9,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.83,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_004.mp4",
+      "path": "clips/shorts/tt_seg_004.mp4",
+      "vibe": "chaotic",
+      "score": 9.8,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.3,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_005.mp4",
+      "path": "clips/shorts/tt_seg_005.mp4",
+      "vibe": "win",
+      "score": 9.7,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.03,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_006.mp4",
+      "path": "clips/shorts/tt_seg_006.mp4",
+      "vibe": "cozy",
+      "score": 9.6,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_007.mp4",
+      "path": "clips/shorts/tt_seg_007.mp4",
+      "vibe": "fail",
+      "score": 9.5,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.53,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_008.mp4",
+      "path": "clips/shorts/tt_seg_008.mp4",
+      "vibe": "satisfying",
+      "score": 9.4,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.6,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_009.mp4",
+      "path": "clips/shorts/tt_seg_009.mp4",
+      "vibe": "cute",
+      "score": 9.3,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_010.mp4",
+      "path": "clips/shorts/tt_seg_010.mp4",
+      "vibe": "funny",
+      "score": 9.9,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.53,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_011.mp4",
+      "path": "clips/shorts/tt_seg_011.mp4",
+      "vibe": "cute",
+      "score": 7,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_012.mp4",
+      "path": "clips/shorts/tt_seg_012.mp4",
+      "vibe": "satisfying",
+      "score": 7.1,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.03,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_013.mp4",
+      "path": "clips/shorts/tt_seg_013.mp4",
+      "vibe": "fail",
+      "score": 7.2,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.07,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_014.mp4",
+      "path": "clips/shorts/tt_seg_014.mp4",
+      "vibe": "cozy",
+      "score": 7.3,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_015.mp4",
+      "path": "clips/shorts/tt_seg_015.mp4",
+      "vibe": "win",
+      "score": 7.4,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.47,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_016.mp4",
+      "path": "clips/shorts/tt_seg_016.mp4",
+      "vibe": "chaotic",
+      "score": 7.5,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.23,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_017.mp4",
+      "path": "clips/shorts/tt_seg_017.mp4",
+      "vibe": "funny",
+      "score": 7.6,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.6,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_018.mp4",
+      "path": "clips/shorts/tt_seg_018.mp4",
+      "vibe": "cute",
+      "score": 7.7,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_019.mp4",
+      "path": "clips/shorts/tt_seg_019.mp4",
+      "vibe": "satisfying",
+      "score": 7.8,
+      "status": "approved",
+      "metadata": {
+        "duration": 6.4,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_020.mp4",
+      "path": "clips/shorts/tt_seg_020.mp4",
+      "vibe": "fail",
+      "score": 7,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.8,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_021.mp4",
+      "path": "clips/shorts/tt_seg_021.mp4",
+      "vibe": "cozy",
+      "score": 7.1,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_022.mp4",
+      "path": "clips/shorts/tt_seg_022.mp4",
+      "vibe": "win",
+      "score": 7.2,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_023.mp4",
+      "path": "clips/shorts/tt_seg_023.mp4",
+      "vibe": "chaotic",
+      "score": 7.3,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.4,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_024.mp4",
+      "path": "clips/shorts/tt_seg_024.mp4",
+      "vibe": "funny",
+      "score": 7.4,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_025.mp4",
+      "path": "clips/shorts/tt_seg_025.mp4",
+      "vibe": "cute",
+      "score": 7.5,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_026.mp4",
+      "path": "clips/shorts/tt_seg_026.mp4",
+      "vibe": "satisfying",
+      "score": 7.6,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.2,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_027.mp4",
+      "path": "clips/shorts/tt_seg_027.mp4",
+      "vibe": "fail",
+      "score": 7.7,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.67,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_028.mp4",
+      "path": "clips/shorts/tt_seg_028.mp4",
+      "vibe": "cozy",
+      "score": 7.8,
+      "status": "approved",
+      "metadata": {
+        "duration": 7,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "tt_seg_029.mp4",
+      "path": "clips/shorts/tt_seg_029.mp4",
+      "vibe": "win",
+      "score": 7.9,
+      "status": "approved",
+      "metadata": {
+        "duration": 0.83,
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "file": "yt_iYXT1h0mYlM.mp4",
+      "path": "clips/shorts/yt_iYXT1h0mYlM.mp4",
+      "vibe": "funny",
+      "score": 7.1,
+      "status": "approved",
+      "metadata": {
+        "duration": 29.26,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "yt_seg_000.mp4",
+      "path": "clips/shorts/yt_seg_000.mp4",
+      "vibe": "cozy",
+      "score": 8.9,
+      "status": "approved",
+      "metadata": {
+        "duration": 5.04,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "yt_seg_001.mp4",
+      "path": "clips/shorts/yt_seg_001.mp4",
+      "vibe": "win",
+      "score": 9,
+      "status": "approved",
+      "metadata": {
+        "duration": 7.21,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "yt_seg_002.mp4",
+      "path": "clips/shorts/yt_seg_002.mp4",
+      "vibe": "chaotic",
+      "score": 9.1,
+      "status": "approved",
+      "metadata": {
+        "duration": 4.67,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "yt_seg_003.mp4",
+      "path": "clips/shorts/yt_seg_003.mp4",
+      "vibe": "funny",
+      "score": 9.2,
+      "status": "approved",
+      "metadata": {
+        "duration": 4.56,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "yt_seg_004.mp4",
+      "path": "clips/shorts/yt_seg_004.mp4",
+      "vibe": "cute",
+      "score": 9.3,
+      "status": "approved",
+      "metadata": {
+        "duration": 3.71,
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "file": "yt_seg_005.mp4",
+      "path": "clips/shorts/yt_seg_005.mp4",
+      "vibe": "satisfying",
+      "score": 9.4,
+      "status": "approved",
+      "metadata": {
+        "duration": 4.13,
+        "width": 1080,
+        "height": 1920
+      }
+    }
+  ]
+}

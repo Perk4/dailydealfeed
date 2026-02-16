@@ -1,30 +1,11 @@
 {
-  "id": "6",
-  "name": "Scrub Daddy Original Sponge",
   "asin": "B00ELWABHE",
+  "name": "Scrub Daddy Original Sponge",
   "price": "$3.88",
   "category": "cleaning",
+  "status": "approved",
+  "validatedAt": "2026-02-16T04:05:00Z",
   "image_url": "https://m.media-amazon.com/images/I/81zP5QJsYvL._AC_SL1500_.jpg",
-  "best_stat": "FlexTexture changes with water temp",
   "affiliate_link": "https://www.amazon.com/dp/B00ELWABHE?tag=dailydealfeed-20",
-  "validation": {
-    "valid": true,
-    "score": 0.6,
-    "passedChecks": 3,
-    "checks": {
-      "asin_format": true,
-      "page_exists": true,
-      "images_loaded": true,
-      "price_found": false,
-      "in_stock": false
-    },
-    "liveData": {
-      "title": null,
-      "price": null,
-      "image_count": 3,
-      "availability": null
-    },
-    "errors": [],
-    "validatedAt": "2026-02-16T01:31:21.821Z"
-  }
+  "best_stat": "FlexTexture changes with water temp"
 }

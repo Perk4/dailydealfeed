@@ -1,0 +1,133 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-02-16T04:17:21.364Z",
+  "totalItems": 6,
+  "items": [
+    {
+      "id": 1,
+      "product": {
+        "asin": "B00PBX3L7K",
+        "name": "COSRX Snail Mucin 96% Power Repairing Essence",
+        "price": "$21.99",
+        "category": "skincare",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00PBX3L7K.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B00PBX3L7K?tag=dailydealfeed-20",
+        "best_stat": "96% snail secretion filtrate"
+      },
+      "clip": {
+        "file": "afv-013.mp4",
+        "path": "clips/processed/afv-013.mp4",
+        "vibe": "cozy",
+        "score": 9.9
+      },
+      "status": "completed",
+      "createdAt": "2026-02-16T04:17:21.363Z",
+      "outputPath": "/root/dailydealfeed/output/video_1_1771215445231.mp4",
+      "qaScore": 10
+    },
+    {
+      "id": 2,
+      "product": {
+        "asin": "B07GXDZ5VZ",
+        "name": "Ice Roller for Face & Eye Puffiness Relief",
+        "price": "$9.99",
+        "category": "beauty",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07GXDZ5VZ.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B07GXDZ5VZ?tag=dailydealfeed-20",
+        "best_stat": "Stays cold for 10+ minutes"
+      },
+      "clip": {
+        "file": "short_xksFkVxxl-0.mp4",
+        "path": "clips/shorts/short_xksFkVxxl-0.mp4",
+        "vibe": "satisfying",
+        "score": 9.8
+      },
+      "status": "completed",
+      "createdAt": "2026-02-16T04:17:21.363Z",
+      "outputPath": "/root/dailydealfeed/output/video_2_1771215543259.mp4",
+      "qaScore": 10
+    },
+    {
+      "id": 3,
+      "product": {
+        "asin": "B09TKMK2RW",
+        "name": "Cloud Slides Pillow Slippers",
+        "price": "$23.99",
+        "category": "footwear",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09TKMK2RW.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B09TKMK2RW?tag=dailydealfeed-20",
+        "best_stat": "4.5cm thick EVA cushion"
+      },
+      "clip": {
+        "file": "tt_seg_003.mp4",
+        "path": "clips/shorts/tt_seg_003.mp4",
+        "vibe": "funny",
+        "score": 9.9
+      },
+      "status": "completed",
+      "createdAt": "2026-02-16T04:17:21.363Z",
+      "outputPath": "/root/dailydealfeed/output/video_3_1771215597384.mp4",
+      "qaScore": 10
+    },
+    {
+      "id": 4,
+      "product": {
+        "asin": "B07JM39NS1",
+        "name": "Laneige Lip Sleeping Mask",
+        "price": "$24.00",
+        "category": "beauty",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07JM39NS1.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B07JM39NS1?tag=dailydealfeed-20",
+        "best_stat": "Berry extract + vitamin C"
+      },
+      "clip": {
+        "file": "afv-015.mp4",
+        "path": "clips/processed/afv-015.mp4",
+        "vibe": "satisfying",
+        "score": 9.7
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T04:17:21.363Z"
+    },
+    {
+      "id": 5,
+      "product": {
+        "asin": "B0BQ83Q8JN",
+        "name": "Stanley Quencher H2.0 Tumbler 40oz",
+        "price": "$45.00",
+        "category": "drinkware",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BQ83Q8JN.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B0BQ83Q8JN?tag=dailydealfeed-20",
+        "best_stat": "Keeps ice 2+ days"
+      },
+      "clip": {
+        "file": "afv-006.mp4",
+        "path": "clips/processed/afv-006.mp4",
+        "vibe": "cozy",
+        "score": 9.7
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T04:17:21.363Z"
+    },
+    {
+      "id": 6,
+      "product": {
+        "asin": "B00ELWABHE",
+        "name": "Scrub Daddy Original Sponge",
+        "price": "$3.88",
+        "category": "cleaning",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00ELWABHE.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B00ELWABHE?tag=dailydealfeed-20",
+        "best_stat": "FlexTexture changes with water temp"
+      },
+      "clip": {
+        "file": "tt_seg_010.mp4",
+        "path": "clips/shorts/tt_seg_010.mp4",
+        "vibe": "funny",
+        "score": 9.9
+      },
+      "status": "pending",
+      "createdAt": "2026-02-16T04:17:21.363Z"
+    }
+  ]
+}
