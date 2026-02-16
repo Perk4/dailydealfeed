@@ -1,0 +1,30 @@
+{
+  "id": "3",
+  "name": "Cloud Slides Pillow Slippers",
+  "asin": "B09TKMK2RW",
+  "price": "$23.99",
+  "category": "footwear",
+  "image_url": "https://m.media-amazon.com/images/I/61iNJHhEb1L._AC_SL1500_.jpg",
+  "best_stat": "4.5cm thick EVA cushion",
+  "affiliate_link": "https://www.amazon.com/dp/B09TKMK2RW?tag=dailydealfeed-20",
+  "validation": {
+    "valid": true,
+    "score": 0.6,
+    "passedChecks": 3,
+    "checks": {
+      "asin_format": true,
+      "page_exists": true,
+      "images_loaded": true,
+      "price_found": false,
+      "in_stock": false
+    },
+    "liveData": {
+      "title": null,
+      "price": null,
+      "image_count": 3,
+      "availability": null
+    },
+    "errors": [],
+    "validatedAt": "2026-02-16T01:30:59.545Z"
+  }
+}

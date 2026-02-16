@@ -1,0 +1,30 @@
+{
+  "id": "4",
+  "name": "Laneige Lip Sleeping Mask",
+  "asin": "B07JM39NS1",
+  "price": "$24.00",
+  "category": "beauty",
+  "image_url": "https://m.media-amazon.com/images/I/61xM+qSqQNL._SL1500_.jpg",
+  "best_stat": "Berry extract + vitamin C",
+  "affiliate_link": "https://www.amazon.com/dp/B07JM39NS1?tag=dailydealfeed-20",
+  "validation": {
+    "valid": true,
+    "score": 0.6,
+    "passedChecks": 3,
+    "checks": {
+      "asin_format": true,
+      "page_exists": true,
+      "images_loaded": true,
+      "price_found": false,
+      "in_stock": false
+    },
+    "liveData": {
+      "title": null,
+      "price": null,
+      "image_count": 3,
+      "availability": null
+    },
+    "errors": [],
+    "validatedAt": "2026-02-16T01:31:06.671Z"
+  }
+}

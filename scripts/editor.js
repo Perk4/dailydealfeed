@@ -738,11 +738,11 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
   const stickerShadowColor = '000000'; // Black shadow
   const fireEmoji = '🔥';
   
-  // Sticker dimensions - larger and more prominent
-  const stickerPadH = 40; // Horizontal padding
-  const stickerPadV = 20; // Vertical padding
-  const stickerFontSize = 72; // Large but not overwhelming
-  const emojiSize = 64;
+  // V11: Sticker dimensions - smaller and less intrusive
+  const stickerPadH = 28; // Horizontal padding (reduced)
+  const stickerPadV = 14; // Vertical padding (reduced)
+  const stickerFontSize = 54; // Smaller, cleaner (was 72)
+  const emojiSize = 48;
   
   // Price with emoji: "🔥 $19.95"
   const priceWithEmoji = `${fireEmoji} ${price}`;
@@ -787,16 +787,16 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
     // Product name (subtle, smaller)
     `[v1]drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=44:fontcolor=${COLORS.textSecondary}:x=(w-text_w)/2:y='${nameYExpr}':alpha='${nameAlpha}'[v2]`,
     
-    // === STICKER LAYER 1: Drop shadow (offset dark box) ===
-    `[v2]drawbox=x='(w-360)/2+${shadowOffsetX}':y='${priceY}-24+${shadowOffsetY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=360:h=90:color=${stickerShadowColor}@0.4:t=fill[v3]`,
+    // === STICKER LAYER 1: Drop shadow (offset dark box) - V11: smaller box ===
+    `[v2]drawbox=x='(w-280)/2+${shadowOffsetX}':y='${priceY}-18+${shadowOffsetY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=280:h=70:color=${stickerShadowColor}@0.4:t=fill[v3]`,
     
-    // === STICKER LAYER 2: Main background (vibrant pink) ===
-    `[v3]drawbox=x='(w-360)/2':y='${priceY}-24+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=360:h=90:color=${stickerBgColor}:t=fill[v4]`,
+    // === STICKER LAYER 2: Main background (vibrant pink) - V11: smaller, with subtle rounded feel ===
+    `[v3]drawbox=x='(w-280)/2':y='${priceY}-18+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=280:h=70:color=${stickerBgColor}:t=fill[v4]`,
     
-    // === STICKER LAYER 3: Text shadow (subtle depth) ===
+    // === STICKER LAYER 3: Text shadow (subtle depth) - V11 uses stickerFontSize variable ===
     `[v4]drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=${stickerFontSize}:fontcolor=${stickerShadowColor}@0.5:x=(w-text_w)/2+2:y='${priceYBounce}+2':alpha='${priceAlpha}'[v5]`,
     
-    // === STICKER LAYER 4: Main price text (white on pink) ===
+    // === STICKER LAYER 4: Main price text (white on pink) - V11 uses stickerFontSize variable ===
     `[v5]drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=${stickerFontSize}:fontcolor=${stickerTextColor}:x=(w-text_w)/2:y='${priceYBounce}':alpha='${priceAlpha}'`
   ].join(';');
   
@@ -853,17 +853,17 @@ function createProductSegmentFromVideo(videoPath, productName, price, outputPath
     // Product name (top, subtle)
     `drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=44:fontcolor=${COLORS.textSecondary}:x=(w-text_w)/2:y=${nameY}:alpha='${nameAlpha}'`,
     
-    // Sticker shadow box
-    `drawbox=x='(w-360)/2+${shadowOffsetX}':y='${priceY}-24+${shadowOffsetY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=360:h=90:color=${stickerShadowColor}@0.4:t=fill`,
+    // Sticker shadow box - V11: smaller, cleaner
+    `drawbox=x='(w-280)/2+${shadowOffsetX}':y='${priceY}-18+${shadowOffsetY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=280:h=70:color=${stickerShadowColor}@0.4:t=fill`,
     
-    // Sticker background (pink)
-    `drawbox=x='(w-360)/2':y='${priceY}-24+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=360:h=90:color=${stickerBgColor}:t=fill`,
+    // Sticker background (pink) - V11: smaller
+    `drawbox=x='(w-280)/2':y='${priceY}-18+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=280:h=70:color=${stickerBgColor}:t=fill`,
     
-    // Price text shadow
-    `drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=72:fontcolor=${stickerShadowColor}@0.5:x=(w-text_w)/2+2:y='${priceYBounce}+2':alpha='${priceAlpha}'`,
+    // Price text shadow - V11: smaller font
+    `drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=54:fontcolor=${stickerShadowColor}@0.5:x=(w-text_w)/2+2:y='${priceYBounce}+2':alpha='${priceAlpha}'`,
     
-    // Price text (white on pink)
-    `drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=72:fontcolor=${stickerTextColor}:x=(w-text_w)/2:y='${priceYBounce}':alpha='${priceAlpha}'`
+    // Price text (white on pink) - V11: smaller font
+    `drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=54:fontcolor=${stickerTextColor}:x=(w-text_w)/2:y='${priceYBounce}':alpha='${priceAlpha}'`
   ].join(',');
   
   ffmpeg(`-i "${videoPath}" -vf "${filter}" -t ${duration} -c:v libx264 -pix_fmt yuv420p -an "${outputPath}"`);

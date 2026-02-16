@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "generated": "2026-02-16T01:30:11.766Z",
+  "rejected_count": 2,
+  "clips": [
+    {
+      "filename": "short_ztq8tAtmw0M.mp4",
+      "path": "/root/dailydealfeed/clips/shorts/short_ztq8tAtmw0M.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 6.19,
+      "issues": [
+        "Wrong aspect ratio: 0.667 (need ~0.5625)",
+        "Duration 10.1s (ideal: 4-6s)"
+      ],
+      "scores": {
+        "aspect_ratio": 2,
+        "resolution": 9,
+        "duration": 3,
+        "has_audio": 10,
+        "motion": 7,
+        "quality": 7
+      }
+    },
+    {
+      "filename": "afv-009.mp4",
+      "path": "/root/dailydealfeed/clips/processed/afv-009.mp4",
+      "source": "AFV/Processed",
+      "score": 0,
+      "issues": [
+        "Probe error: Command failed: ffprobe -v quiet -print_format json -show_format -show_streams \"/root/dailydealfeed/clips/processed/afv-009.mp4\""
+      ],
+      "scores": {
+        "aspect_ratio": 0,
+        "resolution": 0,
+        "duration": 0,
+        "has_audio": 0,
+        "motion": 0,
+        "quality": 0
+      }
+    }
+  ]
+}

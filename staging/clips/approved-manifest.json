@@ -1,0 +1,1700 @@
+{
+  "version": 1,
+  "generated": "2026-02-16T01:30:11.763Z",
+  "total_evaluated": 67,
+  "approved_count": 65,
+  "rejected_count": 2,
+  "average_score": "8.04",
+  "clips": [
+    {
+      "filename": "yt_seg_000.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_000.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/yt_seg_000.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 9.75,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.041,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 3374132,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:10.872Z"
+    },
+    {
+      "filename": "yt_seg_003.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_003.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/yt_seg_003.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 9.75,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 4.558,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 3397814,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:10.939Z"
+    },
+    {
+      "filename": "iYXT1h0mYlM_seg001.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/iYXT1h0mYlM_seg001.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/iYXT1h0mYlM_seg001.mp4",
+      "source": "AFV/Processed",
+      "score": 9.63,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.904,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 2891970,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 9
+      },
+      "staged_at": "2026-02-16T01:30:10.960Z"
+    },
+    {
+      "filename": "iYXT1h0mYlM_seg004.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/iYXT1h0mYlM_seg004.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/iYXT1h0mYlM_seg004.mp4",
+      "source": "AFV/Processed",
+      "score": 9.63,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 4.148,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 2507479,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 9
+      },
+      "staged_at": "2026-02-16T01:30:10.968Z"
+    },
+    {
+      "filename": "yt_seg_002.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_002.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/yt_seg_002.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 9.63,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 4.668,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 2691427,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 9
+      },
+      "staged_at": "2026-02-16T01:30:11.036Z"
+    },
+    {
+      "filename": "yt_seg_005.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_005.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/yt_seg_005.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 9.63,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 4.128,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 2512215,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 9
+      },
+      "staged_at": "2026-02-16T01:30:11.048Z"
+    },
+    {
+      "filename": "afv-003.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-003.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-003.mp4",
+      "source": "AFV/Processed",
+      "score": 9.38,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.014,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 4169375,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.070Z"
+    },
+    {
+      "filename": "afv-007.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-007.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-007.mp4",
+      "source": "AFV/Processed",
+      "score": 9.38,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.014,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 4369225,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.139Z"
+    },
+    {
+      "filename": "iYXT1h0mYlM_seg000.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/iYXT1h0mYlM_seg000.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/iYXT1h0mYlM_seg000.mp4",
+      "source": "AFV/Processed",
+      "score": 9.38,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 6.34,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 3251896,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.158Z"
+    },
+    {
+      "filename": "iYXT1h0mYlM_seg002.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/iYXT1h0mYlM_seg002.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/iYXT1h0mYlM_seg002.mp4",
+      "source": "AFV/Processed",
+      "score": 9.38,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 6.784,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 3377350,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.174Z"
+    },
+    {
+      "filename": "iYXT1h0mYlM_seg003.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/iYXT1h0mYlM_seg003.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/iYXT1h0mYlM_seg003.mp4",
+      "source": "AFV/Processed",
+      "score": 9.38,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 6.148,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 3256753,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.237Z"
+    },
+    {
+      "filename": "yt_seg_004.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_004.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/yt_seg_004.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 9.38,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.708,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 3990841,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.247Z"
+    },
+    {
+      "filename": "yt_seg_001.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_001.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/yt_seg_001.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 9.25,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 7.208,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 2862740,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 9
+      },
+      "staged_at": "2026-02-16T01:30:11.265Z"
+    },
+    {
+      "filename": "afv-004.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-004.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-004.mp4",
+      "source": "AFV/Processed",
+      "score": 9,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.014,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1681549,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.273Z"
+    },
+    {
+      "filename": "afv-005.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-005.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-005.mp4",
+      "source": "AFV/Processed",
+      "score": 9,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.014,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1916840,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.335Z"
+    },
+    {
+      "filename": "afv-006.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-006.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-006.mp4",
+      "source": "AFV/Processed",
+      "score": 9,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.014,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1841183,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.342Z"
+    },
+    {
+      "filename": "afv-008.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-008.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-008.mp4",
+      "source": "AFV/Processed",
+      "score": 9,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.129,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 3176884,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.350Z"
+    },
+    {
+      "filename": "afv-010.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-010.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-010.mp4",
+      "source": "AFV/Processed",
+      "score": 9,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.003,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 4489284,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.360Z"
+    },
+    {
+      "filename": "afv-013.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-013.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-013.mp4",
+      "source": "AFV/Processed",
+      "score": 9,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.003,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 3686588,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.365Z"
+    },
+    {
+      "filename": "afv-014.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-014.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-014.mp4",
+      "source": "AFV/Processed",
+      "score": 9,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.003,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 3817598,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.373Z"
+    },
+    {
+      "filename": "yt_iYXT1h0mYlM.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/yt_iYXT1h0mYlM.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/yt_iYXT1h0mYlM.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 8.88,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 29.261,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 3103329,
+        "fps": 60,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 3,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 10
+      },
+      "staged_at": "2026-02-16T01:30:11.481Z"
+    },
+    {
+      "filename": "afv-001.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-001.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-001.mp4",
+      "source": "AFV/Processed",
+      "score": 8.75,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.014,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 959318,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.534Z"
+    },
+    {
+      "filename": "short_ig_Nh9ilsBI.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/short_ig_Nh9ilsBI.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/short_ig_Nh9ilsBI.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 8.69,
+      "metadata": {
+        "width": 466,
+        "height": 854,
+        "duration": 5.109,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1121019,
+        "fps": 24,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 7,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 7,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.536Z"
+    },
+    {
+      "filename": "short_sJLAuLuyvIg.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/short_sJLAuLuyvIg.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/short_sJLAuLuyvIg.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 8.69,
+      "metadata": {
+        "width": 466,
+        "height": 854,
+        "duration": 5.109,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1110127,
+        "fps": 24,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 7,
+        "duration": 10,
+        "has_audio": 10,
+        "motion": 7,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.537Z"
+    },
+    {
+      "filename": "afv-002.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-002.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-002.mp4",
+      "source": "AFV/Processed",
+      "score": 8.63,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.129,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1578124,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.538Z"
+    },
+    {
+      "filename": "afv-011.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-011.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-011.mp4",
+      "source": "AFV/Processed",
+      "score": 8.63,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.003,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1841339,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.560Z"
+    },
+    {
+      "filename": "afv-012.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-012.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-012.mp4",
+      "source": "AFV/Processed",
+      "score": 8.63,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.003,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1198739,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.602Z"
+    },
+    {
+      "filename": "afv-015.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/afv-015.mp4",
+      "original_path": "/root/dailydealfeed/clips/processed/afv-015.mp4",
+      "source": "AFV/Processed",
+      "score": 8.63,
+      "metadata": {
+        "width": 1080,
+        "height": 1920,
+        "duration": 3.003,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 1586413,
+        "fps": 23.976023976023978,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 10,
+        "duration": 7,
+        "has_audio": 10,
+        "motion": 5,
+        "quality": 7
+      },
+      "staged_at": "2026-02-16T01:30:11.605Z"
+    },
+    {
+      "filename": "short_SLFoJ4SbqkE.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/short_SLFoJ4SbqkE.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/short_SLFoJ4SbqkE.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 8.06,
+      "metadata": {
+        "width": 608,
+        "height": 1080,
+        "duration": 11.239,
+        "has_audio": true,
+        "codec": "av1",
+        "bitrate": 746448,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 3,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.607Z"
+    },
+    {
+      "filename": "short_IrNVDZGixL4.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/short_IrNVDZGixL4.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/short_IrNVDZGixL4.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.69,
+      "metadata": {
+        "width": 480,
+        "height": 854,
+        "duration": 10.566,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 710574,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 7,
+        "duration": 3,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.610Z"
+    },
+    {
+      "filename": "short__N7X9k9HbZU.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/short__N7X9k9HbZU.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/short__N7X9k9HbZU.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.69,
+      "metadata": {
+        "width": 480,
+        "height": 854,
+        "duration": 11.239,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 816570,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 7,
+        "duration": 3,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.612Z"
+    },
+    {
+      "filename": "short_d7U4H89RZQk.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/short_d7U4H89RZQk.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/short_d7U4H89RZQk.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.69,
+      "metadata": {
+        "width": 470,
+        "height": 854,
+        "duration": 10.148,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 873164,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 7,
+        "duration": 3,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.616Z"
+    },
+    {
+      "filename": "short_xksFkVxxl-0.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/short_xksFkVxxl-0.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/short_xksFkVxxl-0.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.69,
+      "metadata": {
+        "width": 480,
+        "height": 854,
+        "duration": 11.239,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 888099,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 7,
+        "duration": 3,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.620Z"
+    },
+    {
+      "filename": "tt_seg_026.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_026.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_026.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.63,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5.2,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 551841,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 10,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.623Z"
+    },
+    {
+      "filename": "short_mqNm9fqbFJ4.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/short_mqNm9fqbFJ4.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/short_mqNm9fqbFJ4.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.44,
+      "metadata": {
+        "width": 480,
+        "height": 854,
+        "duration": 10.032,
+        "has_audio": true,
+        "codec": "h264",
+        "bitrate": 213854,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 7,
+        "duration": 3,
+        "has_audio": 10,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.624Z"
+    },
+    {
+      "filename": "tt_seg_000.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_000.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_000.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.38,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5.934,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 224520,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 10,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.625Z"
+    },
+    {
+      "filename": "tt_seg_001.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_001.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_001.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.38,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5.567,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 300262,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 10,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.626Z"
+    },
+    {
+      "filename": "tt_seg_020.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_020.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_020.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.38,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5.8,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 404114,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 10,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.628Z"
+    },
+    {
+      "filename": "tt_seg_023.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_023.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_023.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.38,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5.4,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 373405,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 10,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.629Z"
+    },
+    {
+      "filename": "tt_seg_027.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_027.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_027.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.38,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 5.667,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 402677,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 10,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.631Z"
+    },
+    {
+      "filename": "tt_seg_007.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_007.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_007.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.25,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.534,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 551308,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.633Z"
+    },
+    {
+      "filename": "tt_seg_009.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_009.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_009.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.25,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 512163,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.635Z"
+    },
+    {
+      "filename": "tt_seg_013.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_013.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_013.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.25,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.067,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 519028,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.638Z"
+    },
+    {
+      "filename": "tt_seg_019.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_019.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_019.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.25,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.4,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 509231,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.640Z"
+    },
+    {
+      "filename": "tt_seg_028.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_028.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_028.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7.25,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 594610,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.642Z"
+    },
+    {
+      "filename": "tt_seg_002.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_002.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_002.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 422816,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.643Z"
+    },
+    {
+      "filename": "tt_seg_003.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_003.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_003.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.834,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 458378,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.645Z"
+    },
+    {
+      "filename": "tt_seg_004.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_004.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_004.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.3,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 301158,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.646Z"
+    },
+    {
+      "filename": "tt_seg_005.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_005.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_005.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.034,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 305431,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.647Z"
+    },
+    {
+      "filename": "tt_seg_006.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_006.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_006.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 210845,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.648Z"
+    },
+    {
+      "filename": "tt_seg_008.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_008.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_008.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.6,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 434678,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.650Z"
+    },
+    {
+      "filename": "tt_seg_010.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_010.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_010.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.534,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 381798,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.652Z"
+    },
+    {
+      "filename": "tt_seg_011.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_011.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_011.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 452746,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.654Z"
+    },
+    {
+      "filename": "tt_seg_012.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_012.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_012.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.034,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 348692,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.656Z"
+    },
+    {
+      "filename": "tt_seg_014.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_014.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_014.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 193158,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.657Z"
+    },
+    {
+      "filename": "tt_seg_015.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_015.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_015.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.467,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 394544,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.659Z"
+    },
+    {
+      "filename": "tt_seg_016.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_016.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_016.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.234,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 406597,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.662Z"
+    },
+    {
+      "filename": "tt_seg_017.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_017.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_017.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 6.6,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 337183,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.663Z"
+    },
+    {
+      "filename": "tt_seg_018.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_018.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_018.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 455145,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.665Z"
+    },
+    {
+      "filename": "tt_seg_021.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_021.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_021.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 424019,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.667Z"
+    },
+    {
+      "filename": "tt_seg_022.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_022.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_022.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 381334,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.669Z"
+    },
+    {
+      "filename": "tt_seg_024.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_024.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_024.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 332566,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.671Z"
+    },
+    {
+      "filename": "tt_seg_025.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_025.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_025.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 7,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 7,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 418473,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 7,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.673Z"
+    },
+    {
+      "filename": "tt_seg_029.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_seg_029.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_seg_029.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 6.75,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 0.834,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 839645,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 3,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 5
+      },
+      "staged_at": "2026-02-16T01:30:11.674Z"
+    },
+    {
+      "filename": "tt_7607070679359442198.mp4",
+      "path": "/root/dailydealfeed/staging/clips/approved/tt_7607070679359442198.mp4",
+      "original_path": "/root/dailydealfeed/clips/shorts/tt_7607070679359442198.mp4",
+      "source": "YouTube/TikTok Shorts",
+      "score": 6.5,
+      "metadata": {
+        "width": 720,
+        "height": 1280,
+        "duration": 187.9,
+        "has_audio": false,
+        "codec": "hevc",
+        "bitrate": 400517,
+        "fps": 30,
+        "scene_changes": -1
+      },
+      "scores": {
+        "aspect_ratio": 10,
+        "resolution": 9,
+        "duration": 3,
+        "has_audio": 3,
+        "motion": 8,
+        "quality": 3
+      },
+      "staged_at": "2026-02-16T01:30:11.763Z"
+    }
+  ]
+}

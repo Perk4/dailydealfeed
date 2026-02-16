@@ -68,14 +68,37 @@ async function recordAmazonProduct(asin, options = {}) {
     console.log(`🌐 Navigating to: ${url}`);
     
     await page.goto(url, {
-      waitUntil: 'domcontentloaded',
-      timeout: 30000
+      waitUntil: 'networkidle',  // Wait longer for full page load
+      timeout: 45000  // Increased timeout for slow Amazon pages
     });
+
+    // Wait for page to settle
+    await page.waitForTimeout(2000);
+
+    // Check for 404/error pages
+    const pageContent = await page.content();
+    const pageTitle = await page.title();
+    
+    if (pageContent.includes("Sorry, we couldn't find that page") || 
+        pageContent.includes("Page Not Found") ||
+        pageContent.includes("Looking for something?") ||
+        pageTitle.includes("Page Not Found") ||
+        pageContent.includes("We're sorry, the page you requested was not found")) {
+      console.log('⚠️ Product page not found (404), using fallback image');
+      await browser.close();
+      return null; // Signal to use static image instead
+    }
+
+    // Check if product is unavailable
+    if (pageContent.includes("Currently unavailable") && 
+        pageContent.includes("We don't know when or if this item will be back in stock")) {
+      console.log('⚠️ Product unavailable, may have limited images');
+    }
 
     // Wait for images to load
     console.log(`⏳ Waiting for images...`);
-    await page.waitForSelector('#imageBlock, .a-carousel, #main-image-container', {
-      timeout: 10000
+    await page.waitForSelector('#imageBlock, .a-carousel, #main-image-container, #imgTagWrapperId', {
+      timeout: 15000  // Increased timeout
     }).catch(() => {
       console.log('⚠️ Image selector not found, continuing anyway...');
     });

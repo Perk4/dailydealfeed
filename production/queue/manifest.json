@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "createdAt": "2026-02-16T01:36:35.648Z",
+  "totalItems": 6,
+  "pendingItems": 5,
+  "completedItems": 0,
+  "items": [
+    {
+      "id": "item_1771205795644_B00ELWABHE",
+      "product": {
+        "id": "6",
+        "asin": "B00ELWABHE",
+        "name": "Scrub Daddy Original Sponge",
+        "price": "$3.88",
+        "category": "cleaning",
+        "image_url": "https://m.media-amazon.com/images/I/81zP5QJsYvL._AC_SL1500_.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B00ELWABHE?tag=dailydealfeed-20",
+        "best_stat": "FlexTexture changes with water temp"
+      },
+      "clip": {
+        "filename": "iYXT1h0mYlM_seg001.mp4",
+        "path": "/root/dailydealfeed/staging/clips/approved/iYXT1h0mYlM_seg001.mp4",
+        "score": 9.63,
+        "source": "AFV/Processed",
+        "duration": 5.904,
+        "has_audio": true
+      },
+      "matchScore": 52.63,
+      "status": "needs-review",
+      "createdAt": "2026-02-16T01:36:35.644Z",
+      "outputPath": "/root/dailydealfeed/output/amazon_B00ELWABHE.mp4",
+      "qaScore": 4,
+      "startedAt": "2026-02-16T01:36:35.678Z",
+      "qaIssues": [
+        "Short duration: 6.0s (expected 10-15s)",
+        "No audio track",
+        "Very small file: 0.16 MB"
+      ],
+      "completedAt": "2026-02-16T01:38:02.980Z",
+      "finalPath": "/root/dailydealfeed/output/rejected/amazon_B00ELWABHE.mp4"
+    },
+    {
+      "id": "item_1771205795644_B00PBX3L7K",
+      "product": {
+        "id": "1",
+        "asin": "B00PBX3L7K",
+        "name": "COSRX Snail Mucin 96% Power Repairing Essence",
+        "price": "$17.99",
+        "category": "skincare",
+        "image_url": "https://m.media-amazon.com/images/I/61bLI1JY7UL._SL1500_.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B00PBX3L7K?tag=dailydealfeed-20",
+        "best_stat": "96% snail secretion filtrate"
+      },
+      "clip": {
+        "filename": "yt_seg_000.mp4",
+        "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_000.mp4",
+        "score": 9.75,
+        "source": "YouTube/TikTok Shorts",
+        "duration": 5.041,
+        "has_audio": true
+      },
+      "matchScore": 42.75,
+      "status": "in-progress",
+      "createdAt": "2026-02-16T01:36:35.644Z",
+      "outputPath": null,
+      "qaScore": null,
+      "startedAt": "2026-02-16T01:38:03.033Z"
+    },
+    {
+      "id": "item_1771205795644_B07GXDZ5VZ",
+      "product": {
+        "id": "2",
+        "asin": "B07GXDZ5VZ",
+        "name": "Ice Roller for Face & Eye Puffiness Relief",
+        "price": "$9.99",
+        "category": "beauty",
+        "image_url": "https://m.media-amazon.com/images/I/61yFdLIh7TL._SL1500_.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B07GXDZ5VZ?tag=dailydealfeed-20",
+        "best_stat": "Stays cold for 10+ minutes"
+      },
+      "clip": {
+        "filename": "yt_seg_004.mp4",
+        "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_004.mp4",
+        "score": 9.38,
+        "source": "YouTube/TikTok Shorts",
+        "duration": 3.708,
+        "has_audio": true
+      },
+      "matchScore": 47.38,
+      "status": "pending",
+      "createdAt": "2026-02-16T01:36:35.644Z",
+      "outputPath": null,
+      "qaScore": null
+    },
+    {
+      "id": "item_1771205795645_B07JM39NS1",
+      "product": {
+        "id": "4",
+        "asin": "B07JM39NS1",
+        "name": "Laneige Lip Sleeping Mask",
+        "price": "$24.00",
+        "category": "beauty",
+        "image_url": "https://m.media-amazon.com/images/I/61xM+qSqQNL._SL1500_.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B07JM39NS1?tag=dailydealfeed-20",
+        "best_stat": "Berry extract + vitamin C"
+      },
+      "clip": {
+        "filename": "yt_seg_001.mp4",
+        "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_001.mp4",
+        "score": 9.25,
+        "source": "YouTube/TikTok Shorts",
+        "duration": 7.208,
+        "has_audio": true
+      },
+      "matchScore": 47.25,
+      "status": "pending",
+      "createdAt": "2026-02-16T01:36:35.645Z",
+      "outputPath": null,
+      "qaScore": null
+    },
+    {
+      "id": "item_1771205795645_B09TKMK2RW",
+      "product": {
+        "id": "3",
+        "asin": "B09TKMK2RW",
+        "name": "Cloud Slides Pillow Slippers",
+        "price": "$23.99",
+        "category": "footwear",
+        "image_url": "https://m.media-amazon.com/images/I/61iNJHhEb1L._AC_SL1500_.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B09TKMK2RW?tag=dailydealfeed-20",
+        "best_stat": "4.5cm thick EVA cushion"
+      },
+      "clip": {
+        "filename": "iYXT1h0mYlM_seg004.mp4",
+        "path": "/root/dailydealfeed/staging/clips/approved/iYXT1h0mYlM_seg004.mp4",
+        "score": 9.63,
+        "source": "AFV/Processed",
+        "duration": 4.148,
+        "has_audio": true
+      },
+      "matchScore": 52.63,
+      "status": "pending",
+      "createdAt": "2026-02-16T01:36:35.645Z",
+      "outputPath": null,
+      "qaScore": null
+    },
+    {
+      "id": "item_1771205795648_B0BQ83Q8JN",
+      "product": {
+        "id": "5",
+        "asin": "B0BQ83Q8JN",
+        "name": "Stanley Quencher H2.0 Tumbler 40oz",
+        "price": "$45.00",
+        "category": "drinkware",
+        "image_url": "https://m.media-amazon.com/images/I/71QB1xPTLZL._AC_SL1500_.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B0BQ83Q8JN?tag=dailydealfeed-20",
+        "best_stat": "Keeps ice 2+ days"
+      },
+      "clip": {
+        "filename": "yt_seg_003.mp4",
+        "path": "/root/dailydealfeed/staging/clips/approved/yt_seg_003.mp4",
+        "score": 9.75,
+        "source": "YouTube/TikTok Shorts",
+        "duration": 4.558,
+        "has_audio": true
+      },
+      "matchScore": 42.75,
+      "status": "pending",
+      "createdAt": "2026-02-16T01:36:35.648Z",
+      "outputPath": null,
+      "qaScore": null
+    }
+  ]
+}

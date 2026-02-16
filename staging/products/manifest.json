@@ -1,0 +1,72 @@
+{
+  "approvedProducts": [
+    {
+      "id": "1",
+      "asin": "B00PBX3L7K",
+      "name": "COSRX Snail Mucin 96% Power Repairing Essence",
+      "price": "$21.99",
+      "livePrice": "$17.99",
+      "category": "skincare",
+      "affiliate_link": "https://www.amazon.com/dp/B00PBX3L7K?tag=dailydealfeed-20",
+      "score": 1
+    },
+    {
+      "id": "2",
+      "asin": "B07GXDZ5VZ",
+      "name": "Ice Roller for Face & Eye Puffiness Relief",
+      "price": "$9.99",
+      "livePrice": null,
+      "category": "beauty",
+      "affiliate_link": "https://www.amazon.com/dp/B07GXDZ5VZ?tag=dailydealfeed-20",
+      "score": 0.6
+    },
+    {
+      "id": "3",
+      "asin": "B09TKMK2RW",
+      "name": "Cloud Slides Pillow Slippers",
+      "price": "$23.99",
+      "livePrice": null,
+      "category": "footwear",
+      "affiliate_link": "https://www.amazon.com/dp/B09TKMK2RW?tag=dailydealfeed-20",
+      "score": 0.6
+    },
+    {
+      "id": "4",
+      "asin": "B07JM39NS1",
+      "name": "Laneige Lip Sleeping Mask",
+      "price": "$24.00",
+      "livePrice": null,
+      "category": "beauty",
+      "affiliate_link": "https://www.amazon.com/dp/B07JM39NS1?tag=dailydealfeed-20",
+      "score": 0.6
+    },
+    {
+      "id": "5",
+      "asin": "B0BQ83Q8JN",
+      "name": "Stanley Quencher H2.0 Tumbler 40oz",
+      "price": "$45.00",
+      "livePrice": null,
+      "category": "drinkware",
+      "affiliate_link": "https://www.amazon.com/dp/B0BQ83Q8JN?tag=dailydealfeed-20",
+      "score": 0.6
+    },
+    {
+      "id": "6",
+      "asin": "B00ELWABHE",
+      "name": "Scrub Daddy Original Sponge",
+      "price": "$3.88",
+      "livePrice": null,
+      "category": "cleaning",
+      "affiliate_link": "https://www.amazon.com/dp/B00ELWABHE?tag=dailydealfeed-20",
+      "score": 0.6
+    }
+  ],
+  "rejectedProducts": [],
+  "summary": {
+    "total": 6,
+    "approved": 6,
+    "rejected": 0,
+    "approvalRate": "100.0%"
+  },
+  "generatedAt": "2026-02-16T01:30:26.965Z"
+}
