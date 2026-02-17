@@ -1550,9 +1550,9 @@ async function editVideo(input) {
       // Don't strip audio with -an if hook has original audio
       if (hookHasAudio) {
         console.log('🔊 Preserving hook audio, video already has audio track...');
-        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -c:a copy "${tempVideoNoAudio}"`);
+        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -b:v 2M -maxrate 3M -bufsize 4M -pix_fmt yuv420p -movflags +faststart -c:a copy "${tempVideoNoAudio}"`);
       } else {
-        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
+        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -b:v 2M -maxrate 3M -bufsize 4M -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
       }
       
       // V9: Mix voiceover with video, DELAYING voiceover to start after hook
@@ -1564,7 +1564,7 @@ async function editVideo(input) {
       
       if (!mixSuccess) {
         console.log('⚠️  Voiceover mixing failed, creating video without audio');
-        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart "${tempVideoWithVO}"`);
+        ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -b:v 2M -maxrate 3M -bufsize 4M -pix_fmt yuv420p -movflags +faststart "${tempVideoWithVO}"`);
       } else {
         console.log('✅ Voiceover added successfully (delayed to product segment)!');
       }
@@ -1582,7 +1582,7 @@ async function editVideo(input) {
       }
     } else {
       console.log('⚠️  No voiceover available');
-      ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
+      ffmpeg(`-i "${tempWithProgress}" -c:v libx264 -preset medium -b:v 2M -maxrate 3M -bufsize 4M -pix_fmt yuv420p -movflags +faststart -an "${tempVideoNoAudio}"`);
       
       // Add music to silent video (50% volume since no voiceover)
       if (musicTrack && fs.existsSync(musicTrack)) {
