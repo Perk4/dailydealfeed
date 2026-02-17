@@ -241,6 +241,7 @@ async function generateVideo(queueItem) {
     product_name: queueItem.product.name,
     product_image: queueItem.product.image_url,
     product_price: queueItem.product.price,
+    product_asin: queueItem.product.asin,
     meme_url: queueItem.clip.path,
     clip_local_path: queueItem.clip.path,
     hook_angle: `Check this out: ${queueItem.product.name}`,

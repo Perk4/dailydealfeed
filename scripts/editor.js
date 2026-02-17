@@ -1439,23 +1439,31 @@ async function editVideo(input) {
     
     // V12: Check for Amazon screen recording FIRST - REQUIRED (no static image fallback)
     let amazonRecording = null;
-    let productAsin = null;
-    try {
-      const productsPath = path.join(SCRIPT_DIR, '..', 'products.json');
-      if (fs.existsSync(productsPath)) {
-        const productsData = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
-        const product = productsData.products.find(p => p.id === String(productId));
-        if (product && product.asin) {
-          productAsin = product.asin;
-          const amazonPath = path.join(OUTPUT_DIR, `amazon_${product.asin}.mp4`);
-          if (fs.existsSync(amazonPath)) {
-            amazonRecording = amazonPath;
-            console.log(`📱 Found Amazon recording: ${amazonPath}`);
+    let productAsin = input.product_asin || null;
+    
+    // Try to get ASIN from input first, then fallback to products.json
+    if (!productAsin) {
+      try {
+        const productsPath = path.join(SCRIPT_DIR, '..', 'products.json');
+        if (fs.existsSync(productsPath)) {
+          const productsData = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+          const product = productsData.products.find(p => p.id === String(productId));
+          if (product && product.asin) {
+            productAsin = product.asin;
           }
         }
+      } catch (e) {
+        console.log(`⚠️  Could not check products.json for ASIN: ${e.message}`);
       }
-    } catch (e) {
-      console.log(`⚠️  Could not check for Amazon recording: ${e.message}`);
+    }
+    
+    // Check if Amazon recording already exists
+    if (productAsin) {
+      const amazonPath = path.join(OUTPUT_DIR, `amazon_${productAsin}.mp4`);
+      if (fs.existsSync(amazonPath)) {
+        amazonRecording = amazonPath;
+        console.log(`📱 Found Amazon recording: ${amazonPath}`);
+      }
     }
     
     // V12: Generate Amazon recording if missing (REQUIRED - no static fallback)
