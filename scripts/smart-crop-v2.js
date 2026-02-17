@@ -234,6 +234,9 @@ async function applyCrop(inputPath, outputPath, filter, verbose = false) {
     '-c:v', CONFIG.codec,
     '-preset', CONFIG.preset,
     '-crf', CONFIG.crf,
+    '-minrate', '1.5M',
+    '-maxrate', '4M',
+    '-bufsize', '4M',
     '-c:a', 'aac', '-b:a', '128k',
     '-movflags', '+faststart',
     `"${outputPath}"`

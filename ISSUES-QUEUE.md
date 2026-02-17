@@ -6,7 +6,7 @@
 
 | ID | Issue | Priority | Status | Agent | Evidence |
 |----|-------|----------|--------|-------|----------|
-| 2 | CRF 18 Insufficient for 1 Mbps | 🔴 Critical | Agent Spawned | fix-video-minrate | 40% pass rate post-CRF18-fix |
+| 2 | CRF 18 Insufficient for 1 Mbps | 🔴 Critical | ✅ Verified | fix-video-minrate | minrate floor: 1.5-3.9 Mbps |
 
 ## Format for New Issues
 ```
@@ -101,10 +101,16 @@ Use ffmpeg's `-minrate 1.5M -maxrate 3M -bufsize 3M` with CRF to set a bitrate f
 **Status:** 
 - [x] Identified
 - [x] Agent Spawned (fix-video-minrate @ 2026-02-17 08:57 UTC)
-- [ ] Fix Implemented
-- [ ] Verified Working
-- [ ] Closed
+- [x] Fix Implemented
+- [x] Verified Working
+- [x] Closed
 
 **Resolution:**
-*Pending*
+Added `-minrate 1.5M -maxrate 4M -bufsize 4M` to ffmpeg args in smart-crop-v2.js.
+Test results (3 different source clips):
+- test1: 1.51 Mbps format bitrate ✅
+- test2: 3.10 Mbps format bitrate ✅
+- test3: 3.87 Mbps format bitrate ✅
+
+All exceed 1.2 Mbps threshold. VBV buffering ensures consistent bitrate floor while CRF 18 maintains quality ceiling.
 
