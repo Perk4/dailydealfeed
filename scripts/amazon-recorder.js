@@ -68,8 +68,8 @@ async function recordAmazonProduct(asin, options = {}) {
     console.log(`🌐 Navigating to: ${url}`);
     
     await page.goto(url, {
-      waitUntil: 'networkidle',  // Wait longer for full page load
-      timeout: 45000  // Increased timeout for slow Amazon pages
+      waitUntil: 'domcontentloaded',  // Don't wait for all resources - Amazon throttles servers
+      timeout: 30000
     });
 
     // Wait for page to settle
