@@ -1,0 +1,24 @@
+{
+  "file": "video_4_1771251821866.mp4",
+  "rejectedAt": "2026-02-17T01:44:21.995Z",
+  "issues": [
+    "Low bitrate: 0.67 Mbps (need ≥1 Mbps)"
+  ],
+  "checks": {
+    "resolution": true,
+    "duration": true,
+    "hasAudio": true,
+    "bitrate": false,
+    "fileSize": true,
+    "aspectRatio": true
+  },
+  "metadata": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 9.44,
+    "bitrate": 672029,
+    "fileSize": 792995,
+    "codec": "h264",
+    "audioCodec": "aac"
+  }
+}

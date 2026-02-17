@@ -73,6 +73,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
+const { recordAmazonProduct } = require('./amazon-recorder');
 
 // Configuration
 const SCRIPT_DIR = __dirname;
@@ -1436,14 +1437,16 @@ async function editVideo(input) {
     
     console.log(`📐 Final timing: ${totalDuration}s total (${hookDuration}+${productDuration}+${ctaDuration})`);
     
-    // V11: Check for Amazon screen recording FIRST (before downloading assets)
+    // V12: Check for Amazon screen recording FIRST - REQUIRED (no static image fallback)
     let amazonRecording = null;
+    let productAsin = null;
     try {
       const productsPath = path.join(SCRIPT_DIR, '..', 'products.json');
       if (fs.existsSync(productsPath)) {
         const productsData = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
         const product = productsData.products.find(p => p.id === String(productId));
         if (product && product.asin) {
+          productAsin = product.asin;
           const amazonPath = path.join(OUTPUT_DIR, `amazon_${product.asin}.mp4`);
           if (fs.existsSync(amazonPath)) {
             amazonRecording = amazonPath;
@@ -1453,6 +1456,26 @@ async function editVideo(input) {
       }
     } catch (e) {
       console.log(`⚠️  Could not check for Amazon recording: ${e.message}`);
+    }
+    
+    // V12: Generate Amazon recording if missing (REQUIRED - no static fallback)
+    if (!amazonRecording && productAsin) {
+      console.log(`📱 Amazon recording missing for ${productAsin}, generating...`);
+      try {
+        const amazonPath = path.join(OUTPUT_DIR, `amazon_${productAsin}.mp4`);
+        await recordAmazonProduct(productAsin, { outputPath: amazonPath });
+        if (fs.existsSync(amazonPath)) {
+          amazonRecording = amazonPath;
+          console.log(`✅ Generated Amazon recording: ${amazonPath}`);
+        }
+      } catch (e) {
+        console.log(`❌ Failed to generate Amazon recording: ${e.message}`);
+      }
+    }
+    
+    // V12: REQUIRE Amazon recording - no static image fallback
+    if (!amazonRecording) {
+      throw new Error(`Cannot generate video: Amazon mobile UI recording required for product ${productId} (ASIN: ${productAsin || 'unknown'}). Static product images are no longer supported.`);
     }
     
     // Step 1: Download assets
@@ -1465,13 +1488,8 @@ async function editVideo(input) {
       await downloadFile(input.meme_url, tempMeme);
     }
     
-    // V11: Only download product image if no Amazon recording (fallback)
-    if (!amazonRecording) {
-      console.log('📥 Downloading product image...');
-      await downloadFile(input.product_image, tempProduct);
-    } else {
-      console.log('📱 Skipping product image download (using Amazon recording)');
-    }
+    // V12: No product image download needed - using Amazon recording only
+    console.log('📱 Using Amazon mobile UI recording (no static image download)');
     
     // Step 2: Create hook segment (clip only, no text) - V8 SIMPLIFIED
     // V8: REMOVED hook text overlay - gets cut off in 9:16 portrait mode
@@ -1485,28 +1503,15 @@ async function editVideo(input) {
     fs.copyFileSync(tempHook, tempHookText); // Keep downstream paths working
     
     // Step 3: Create product showcase segment - DYNAMIC DURATION
-    // V11: Use Amazon recording if available (checked earlier)
-    if (amazonRecording) {
-      // V11: Use Amazon screen recording with price overlay
-      console.log('📦 Creating product showcase from Amazon recording...');
-      createProductSegmentFromVideo(
-        amazonRecording,
-        input.product_name,
-        input.product_price || '$??',
-        tempShowcase,
-        productDuration
-      );
-    } else {
-      // Fallback: Create product showcase from static image
-      console.log('📦 Creating product showcase from image...');
-      createProductSegment(
-        tempProduct, 
-        input.product_name, 
-        input.product_price || '$??', 
-        tempShowcase, 
-        productDuration
-      );
-    }
+    // V12: ALWAYS use Amazon mobile UI recording (no static image fallback)
+    console.log('📦 Creating product showcase from Amazon mobile UI recording...');
+    createProductSegmentFromVideo(
+      amazonRecording,
+      input.product_name,
+      input.product_price || '$??',
+      tempShowcase,
+      productDuration
+    );
     
     // Step 4: Create CTA segment - DYNAMIC DURATION
     console.log('📢 Creating CTA segment...');

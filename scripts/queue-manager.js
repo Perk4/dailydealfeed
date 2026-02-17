@@ -304,45 +304,67 @@ async function generateVideo(queueItem) {
 // ============================================
 
 /**
- * Run QA on a video file
+ * Run STRICT QA on a video file
+ * Uses video-qa.js for consistent, enforced thresholds
+ * ALL checks must pass - no exceptions
  */
 function runQA(videoPath) {
   if (!videoPath || !fs.existsSync(videoPath)) {
     return { score: 0, error: 'Video file not found', passed: false };
   }
   
-  try {
-    const probe = JSON.parse(execSync(
-      `ffprobe -v quiet -print_format json -show_format -show_streams "${videoPath}"`,
-      { encoding: 'utf8' }
-    ));
+  // Import strict QA module
+  const { evaluateVideo } = require('./video-qa.js');
+  const result = evaluateVideo(videoPath);
+  
+  // Handle failed videos - move to rejected folder
+  if (!result.passed) {
+    const rejectedDir = PATHS.outputRejected;
+    if (!fs.existsSync(rejectedDir)) {
+      fs.mkdirSync(rejectedDir, { recursive: true });
+    }
     
-    const video = probe.streams.find(s => s.codec_type === 'video');
-    const audio = probe.streams.find(s => s.codec_type === 'audio');
-    const duration = parseFloat(probe.format.duration);
-    const size = parseInt(probe.format.size);
+    const filename = path.basename(videoPath);
+    const destPath = path.join(rejectedDir, filename);
     
-    const checks = {
-      hasVideo: !!video,
-      hasAudio: !!audio,
-      correctResolution: video?.width === 1080 && video?.height === 1920,
-      goodDuration: duration >= 8 && duration <= 15,
-      reasonableSize: size > 500000 && size < 50000000 // 500KB to 50MB
-    };
+    // Write rejection reason
+    const reasonFile = path.join(rejectedDir, filename.replace('.mp4', '.rejection.json'));
+    fs.writeFileSync(reasonFile, JSON.stringify({
+      file: filename,
+      rejectedAt: new Date().toISOString(),
+      issues: result.issues,
+      checks: result.checks,
+      metadata: result.metadata
+    }, null, 2));
     
-    const passed = Object.values(checks).filter(v => v).length;
-    const score = Math.round((passed / 5) * 10);
+    // Move to rejected
+    if (videoPath !== destPath) {
+      fs.renameSync(videoPath, destPath);
+      log(`Rejected: ${filename} → ${result.issues.join(', ')}`, '❌');
+    }
+  } else {
+    // Move passed videos to approved folder
+    const approvedDir = PATHS.outputApproved;
+    if (!fs.existsSync(approvedDir)) {
+      fs.mkdirSync(approvedDir, { recursive: true });
+    }
     
-    return {
-      score,
-      checks,
-      duration,
-      size,
-      passed: score >= 8
-    };
-  } catch (error) {
-    return { score: 0, error: error.message, passed: false };
+    const filename = path.basename(videoPath);
+    const destPath = path.join(approvedDir, filename);
+    
+    if (videoPath !== destPath && !videoPath.includes('/approved/')) {
+      fs.renameSync(videoPath, destPath);
+    }
   }
+  
+  return {
+    score: result.score,
+    checks: result.checks,
+    duration: result.metadata?.duration,
+    size: result.metadata?.fileSize,
+    issues: result.issues,
+    passed: result.passed
+  };
 }
 
 // ============================================
