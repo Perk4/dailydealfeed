@@ -7,7 +7,7 @@
 | ID | Issue | Priority | Status | Agent | Evidence |
 |----|-------|----------|--------|-------|----------|
 | 2 | CRF 18 Insufficient for 1 Mbps | 🔴 Critical | ✅ Closed | fix-video-minrate | minrate floor: 1.5-3.9 Mbps |
-| 3 | Amazon Bot Detection - 50% Queue Failures | 🔴 Critical | 🔄 In Progress | TBD | 11/22 queue items failed |
+| 3 | Amazon Bot Detection - 50% Queue Failures | 🔴 Critical | 🔄 In Progress | fix-amazon-recorder | 11/22 queue items failed |
 
 ## Format for New Issues
 ```
