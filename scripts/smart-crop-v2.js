@@ -37,7 +37,7 @@ const CONFIG = {
   // Output
   codec: 'libx264',
   preset: 'medium',
-  crf: 22,
+  crf: 18,
 };
 
 /**

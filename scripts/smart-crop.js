@@ -37,7 +37,7 @@ const CONFIG = {
   minMotionThreshold: 10,    // Minimum motion to consider
   
   // Encoding settings
-  defaultCrf: 23,
+  defaultCrf: 18,
   codec: 'libx264',
   preset: 'veryfast',  // Use faster preset to stay within resource limits
   
@@ -454,7 +454,7 @@ Examples:
   // Parse arguments
   const inputPath = args[0];
   let outputPath = null;
-  const options = { verbose: false, quality: 23 };
+  const options = { verbose: false, quality: 18 };
   
   for (let i = 1; i < args.length; i++) {
     const arg = args[i];
@@ -462,7 +462,7 @@ Examples:
     if (arg === '--verbose' || arg === '-v') {
       options.verbose = true;
     } else if (arg === '--quality') {
-      options.quality = parseInt(args[++i]) || 23;
+      options.quality = parseInt(args[++i]) || 18;
     } else if (arg === '--fallback') {
       options.fallback = args[++i];
     } else if (!arg.startsWith('-')) {

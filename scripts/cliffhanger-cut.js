@@ -86,7 +86,7 @@ async function cliffhangerCut(inputPath, outputPath, options = {}) {
   const filterArg = filters.length > 0 ? `-vf "${filters.join(',')}"` : '';
   
   // Use -ss before -i for fast seeking, but use -accurate_seek for precision
-  const cmd = `ffmpeg -y -ss ${startTime.toFixed(3)} -i "${inputPath}" -t ${actualDuration.toFixed(3)} ${filterArg} -c:v libx264 -preset fast -crf 23 -c:a aac -b:a 128k "${outputPath}"`;
+  const cmd = `ffmpeg -y -ss ${startTime.toFixed(3)} -i "${inputPath}" -t ${actualDuration.toFixed(3)} ${filterArg} -c:v libx264 -preset fast -crf 18 -c:a aac -b:a 128k "${outputPath}"`;
   
   try {
     await execAsync(cmd);
