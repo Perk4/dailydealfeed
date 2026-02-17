@@ -1,6 +1,6 @@
 # DailyDealFeed Roadmap
 
-**Last Updated:** 2026-02-15 22:20 UTC
+**Last Updated:** 2026-02-17 03:12 UTC
 
 ---
 
@@ -63,6 +63,12 @@
 - Test recordings: CeraVe (239KB), Pink Stuff (218KB)
 - Ready to integrate with editor.js
 
+### 3. Orchestrator System ✅ COMPLETE
+- `scripts/orchestrator.js` — coordinates parallel product processing
+- `scripts/generate-embed.js` — creates Carrd embed pages for GitHub Pages
+- Workflow: Product Selected → [Parallel] Amazon Recording + Embed Gen → [Sequential] Video Generation
+- CLI: `node orchestrator.js <ASIN>` or `--process-queue`
+
 ---
 
 ## 🚧 Blocked
@@ -104,12 +110,16 @@
 | File | Purpose |
 |------|---------|
 | `scripts/editor.js` | Video generation (V10) |
+| `scripts/orchestrator.js` | End-to-end product orchestration |
+| `scripts/generate-embed.js` | Carrd embed page generator |
+| `scripts/amazon-recorder.js` | Amazon mobile UI recording |
 | `scripts/scout.js` | Product + clip matching |
 | `scripts/script-map.json` | Neutral scripts (v4.0) |
 | `scripts/ingest-clips.js` | Clip ingestion (WIP) |
 | `clips/library.json` | Unified clip manifest (WIP) |
 | `clips/shorts-manifest.json` | YouTube/TikTok clips |
 | `docs/AMAZON-SCREEN-RECORDING-PLAN.md` | Product display plan |
+| `embeds/` | Generated product embed pages |
 | `output/` | Generated videos |
 
 ---
