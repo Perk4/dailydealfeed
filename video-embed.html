@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyDealFeed - Product</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+        }
+        .container { 
+            max-width: 400px; 
+            margin: 0 auto; 
+            padding: 16px; 
+        }
+        .video-wrapper { 
+            width: 100%; 
+            aspect-ratio: 9/16;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #111;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+        .product-info {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .product-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .product-img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 12px;
+            padding: 6px;
+            flex-shrink: 0;
+        }
+        .product-img-fallback {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #ff9900, #ffb347);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+        .product-details { 
+            flex: 1;
+            min-width: 0;
+        }
+        .product-details h3 { 
+            font-size: 14px; 
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .price { 
+            color: #4ade80; 
+            font-size: 20px; 
+            font-weight: 700; 
+        }
+        .buy-btn {
+            display: block;
+            background: linear-gradient(135deg, #ff9900 0%, #ffb347 100%);
+            color: #000;
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            margin-top: 14px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 16px rgba(255, 153, 0, 0.3);
+        }
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+        }
+        .buy-btn:active {
+            transform: translateY(0);
+        }
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+        .error {
+            text-align: center;
+            padding: 40px 20px;
+            color: #ef4444;
+        }
+        .disclosure {
+            text-align: center;
+            padding: 16px;
+            color: rgba(255,255,255,0.4);
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="content">
+            <div class="loading">Loading product...</div>
+        </div>
+        <div class="disclosure">
+            As an Amazon Associate I earn from qualifying purchases
+        </div>
+    </div>
+    <script>
+        const AFFILIATE_TAG = 'dailydealfeed-20';
+        const BASE = 'https://raw.githubusercontent.com/Perk4/dailydealfeed/main';
+        const API_BASE = 'https://api.github.com/repos/Perk4/dailydealfeed/contents';
+        
+        // Get product ID from URL params
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id') || params.get('product') || '1';
+        
+        async function loadProduct() {
+            const content = document.getElementById('content');
+            
+            try {
+                // Load manifest for ASIN lookup
+                const manifestRes = await fetch(`${BASE}/staging/products/manifest.json?t=${Date.now()}`);
+                const manifest = await manifestRes.json();
+                
+                // Get product from manifest (product_id is 1-indexed, array is 0-indexed)
+                const productIndex = parseInt(productId) - 1;
+                const product = manifest.products[productIndex];
+                
+                if (!product) {
+                    throw new Error(`Product ${productId} not found in manifest`);
+                }
+                
+                // Find the latest video for this product
+                const filesRes = await fetch(`${API_BASE}/output/approved`);
+                const files = await filesRes.json();
+                
+                if (!Array.isArray(files)) {
+                    throw new Error('Failed to load files');
+                }
+                
+                // Find all videos for this product and get the newest one
+                const videos = files
+                    .filter(f => f.name.startsWith(`video_${productId}_`) && f.name.endsWith('.mp4'))
+                    .sort((a, b) => {
+                        const tsA = parseInt(a.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
+                        const tsB = parseInt(b.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
+                        return tsB - tsA; // Newest first
+                    });
+                
+                const videoFile = videos[0];
+                
+                // Find matching post JSON for additional metadata
+                let postData = null;
+                if (videoFile) {
+                    const postName = videoFile.name.replace('video_', 'post_').replace('.mp4', '.json');
+                    const postFile = files.find(f => f.name === postName);
+                    if (postFile) {
+                        try {
+                            const postRes = await fetch(postFile.download_url);
+                            postData = await postRes.json();
+                        } catch (e) {
+                            console.warn('Could not load post data');
+                        }
+                    }
+                }
+                
+                // Use post data for name/price if available, fallback to manifest
+                const productName = postData?.product_name || product.name;
+                const productPrice = postData?.product_price || product.price;
+                const asin = product.asin;
+                
+                // Amazon product image URL
+                const imageUrl = `https://images-na.ssl-images-amazon.com/images/P/${asin}.jpg`;
+                const affiliateLink = `https://www.amazon.com/dp/${asin}?tag=${AFFILIATE_TAG}`;
+                
+                // Render the content
+                content.innerHTML = `
+                    ${videoFile ? `
+                        <div class="video-wrapper">
+                            <video controls playsinline autoplay muted loop>
+                                <source src="${BASE}/output/approved/${videoFile.name}" type="video/mp4">
+                            </video>
+                        </div>
+                    ` : ''}
+                    <div class="product-info">
+                        <div class="product-row">
+                            <img class="product-img" 
+                                 src="${imageUrl}" 
+                                 alt="${productName}"
+                                 onerror="this.outerHTML='<div class=\\'product-img-fallback\\'>📦</div>'">
+                            <div class="product-details">
+                                <h3>${truncate(productName, 60)}</h3>
+                                <div class="price">${productPrice}</div>
+                            </div>
+                        </div>
+                        <a class="buy-btn" href="${affiliateLink}" target="_blank" rel="noopener">
+                            🛒 Shop on Amazon
+                        </a>
+                    </div>
+                `;
+                
+            } catch (err) {
+                console.error(err);
+                content.innerHTML = `<div class="error">Error loading product: ${err.message}</div>`;
+            }
+        }
+        
+        function truncate(str, len) {
+            if (!str) return '';
+            return str.length > len ? str.substring(0, len) + '...' : str;
+        }
+        
+        loadProduct();
+    </script>
+</body>
+</html>
