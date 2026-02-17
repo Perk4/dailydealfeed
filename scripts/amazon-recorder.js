@@ -26,6 +26,30 @@ const OUTPUT_DIR = path.join(__dirname, '../output');
 if (!fs.existsSync(TEMP_DIR)) fs.mkdirSync(TEMP_DIR, { recursive: true });
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
+/**
+ * Pre-flight check: Verify Playwright is properly installed
+ * @returns {Promise<{ready: boolean, error?: string}>}
+ */
+async function checkPlaywrightReady() {
+  try {
+    const browser = await chromium.launch({ 
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    await browser.close();
+    return { ready: true };
+  } catch (e) {
+    const msg = e.message || '';
+    if (msg.includes("Executable doesn't exist") || msg.includes('cannot open shared object')) {
+      return { 
+        ready: false, 
+        error: 'Playwright not installed. Run: ./scripts/setup-playwright.sh'
+      };
+    }
+    return { ready: false, error: `Playwright error: ${msg}` };
+  }
+}
+
 // Mobile user agents pool - rotate for anti-detection
 const MOBILE_USER_AGENTS = [
   // iPhone 14 Pro
@@ -112,8 +136,17 @@ async function recordAmazonProduct(asin, options = {}) {
     duration = 6,
     numImages = 4,
     scrollDelay = 800,
-    debug = false
+    debug = false,
+    skipPreflightCheck = false
   } = options;
+
+  // Pre-flight check (can be skipped for batch operations after first check)
+  if (!skipPreflightCheck) {
+    const status = await checkPlaywrightReady();
+    if (!status.ready) {
+      throw new Error(status.error);
+    }
+  }
 
   const rawRecordingDir = path.join(TEMP_DIR, `raw_${Date.now()}`);
   fs.mkdirSync(rawRecordingDir, { recursive: true });
@@ -377,6 +410,12 @@ async function recordAmazonProduct(asin, options = {}) {
  * Batch record multiple products
  */
 async function recordMultiple(asins, outputDir = OUTPUT_DIR) {
+  // Do one pre-flight check for the whole batch
+  const status = await checkPlaywrightReady();
+  if (!status.ready) {
+    throw new Error(status.error);
+  }
+
   const results = [];
   
   for (const asin of asins) {
@@ -387,7 +426,8 @@ async function recordMultiple(asins, outputDir = OUTPUT_DIR) {
         console.log('⏳ Waiting between products...');
         await humanDelay(3000, 6000);
       }
-      await recordAmazonProduct(asin, { outputPath });
+      // Skip pre-flight for subsequent recordings
+      await recordAmazonProduct(asin, { outputPath, skipPreflightCheck: true });
       results.push({ asin, success: true, path: outputPath });
     } catch (err) {
       results.push({ asin, success: false, error: err.message });
@@ -428,4 +468,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = { recordAmazonProduct, recordMultiple };
+module.exports = { recordAmazonProduct, recordMultiple, checkPlaywrightReady };
