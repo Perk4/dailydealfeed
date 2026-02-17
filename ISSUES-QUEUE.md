@@ -42,5 +42,33 @@
 
 ## Issue History
 
-*Issues will be logged below by the Workflow QA loop*
+### ISSUE-1: Video Bitrate Marginal - 59% Rejection Rate
+**Identified:** 2026-02-17 07:57 UTC
+**Priority:** 🔴 Critical
+**Component:** Video
+
+**Problem:**
+Videos being generated with CRF 23 produce marginal bitrates around 0.9-1.1 Mbps. The QA threshold is 1 Mbps, causing 59% of videos to fail (44 rejected, 30 approved).
+
+**Evidence:**
+- Approved video: 1.11 Mbps (video_11_1771314779962.mp4)
+- Rejected video: 0.90 Mbps (video_9_1771282492403.mp4)
+- x264 options in videos confirm `crf=23.0`
+- 44 rejected / 74 total = 59% rejection rate
+
+**Root Cause:**
+CRF 23 is too high (lower quality) for consistent bitrate above 1 Mbps threshold.
+
+**Proposed Fix:**
+Lower CRF from 23 to 18 in smart-crop-v2.js and any other encoding configs to ensure bitrates consistently above 1.5 Mbps.
+
+**Status:** 
+- [x] Identified
+- [ ] Agent Spawned
+- [ ] Fix Implemented
+- [ ] Verified Working
+- [ ] Closed
+
+**Resolution:**
+*Pending*
 
