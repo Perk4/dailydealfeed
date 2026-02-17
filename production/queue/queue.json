@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "createdAt": "2026-02-17T04:53:46.518Z",
+  "createdAt": "2026-02-17T08:26:01.448Z",
   "totalItems": 22,
   "items": [
     {
@@ -21,8 +21,8 @@
         "score": 9.9
       },
       "status": "needs-review",
-      "createdAt": "2026-02-17T04:53:46.516Z",
-      "outputPath": "/root/dailydealfeed/output/video_1_1771304027418.mp4",
+      "createdAt": "2026-02-17T08:26:01.446Z",
+      "outputPath": "/root/dailydealfeed/output/video_1_1771316762338.mp4",
       "qaScore": 8
     },
     {
@@ -43,8 +43,8 @@
         "score": 9.8
       },
       "status": "completed",
-      "createdAt": "2026-02-17T04:53:46.516Z",
-      "outputPath": "/root/dailydealfeed/output/video_2_1771304115440.mp4",
+      "createdAt": "2026-02-17T08:26:01.447Z",
+      "outputPath": "/root/dailydealfeed/output/video_2_1771316862857.mp4",
       "qaScore": 10
     },
     {
@@ -65,8 +65,8 @@
         "score": 9.9
       },
       "status": "needs-review",
-      "createdAt": "2026-02-17T04:53:46.516Z",
-      "outputPath": "/root/dailydealfeed/output/video_3_1771304185943.mp4",
+      "createdAt": "2026-02-17T08:26:01.447Z",
+      "outputPath": "/root/dailydealfeed/output/video_3_1771316934069.mp4",
       "qaScore": 8
     },
     {
@@ -86,10 +86,8 @@
         "vibe": "satisfying",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-17T04:53:46.517Z",
-      "outputPath": "/root/dailydealfeed/output/video_4_1771305780155.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T08:26:01.447Z"
     },
     {
       "id": 5,
@@ -108,10 +106,8 @@
         "vibe": "cozy",
         "score": 9.7
       },
-      "status": "needs-review",
-      "createdAt": "2026-02-17T04:53:46.517Z",
-      "outputPath": "/root/dailydealfeed/output/video_5_1771305848950.mp4",
-      "qaScore": 8
+      "status": "pending",
+      "createdAt": "2026-02-17T08:26:01.447Z"
     },
     {
       "id": 6,
@@ -130,10 +126,8 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "needs-review",
-      "createdAt": "2026-02-17T04:53:46.517Z",
-      "outputPath": "/root/dailydealfeed/output/video_6_1771307579140.mp4",
-      "qaScore": 8
+      "status": "pending",
+      "createdAt": "2026-02-17T08:26:01.447Z"
     },
     {
       "id": 7,
@@ -152,9 +146,8 @@
         "vibe": "cozy",
         "score": 9.6
       },
-      "status": "completed",
-      "createdAt": "2026-02-17T04:53:46.517Z",
-      "outputPath": "/root/dailydealfeed/output/video_7_1771311452849.mp4"
+      "status": "pending",
+      "createdAt": "2026-02-17T08:26:01.447Z"
     },
     {
       "id": 8,
@@ -173,10 +166,8 @@
         "vibe": "satisfying",
         "score": 9.5
       },
-      "status": "completed",
-      "createdAt": "2026-02-17T04:53:46.517Z",
-      "outputPath": "/root/dailydealfeed/output/video_8_1771311547320.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T08:26:01.447Z"
     },
     {
       "id": 9,
@@ -195,10 +186,8 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "completed",
-      "createdAt": "2026-02-17T04:53:46.517Z",
-      "outputPath": "/root/dailydealfeed/output/video_9_1771312979235.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T08:26:01.447Z"
     },
     {
       "id": 10,
@@ -217,10 +206,8 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "completed",
-      "createdAt": "2026-02-17T04:53:46.517Z",
-      "outputPath": "/root/dailydealfeed/output/video_10_1771313100714.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T08:26:01.447Z"
     },
     {
       "id": 11,
@@ -239,10 +226,8 @@
         "vibe": "satisfying",
         "score": 9.3
       },
-      "status": "completed",
-      "createdAt": "2026-02-17T04:53:46.517Z",
-      "outputPath": "/root/dailydealfeed/output/video_11_1771314779962.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T08:26:01.447Z"
     },
     {
       "id": 12,
@@ -262,7 +247,7 @@
         "score": 9.2
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.517Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 13,
@@ -282,7 +267,7 @@
         "score": 8.3
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.517Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 14,
@@ -302,7 +287,7 @@
         "score": 7.8
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.517Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 15,
@@ -322,7 +307,7 @@
         "score": 8.9
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.517Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 16,
@@ -342,7 +327,7 @@
         "score": 7.9
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.517Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 17,
@@ -362,7 +347,7 @@
         "score": 7.7
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.517Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 18,
@@ -382,7 +367,7 @@
         "score": 7.8
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.517Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 19,
@@ -402,7 +387,7 @@
         "score": 7.6
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.517Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 20,
@@ -422,7 +407,7 @@
         "score": 7.6
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.518Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 21,
@@ -442,7 +427,7 @@
         "score": 7.6
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.518Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     },
     {
       "id": 22,
@@ -462,7 +447,7 @@
         "score": 7.6
       },
       "status": "pending",
-      "createdAt": "2026-02-17T04:53:46.518Z"
+      "createdAt": "2026-02-17T08:26:01.448Z"
     }
   ]
 }
