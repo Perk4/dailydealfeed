@@ -262,8 +262,9 @@
         "vibe": "funny",
         "score": 9.2
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon mobile UI recording required - static images not supported"
     },
     {
       "id": 13,
@@ -282,8 +283,9 @@
         "vibe": "satisfying",
         "score": 8.3
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 14,
@@ -302,8 +304,9 @@
         "vibe": "satisfying",
         "score": 7.8
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 15,
@@ -322,8 +325,9 @@
         "vibe": "cozy",
         "score": 8.9
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 16,
@@ -342,8 +346,9 @@
         "vibe": "cozy",
         "score": 7.9
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 17,
@@ -362,8 +367,9 @@
         "vibe": "satisfying",
         "score": 7.7
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 18,
@@ -382,8 +388,9 @@
         "vibe": "cozy",
         "score": 7.8
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 19,
@@ -402,8 +409,9 @@
         "vibe": "satisfying",
         "score": 7.6
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 20,
@@ -422,8 +430,9 @@
         "vibe": "funny",
         "score": 7.6
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 21,
@@ -442,8 +451,9 @@
         "vibe": "funny",
         "score": 7.6
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     },
     {
       "id": 22,
@@ -462,8 +472,9 @@
         "vibe": "satisfying",
         "score": 7.6
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T08:26:01.448Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T08:26:01.448Z",
+      "failReason": "Amazon recording failed - bot detection/404"
     }
   ]
 }
