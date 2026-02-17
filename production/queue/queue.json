@@ -152,8 +152,9 @@
         "vibe": "cozy",
         "score": 9.6
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T01:53:30.479Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T01:53:30.479Z",
+      "error": "Needs mobile UI recording - skipped"
     },
     {
       "id": 8,
