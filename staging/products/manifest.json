@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-02-16T21:22:59.864Z",
+  "updatedAt": "2026-02-17T01:53:30.396Z",
   "products": [
     {
       "asin": "B00PBX3L7K",
@@ -247,6 +247,18 @@
       "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08KRQYDTW.jpg",
       "affiliate_link": "https://www.amazon.com/dp/B08KRQYDTW?tag=dailydealfeed-20",
       "best_stat": "Refillable + eco-friendly"
+    },
+    {
+      "asin": "B09541P9WH",
+      "name": "Amazon Basics Cotton Swabs for Personal Hygiene and Baby Care, 500 Count, 1 Pack",
+      "price": "$19.99",
+      "category": "home",
+      "status": "approved",
+      "validatedAt": "2026-02-17T01:53:30.396Z",
+      "source": "auto-discovery",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09541P9WH.jpg",
+      "affiliate_link": "https://www.amazon.com/dp/B09541P9WH?tag=dailydealfeed-20",
+      "best_stat": "TikTok viral favorite"
     }
   ]
 }

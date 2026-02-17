@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "createdAt": "2026-02-16T21:22:59.966Z",
-  "totalItems": 21,
+  "createdAt": "2026-02-17T01:53:30.479Z",
+  "totalItems": 22,
   "items": [
     {
       "id": 1,
@@ -20,10 +20,8 @@
         "vibe": "cozy",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.964Z",
-      "outputPath": "/root/dailydealfeed/output/video_1_1771276980081.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.478Z"
     },
     {
       "id": 2,
@@ -42,10 +40,8 @@
         "vibe": "satisfying",
         "score": 9.8
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.965Z",
-      "outputPath": "/root/dailydealfeed/output/video_2_1771277072339.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.478Z"
     },
     {
       "id": 3,
@@ -64,10 +60,8 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.965Z",
-      "outputPath": "/root/dailydealfeed/output/video_3_1771277128837.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.478Z"
     },
     {
       "id": 4,
@@ -86,10 +80,8 @@
         "vibe": "satisfying",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.965Z",
-      "outputPath": "/root/dailydealfeed/output/video_4_1771278779829.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.478Z"
     },
     {
       "id": 5,
@@ -108,10 +100,8 @@
         "vibe": "cozy",
         "score": 9.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.965Z",
-      "outputPath": "/root/dailydealfeed/output/video_5_1771278849812.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 6,
@@ -130,10 +120,8 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.965Z",
-      "outputPath": "/root/dailydealfeed/output/video_6_1771280578755.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 7,
@@ -152,10 +140,8 @@
         "vibe": "cozy",
         "score": 9.6
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.965Z",
-      "outputPath": "/root/dailydealfeed/output/video_7_1771280645142.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 8,
@@ -174,10 +160,8 @@
         "vibe": "satisfying",
         "score": 9.5
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_8_1771282378731.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 9,
@@ -196,10 +180,8 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_9_1771282492403.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 10,
@@ -218,10 +200,8 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_10_1771284179222.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 11,
@@ -240,10 +220,8 @@
         "vibe": "satisfying",
         "score": 9.3
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_11_1771284338961.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 12,
@@ -262,10 +240,8 @@
         "vibe": "funny",
         "score": 9.2
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_12_1771285979897.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 13,
@@ -284,10 +260,8 @@
         "vibe": "satisfying",
         "score": 8.3
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_13_1771286113320.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 14,
@@ -306,10 +280,8 @@
         "vibe": "satisfying",
         "score": 7.8
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_14_1771287779778.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 15,
@@ -328,10 +300,8 @@
         "vibe": "cozy",
         "score": 8.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_15_1771287857991.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 16,
@@ -350,10 +320,8 @@
         "vibe": "cozy",
         "score": 7.9
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_16_1771289579695.mp4",
-      "qaScore": 8
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 17,
@@ -372,10 +340,8 @@
         "vibe": "satisfying",
         "score": 7.7
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_17_1771289623209.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 18,
@@ -394,10 +360,8 @@
         "vibe": "cozy",
         "score": 7.8
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_18_1771291379903.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 19,
@@ -416,10 +380,8 @@
         "vibe": "satisfying",
         "score": 7.6
       },
-      "status": "completed",
-      "createdAt": "2026-02-16T21:22:59.966Z",
-      "outputPath": "/root/dailydealfeed/output/video_19_1771291474676.mp4",
-      "qaScore": 10
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 20,
@@ -439,7 +401,7 @@
         "score": 7.6
       },
       "status": "pending",
-      "createdAt": "2026-02-16T21:22:59.966Z"
+      "createdAt": "2026-02-17T01:53:30.479Z"
     },
     {
       "id": 21,
@@ -459,7 +421,27 @@
         "score": 7.6
       },
       "status": "pending",
-      "createdAt": "2026-02-16T21:22:59.966Z"
+      "createdAt": "2026-02-17T01:53:30.479Z"
+    },
+    {
+      "id": 22,
+      "product": {
+        "asin": "B09541P9WH",
+        "name": "Amazon Basics Cotton Swabs for Personal Hygiene and Baby Care, 500 Count, 1 Pack",
+        "price": "$19.99",
+        "category": "home",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09541P9WH.jpg",
+        "affiliate_link": "https://www.amazon.com/dp/B09541P9WH?tag=dailydealfeed-20",
+        "best_stat": "TikTok viral favorite"
+      },
+      "clip": {
+        "file": "tt_seg_026.mp4",
+        "path": "clips/shorts/tt_seg_026.mp4",
+        "vibe": "satisfying",
+        "score": 7.6
+      },
+      "status": "pending",
+      "createdAt": "2026-02-17T01:53:30.479Z"
     }
   ]
 }
