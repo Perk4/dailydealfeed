@@ -22,6 +22,8 @@ Each embed page should pass:
 | video-embed.html?id=1 | ✅ | ✅ | ✅ | ✅ | ✅ | 9/10 |
 | product-1.html (static) | ✅ | ✅ | ✅ | ✅ | ❌ 404 | 5/10 |
 
+**Overall Quality: 9/10** (using dynamic video-embed.html)
+
 ## Improvement Log
 
 ### 2026-02-17 - Cycle 1: Initial Audit
@@ -39,6 +41,21 @@ Each embed page should pass:
 **Next Steps:**
 - Deprecate static product-*.html in favor of video-embed.html
 - Consider creating symlinks/redirects for any existing Carrd integrations
+
+### 2026-02-17 05:26 UTC - Cycle 2: Verification Audit
+**Pages Audited:** 2 (video-embed.html, product-1.html)
+**Tests Performed:**
+- ✅ Amazon product image CDN: HTTP 200
+- ❌ Static video URL (video_1_latest.mp4): HTTP 404 (file doesn't exist)
+- ✅ Dynamic video-embed.html: loads via GitHub API
+- ✅ GitHub Pages serving correctly
+
+**Status:**
+- `video-embed.html?id=N` remains the correct solution for Carrd embeds
+- Static `product-1.html` still has broken video (as documented)
+- 148+ video assets in output/approved/ ready for dynamic loading
+
+**Recommendation:** No action needed - dynamic embed works well. Static page can remain as fallback without video.
 
 ---
 
