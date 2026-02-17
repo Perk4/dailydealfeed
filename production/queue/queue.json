@@ -262,8 +262,9 @@
         "vibe": "funny",
         "score": 9.2
       },
-      "status": "pending",
-      "createdAt": "2026-02-17T12:23:08.118Z"
+      "status": "failed",
+      "createdAt": "2026-02-17T12:23:08.118Z",
+      "failReason": "No Amazon mobile UI recording available"
     },
     {
       "id": 13,
