@@ -6,7 +6,8 @@
 
 | ID | Issue | Priority | Status | Agent | Evidence |
 |----|-------|----------|--------|-------|----------|
-| 2 | CRF 18 Insufficient for 1 Mbps | 🔴 Critical | ✅ Verified | fix-video-minrate | minrate floor: 1.5-3.9 Mbps |
+| 2 | CRF 18 Insufficient for 1 Mbps | 🔴 Critical | ✅ Closed | fix-video-minrate | minrate floor: 1.5-3.9 Mbps |
+| 3 | Amazon Bot Detection - 50% Queue Failures | 🔴 Critical | 🔄 In Progress | TBD | 11/22 queue items failed |
 
 ## Format for New Issues
 ```
@@ -113,4 +114,37 @@ Test results (3 different source clips):
 - test3: 3.87 Mbps format bitrate ✅
 
 All exceed 1.2 Mbps threshold. VBV buffering ensures consistent bitrate floor while CRF 18 maintains quality ceiling.
+
+---
+
+### ISSUE-3: Amazon Bot Detection - 50% Queue Failures
+**Identified:** 2026-02-17 11:57 UTC
+**Priority:** 🔴 Critical
+**Component:** Recording
+
+**Problem:**
+Amazon is detecting the recorder as a bot, causing 50% of queue items to fail. Error messages include "Amazon recording failed - bot detection/404" and "Amazon mobile UI recording required - static images not supported".
+
+**Evidence:**
+```
+Queue Status: 22 total, 11 failed (50% failure rate)
+Failed ASINs: B0B2QNQPKL, B09GFJ6HRW, B0B5WRJP8B, etc.
+git log: "11 items failed (Amazon bot detection)"
+```
+
+**Root Cause:**
+Amazon's anti-bot measures detecting Puppeteer/automation. May need stealth plugins, better user-agent rotation, or mobile viewport simulation.
+
+**Proposed Fix:**
+1. Add puppeteer-extra-plugin-stealth
+2. Implement realistic delays and mouse movements
+3. Rotate user agents
+4. Consider mobile viewport for product images
+
+**Status:** 
+- [x] Identified
+- [x] Agent Spawned (fix-amazon-recorder @ 2026-02-17 11:57 UTC)
+- [ ] Fix Implemented
+- [ ] Verified Working
+- [ ] Closed
 
