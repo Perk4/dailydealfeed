@@ -11,7 +11,7 @@ _Cloudflare Migration — Autonomous Orchestration_
 | 3 | browser-renderer | ✅ Complete | Browser Rendering worker, R2 screenshots |
 | 4 | media-processor | ✅ Complete | R2 media bucket, upload worker, video queue, QA validation |
 | 5 | steering-controller | ✅ Complete | KV state, Discord command worker, dashboard API |
-| 6 | workflow-master | ⏳ Pending | Durable Workflow, pipeline dashboard |
+| 6 | workflow-master | 🔄 In Progress | Durable Workflow, pipeline dashboard |
 
 **Legend:** ⏳ Pending | 🔄 In Progress | ✅ Complete | ⚠️ Warning | 🚫 Blocked
 
