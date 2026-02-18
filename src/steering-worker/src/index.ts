@@ -196,6 +196,119 @@ async function handleRegisterCommands(
         },
       ],
     },
+    {
+      name: 'retry',
+      description: 'Retry a failed item',
+      options: [
+        {
+          name: 'id',
+          description: 'Item ID to retry',
+          type: 3, // STRING
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'skip',
+      description: 'Skip/cancel an item',
+      options: [
+        {
+          name: 'id',
+          description: 'Item ID to skip',
+          type: 3, // STRING
+          required: true,
+        },
+        {
+          name: 'reason',
+          description: 'Reason for skipping',
+          type: 3, // STRING
+          required: false,
+        },
+      ],
+    },
+    {
+      name: 'stats',
+      description: 'Show processing statistics',
+    },
+    {
+      name: 'flush',
+      description: 'Clear all failed items from queue',
+      options: [
+        {
+          name: 'confirm',
+          description: 'Confirm flush (required)',
+          type: 5, // BOOLEAN
+          required: false,
+        },
+      ],
+    },
+    {
+      name: 'trigger',
+      description: 'Manually trigger a processing cycle',
+    },
+    {
+      name: 'preview',
+      description: 'Get detailed info about an item',
+      options: [
+        {
+          name: 'id',
+          description: 'Item ID to preview',
+          type: 3, // STRING
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'logs',
+      description: 'Show recent processing logs',
+      options: [
+        {
+          name: 'limit',
+          description: 'Number of entries (default: 10)',
+          type: 4, // INTEGER
+          required: false,
+        },
+        {
+          name: 'filter',
+          description: 'Filter by keyword or level (info/warn/error)',
+          type: 3, // STRING
+          required: false,
+        },
+      ],
+    },
+    {
+      name: 'config',
+      description: 'View or update pipeline configuration',
+      options: [
+        {
+          name: 'setting',
+          description: 'Setting name to update',
+          type: 3, // STRING
+          required: false,
+          choices: [
+            { name: 'autoProcess', value: 'autoProcess' },
+            { name: 'autoPublish', value: 'autoPublish' },
+            { name: 'requireApproval', value: 'requireApproval' },
+            { name: 'batchSize', value: 'batchSize' },
+            { name: 'concurrency', value: 'concurrency' },
+            { name: 'maxRetries', value: 'maxRetries' },
+            { name: 'minQualityScore', value: 'minQualityScore' },
+            { name: 'notifyOnFailure', value: 'notifyOnFailure' },
+            { name: 'notifyOnPublish', value: 'notifyOnPublish' },
+          ],
+        },
+        {
+          name: 'value',
+          description: 'New value for the setting',
+          type: 3, // STRING
+          required: false,
+        },
+      ],
+    },
+    {
+      name: 'help',
+      description: 'Show all available commands',
+    },
   ];
   
   // Register global commands

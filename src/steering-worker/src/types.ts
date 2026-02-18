@@ -10,6 +10,7 @@ export interface Env {
   
   // Queue bindings for steering
   PROCESSING_QUEUE: Queue;
+  WORKFLOW_QUEUE: Queue;
   
   // Discord configuration
   DISCORD_PUBLIC_KEY: string;
@@ -140,15 +141,18 @@ export interface QueueItem {
   id: string;
   uploadId: string;
   productId?: string;
-  status: 'pending' | 'processing' | 'awaiting_approval' | 'approved' | 'published' | 'failed';
+  status: 'pending' | 'processing' | 'awaiting_approval' | 'approved' | 'published' | 'failed' | 'skipped';
   priority: QueuePriority;
   createdAt: number;
   updatedAt: number;
+  retryCount?: number;
   metadata?: {
     filename?: string;
     size?: number;
     duration?: number;
     source?: string;
+    title?: string;
+    url?: string;
   };
   error?: string;
 }

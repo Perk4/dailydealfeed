@@ -20,6 +20,14 @@ import {
   updateItemPriority,
   approveItem,
   getRecentActivity,
+  retryItem,
+  skipItem,
+  getProcessingStats,
+  flushFailedItems,
+  getQueueItem,
+  getProcessingLogs,
+  getPipelineConfig,
+  updatePipelineConfig,
 } from './state';
 
 /**
@@ -47,6 +55,24 @@ export async function handleCommand(
       return handleResumeCommand(interaction, env);
     case 'approve':
       return handleApproveCommand(interaction, env);
+    case 'retry':
+      return handleRetryCommand(interaction, env);
+    case 'skip':
+      return handleSkipCommand(interaction, env);
+    case 'stats':
+      return handleStatsCommand(interaction, env);
+    case 'flush':
+      return handleFlushCommand(interaction, env);
+    case 'trigger':
+      return handleTriggerCommand(interaction, env);
+    case 'preview':
+      return handlePreviewCommand(interaction, env);
+    case 'logs':
+      return handleLogsCommand(interaction, env);
+    case 'config':
+      return handleConfigCommand(interaction, env);
+    case 'help':
+      return handleHelpCommand(interaction, env);
     default:
       return createMessageResponse(`Unknown command: ${commandName}`, true);
   }
@@ -313,4 +339,463 @@ function formatDuration(seconds: number): string {
   const hours = Math.floor(seconds / 3600);
   const mins = Math.floor((seconds % 3600) / 60);
   return `${hours}h ${mins}m`;
+}
+
+/**
+ * /retry <id> - Retry a failed item
+ */
+async function handleRetryCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  const itemId = getOptionValue<string>(interaction, 'id');
+  const invoker = getInvoker(interaction);
+  
+  if (!itemId) {
+    return createMessageResponse('❌ Usage: `/retry <id>`', true);
+  }
+  
+  const item = await retryItem(env.STEERING_KV, itemId, invoker.username);
+  
+  if (!item) {
+    return createMessageResponse(`❌ Item not found: \`${itemId}\``, true);
+  }
+  
+  if (item.status === 'failed') {
+    return createMessageResponse(
+      `⚠️ Item \`${itemId.slice(0, 8)}\` could not be retried - check logs`,
+      true
+    );
+  }
+  
+  return createEmbedResponse({
+    title: '🔄 Retry Queued',
+    description: `Item \`${itemId.slice(0, 8)}\` has been queued for retry`,
+    color: EMBED_COLORS.INFO,
+    fields: [
+      {
+        name: 'Retry Count',
+        value: `Attempt ${(item.retryCount || 0) + 1}`,
+        inline: true,
+      },
+    ],
+    footer: { text: `Triggered by ${invoker.username}` },
+  });
+}
+
+/**
+ * /skip <id> - Skip/cancel an item
+ */
+async function handleSkipCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  const itemId = getOptionValue<string>(interaction, 'id');
+  const reason = getOptionValue<string>(interaction, 'reason') || 'Manual skip';
+  const invoker = getInvoker(interaction);
+  
+  if (!itemId) {
+    return createMessageResponse('❌ Usage: `/skip <id> [reason]`', true);
+  }
+  
+  const item = await skipItem(env.STEERING_KV, itemId, invoker.username, reason);
+  
+  if (!item) {
+    return createMessageResponse(`❌ Item not found: \`${itemId}\``, true);
+  }
+  
+  return createEmbedResponse({
+    title: '⏭️ Item Skipped',
+    description: `Item \`${itemId.slice(0, 8)}\` has been skipped`,
+    color: EMBED_COLORS.WARNING,
+    fields: [
+      {
+        name: 'Reason',
+        value: reason,
+        inline: false,
+      },
+    ],
+    footer: { text: `Skipped by ${invoker.username}` },
+  });
+}
+
+/**
+ * /stats - Show processing statistics
+ */
+async function handleStatsCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  const stats = await getProcessingStats(env.STEERING_KV);
+  
+  const uptime = stats.startedAt 
+    ? formatDuration(Math.floor((Date.now() - stats.startedAt) / 1000))
+    : 'Unknown';
+  
+  return createEmbedResponse({
+    title: '📈 Processing Statistics',
+    color: EMBED_COLORS.INFO,
+    fields: [
+      {
+        name: '📊 Today',
+        value: [
+          `✅ Processed: **${stats.today.processed}**`,
+          `❌ Failed: **${stats.today.failed}**`,
+          `📺 Published: **${stats.today.published}**`,
+        ].join('\n'),
+        inline: true,
+      },
+      {
+        name: '📅 All Time',
+        value: [
+          `✅ Total: **${stats.allTime.processed}**`,
+          `📺 Published: **${stats.allTime.published}**`,
+          `⏱️ Avg Time: **${stats.allTime.avgProcessingMs ? `${(stats.allTime.avgProcessingMs / 1000).toFixed(1)}s` : 'N/A'}**`,
+        ].join('\n'),
+        inline: true,
+      },
+      {
+        name: '🖥️ System',
+        value: [
+          `⏰ Uptime: **${uptime}**`,
+          `🔄 Queue Rate: **${stats.queueRate}/min**`,
+          `💾 Storage: **${stats.storageUsedMB?.toFixed(1) || '?'} MB**`,
+        ].join('\n'),
+        inline: false,
+      },
+    ],
+    footer: { text: `Last updated: ${new Date().toISOString()}` },
+  });
+}
+
+/**
+ * /flush - Clear failed items from queue
+ */
+async function handleFlushCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  const confirm = getOptionValue<boolean>(interaction, 'confirm');
+  const invoker = getInvoker(interaction);
+  
+  if (!confirm) {
+    return createEmbedResponse({
+      title: '⚠️ Confirm Flush',
+      description: 'This will permanently remove all **failed** items from the queue.\n\nRun `/flush confirm:true` to proceed.',
+      color: EMBED_COLORS.WARNING,
+    });
+  }
+  
+  const count = await flushFailedItems(env.STEERING_KV, invoker.username);
+  
+  return createEmbedResponse({
+    title: '🗑️ Queue Flushed',
+    description: `Removed **${count}** failed items from the queue`,
+    color: EMBED_COLORS.SUCCESS,
+    footer: { text: `Flushed by ${invoker.username}` },
+  });
+}
+
+/**
+ * /trigger - Manually trigger processing cycle
+ */
+async function handleTriggerCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  const invoker = getInvoker(interaction);
+  const state = await getPipelineState(env.STEERING_KV);
+  
+  if (state.status === 'paused') {
+    return createMessageResponse(
+      '⚠️ Cannot trigger - pipeline is paused. Use `/resume` first.',
+      true
+    );
+  }
+  
+  // Send message to workflow queue to trigger processing
+  try {
+    await env.WORKFLOW_QUEUE.send({
+      type: 'manual_trigger',
+      triggeredBy: invoker.username,
+      timestamp: Date.now(),
+    });
+    
+    return createEmbedResponse({
+      title: '⚡ Processing Triggered',
+      description: 'A processing cycle has been manually triggered',
+      color: EMBED_COLORS.SUCCESS,
+      footer: { text: `Triggered by ${invoker.username}` },
+    });
+  } catch (error) {
+    return createMessageResponse(
+      `❌ Failed to trigger: ${error}`,
+      true
+    );
+  }
+}
+
+/**
+ * /preview <id> - Get detailed item preview
+ */
+async function handlePreviewCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  const itemId = getOptionValue<string>(interaction, 'id');
+  
+  if (!itemId) {
+    return createMessageResponse('❌ Usage: `/preview <id>`', true);
+  }
+  
+  const item = await getQueueItem(env.STEERING_KV, itemId);
+  
+  if (!item) {
+    return createMessageResponse(`❌ Item not found: \`${itemId}\``, true);
+  }
+  
+  const statusEmoji = {
+    pending: '⏳',
+    processing: '⚙️',
+    awaiting_approval: '👀',
+    approved: '✅',
+    published: '📺',
+    failed: '❌',
+    skipped: '⏭️',
+  }[item.status] || '❓';
+  
+  const priorityEmoji = {
+    critical: '🔴',
+    high: '🟠',
+    normal: '🟢',
+    low: '⚪',
+  }[item.priority];
+  
+  const fields = [
+    {
+      name: 'Status',
+      value: `${statusEmoji} ${item.status}`,
+      inline: true,
+    },
+    {
+      name: 'Priority',
+      value: `${priorityEmoji} ${item.priority}`,
+      inline: true,
+    },
+    {
+      name: 'Created',
+      value: `<t:${Math.floor(item.createdAt / 1000)}:R>`,
+      inline: true,
+    },
+  ];
+  
+  if (item.metadata?.source) {
+    fields.push({
+      name: 'Source',
+      value: item.metadata.source,
+      inline: true,
+    });
+  }
+  
+  if (item.metadata?.filename) {
+    fields.push({
+      name: 'Filename',
+      value: `\`${item.metadata.filename}\``,
+      inline: true,
+    });
+  }
+  
+  if (item.error) {
+    fields.push({
+      name: '❌ Error',
+      value: `\`\`\`${item.error.slice(0, 200)}\`\`\``,
+      inline: false,
+    });
+  }
+  
+  if (item.retryCount) {
+    fields.push({
+      name: 'Retries',
+      value: `${item.retryCount}`,
+      inline: true,
+    });
+  }
+  
+  return createEmbedResponse({
+    title: `📄 Item: ${item.id.slice(0, 8)}`,
+    description: item.metadata?.title || item.metadata?.url || '_No description_',
+    color: item.status === 'failed' ? EMBED_COLORS.ERROR : EMBED_COLORS.INFO,
+    fields,
+    footer: { text: `Full ID: ${item.id}` },
+  });
+}
+
+/**
+ * /logs - Show recent processing logs
+ */
+async function handleLogsCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  const limit = getOptionValue<number>(interaction, 'limit') || 10;
+  const filter = getOptionValue<string>(interaction, 'filter');
+  
+  const logs = await getProcessingLogs(env.STEERING_KV, limit, filter);
+  
+  if (logs.length === 0) {
+    return createEmbedResponse({
+      title: '📜 Processing Logs',
+      description: '_No logs found_',
+      color: EMBED_COLORS.INFO,
+    });
+  }
+  
+  const logLines = logs.map(log => {
+    const time = new Date(log.timestamp).toLocaleTimeString('en-US', { hour12: false });
+    const levelEmoji = {
+      info: 'ℹ️',
+      warn: '⚠️',
+      error: '❌',
+      success: '✅',
+    }[log.level] || '📝';
+    return `\`${time}\` ${levelEmoji} ${log.message}`;
+  }).join('\n');
+  
+  return createEmbedResponse({
+    title: '📜 Processing Logs',
+    description: logLines,
+    color: EMBED_COLORS.INFO,
+    footer: { text: `Showing ${logs.length} entries${filter ? ` (filtered: ${filter})` : ''}` },
+  });
+}
+
+/**
+ * /config - Show/update pipeline configuration
+ */
+async function handleConfigCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  const setting = getOptionValue<string>(interaction, 'setting');
+  const value = getOptionValue<string>(interaction, 'value');
+  const invoker = getInvoker(interaction);
+  
+  const config = await getPipelineConfig(env.STEERING_KV);
+  
+  // If no setting provided, show current config
+  if (!setting) {
+    return createEmbedResponse({
+      title: '⚙️ Pipeline Configuration',
+      color: EMBED_COLORS.INFO,
+      fields: [
+        {
+          name: '🔄 Processing',
+          value: [
+            `Auto-process: **${config.autoProcess ? 'ON' : 'OFF'}**`,
+            `Batch size: **${config.batchSize}**`,
+            `Concurrency: **${config.concurrency}**`,
+            `Retry limit: **${config.maxRetries}**`,
+          ].join('\n'),
+          inline: true,
+        },
+        {
+          name: '📺 Publishing',
+          value: [
+            `Auto-publish: **${config.autoPublish ? 'ON' : 'OFF'}**`,
+            `Require approval: **${config.requireApproval ? 'YES' : 'NO'}**`,
+            `Min quality: **${config.minQualityScore}%**`,
+          ].join('\n'),
+          inline: true,
+        },
+        {
+          name: '🔔 Notifications',
+          value: [
+            `On failure: **${config.notifyOnFailure ? 'ON' : 'OFF'}**`,
+            `On publish: **${config.notifyOnPublish ? 'ON' : 'OFF'}**`,
+          ].join('\n'),
+          inline: true,
+        },
+      ],
+      footer: { text: 'Use /config setting:<name> value:<value> to update' },
+    });
+  }
+  
+  // Update setting
+  if (!value) {
+    return createMessageResponse('❌ Value required. Usage: `/config setting:<name> value:<value>`', true);
+  }
+  
+  const validSettings = [
+    'autoProcess', 'autoPublish', 'requireApproval',
+    'batchSize', 'concurrency', 'maxRetries', 'minQualityScore',
+    'notifyOnFailure', 'notifyOnPublish'
+  ];
+  
+  if (!validSettings.includes(setting)) {
+    return createMessageResponse(
+      `❌ Invalid setting. Valid: ${validSettings.join(', ')}`,
+      true
+    );
+  }
+  
+  const updated = await updatePipelineConfig(env.STEERING_KV, setting, value, invoker.username);
+  
+  if (!updated) {
+    return createMessageResponse(`❌ Failed to update ${setting}`, true);
+  }
+  
+  return createEmbedResponse({
+    title: '⚙️ Config Updated',
+    description: `**${setting}** set to \`${value}\``,
+    color: EMBED_COLORS.SUCCESS,
+    footer: { text: `Updated by ${invoker.username}` },
+  });
+}
+
+/**
+ * /help - Show available commands
+ */
+async function handleHelpCommand(
+  interaction: DiscordInteraction,
+  env: Env
+): Promise<Response> {
+  return createEmbedResponse({
+    title: '🤖 Pipeline Commands',
+    color: EMBED_COLORS.INFO,
+    fields: [
+      {
+        name: '📊 Monitoring',
+        value: [
+          '`/status` - Pipeline overview',
+          '`/queue` - View queue items',
+          '`/stats` - Processing statistics',
+          '`/logs [limit] [filter]` - Recent logs',
+          '`/preview <id>` - Item details',
+        ].join('\n'),
+        inline: false,
+      },
+      {
+        name: '🎮 Control',
+        value: [
+          '`/pause` - Pause processing',
+          '`/resume` - Resume processing',
+          '`/trigger` - Manual process cycle',
+          '`/config [setting] [value]` - View/edit config',
+        ].join('\n'),
+        inline: false,
+      },
+      {
+        name: '📝 Item Actions',
+        value: [
+          '`/priority <id> <level>` - Set priority',
+          '`/approve <id>` - Approve for publish',
+          '`/retry <id>` - Retry failed item',
+          '`/skip <id> [reason]` - Skip item',
+          '`/flush confirm:true` - Clear failed items',
+        ].join('\n'),
+        inline: false,
+      },
+    ],
+    footer: { text: 'DailyDealFeed Pipeline • v1.0.0' },
+  });
 }

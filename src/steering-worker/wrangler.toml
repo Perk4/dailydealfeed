@@ -21,6 +21,11 @@ id = "df3ba992c155466eb10cbeaff8e78106"
 binding = "PROCESSING_QUEUE"
 queue = "migration-stage-queue"
 
+# Queue for manual workflow triggers
+[[queues.producers]]
+binding = "WORKFLOW_QUEUE"
+queue = "workflow-trigger-queue"
+
 # Environment variables
 [vars]
 LOG_LEVEL = "info"

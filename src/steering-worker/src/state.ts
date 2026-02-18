@@ -460,3 +460,245 @@ function mapUploadStatus(status: string): QueueItem['status'] {
       return 'pending';
   }
 }
+
+// ============ Additional Control Functions ============
+
+/**
+ * Retry a failed item
+ */
+export async function retryItem(
+  kv: KVNamespace,
+  itemId: string,
+  username: string
+): Promise<QueueItem | null> {
+  // Try partial match
+  const index = await getQueueIndex(kv);
+  const match = index.find(e => e.id.startsWith(itemId));
+  const fullId = match?.id || itemId;
+  
+  const item = await getQueueItem(kv, fullId);
+  if (!item) return null;
+  
+  if (item.status !== 'failed') {
+    return item; // Only retry failed items
+  }
+  
+  item.status = 'pending';
+  item.retryCount = (item.retryCount || 0) + 1;
+  item.error = undefined;
+  item.updatedAt = Date.now();
+  
+  await upsertQueueItem(kv, item);
+  
+  await logActivity(kv, {
+    timestamp: Date.now(),
+    action: 'item_retried',
+    user: username,
+    details: `Item ${fullId.slice(0, 8)} queued for retry (attempt ${item.retryCount})`,
+  });
+  
+  return item;
+}
+
+/**
+ * Skip an item (remove from active queue)
+ */
+export async function skipItem(
+  kv: KVNamespace,
+  itemId: string,
+  username: string,
+  reason: string
+): Promise<QueueItem | null> {
+  const index = await getQueueIndex(kv);
+  const match = index.find(e => e.id.startsWith(itemId));
+  const fullId = match?.id || itemId;
+  
+  const item = await getQueueItem(kv, fullId);
+  if (!item) return null;
+  
+  item.status = 'skipped' as QueueItem['status'];
+  item.error = `Skipped: ${reason}`;
+  item.updatedAt = Date.now();
+  
+  await upsertQueueItem(kv, item);
+  
+  await logActivity(kv, {
+    timestamp: Date.now(),
+    action: 'item_skipped',
+    user: username,
+    details: `Item ${fullId.slice(0, 8)} skipped: ${reason}`,
+  });
+  
+  return item;
+}
+
+/**
+ * Get processing statistics
+ */
+export async function getProcessingStats(kv: KVNamespace): Promise<{
+  today: { processed: number; failed: number; published: number };
+  allTime: { processed: number; published: number; avgProcessingMs: number | null };
+  startedAt: number | null;
+  queueRate: number;
+  storageUsedMB: number | null;
+}> {
+  const stats = await kv.get<{
+    daily: Record<string, { processed: number; failed: number; published: number }>;
+    allTime: { processed: number; published: number; totalProcessingMs: number };
+    startedAt: number;
+  }>(KEYS.STATS, 'json');
+  
+  const today = new Date().toISOString().split('T')[0];
+  const todayStats = stats?.daily?.[today] || { processed: 0, failed: 0, published: 0 };
+  const allTime = stats?.allTime || { processed: 0, published: 0, totalProcessingMs: 0 };
+  
+  // Calculate average processing time
+  const avgProcessingMs = allTime.processed > 0
+    ? allTime.totalProcessingMs / allTime.processed
+    : null;
+  
+  // Calculate queue rate (items/min over last hour - simplified)
+  const queueRate = Math.round(todayStats.processed / 60) || 0;
+  
+  return {
+    today: todayStats,
+    allTime: {
+      processed: allTime.processed,
+      published: allTime.published,
+      avgProcessingMs,
+    },
+    startedAt: stats?.startedAt || null,
+    queueRate,
+    storageUsedMB: null, // Would need R2 API call
+  };
+}
+
+/**
+ * Flush (remove) all failed items from queue
+ */
+export async function flushFailedItems(
+  kv: KVNamespace,
+  username: string
+): Promise<number> {
+  const items = await getQueueItems(kv, { status: 'failed' });
+  const index = await getQueueIndex(kv);
+  
+  let count = 0;
+  for (const item of items) {
+    // Remove from index
+    const idx = index.findIndex(e => e.id === item.id);
+    if (idx >= 0) {
+      index.splice(idx, 1);
+      count++;
+    }
+    
+    // Delete item data
+    await kv.delete(KEYS.item(item.id));
+  }
+  
+  await saveQueueIndex(kv, index);
+  
+  await logActivity(kv, {
+    timestamp: Date.now(),
+    action: 'queue_flushed',
+    user: username,
+    details: `Flushed ${count} failed items`,
+  });
+  
+  return count;
+}
+
+/**
+ * Get processing logs
+ */
+export async function getProcessingLogs(
+  kv: KVNamespace,
+  limit: number,
+  filter?: string
+): Promise<Array<{ timestamp: number; level: string; message: string }>> {
+  const logs = await kv.get<Array<{ timestamp: number; level: string; message: string }>>(
+    'logs:processing',
+    'json'
+  ) || [];
+  
+  let filtered = logs;
+  if (filter) {
+    const lowerFilter = filter.toLowerCase();
+    filtered = logs.filter(log =>
+      log.message.toLowerCase().includes(lowerFilter) ||
+      log.level === lowerFilter
+    );
+  }
+  
+  return filtered.slice(0, limit);
+}
+
+/**
+ * Get pipeline configuration
+ */
+export async function getPipelineConfig(kv: KVNamespace): Promise<{
+  autoProcess: boolean;
+  autoPublish: boolean;
+  requireApproval: boolean;
+  batchSize: number;
+  concurrency: number;
+  maxRetries: number;
+  minQualityScore: number;
+  notifyOnFailure: boolean;
+  notifyOnPublish: boolean;
+}> {
+  const config = await kv.get<Record<string, unknown>>('config:pipeline', 'json');
+  
+  // Return defaults merged with stored config
+  return {
+    autoProcess: true,
+    autoPublish: false,
+    requireApproval: true,
+    batchSize: 10,
+    concurrency: 3,
+    maxRetries: 3,
+    minQualityScore: 70,
+    notifyOnFailure: true,
+    notifyOnPublish: true,
+    ...config,
+  };
+}
+
+/**
+ * Update a pipeline configuration setting
+ */
+export async function updatePipelineConfig(
+  kv: KVNamespace,
+  setting: string,
+  value: string,
+  username: string
+): Promise<boolean> {
+  const config = await getPipelineConfig(kv);
+  
+  // Type coercion based on setting
+  let parsedValue: unknown;
+  const boolSettings = ['autoProcess', 'autoPublish', 'requireApproval', 'notifyOnFailure', 'notifyOnPublish'];
+  const numSettings = ['batchSize', 'concurrency', 'maxRetries', 'minQualityScore'];
+  
+  if (boolSettings.includes(setting)) {
+    parsedValue = value.toLowerCase() === 'true' || value === '1' || value.toLowerCase() === 'on';
+  } else if (numSettings.includes(setting)) {
+    parsedValue = parseInt(value, 10);
+    if (isNaN(parsedValue as number)) return false;
+  } else {
+    parsedValue = value;
+  }
+  
+  (config as Record<string, unknown>)[setting] = parsedValue;
+  
+  await kv.put('config:pipeline', JSON.stringify(config));
+  
+  await logActivity(kv, {
+    timestamp: Date.now(),
+    action: 'config_updated',
+    user: username,
+    details: `${setting} = ${value}`,
+  });
+  
+  return true;
+}
