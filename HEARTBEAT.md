@@ -8,4 +8,4 @@
 - Update docs/plans/PHASE-PROGRESS.md with any changes
 
 ## Current Phase
-Phase 3: browser-renderer (in progress)
+Phase 4: media-processor (in progress)
