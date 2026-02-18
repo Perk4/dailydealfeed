@@ -1,0 +1,52 @@
+# Steering Controller Worker for Pipeline Management
+# Phase 5 of Cloudflare Migration
+
+name = "steering-controller"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# KV namespace for steering state
+[[kv_namespaces]]
+binding = "STEERING_KV"
+id = "placeholder-steering-kv-id"  # Replace after: wrangler kv:namespace create STEERING_KV
+
+# Reference to Media KV for upload state
+[[kv_namespaces]]
+binding = "MEDIA_KV"
+id = "placeholder-media-kv-id"  # Same ID as media-worker's MEDIA_KV
+
+# Queue producer for pipeline steering
+[[queues.producers]]
+binding = "PROCESSING_QUEUE"
+queue = "migration-stage-queue"
+
+# Environment variables
+[vars]
+LOG_LEVEL = "info"
+
+# Secrets (set via wrangler secret put):
+# - DISCORD_PUBLIC_KEY: Discord application public key
+# - DISCORD_APPLICATION_ID: Discord application ID  
+# - DISCORD_BOT_TOKEN: Bot token (optional, for command registration)
+
+# Production environment
+[env.production]
+name = "steering-controller-prod"
+vars = { LOG_LEVEL = "info" }
+
+[[env.production.kv_namespaces]]
+binding = "STEERING_KV"
+id = "placeholder-prod-steering-kv-id"
+
+[[env.production.kv_namespaces]]
+binding = "MEDIA_KV"
+id = "placeholder-prod-media-kv-id"
+
+[[env.production.queues.producers]]
+binding = "PROCESSING_QUEUE"
+queue = "production-queue"
+
+# Staging environment
+[env.staging]
+name = "steering-controller-staging"
+vars = { LOG_LEVEL = "debug" }

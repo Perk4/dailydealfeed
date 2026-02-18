@@ -2,6 +2,14 @@
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
+## Environment Secrets (always check these first!)
+
+- `GH_TOKEN` - GitHub PAT for pushing to repos
+- `CLOUDFLARE_API_TOKEN` - Wrangler auth (auto-used)
+- `CF_ACCOUNT_ID` - Cloudflare account
+
+**Remember:** Check env vars before asking the user for secrets!
+
 ## What Goes Here
 
 Things like:

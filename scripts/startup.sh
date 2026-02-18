@@ -27,14 +27,15 @@ git config --global user.email "biz@openclaw.ai" 2>/dev/null || true
 git config --global user.name "Biz (OpenClaw)" 2>/dev/null || true
 echo "✅ Git configured"
 
-# 4. Check git remote
+# 4. Configure git remote with GH_TOKEN
 cd /root/clawd 2>/dev/null || exit 0
-if git remote get-url origin &>/dev/null; then
-    echo "✅ Git remote: $(git remote get-url origin)"
-    # Pull latest if remote exists
+if [ -n "$GH_TOKEN" ]; then
+    git remote set-url origin "https://${GH_TOKEN}@github.com/Perk4/dailydealfeed.git" 2>/dev/null || \
+    git remote add origin "https://${GH_TOKEN}@github.com/Perk4/dailydealfeed.git" 2>/dev/null || true
+    echo "✅ Git remote configured with GH_TOKEN"
     git fetch origin 2>/dev/null && echo "✅ Fetched from remote" || echo "⚠️ Fetch failed"
 else
-    echo "⚠️ No git remote configured"
+    echo "⚠️ GH_TOKEN not set - git push won't work"
 fi
 
 echo "🚀 Startup complete"

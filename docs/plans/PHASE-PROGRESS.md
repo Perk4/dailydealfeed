@@ -10,7 +10,7 @@ _Cloudflare Migration — Autonomous Orchestration_
 | 2 | embed-deployer | ✅ Complete | R2 embed-assets, KV EMBED_PRODUCTS |
 | 3 | browser-renderer | ✅ Complete | Browser Rendering worker, R2 screenshots |
 | 4 | media-processor | ✅ Complete | R2 media bucket, upload worker, video queue, QA validation |
-| 5 | steering-controller | 🔄 In Progress | KV state, Discord command worker |
+| 5 | steering-controller | ✅ Complete | KV state, Discord command worker, dashboard API |
 | 6 | workflow-master | ⏳ Pending | Durable Workflow, pipeline dashboard |
 
 **Legend:** ⏳ Pending | 🔄 In Progress | ✅ Complete | ⚠️ Warning | 🚫 Blocked
@@ -31,3 +31,4 @@ _Cloudflare Migration — Autonomous Orchestration_
 | 2026-02-18 02:18 | Phase 4 spawned (media-processor) — auto-handoff |
 | 2026-02-18 02:20 | Phase 3 complete (Browser Rendering worker created) |
 | 2026-02-18 02:25 | Phase 4 complete (Media worker, queue consumer, QA validation) |
+| 2026-02-18 02:26 | Phase 5 complete (Steering controller, Discord commands, dashboard) |
