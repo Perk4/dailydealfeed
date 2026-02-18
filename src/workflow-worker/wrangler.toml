@@ -1,0 +1,137 @@
+# Workflow Orchestrator Worker
+# Phase 6 of Cloudflare Migration - Final Phase
+# 
+# This worker provides Durable Workflows for end-to-end pipeline orchestration,
+# tying together all previously created workers into a cohesive system.
+
+name = "workflow-orchestrator"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# ============ Workflow Definition ============
+[[workflows]]
+name = "product-pipeline"
+binding = "PRODUCT_PIPELINE"
+class_name = "ProductPipelineWorkflow"
+
+# ============ Service Bindings ============
+# Connect to other workers in the pipeline
+
+[[services]]
+binding = "BROWSER_WORKER"
+service = "browser-renderer"
+
+[[services]]
+binding = "MEDIA_WORKER"
+service = "media-processor"
+
+[[services]]
+binding = "STEERING_WORKER"
+service = "steering-controller"
+
+# ============ KV Namespaces ============
+
+# Workflow state storage
+[[kv_namespaces]]
+binding = "WORKFLOW_KV"
+id = "placeholder-workflow-kv-id"  # Create via: wrangler kv:namespace create WORKFLOW_KV
+
+# Steering state (shared with steering-worker)
+[[kv_namespaces]]
+binding = "STEERING_KV"
+id = "placeholder-steering-kv-id"  # Same ID as steering-worker
+
+# ============ R2 Buckets ============
+
+# Embed assets storage
+[[r2_buckets]]
+binding = "EMBED_ASSETS"
+bucket_name = "embed-assets"
+
+# ============ Queues ============
+
+# Production queue for published items
+[[queues.producers]]
+binding = "PRODUCTION_QUEUE"
+queue = "production-queue"
+
+# ============ Environment Variables ============
+
+[vars]
+APPROVAL_TIMEOUT_HOURS = "24"
+MAX_RETRIES = "3"
+LOG_LEVEL = "info"
+
+# Secrets (set via wrangler secret put):
+# - WEBHOOK_URL: Optional webhook for workflow events
+
+# ============ Production Environment ============
+
+[env.production]
+name = "workflow-orchestrator-prod"
+
+[[env.production.workflows]]
+name = "product-pipeline-prod"
+binding = "PRODUCT_PIPELINE"
+class_name = "ProductPipelineWorkflow"
+
+[[env.production.services]]
+binding = "BROWSER_WORKER"
+service = "browser-renderer-prod"
+
+[[env.production.services]]
+binding = "MEDIA_WORKER"
+service = "media-processor-prod"
+
+[[env.production.services]]
+binding = "STEERING_WORKER"
+service = "steering-controller-prod"
+
+[[env.production.kv_namespaces]]
+binding = "WORKFLOW_KV"
+id = "placeholder-prod-workflow-kv-id"
+
+[[env.production.kv_namespaces]]
+binding = "STEERING_KV"
+id = "placeholder-prod-steering-kv-id"
+
+[[env.production.r2_buckets]]
+binding = "EMBED_ASSETS"
+bucket_name = "embed-assets-prod"
+
+[[env.production.queues.producers]]
+binding = "PRODUCTION_QUEUE"
+queue = "production-queue"
+
+[env.production.vars]
+APPROVAL_TIMEOUT_HOURS = "48"
+MAX_RETRIES = "5"
+LOG_LEVEL = "info"
+
+# ============ Staging Environment ============
+
+[env.staging]
+name = "workflow-orchestrator-staging"
+
+[[env.staging.workflows]]
+name = "product-pipeline-staging"
+binding = "PRODUCT_PIPELINE"
+class_name = "ProductPipelineWorkflow"
+
+[[env.staging.services]]
+binding = "BROWSER_WORKER"
+service = "browser-renderer-staging"
+
+[[env.staging.services]]
+binding = "MEDIA_WORKER"
+service = "media-processor-staging"
+
+[[env.staging.services]]
+binding = "STEERING_WORKER"
+service = "steering-controller-staging"
+
+[env.staging.vars]
+APPROVAL_TIMEOUT_HOURS = "1"
+MAX_RETRIES = "2"
+LOG_LEVEL = "debug"
