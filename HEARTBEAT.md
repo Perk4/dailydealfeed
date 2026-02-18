@@ -19,4 +19,4 @@ cd /root/clawd && git add -A && git diff --cached --quiet || git commit -m "Auto
 Only push if remote configured. Silent fail is OK.
 
 ## Current Phase
-Phase 4: media-processor (in progress)
+Phase 5: steering-controller (in progress)
