@@ -11,10 +11,6 @@ On every session start, run the startup script if tools are missing:
 
 This ensures wrangler is installed, Cloudflare auth is valid, and git is configured.
 
-## First Run
-
-If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out who you are, then delete it. You won't need it again.
-
 ## Every Session
 
 Before doing anything else:
