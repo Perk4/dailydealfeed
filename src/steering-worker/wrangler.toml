@@ -4,16 +4,17 @@
 name = "steering-controller"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
 
 # KV namespace for steering state
 [[kv_namespaces]]
 binding = "STEERING_KV"
-id = "placeholder-steering-kv-id"  # Replace after: wrangler kv:namespace create STEERING_KV
+id = "9fc491d715be47468d21e2e284d89c97"
 
 # Reference to Media KV for upload state
 [[kv_namespaces]]
 binding = "MEDIA_KV"
-id = "placeholder-media-kv-id"  # Same ID as media-worker's MEDIA_KV
+id = "df3ba992c155466eb10cbeaff8e78106"
 
 # Queue producer for pipeline steering
 [[queues.producers]]

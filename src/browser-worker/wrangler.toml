@@ -4,6 +4,7 @@
 name = "browser-renderer"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
 
 # Browser Rendering binding
 browser = { binding = "BROWSER" }
@@ -16,7 +17,7 @@ bucket_name = "embed-assets"
 # KV for caching and metadata
 [[kv_namespaces]]
 binding = "BROWSER_KV"
-id = "placeholder-browser-kv-id"  # Replace with actual KV ID
+id = "c82eff0170a24a53ae03b21dd768f52e"
 
 # Environment variables
 [vars]

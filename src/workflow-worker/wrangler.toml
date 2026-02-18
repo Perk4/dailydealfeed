@@ -35,12 +35,12 @@ service = "steering-controller"
 # Workflow state storage
 [[kv_namespaces]]
 binding = "WORKFLOW_KV"
-id = "placeholder-workflow-kv-id"  # Create via: wrangler kv:namespace create WORKFLOW_KV
+id = "f12efb6133784fbcb43255bb0663d4c8"
 
 # Steering state (shared with steering-worker)
 [[kv_namespaces]]
 binding = "STEERING_KV"
-id = "placeholder-steering-kv-id"  # Same ID as steering-worker
+id = "9fc491d715be47468d21e2e284d89c97"
 
 # ============ R2 Buckets ============
 
