@@ -1,0 +1,21 @@
+{
+  "name": "browser-renderer",
+  "version": "1.0.0",
+  "description": "Cloudflare Browser Rendering worker for Amazon product screenshots",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {
+    "@cloudflare/puppeteer": "^0.0.12"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.24.0"
+  }
+}

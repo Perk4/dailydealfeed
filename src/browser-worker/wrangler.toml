@@ -1,0 +1,37 @@
+# Browser Rendering Worker for Amazon Product Screenshots
+# Phase 3 of Cloudflare Migration
+
+name = "browser-renderer"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# Browser Rendering binding
+browser = { binding = "BROWSER" }
+
+# R2 bucket for screenshots
+[[r2_buckets]]
+binding = "SCREENSHOTS"
+bucket_name = "embed-assets"
+
+# KV for caching and metadata
+[[kv_namespaces]]
+binding = "BROWSER_KV"
+id = "placeholder-browser-kv-id"  # Replace with actual KV ID
+
+# Environment variables
+[vars]
+MAX_RETRIES = "3"
+SCREENSHOT_TIMEOUT_MS = "30000"
+VIEWPORT_WIDTH = "390"
+VIEWPORT_HEIGHT = "844"
+DEFAULT_FORMAT = "webp"
+
+# Production environment
+[env.production]
+name = "browser-renderer-prod"
+vars = { MAX_RETRIES = "3", LOG_LEVEL = "info" }
+
+# Staging environment  
+[env.staging]
+name = "browser-renderer-staging"
+vars = { MAX_RETRIES = "2", LOG_LEVEL = "debug" }
