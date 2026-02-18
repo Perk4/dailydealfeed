@@ -1,0 +1,64 @@
+# Media Processing Worker for DailyDeal Video Pipeline
+# Phase 4 of Cloudflare Migration
+
+name = "media-processor"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# R2 bucket for video storage
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "dailydeal-media"
+
+# Queue producer for processing jobs
+[[queues.producers]]
+binding = "PROCESSING_QUEUE"
+queue = "migration-stage-queue"
+
+# Queue consumer for video processing
+[[queues.consumers]]
+queue = "migration-stage-queue"
+max_batch_size = 10
+max_batch_timeout = 30
+max_retries = 3
+dead_letter_queue = "migration-stage-dlq"
+
+# KV for upload state and metadata caching
+[[kv_namespaces]]
+binding = "MEDIA_KV"
+id = "placeholder-media-kv-id"  # Replace with actual KV ID after creation
+
+# Environment variables
+[vars]
+MAX_FILE_SIZE_MB = "500"
+PRESIGNED_URL_EXPIRY_SECS = "3600"
+MULTIPART_CHUNK_SIZE_MB = "100"
+SUPPORTED_FORMATS = "mp4,mov,webm,avi,mkv"
+MAX_BITRATE_KBPS = "20000"
+MIN_BITRATE_KBPS = "500"
+QA_WEBHOOK_ENABLED = "true"
+
+# Production environment
+[env.production]
+name = "media-processor-prod"
+vars = { LOG_LEVEL = "info", QA_WEBHOOK_ENABLED = "true" }
+
+[[env.production.r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "dailydeal-media"
+
+[[env.production.queues.producers]]
+binding = "PROCESSING_QUEUE"
+queue = "production-queue"
+
+[[env.production.queues.consumers]]
+queue = "production-queue"
+max_batch_size = 10
+max_batch_timeout = 30
+max_retries = 3
+dead_letter_queue = "production-dlq"
+
+# Staging environment
+[env.staging]
+name = "media-processor-staging"
+vars = { LOG_LEVEL = "debug", QA_WEBHOOK_ENABLED = "false" }

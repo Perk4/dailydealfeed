@@ -2,6 +2,15 @@
 
 This folder is home. Treat it that way.
 
+## Session Startup
+
+On every session start, run the startup script if tools are missing:
+```bash
+/root/clawd/scripts/startup.sh
+```
+
+This ensures wrangler is installed, Cloudflare auth is valid, and git is configured.
+
 ## First Run
 
 If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out who you are, then delete it. You won't need it again.
