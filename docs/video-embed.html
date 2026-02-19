@@ -142,27 +142,41 @@
         const BASE = 'https://raw.githubusercontent.com/Perk4/dailydealfeed/main';
         const API_BASE = 'https://api.github.com/repos/Perk4/dailydealfeed/contents';
         
-        // Get product ID from URL params
+        // Get product ID or ASIN from URL params
         const params = new URLSearchParams(window.location.search);
-        const productId = params.get('id') || params.get('product') || '1';
+        const productId = params.get('id') || params.get('product');
+        const asinParam = params.get('asin');
         
         async function loadProduct() {
             const content = document.getElementById('content');
             
             try {
-                // Load manifest for ASIN lookup
+                // Load manifest for product lookup
                 const manifestRes = await fetch(`${BASE}/staging/products/manifest.json?t=${Date.now()}`);
                 const manifest = await manifestRes.json();
                 
-                // Get product from manifest (product_id is 1-indexed, array is 0-indexed)
-                const productIndex = parseInt(productId) - 1;
-                const product = manifest.products[productIndex];
+                let product = null;
+                let lookupAsin = asinParam;
                 
-                if (!product) {
-                    throw new Error(`Product ${productId} not found in manifest`);
+                // If ASIN provided directly, find product by ASIN
+                if (asinParam) {
+                    product = manifest.products.find(p => p.asin === asinParam);
+                } else if (productId) {
+                    // Get product from manifest (product_id is 1-indexed, array is 0-indexed)
+                    const productIndex = parseInt(productId) - 1;
+                    product = manifest.products[productIndex];
+                    if (product) lookupAsin = product.asin;
+                } else {
+                    // Default to first product
+                    product = manifest.products[0];
+                    if (product) lookupAsin = product.asin;
                 }
                 
-                // Find the latest video for this product
+                if (!product) {
+                    throw new Error(`Product not found in manifest`);
+                }
+                
+                // Find the video for this product
                 const filesRes = await fetch(`${API_BASE}/output/approved`);
                 const files = await filesRes.json();
                 
@@ -170,35 +184,28 @@
                     throw new Error('Failed to load files');
                 }
                 
-                // Find all videos for this product and get the newest one
-                const videos = files
-                    .filter(f => f.name.startsWith(`video_${productId}_`) && f.name.endsWith('.mp4'))
-                    .sort((a, b) => {
-                        const tsA = parseInt(a.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
-                        const tsB = parseInt(b.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
-                        return tsB - tsA; // Newest first
-                    });
+                // Find video by ASIN (new format) or product_id (legacy)
+                let videos = files.filter(f => 
+                    f.name === `amazon_${lookupAsin}.mp4` || 
+                    f.name.startsWith(`amazon_${lookupAsin}_`) && f.name.endsWith('.mp4')
+                );
+                
+                // Fallback: try legacy format if no ASIN video found
+                if (videos.length === 0 && productId) {
+                    videos = files
+                        .filter(f => f.name.startsWith(`video_${productId}_`) && f.name.endsWith('.mp4'))
+                        .sort((a, b) => {
+                            const tsA = parseInt(a.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
+                            const tsB = parseInt(b.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
+                            return tsB - tsA;
+                        });
+                }
                 
                 const videoFile = videos[0];
                 
-                // Find matching post JSON for additional metadata
-                let postData = null;
-                if (videoFile) {
-                    const postName = videoFile.name.replace('video_', 'post_').replace('.mp4', '.json');
-                    const postFile = files.find(f => f.name === postName);
-                    if (postFile) {
-                        try {
-                            const postRes = await fetch(postFile.download_url);
-                            postData = await postRes.json();
-                        } catch (e) {
-                            console.warn('Could not load post data');
-                        }
-                    }
-                }
-                
-                // Use post data for name/price if available, fallback to manifest
-                const productName = postData?.product_name || product.name;
-                const productPrice = postData?.product_price || product.price;
+                // Use manifest data directly
+                const productName = product.name;
+                const productPrice = product.price;
                 const asin = product.asin;
                 
                 // Amazon product image URL

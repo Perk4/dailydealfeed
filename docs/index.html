@@ -189,8 +189,8 @@
                     throw new Error('Failed to load file list');
                 }
                 
-                // Find videos
-                const videos = files.filter(f => f.name.startsWith('video_') && f.name.endsWith('.mp4'));
+                // Find videos (support both naming conventions)
+                const videos = files.filter(f => f.name.endsWith('.mp4'));
                 
                 // Find post JSON files for metadata
                 const posts = files.filter(f => f.name.startsWith('post_') && f.name.endsWith('.json'));
@@ -201,47 +201,49 @@
                 const grid = document.getElementById('grid');
                 grid.innerHTML = '';
                 
-                // Sort videos by timestamp (newest first)
-                videos.sort((a, b) => {
-                    const tsA = parseInt(a.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
-                    const tsB = parseInt(b.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
-                    return tsB - tsA;
-                });
+                // Sort videos alphabetically (newest ASIN-based format first, then legacy)
+                videos.sort((a, b) => b.name.localeCompare(a.name));
                 
                 for (const video of videos) {
-                    // Extract product_id from filename (video_10_123456.mp4 -> 10)
+                    // Extract ASIN from filename (amazon_B00PBX3L7K.mp4 -> B00PBX3L7K)
+                    const asinMatch = video.name.match(/^amazon_([A-Z0-9]+)/i);
+                    // Also support legacy format (video_10_123456.mp4)
                     const productIdMatch = video.name.match(/^video_(\d+)_/);
-                    const productId = productIdMatch ? parseInt(productIdMatch[1]) : null;
-                    
-                    // Try to get product info from corresponding post JSON
-                    const postName = video.name.replace('video_', 'post_').replace('.mp4', '.json');
-                    const postFile = posts.find(p => p.name === postName);
                     
                     let productName = 'Product';
                     let productPrice = '';
-                    let asin = null;
+                    let asin = asinMatch ? asinMatch[1] : null;
+                    let productId = productIdMatch ? parseInt(productIdMatch[1]) : null;
                     
+                    // For ASIN-based videos, find product in manifest
+                    if (asin) {
+                        const product = manifestProducts.find(p => p.asin === asin);
+                        if (product) {
+                            productName = product.name;
+                            productPrice = product.price;
+                            productId = manifestProducts.indexOf(product) + 1;
+                        }
+                    }
+                    
+                    // For legacy format, look up by product_id
+                    if (!asin && productId && manifestProducts[productId - 1]) {
+                        const product = manifestProducts[productId - 1];
+                        asin = product.asin;
+                        productName = product.name;
+                        productPrice = product.price;
+                    }
+                    
+                    // Also try to get data from post JSON (legacy support)
+                    const postName = video.name.replace('video_', 'post_').replace('.mp4', '.json');
+                    const postFile = posts.find(p => p.name === postName);
                     if (postFile) {
                         try {
                             const postRes = await fetch(postFile.download_url);
                             const postData = await postRes.json();
-                            // Use correct field names from post JSON
-                            productName = postData.product_name || 'Product';
-                            productPrice = postData.product_price || '';
+                            if (postData.product_name) productName = postData.product_name;
+                            if (postData.product_price) productPrice = postData.product_price;
                         } catch (e) {
                             console.warn('Could not load post data:', e);
-                        }
-                    }
-                    
-                    // Get ASIN from manifest using product_id
-                    if (productId && manifestProducts[productId - 1]) {
-                        asin = manifestProducts[productId - 1].asin;
-                        // Fallback to manifest data if post didn't have it
-                        if (!productName || productName === 'Product') {
-                            productName = manifestProducts[productId - 1].name;
-                        }
-                        if (!productPrice) {
-                            productPrice = manifestProducts[productId - 1].price;
                         }
                     }
                     
