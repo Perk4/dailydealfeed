@@ -223,6 +223,7 @@ async function cliffhangerCutV2(inputPath, outputPath, options = {}) {
   console.log(`  Clip: ${startTime.toFixed(2)}s → ${endTime.toFixed(2)}s (${actualDuration.toFixed(2)}s)`);
   
   // Build FFmpeg command
+  // NOTE: Added minrate/maxrate/bufsize to ensure videos pass 1Mbps quality gate
   const cmd = [
     'ffmpeg', '-y',
     '-ss', startTime.toFixed(3),
@@ -231,6 +232,7 @@ async function cliffhangerCutV2(inputPath, outputPath, options = {}) {
     '-c:v', CONFIG.codec,
     '-preset', CONFIG.preset,
     '-crf', CONFIG.crf,
+    '-minrate', '1.5M', '-maxrate', '4M', '-bufsize', '3M',
     '-c:a', 'aac', '-b:a', '128k',
     '-movflags', '+faststart',
     `"${outputPath}"`
