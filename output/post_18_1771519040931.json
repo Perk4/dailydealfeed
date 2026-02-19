@@ -1,0 +1,43 @@
+{
+  "video_path": "/root/dailydealfeed/output/video_18_1771519040931.mp4",
+  "video_filename": "video_18_1771519040931.mp4",
+  "thumb_path": "/root/dailydealfeed/output/thumb_18_1771519040931.jpg",
+  "thumb_filename": "thumb_18_1771519040931.jpg",
+  "product_id": 18,
+  "product_name": "White Noise Machine with Night Light",
+  "product_price": "$24.99",
+  "ig_caption": "Check this out: White Noise Machine with Night Light\n\nWhite Noise Machine with Night Light $24.99\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+  "tiktok_caption": "Check this out: White Noise Machine with Night Light 🤯 White Noise Machine with Night Light $24.99 #amazonfinds #tiktokmademebuyit #viral",
+  "hook_angle": "Check this out: White Noise Machine with Night Light",
+  "voiceover_script": "Check this out: White Noise Machine with Night Light... White Noise Machine with Night Light. Only $24.99.... Link in bio.",
+  "has_voiceover": true,
+  "has_background_music": true,
+  "music_track": "track03_born_norilsk.mp3",
+  "duration_seconds": 12,
+  "timing": {
+    "hook": 3,
+    "product": 7,
+    "cta": 2
+  },
+  "created_at": "2026-02-19T16:38:39.753Z",
+  "ready_for_posting": true,
+  "edit_style": {
+    "version": "v10-sticker-overlay",
+    "changes": [
+      "price_sticker_style",
+      "fire_emoji_added",
+      "drop_shadow_effect",
+      "bounce_animation",
+      "voiceover_delayed",
+      "hook_audio_preserved",
+      "timing_simplified"
+    ],
+    "voiceover_delay_seconds": 3,
+    "hook_has_original_audio": true,
+    "zoom_intensity": 0.05,
+    "text_delay": 0.15,
+    "progress_bar": false,
+    "crossfade": 0.3,
+    "music_enabled": true
+  }
+}

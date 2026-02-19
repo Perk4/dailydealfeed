@@ -1,0 +1,43 @@
+{
+  "video_path": "/root/dailydealfeed/output/video_4_1771518154141.mp4",
+  "video_filename": "video_4_1771518154141.mp4",
+  "thumb_path": "/root/dailydealfeed/output/thumb_4_1771518154141.jpg",
+  "thumb_filename": "thumb_4_1771518154141.jpg",
+  "product_id": 4,
+  "product_name": "Laneige Lip Sleeping Mask",
+  "product_price": "$24.00",
+  "ig_caption": "Check this out: Laneige Lip Sleeping Mask\n\nLaneige Lip Sleeping Mask $24.00\n\n🔗 Link in bio!\n\n#tiktokfinds #amazonfinds #musthave #viral #fyp",
+  "tiktok_caption": "Check this out: Laneige Lip Sleeping Mask 🤯 Laneige Lip Sleeping Mask $24.00 #amazonfinds #tiktokmademebuyit #viral",
+  "hook_angle": "Check this out: Laneige Lip Sleeping Mask",
+  "voiceover_script": "Lip sleeping mask. Berry extract with vitamin C. $24, link in bio.",
+  "has_voiceover": true,
+  "has_background_music": true,
+  "music_track": "track05_dynamic_healing.mp3",
+  "duration_seconds": 10,
+  "timing": {
+    "hook": 3,
+    "product": 5,
+    "cta": 2
+  },
+  "created_at": "2026-02-19T16:23:19.248Z",
+  "ready_for_posting": true,
+  "edit_style": {
+    "version": "v10-sticker-overlay",
+    "changes": [
+      "price_sticker_style",
+      "fire_emoji_added",
+      "drop_shadow_effect",
+      "bounce_animation",
+      "voiceover_delayed",
+      "hook_audio_preserved",
+      "timing_simplified"
+    ],
+    "voiceover_delay_seconds": 3,
+    "hook_has_original_audio": true,
+    "zoom_intensity": 0.05,
+    "text_delay": 0.15,
+    "progress_bar": false,
+    "crossfade": 0.3,
+    "music_enabled": true
+  }
+}

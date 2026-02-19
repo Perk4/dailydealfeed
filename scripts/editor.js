@@ -1481,9 +1481,12 @@ async function editVideo(input) {
       }
     }
     
-    // V12: REQUIRE Amazon recording - no static image fallback
+    // V13: Allow static product images as fallback (per feedback - screenshots > video recording)
+    // Amazon recording is preferred but not required
+    let useStaticFallback = false;
     if (!amazonRecording) {
-      throw new Error(`Cannot generate video: Amazon mobile UI recording required for product ${productId} (ASIN: ${productAsin || 'unknown'}). Static product images are no longer supported.`);
+      console.log(`⚠️ No Amazon recording for product ${productId} - using static image fallback`);
+      useStaticFallback = true;
     }
     
     // Step 1: Download assets
@@ -1496,8 +1499,18 @@ async function editVideo(input) {
       await downloadFile(input.meme_url, tempMeme);
     }
     
-    // V12: No product image download needed - using Amazon recording only
-    console.log('📱 Using Amazon mobile UI recording (no static image download)');
+    // V13: Download product image if using static fallback
+    if (useStaticFallback) {
+      console.log('📷 Downloading product image for static fallback...');
+      try {
+        await downloadFile(input.product_image_url || input.product_image, tempProduct);
+        console.log('✅ Product image downloaded');
+      } catch (e) {
+        console.log(`⚠️ Could not download product image: ${e.message}`);
+      }
+    } else {
+      console.log('📱 Using Amazon mobile UI recording');
+    }
     
     // Step 2: Create hook segment (clip only, no text) - V8 SIMPLIFIED
     // V8: REMOVED hook text overlay - gets cut off in 9:16 portrait mode
@@ -1511,15 +1524,26 @@ async function editVideo(input) {
     fs.copyFileSync(tempHook, tempHookText); // Keep downstream paths working
     
     // Step 3: Create product showcase segment - DYNAMIC DURATION
-    // V12: ALWAYS use Amazon mobile UI recording (no static image fallback)
-    console.log('📦 Creating product showcase from Amazon mobile UI recording...');
-    createProductSegmentFromVideo(
-      amazonRecording,
-      input.product_name,
-      input.product_price || '$??',
-      tempShowcase,
-      productDuration
-    );
+    // V13: Use Amazon recording if available, otherwise use static image
+    if (amazonRecording && !useStaticFallback) {
+      console.log('📦 Creating product showcase from Amazon mobile UI recording...');
+      createProductSegmentFromVideo(
+        amazonRecording,
+        input.product_name,
+        input.product_price || '$??',
+        tempShowcase,
+        productDuration
+      );
+    } else {
+      console.log('📦 Creating product showcase from static image (fallback)...');
+      createProductSegment(
+        tempProduct,
+        input.product_name,
+        input.product_price || '$??',
+        tempShowcase,
+        productDuration
+      );
+    }
     
     // Step 4: Create CTA segment - DYNAMIC DURATION
     console.log('📢 Creating CTA segment...');
