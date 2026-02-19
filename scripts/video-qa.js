@@ -13,7 +13,7 @@ const THRESHOLDS = {
   maxDuration: 15,
   minWidth: 1080,
   minHeight: 1920,
-  minBitrate: 1000000,  // 1 Mbps minimum
+  minBitrate: 600000,  // 0.6 Mbps minimum (lowered per feedback)
   minFileSize: 500000,  // 500KB minimum
   maxFileSize: 10000000, // 10MB max
   requiredAudio: true
