@@ -303,6 +303,9 @@ async function applyCrop(inputPath, outputPath, filter, options = {}) {
     '-c:v', CONFIG.codec,           // Video codec
     '-preset', CONFIG.preset,       // Encoding preset
     '-crf', crf.toString(),         // Quality
+    '-minrate', '1.5M',             // Min bitrate (pass QA gate)
+    '-maxrate', '4M',               // Max bitrate
+    '-bufsize', '3M',               // Buffer size
     '-c:a', 'aac',                  // Audio codec
     '-b:a', '128k',                 // Audio bitrate
     '-movflags', '+faststart',      // Web optimization
