@@ -1,19 +1,95 @@
 #!/usr/bin/env node
 /**
  * Generate individual embed pages for Carrd integration
+ * V2: Find actual video files + validate Amazon links
  */
 
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
-function generateEmbed(productId) {
+/**
+ * Check if Amazon product page exists (not 404)
+ */
+async function validateAmazonLink(asin) {
+  return new Promise((resolve) => {
+    const url = `https://www.amazon.com/dp/${asin}`;
+    const req = https.request(url, { method: 'HEAD', timeout: 10000 }, (res) => {
+      // 200, 301, 302 are OK; 404 is bad
+      resolve(res.statusCode < 400);
+    });
+    req.on('error', () => resolve(false));
+    req.on('timeout', () => { req.destroy(); resolve(false); });
+    req.end();
+  });
+}
+
+/**
+ * Find the actual video file for a product
+ */
+function findVideoFile(productId, asin) {
+  const approvedDir = 'output/approved';
+  if (!fs.existsSync(approvedDir)) return null;
+  
+  const files = fs.readdirSync(approvedDir);
+  
+  // Try to find video by product ID first
+  let videoFile = files.find(f => f.startsWith(`video_${productId}_`) && f.endsWith('.mp4'));
+  
+  // Try by ASIN if not found
+  if (!videoFile && asin) {
+    videoFile = files.find(f => f.includes(asin) && f.endsWith('.mp4'));
+  }
+  
+  // Try amazon_ prefix
+  if (!videoFile && asin) {
+    videoFile = files.find(f => f === `amazon_${asin}.mp4`);
+  }
+  
+  return videoFile;
+}
+
+async function generateEmbed(productId, options = {}) {
+  const { skipValidation = false, forceVideo = null } = options;
+  
   const manifest = JSON.parse(fs.readFileSync('staging/products/manifest.json', 'utf8'));
   const product = manifest.products[parseInt(productId) - 1];
   
   if (!product) {
-    console.error(`Product ${productId} not found`);
-    return false;
+    console.error(`❌ Product ${productId} not found`);
+    return { success: false, error: 'Product not found' };
   }
+
+  // Validate Amazon link
+  if (!skipValidation) {
+    console.log(`🔍 Validating Amazon link for ${product.asin}...`);
+    const isValid = await validateAmazonLink(product.asin);
+    if (!isValid) {
+      console.error(`❌ Amazon link 404 for ${product.asin} - skipping embed`);
+      return { success: false, error: 'Amazon 404', asin: product.asin };
+    }
+    console.log(`✅ Amazon link valid`);
+  }
+
+  // Find actual video file
+  const videoFile = forceVideo || findVideoFile(productId, product.asin);
+  const hasVideo = !!videoFile;
+  
+  const videoUrl = hasVideo 
+    ? `https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/approved/${videoFile}`
+    : null;
+
+  // Generate HTML with or without video
+  const videoSection = hasVideo 
+    ? `<div class="video-wrapper">
+      <video controls playsinline autoplay muted loop>
+        <source src="${videoUrl}" type="video/mp4">
+        Your browser does not support video.
+      </video>
+    </div>`
+    : `<div class="video-wrapper no-video">
+      <div class="placeholder">🎬 Video coming soon</div>
+    </div>`;
 
   const html = `<!DOCTYPE html>
 <html>
@@ -21,11 +97,16 @@ function generateEmbed(productId) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${product.name} - DailyDealFeed</title>
+  <meta property="og:title" content="${product.name}">
+  <meta property="og:description" content="Get it for ${product.price} on Amazon">
+  <meta property="og:image" content="https://images-na.ssl-images-amazon.com/images/P/${product.asin}.jpg">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, sans-serif; background: #0a0a0a; color: #fff; }
     .container { max-width: 400px; margin: 0 auto; padding: 16px; }
     .video-wrapper { width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; background: #111; }
+    .video-wrapper.no-video { display: flex; align-items: center; justify-content: center; }
+    .placeholder { color: #666; font-size: 18px; }
     video { width: 100%; height: 100%; object-fit: cover; }
     .product-info { background: #1a1a1a; border-radius: 12px; padding: 16px; margin-top: 12px; }
     .product-row { display: flex; align-items: center; gap: 12px; }
@@ -33,24 +114,21 @@ function generateEmbed(productId) {
     .product-details h3 { font-size: 14px; margin-bottom: 4px; }
     .price { color: #4ade80; font-size: 18px; font-weight: 700; }
     .buy-btn { display: block; background: #ff9900; color: #000; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 12px; }
+    .buy-btn:hover { background: #e8890a; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="video-wrapper">
-      <video controls playsinline autoplay muted loop>
-        <source src="https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/approved/video_${productId}_latest.mp4" type="video/mp4">
-      </video>
-    </div>
+    ${videoSection}
     <div class="product-info">
       <div class="product-row">
-        <img class="product-img" src="https://images-na.ssl-images-amazon.com/images/P/${product.asin}.jpg" alt="${product.name}">
+        <img class="product-img" src="https://images-na.ssl-images-amazon.com/images/P/${product.asin}.jpg" alt="${product.name}" onerror="this.src='https://via.placeholder.com/60?text=No+Image'">
         <div class="product-details">
-          <h3>${product.name.substring(0, 50)}${product.name.length > 50 ? '...' : ''}</h3>
+          <h3>${product.name.substring(0, 60)}${product.name.length > 60 ? '...' : ''}</h3>
           <div class="price">${product.price}</div>
         </div>
       </div>
-      <a class="buy-btn" href="https://www.amazon.com/dp/${product.asin}?tag=dailydealfeed-20" target="_blank">Shop on Amazon</a>
+      <a class="buy-btn" href="https://www.amazon.com/dp/${product.asin}?tag=dailydealfeed-20" target="_blank" rel="noopener">Shop on Amazon</a>
     </div>
   </div>
 </body>
@@ -71,19 +149,79 @@ function generateEmbed(productId) {
   fs.writeFileSync(docsPath, html);
   
   console.log(`✅ Embed generated: ${embedPath}`);
-  console.log(`✅ GitHub Pages: https://perk4.github.io/dailydealfeed/product-${productId}.html`);
+  console.log(`   Video: ${hasVideo ? videoFile : 'none'}`);
+  console.log(`   URL: https://perk4.github.io/dailydealfeed/product-${productId}.html`);
   
-  return true;
+  return { 
+    success: true, 
+    productId, 
+    asin: product.asin,
+    hasVideo,
+    videoFile,
+    embedPath,
+    docsPath
+  };
+}
+
+/**
+ * Generate all embeds with validation
+ */
+async function generateAllEmbeds() {
+  const manifest = JSON.parse(fs.readFileSync('staging/products/manifest.json', 'utf8'));
+  const results = {
+    success: [],
+    failed: [],
+    noVideo: []
+  };
+  
+  for (let i = 0; i < manifest.products.length; i++) {
+    const productId = i + 1;
+    console.log(`\n--- Product ${productId}/${manifest.products.length} ---`);
+    
+    const result = await generateEmbed(productId);
+    
+    if (result.success) {
+      if (result.hasVideo) {
+        results.success.push(result);
+      } else {
+        results.noVideo.push(result);
+      }
+    } else {
+      results.failed.push(result);
+    }
+  }
+  
+  console.log(`\n=== SUMMARY ===`);
+  console.log(`✅ Success with video: ${results.success.length}`);
+  console.log(`⚠️ Success without video: ${results.noVideo.length}`);
+  console.log(`❌ Failed (404 or error): ${results.failed.length}`);
+  
+  if (results.failed.length > 0) {
+    console.log(`\nFailed ASINs:`);
+    results.failed.forEach(r => console.log(`  - ${r.asin}: ${r.error}`));
+  }
+  
+  return results;
 }
 
 // CLI
 if (require.main === module) {
-  const productId = process.argv[2];
-  if (!productId) {
-    console.log('Usage: node generate-embed.js <product-id>');
+  const arg = process.argv[2];
+  
+  if (arg === '--all') {
+    generateAllEmbeds().then(results => {
+      process.exit(results.failed.length > 0 ? 1 : 0);
+    });
+  } else if (arg) {
+    generateEmbed(arg).then(result => {
+      process.exit(result.success ? 0 : 1);
+    });
+  } else {
+    console.log('Usage:');
+    console.log('  node generate-embed.js <product-id>  - Generate single embed');
+    console.log('  node generate-embed.js --all         - Generate all embeds with validation');
     process.exit(1);
   }
-  generateEmbed(productId);
 }
 
-module.exports = { generateEmbed };
+module.exports = { generateEmbed, generateAllEmbeds, validateAmazonLink, findVideoFile };
