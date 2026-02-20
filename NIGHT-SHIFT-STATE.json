@@ -3,9 +3,9 @@
   "phases": {
     "1": {
       "name": "polish-agent",
-      "status": "running",
+      "status": "completed",
       "startedAt": "2026-02-20T03:49:48.911Z",
-      "completedAt": null,
+      "completedAt": "2026-02-20T03:51:14.699Z",
       "subagentId": "polish-agent"
     },
     "2": {
@@ -39,6 +39,20 @@
   },
   "lastCheck": "2026-02-20T03:49:48.912Z",
   "blockers": [],
-  "completedTasks": [],
+  "completedTasks": [
+    {
+      "phase": 1,
+      "task": "polish-agent",
+      "completedAt": "2026-02-20T03:51:14.699Z",
+      "results": {
+        "embedsGenerated": 19,
+        "embedsSkipped": 2,
+        "skippedReason": "Amazon 404 (B09V7Z4TJG, B0BZ8QYZMM)",
+        "needsReviewResolved": "skipped - video_16 not produced",
+        "manifestCreated": true,
+        "videosInManifest": 21
+      }
+    }
+  ],
   "explorations": []
 }
