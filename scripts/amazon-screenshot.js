@@ -11,6 +11,7 @@
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
+const logger = require('./lib/logger');
 
 const TEMP_DIR = path.join(__dirname, '../temp');
 const SCREENSHOTS_DIR = path.join(__dirname, '../temp/screenshots');
@@ -39,13 +40,20 @@ const MOBILE_USER_AGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X
 async function captureProductScreenshot(asin) {
   const url = `https://www.amazon.com/dp/${asin}`;
   const screenshotPath = path.join(SCREENSHOTS_DIR, `${asin}_${Date.now()}.png`);
+  const startTime = Date.now();
+  
+  logger.amazon('INFO', `Starting screenshot capture`, { asin, url });
   
   let browser;
   try {
+    logger.amazon('DEBUG', `Launching Playwright browser`, { asin, headless: true });
+    
     browser = await chromium.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
+    
+    logger.amazon('DEBUG', `Browser launched successfully`, { asin });
     
     const context = await browser.newContext({
       viewport: MOBILE_VIEWPORT,
@@ -55,10 +63,23 @@ async function captureProductScreenshot(asin) {
     const page = await context.newPage();
     
     // Navigate with timeout
-    await page.goto(url, { 
-      waitUntil: 'domcontentloaded',
-      timeout: 30000 
-    });
+    logger.amazon('DEBUG', `Navigating to Amazon page`, { asin, url, timeout: '30s' });
+    
+    try {
+      await page.goto(url, { 
+        waitUntil: 'domcontentloaded',
+        timeout: 30000 
+      });
+      logger.amazon('DEBUG', `Page loaded successfully`, { asin });
+    } catch (navErr) {
+      logger.amazon('ERROR', `Page navigation failed`, {
+        asin,
+        url,
+        error: navErr.message,
+        timeout: navErr.message.includes('timeout')
+      });
+      throw navErr;
+    }
     
     // Wait for product image to load
     await page.waitForTimeout(2000);
@@ -66,15 +87,38 @@ async function captureProductScreenshot(asin) {
     // Try to dismiss any popups
     try {
       await page.click('[data-action="a-popover-close"]', { timeout: 1000 });
+      logger.amazon('DEBUG', `Dismissed popup`, { asin });
     } catch (e) { /* No popup */ }
     
     // Take screenshot
+    logger.amazon('DEBUG', `Taking screenshot`, { asin, screenshotPath });
+    
     await page.screenshot({ 
       path: screenshotPath,
       fullPage: false // Just the visible viewport
     });
     
     await browser.close();
+    
+    // Verify screenshot was created
+    if (!fs.existsSync(screenshotPath)) {
+      logger.amazon('ERROR', `Screenshot file not created`, { asin, screenshotPath });
+      return { success: false, error: 'Screenshot file not created', asin };
+    }
+    
+    const stats = fs.statSync(screenshotPath);
+    if (stats.size === 0) {
+      logger.amazon('ERROR', `Screenshot file is empty (0 bytes)`, { asin, screenshotPath });
+      return { success: false, error: 'Screenshot file is empty', asin };
+    }
+    
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+    logger.amazon('INFO', `Screenshot captured successfully in ${elapsed}s`, {
+      asin,
+      screenshotPath,
+      fileSize: stats.size,
+      elapsedSeconds: elapsed
+    });
     
     return { 
       success: true, 
@@ -83,7 +127,22 @@ async function captureProductScreenshot(asin) {
     };
     
   } catch (error) {
-    if (browser) await browser.close();
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+    logger.amazon('ERROR', `Screenshot capture failed after ${elapsed}s: ${error.message}`, {
+      asin,
+      error: error.message,
+      stack: error.stack,
+      elapsedSeconds: elapsed
+    });
+    
+    if (browser) {
+      try {
+        await browser.close();
+      } catch (closeErr) {
+        logger.amazon('WARN', `Failed to close browser`, { error: closeErr.message });
+      }
+    }
+    
     return { 
       success: false, 
       error: error.message,
@@ -134,11 +193,20 @@ Respond with JSON:
  * @param {object} productData - Expected product data
  */
 async function captureAndValidate(asin, productData) {
+  logger.amazon('INFO', `Starting capture and validate flow`, {
+    asin,
+    productTitle: productData?.title || productData?.name
+  });
+  
   console.log(`📸 Capturing screenshot for ${asin}...`);
   
   const capture = await captureProductScreenshot(asin);
   
   if (!capture.success) {
+    logger.amazon('ERROR', `Capture and validate flow failed at screenshot step`, {
+      asin,
+      error: capture.error
+    });
     console.error(`❌ Screenshot failed: ${capture.error}`);
     return { success: false, error: capture.error };
   }
@@ -146,6 +214,12 @@ async function captureAndValidate(asin, productData) {
   console.log(`✅ Screenshot saved: ${capture.screenshotPath}`);
   
   const validation = await validateScreenshot(capture.screenshotPath, productData);
+  
+  logger.amazon('INFO', `Capture and validate flow completed`, {
+    asin,
+    screenshotPath: capture.screenshotPath,
+    needsValidation: validation.needsValidation
+  });
   
   return {
     success: true,

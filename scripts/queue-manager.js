@@ -16,6 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync, spawnSync } = require('child_process');
+const logger = require('./lib/logger');
 
 // ============================================
 // CONFIGURATION
@@ -226,6 +227,17 @@ function saveQueue(queue) {
  * Generate video for a queue item
  */
 async function generateVideo(queueItem) {
+  const startTime = Date.now();
+  const asin = queueItem.product.asin;
+  const itemId = queueItem.id;
+  
+  logger.queue('INFO', `Picked item from queue: ${queueItem.product.name}`, {
+    itemId,
+    asin,
+    clipFile: queueItem.clip.file,
+    clipVibe: queueItem.clip.vibe
+  });
+  
   log(`Generating video for: ${queueItem.product.name}`, '🎬');
   
   const editorPath = path.join(__dirname, 'editor.js');
@@ -251,9 +263,22 @@ async function generateVideo(queueItem) {
   };
   
   const inputPath = path.join(tempDir, `editor_input_${queueItem.id}.json`);
-  fs.writeFileSync(inputPath, JSON.stringify(editorInput, null, 2));
   
   try {
+    fs.writeFileSync(inputPath, JSON.stringify(editorInput, null, 2));
+    logger.queue('DEBUG', `Editor input written`, { inputPath, asin });
+  } catch (writeErr) {
+    logger.queue('ERROR', `Failed to write editor input`, {
+      inputPath,
+      error: writeErr.message,
+      asin
+    });
+    return null;
+  }
+  
+  try {
+    logger.queue('INFO', `Starting editor process`, { itemId, asin, timeout: '5m' });
+    
     const result = spawnSync('node', [editorPath, '--input', inputPath], {
       cwd: PROJECT_DIR,
       encoding: 'utf8',
@@ -262,10 +287,33 @@ async function generateVideo(queueItem) {
     });
     
     if (result.error) {
+      // Check for timeout
+      if (result.error.code === 'ETIMEDOUT' || result.signal === 'SIGTERM') {
+        logger.queue('ERROR', `Editor process TIMEOUT after 5 minutes`, {
+          itemId,
+          asin,
+          signal: result.signal,
+          stderrTail: result.stderr?.slice(-500)
+        });
+        throw new Error('Editor timeout - process killed after 5 minutes');
+      }
+      logger.queue('ERROR', `Editor process error`, {
+        itemId,
+        asin,
+        error: result.error.message,
+        code: result.error.code
+      });
       throw new Error(result.error.message);
     }
     
     if (result.status !== 0) {
+      logger.queue('ERROR', `Editor exited with non-zero status`, {
+        itemId,
+        asin,
+        exitCode: result.status,
+        stderr: result.stderr?.slice(-1000),
+        stdoutTail: result.stdout?.slice(-500)
+      });
       console.error('Editor stderr:', result.stderr);
       throw new Error(`Editor exited with code ${result.status}`);
     }
@@ -275,22 +323,46 @@ async function generateVideo(queueItem) {
     const videoMatch = output.match(/✅ Video saved: (.+\.mp4)/);
     
     if (videoMatch) {
+      const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+      logger.queue('INFO', `Video generated successfully in ${elapsed}s`, {
+        itemId,
+        asin,
+        videoPath: videoMatch[1],
+        elapsedSeconds: elapsed
+      });
       log(`Video created: ${path.basename(videoMatch[1])}`, '✅');
       return videoMatch[1];
     }
     
     // Fallback: look for recent mp4 files
+    logger.queue('WARN', `Video path not found in output, searching output directory`, { itemId, asin });
+    
     const outputFiles = fs.readdirSync(OUTPUT_DIR)
       .filter(f => f.endsWith('.mp4'))
       .map(f => ({ name: f, mtime: fs.statSync(path.join(OUTPUT_DIR, f)).mtime }))
       .sort((a, b) => b.mtime - a.mtime);
     
     if (outputFiles.length > 0) {
-      return path.join(OUTPUT_DIR, outputFiles[0].name);
+      const foundPath = path.join(OUTPUT_DIR, outputFiles[0].name);
+      logger.queue('INFO', `Found video via fallback search`, { itemId, asin, videoPath: foundPath });
+      return foundPath;
     }
     
+    logger.queue('ERROR', `No video file found after successful editor run`, {
+      itemId,
+      asin,
+      outputDir: OUTPUT_DIR,
+      stdoutTail: output?.slice(-500)
+    });
     throw new Error('Could not find generated video');
   } catch (err) {
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+    logger.queue('ERROR', `Video generation failed after ${elapsed}s: ${err.message}`, {
+      itemId,
+      asin,
+      elapsedSeconds: elapsed,
+      stack: err.stack
+    });
     log(`Video generation failed: ${err.message}`, '❌');
     return null;
   } finally {
@@ -310,13 +382,48 @@ async function generateVideo(queueItem) {
  * ALL checks must pass - no exceptions
  */
 function runQA(videoPath) {
+  const filename = videoPath ? path.basename(videoPath) : 'unknown';
+  
   if (!videoPath || !fs.existsSync(videoPath)) {
+    logger.queue('ERROR', `QA failed: video file not found`, { videoPath, filename });
     return { score: 0, error: 'Video file not found', passed: false };
   }
   
+  logger.queue('INFO', `Running QA evaluation`, { filename, videoPath });
+  
   // Import strict QA module
   const { evaluateVideo } = require('./video-qa.js');
-  const result = evaluateVideo(videoPath);
+  let result;
+  
+  try {
+    result = evaluateVideo(videoPath);
+  } catch (qaErr) {
+    logger.queue('ERROR', `QA evaluation threw exception`, {
+      filename,
+      error: qaErr.message,
+      stack: qaErr.stack
+    });
+    return { score: 0, error: qaErr.message, passed: false };
+  }
+  
+  // Log QA results
+  if (result.passed) {
+    logger.queue('INFO', `QA PASSED`, {
+      filename,
+      score: result.score,
+      duration: result.metadata?.duration,
+      bitrate: result.metadata?.bitrate,
+      fileSize: result.metadata?.fileSize
+    });
+  } else {
+    logger.queue('WARN', `QA FAILED: ${result.issues.join(', ')}`, {
+      filename,
+      score: result.score,
+      issues: result.issues,
+      checks: result.checks,
+      metadata: result.metadata
+    });
+  }
   
   // Handle failed videos - move to rejected folder
   if (!result.passed) {
@@ -325,22 +432,37 @@ function runQA(videoPath) {
       fs.mkdirSync(rejectedDir, { recursive: true });
     }
     
-    const filename = path.basename(videoPath);
     const destPath = path.join(rejectedDir, filename);
     
     // Write rejection reason
     const reasonFile = path.join(rejectedDir, filename.replace('.mp4', '.rejection.json'));
-    fs.writeFileSync(reasonFile, JSON.stringify({
-      file: filename,
-      rejectedAt: new Date().toISOString(),
-      issues: result.issues,
-      checks: result.checks,
-      metadata: result.metadata
-    }, null, 2));
+    try {
+      fs.writeFileSync(reasonFile, JSON.stringify({
+        file: filename,
+        rejectedAt: new Date().toISOString(),
+        issues: result.issues,
+        checks: result.checks,
+        metadata: result.metadata
+      }, null, 2));
+    } catch (writeErr) {
+      logger.queue('ERROR', `Failed to write rejection reason file`, {
+        reasonFile,
+        error: writeErr.message
+      });
+    }
     
     // Move to rejected
     if (videoPath !== destPath) {
-      fs.renameSync(videoPath, destPath);
+      try {
+        fs.renameSync(videoPath, destPath);
+        logger.queue('INFO', `Moved rejected video to rejected folder`, { filename, destPath });
+      } catch (moveErr) {
+        logger.queue('ERROR', `Failed to move rejected video`, {
+          filename,
+          destPath,
+          error: moveErr.message
+        });
+      }
       log(`Rejected: ${filename} → ${result.issues.join(', ')}`, '❌');
     }
   } else {
@@ -350,11 +472,19 @@ function runQA(videoPath) {
       fs.mkdirSync(approvedDir, { recursive: true });
     }
     
-    const filename = path.basename(videoPath);
     const destPath = path.join(approvedDir, filename);
     
     if (videoPath !== destPath && !videoPath.includes('/approved/')) {
-      fs.renameSync(videoPath, destPath);
+      try {
+        fs.renameSync(videoPath, destPath);
+        logger.queue('INFO', `Moved approved video to approved folder`, { filename, destPath });
+      } catch (moveErr) {
+        logger.queue('ERROR', `Failed to move approved video`, {
+          filename,
+          destPath,
+          error: moveErr.message
+        });
+      }
     }
   }
   
@@ -415,16 +545,35 @@ async function main() {
     // Generate all pending items
     const queueData = loadManifest(PATHS.queueFile);
     if (!queueData || !queueData.items) {
+      logger.queue('WARN', 'No queue found. Run --build-queue first.');
       log('No queue found. Run --build-queue first.', '⚠️');
       return;
     }
     
     const pending = queueData.items.filter(i => i.status === 'pending');
+    const batchStartTime = Date.now();
+    
+    logger.queue('INFO', `Starting batch generation`, {
+      totalItems: queueData.items.length,
+      pendingItems: pending.length,
+      batchStartTime: new Date().toISOString()
+    });
+    
     log(`Generating ${pending.length} videos...`, '🎬');
+    
+    let successCount = 0;
+    let failCount = 0;
     
     for (let i = 0; i < pending.length; i++) {
       const item = pending[i];
+      const itemStartTime = Date.now();
+      
       log(`\n[${i + 1}/${pending.length}] ${item.product.name}`, '🔄');
+      
+      // Mark as in-progress
+      item.status = 'in-progress';
+      item.startedAt = new Date().toISOString();
+      saveJSON(PATHS.queueFile, queueData);
       
       const videoPath = await generateVideo(item);
       
@@ -433,17 +582,42 @@ async function main() {
         item.status = qa.passed ? 'completed' : 'needs-review';
         item.outputPath = videoPath;
         item.qaScore = qa.score;
+        item.completedAt = new Date().toISOString();
+        successCount++;
         log(`QA: ${qa.score}/10 ${qa.passed ? '✅' : '⚠️'}`, '📊');
       } else {
         item.status = 'failed';
+        item.failedAt = new Date().toISOString();
+        failCount++;
+        
+        // Check if stuck (took too long without producing output)
+        const elapsedMin = (Date.now() - itemStartTime) / 60000;
+        if (elapsedMin > 3) {
+          logger.queue('WARN', `Item ${item.id} may have been stuck (${elapsedMin.toFixed(1)}m elapsed)`, {
+            itemId: item.id,
+            asin: item.product.asin,
+            elapsedMinutes: elapsedMin.toFixed(1)
+          });
+        }
       }
       
       saveJSON(PATHS.queueFile, queueData);
     }
     
     // Summary
+    const batchElapsed = ((Date.now() - batchStartTime) / 1000).toFixed(1);
     const completed = queueData.items.filter(i => i.status === 'completed').length;
     const failed = queueData.items.filter(i => i.status === 'failed').length;
+    
+    logger.queue('INFO', `Batch generation complete`, {
+      totalProcessed: pending.length,
+      success: successCount,
+      failed: failCount,
+      totalCompleted: completed,
+      totalFailed: failed,
+      elapsedSeconds: batchElapsed
+    });
+    
     log(`\nComplete: ${completed}/${pending.length}, Failed: ${failed}`, '📊');
     
   } else if (args.includes('--status')) {

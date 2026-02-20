@@ -74,6 +74,7 @@ const path = require('path');
 const https = require('https');
 const http = require('http');
 const { recordAmazonProduct } = require('./amazon-recorder');
+const logger = require('./lib/logger');
 
 // Configuration
 const SCRIPT_DIR = __dirname;
@@ -167,18 +168,39 @@ function ensureDirs() {
 // Download file from URL or copy from local path
 function downloadFile(urlOrPath, destPath) {
   return new Promise((resolve, reject) => {
+    const startTime = Date.now();
+    const filename = path.basename(destPath);
+    
     // Handle local file paths
     if (urlOrPath.startsWith('/') || urlOrPath.startsWith('./') || urlOrPath.startsWith('../')) {
       // It's a local file path - copy instead of download
       if (fs.existsSync(urlOrPath)) {
-        fs.copyFileSync(urlOrPath, destPath);
-        console.log(`   📁 Copied from local cache: ${path.basename(urlOrPath)}`);
-        resolve(destPath);
+        try {
+          fs.copyFileSync(urlOrPath, destPath);
+          const stats = fs.statSync(destPath);
+          logger.editor('DEBUG', `Copied local file`, { 
+            source: urlOrPath, 
+            dest: destPath,
+            size: stats.size 
+          });
+          console.log(`   📁 Copied from local cache: ${path.basename(urlOrPath)}`);
+          resolve(destPath);
+        } catch (copyErr) {
+          logger.editor('ERROR', `Failed to copy local file`, {
+            source: urlOrPath,
+            dest: destPath,
+            error: copyErr.message
+          });
+          reject(copyErr);
+        }
       } else {
+        logger.editor('ERROR', `Local file not found`, { path: urlOrPath });
         reject(new Error(`Local file not found: ${urlOrPath}`));
       }
       return;
     }
+    
+    logger.editor('DEBUG', `Starting download`, { url: urlOrPath, dest: filename });
     
     const protocol = urlOrPath.startsWith('https') ? https : http;
     const file = fs.createWriteStream(destPath);
@@ -188,12 +210,20 @@ function downloadFile(urlOrPath, destPath) {
     }, (response) => {
       // Handle redirects
       if (response.statusCode === 301 || response.statusCode === 302) {
+        logger.editor('DEBUG', `Following redirect`, { 
+          from: urlOrPath.slice(0, 100), 
+          to: response.headers.location?.slice(0, 100) 
+        });
         file.close();
         fs.unlinkSync(destPath);
         return downloadFile(response.headers.location, destPath).then(resolve).catch(reject);
       }
       
       if (response.statusCode !== 200) {
+        logger.editor('ERROR', `Download failed with HTTP ${response.statusCode}`, {
+          url: urlOrPath.slice(0, 200),
+          statusCode: response.statusCode
+        });
         file.close();
         fs.unlinkSync(destPath);
         reject(new Error(`Failed to download: ${response.statusCode}`));
@@ -203,17 +233,39 @@ function downloadFile(urlOrPath, destPath) {
       response.pipe(file);
       file.on('finish', () => {
         file.close();
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+        const stats = fs.statSync(destPath);
+        
+        if (stats.size === 0) {
+          logger.editor('ERROR', `Downloaded file is empty (0 bytes)`, {
+            url: urlOrPath.slice(0, 200),
+            dest: destPath
+          });
+          reject(new Error('Downloaded file is empty'));
+          return;
+        }
+        
+        logger.editor('DEBUG', `Download completed in ${elapsed}s`, {
+          filename,
+          size: stats.size,
+          elapsed
+        });
         resolve(destPath);
       });
     });
     
     request.on('error', (err) => {
+      logger.editor('ERROR', `Download network error`, {
+        url: urlOrPath.slice(0, 200),
+        error: err.message
+      });
       file.close();
       if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
       reject(err);
     });
     
     request.setTimeout(30000, () => {
+      logger.editor('ERROR', `Download timeout (30s)`, { url: urlOrPath.slice(0, 200) });
       request.destroy();
       reject(new Error('Download timeout'));
     });
@@ -223,16 +275,60 @@ function downloadFile(urlOrPath, destPath) {
 // Run FFmpeg command
 function ffmpeg(args, options = {}) {
   const cmd = `ffmpeg -y ${args}`;
+  const startTime = Date.now();
+  
   if (options.verbose) {
     console.log(`[FFmpeg] ${cmd}`);
   }
+  
+  logger.ffmpeg('DEBUG', `Executing FFmpeg command`, { 
+    argsPreview: args.slice(0, 200) + (args.length > 200 ? '...' : '')
+  });
+  
   try {
-    execSync(cmd, { 
+    const result = execSync(cmd, { 
       stdio: options.verbose ? 'inherit' : 'pipe',
-      maxBuffer: 50 * 1024 * 1024 
+      maxBuffer: 50 * 1024 * 1024,
+      timeout: 120000 // 2 minute timeout per command
     });
+    
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+    logger.ffmpeg('DEBUG', `FFmpeg completed in ${elapsed}s`);
+    
+    // Check for output file if we can infer it
+    const outputMatch = args.match(/"([^"]+\.mp4)"$/);
+    if (outputMatch) {
+      const outputPath = outputMatch[1];
+      if (fs.existsSync(outputPath)) {
+        const stats = fs.statSync(outputPath);
+        if (stats.size === 0) {
+          logger.ffmpeg('ERROR', `FFmpeg produced empty file (0 bytes) - silent failure`, {
+            outputPath,
+            argsPreview: args.slice(0, 300)
+          });
+          throw new Error(`FFmpeg produced empty file: ${outputPath}`);
+        }
+        logger.ffmpeg('DEBUG', `Output verified`, { outputPath, size: stats.size });
+      }
+    }
+    
     return true;
   } catch (err) {
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+    
+    // Check for timeout
+    if (err.killed || err.signal === 'SIGTERM') {
+      logger.ffmpeg('ERROR', `FFmpeg TIMEOUT after ${elapsed}s`, {
+        argsPreview: args.slice(0, 300),
+        signal: err.signal
+      });
+    } else {
+      logger.ffmpeg('ERROR', `FFmpeg failed after ${elapsed}s: ${err.message}`, {
+        argsPreview: args.slice(0, 300),
+        stderr: err.stderr?.toString().slice(-500)
+      });
+    }
+    
     if (options.throwOnError !== false) {
       console.error(`FFmpeg error: ${err.message}`);
       throw err;
@@ -582,17 +678,38 @@ async function generateTTSCloudflare(text, outputPath, speaker = 'luna') {
  * 5. espeak-ng (robotic but always works)
  */
 async function generateVoiceover(input, outputPath) {
+  const productId = input.product_id || 'unknown';
+  logger.tts('INFO', `Starting TTS generation`, { productId, outputPath });
+  
   // Check for pre-generated audio first (OpenClaw TTS path)
   const externalAudio = findExternalTTSAudio(input, TEMP_DIR);
   if (externalAudio) {
-    // Copy to our temp location
-    fs.copyFileSync(externalAudio, outputPath);
-    console.log('🎙️  Using pre-generated voiceover (OpenClaw TTS)');
-    return outputPath;
+    try {
+      fs.copyFileSync(externalAudio, outputPath);
+      const stats = fs.statSync(outputPath);
+      logger.tts('INFO', `Using pre-generated voiceover`, {
+        productId,
+        source: externalAudio,
+        size: stats.size
+      });
+      console.log('🎙️  Using pre-generated voiceover (OpenClaw TTS)');
+      return outputPath;
+    } catch (copyErr) {
+      logger.tts('ERROR', `Failed to copy pre-generated audio`, {
+        productId,
+        source: externalAudio,
+        error: copyErr.message
+      });
+    }
   }
   
   // Generate voiceover text (now uses conversational scripts from script-map.json)
   const voiceoverText = getCombinedVoiceoverText(input);
+  logger.tts('DEBUG', `Voiceover script generated`, { 
+    productId, 
+    scriptLength: voiceoverText.length,
+    scriptPreview: voiceoverText.slice(0, 100)
+  });
   console.log(`🎙️  Voiceover script: "${voiceoverText}"`);
   
   // TTS Provider Priority:
@@ -608,35 +725,70 @@ async function generateVoiceover(input, outputPath) {
       const cachedPath = getCachedTTS(voiceoverText);
       if (cachedPath) {
         fs.copyFileSync(cachedPath, outputPath);
+        const stats = fs.statSync(outputPath);
+        logger.tts('INFO', `Using cached OpenClaw TTS`, {
+          productId,
+          cachedPath,
+          size: stats.size
+        });
         console.log('🎙️  Using cached OpenClaw TTS (ElevenLabs quality)');
         return outputPath;
       }
+      logger.tts('DEBUG', `OpenClaw TTS cache miss`, { productId });
       console.log('ℹ️  OpenClaw TTS not cached for this script');
     } catch (err) {
+      logger.tts('WARN', `OpenClaw TTS cache check failed`, {
+        productId,
+        error: err.message
+      });
       console.log(`⚠️  OpenClaw TTS cache check failed: ${err.message}`);
     }
   }
   
   // Try ElevenLabs direct API
   try {
-    return await generateTTSElevenLabs(voiceoverText, outputPath, {
+    logger.tts('DEBUG', `Trying ElevenLabs API`, { productId });
+    const result = await generateTTSElevenLabs(voiceoverText, outputPath, {
       voice: input.tts_voice || 'default',
       style: input.tts_style || 'energetic'
     });
+    logger.tts('INFO', `ElevenLabs TTS succeeded`, { productId });
+    return result;
   } catch (err) {
+    logger.tts('WARN', `ElevenLabs TTS failed`, { productId, error: err.message });
     console.log(`⚠️  ElevenLabs TTS unavailable: ${err.message}`);
   }
   
   // Fallback to Cloudflare Workers AI (Deepgram Aura-1)
   try {
-    return await generateTTSCloudflare(voiceoverText, outputPath, 'luna');
+    logger.tts('DEBUG', `Trying Cloudflare TTS`, { productId });
+    const result = await generateTTSCloudflare(voiceoverText, outputPath, 'luna');
+    logger.tts('INFO', `Cloudflare TTS succeeded`, { productId });
+    return result;
   } catch (err) {
+    logger.tts('WARN', `Cloudflare TTS failed`, { productId, error: err.message });
     console.log(`⚠️  Cloudflare TTS failed: ${err.message}`);
   }
   
   // Last resort: espeak-ng
+  logger.tts('WARN', `Falling back to espeak-ng (robotic voice)`, { productId });
   console.log('⚠️  Falling back to espeak-ng (robotic voice)');
-  return generateTTSEspeak(voiceoverText, outputPath);
+  
+  try {
+    const result = generateTTSEspeak(voiceoverText, outputPath);
+    if (result && fs.existsSync(outputPath)) {
+      const stats = fs.statSync(outputPath);
+      if (stats.size > 0) {
+        logger.tts('INFO', `espeak-ng TTS succeeded`, { productId, size: stats.size });
+        return result;
+      }
+    }
+    logger.tts('ERROR', `espeak-ng produced empty or no file`, { productId, outputPath });
+    return null;
+  } catch (espeakErr) {
+    logger.tts('ERROR', `espeak-ng TTS failed`, { productId, error: espeakErr.message });
+    return null;
+  }
 }
 
 // ============================================
@@ -1382,12 +1534,23 @@ function addMusicToSilentVideo(videoPath, musicPath, outputPath, duration) {
 // ============================================
 
 async function editVideo(input) {
+  const editStartTime = Date.now();
+  const productId = input.product_id || 'unknown';
+  const asin = input.product_asin || 'unknown';
+  
+  logger.editor('INFO', `Starting video assembly`, {
+    productId,
+    productName: input.product_name,
+    asin,
+    hasClipLocalPath: !!input.clip_local_path,
+    hasVoiceoverAudio: !!input.voiceover_audio
+  });
+  
   console.log(`\n🎬 Editor: Starting video assembly for "${input.product_name}"`);
   
   ensureDirs();
   
   const timestamp = Date.now();
-  const productId = input.product_id || 'unknown';
   
   // Define output paths
   const videoFilename = `video_${productId}_${timestamp}.mp4`;
@@ -1686,6 +1849,31 @@ async function editVideo(input) {
       tempVoiceover, tempVideoNoAudio, tempVideoWithVO
     ]);
     
+    // Verify final video exists and is not empty
+    if (!fs.existsSync(videoPath)) {
+      logger.editor('ERROR', `Final video file not created`, { videoPath, productId, asin });
+      throw new Error('Final video file was not created');
+    }
+    
+    const finalStats = fs.statSync(videoPath);
+    if (finalStats.size === 0) {
+      logger.editor('ERROR', `Final video file is empty (0 bytes)`, { videoPath, productId, asin });
+      throw new Error('Final video file is empty');
+    }
+    
+    const editElapsed = ((Date.now() - editStartTime) / 1000).toFixed(1);
+    
+    logger.editor('INFO', `Video assembly complete in ${editElapsed}s`, {
+      productId,
+      asin,
+      videoPath,
+      videoSize: finalStats.size,
+      duration: totalDuration,
+      hasVoiceover: postData.has_voiceover,
+      hasMusic: postData.has_background_music,
+      elapsedSeconds: editElapsed
+    });
+    
     console.log(`\n✅ Video assembly complete!`);
     console.log(`   📹 Video: ${videoPath}`);
     console.log(`   🖼️  Thumb: ${thumbPath}`);
@@ -1696,6 +1884,16 @@ async function editVideo(input) {
     return postData;
     
   } catch (error) {
+    const editElapsed = ((Date.now() - editStartTime) / 1000).toFixed(1);
+    
+    logger.editor('ERROR', `Video assembly failed after ${editElapsed}s: ${error.message}`, {
+      productId,
+      asin,
+      elapsedSeconds: editElapsed,
+      error: error.message,
+      stack: error.stack
+    });
+    
     console.error(`\n❌ Error during video assembly: ${error.message}`);
     // Cleanup on error
     cleanupTempFiles([

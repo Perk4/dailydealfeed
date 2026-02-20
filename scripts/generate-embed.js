@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const logger = require('./lib/logger');
 
 /**
  * Check if Amazon product page exists (not 404)
@@ -14,12 +15,27 @@ const https = require('https');
 async function validateAmazonLink(asin) {
   return new Promise((resolve) => {
     const url = `https://www.amazon.com/dp/${asin}`;
+    logger.embed('DEBUG', `Validating Amazon link`, { asin, url });
+    
     const req = https.request(url, { method: 'HEAD', timeout: 10000 }, (res) => {
       // 200, 301, 302 are OK; 404 is bad
-      resolve(res.statusCode < 400);
+      const isValid = res.statusCode < 400;
+      if (isValid) {
+        logger.embed('DEBUG', `Amazon link valid`, { asin, statusCode: res.statusCode });
+      } else {
+        logger.embed('WARN', `Amazon link invalid (HTTP ${res.statusCode})`, { asin, statusCode: res.statusCode });
+      }
+      resolve(isValid);
     });
-    req.on('error', () => resolve(false));
-    req.on('timeout', () => { req.destroy(); resolve(false); });
+    req.on('error', (err) => {
+      logger.embed('ERROR', `Amazon validation network error`, { asin, error: err.message });
+      resolve(false);
+    });
+    req.on('timeout', () => {
+      logger.embed('WARN', `Amazon validation timeout (10s)`, { asin });
+      req.destroy();
+      resolve(false);
+    });
     req.end();
   });
 }
@@ -52,10 +68,26 @@ function findVideoFile(productId, asin) {
 async function generateEmbed(productId, options = {}) {
   const { skipValidation = false, forceVideo = null } = options;
   
-  const manifest = JSON.parse(fs.readFileSync('staging/products/manifest.json', 'utf8'));
+  logger.embed('INFO', `Generating embed for product ${productId}`, { productId, options });
+  
+  let manifest;
+  try {
+    manifest = JSON.parse(fs.readFileSync('staging/products/manifest.json', 'utf8'));
+  } catch (readErr) {
+    logger.embed('ERROR', `Failed to read products manifest`, {
+      error: readErr.message,
+      path: 'staging/products/manifest.json'
+    });
+    return { success: false, error: 'Failed to read manifest' };
+  }
+  
   const product = manifest.products[parseInt(productId) - 1];
   
   if (!product) {
+    logger.embed('ERROR', `Product ${productId} not found in manifest`, {
+      productId,
+      totalProducts: manifest.products?.length
+    });
     console.error(`❌ Product ${productId} not found`);
     return { success: false, error: 'Product not found' };
   }
@@ -65,6 +97,11 @@ async function generateEmbed(productId, options = {}) {
     console.log(`🔍 Validating Amazon link for ${product.asin}...`);
     const isValid = await validateAmazonLink(product.asin);
     if (!isValid) {
+      logger.embed('WARN', `Amazon link 404 - skipping embed`, {
+        productId,
+        asin: product.asin,
+        productName: product.name
+      });
       console.error(`❌ Amazon link 404 for ${product.asin} - skipping embed`);
       return { success: false, error: 'Amazon 404', asin: product.asin };
     }
@@ -74,6 +111,16 @@ async function generateEmbed(productId, options = {}) {
   // Find actual video file
   const videoFile = forceVideo || findVideoFile(productId, product.asin);
   const hasVideo = !!videoFile;
+  
+  if (!hasVideo) {
+    logger.embed('WARN', `No video file found for product`, {
+      productId,
+      asin: product.asin,
+      searchDir: 'output/approved'
+    });
+  } else {
+    logger.embed('DEBUG', `Found video file`, { productId, videoFile });
+  }
   
   const videoUrl = hasVideo 
     ? `https://raw.githubusercontent.com/Perk4/dailydealfeed/main/output/approved/${videoFile}`
@@ -139,14 +186,41 @@ async function generateEmbed(productId, options = {}) {
   if (!fs.existsSync(embedDir)) fs.mkdirSync(embedDir);
   
   const embedPath = path.join(embedDir, `product-${productId}.html`);
-  fs.writeFileSync(embedPath, html);
+  try {
+    fs.writeFileSync(embedPath, html);
+    logger.embed('DEBUG', `Wrote embed file`, { embedPath });
+  } catch (writeErr) {
+    logger.embed('ERROR', `Failed to write embed file`, {
+      embedPath,
+      error: writeErr.message
+    });
+    return { success: false, error: 'Failed to write embed file', path: embedPath };
+  }
   
   // Also save to docs for GitHub Pages
   const docsDir = 'docs';
   if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
   
   const docsPath = path.join(docsDir, `product-${productId}.html`);
-  fs.writeFileSync(docsPath, html);
+  try {
+    fs.writeFileSync(docsPath, html);
+    logger.embed('DEBUG', `Wrote docs file`, { docsPath });
+  } catch (writeErr) {
+    logger.embed('ERROR', `Failed to write docs file`, {
+      docsPath,
+      error: writeErr.message
+    });
+    // Non-fatal, continue
+  }
+  
+  logger.embed('INFO', `Embed generated successfully`, {
+    productId,
+    asin: product.asin,
+    hasVideo,
+    videoFile,
+    embedPath,
+    url: `https://perk4.github.io/dailydealfeed/product-${productId}.html`
+  });
   
   console.log(`✅ Embed generated: ${embedPath}`);
   console.log(`   Video: ${hasVideo ? videoFile : 'none'}`);
