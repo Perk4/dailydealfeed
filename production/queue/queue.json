@@ -20,7 +20,7 @@
         "vibe": "cozy",
         "score": 9.9
       },
-      "status": "needs-review",
+      "status": "pending",
       "createdAt": "2026-02-17T12:23:08.116Z",
       "outputPath": "/root/dailydealfeed/output/video_1_1771330989439.mp4",
       "qaScore": 8
@@ -64,7 +64,7 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "needs-review",
+      "status": "pending",
       "createdAt": "2026-02-17T12:23:08.117Z",
       "outputPath": "/root/dailydealfeed/output/video_3_1771331200032.mp4",
       "qaScore": 8
@@ -108,7 +108,7 @@
         "vibe": "cozy",
         "score": 9.7
       },
-      "status": "needs-review",
+      "status": "pending",
       "createdAt": "2026-02-17T12:23:08.117Z",
       "outputPath": "/root/dailydealfeed/output/video_5_1771332861318.mp4",
       "qaScore": 8
@@ -130,7 +130,7 @@
         "vibe": "funny",
         "score": 9.9
       },
-      "status": "needs-review",
+      "status": "pending",
       "createdAt": "2026-02-17T12:23:08.117Z",
       "outputPath": "/root/dailydealfeed/output/video_6_1771334580915.mp4",
       "qaScore": 8
@@ -218,7 +218,7 @@
         "vibe": "satisfying",
         "score": 9.4
       },
-      "status": "needs-review",
+      "status": "pending",
       "createdAt": "2026-02-17T12:23:08.118Z",
       "outputPath": "/root/dailydealfeed/output/video_10_1771340205404.mp4",
       "qaScore": 8
@@ -350,7 +350,7 @@
         "vibe": "cozy",
         "score": 7.9
       },
-      "status": "needs-review",
+      "status": "pending",
       "createdAt": "2026-02-17T12:23:08.118Z",
       "outputPath": "/root/dailydealfeed/output/video_16_1771518920353.mp4",
       "qaScore": 8
