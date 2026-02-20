@@ -73,7 +73,9 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
-const { recordAmazonProduct } = require('./amazon-recorder');
+// V13: Disabled amazon-recorder - using static image fallback
+// const { recordAmazonProduct } = require('./amazon-recorder');
+const recordAmazonProduct = async () => ({ success: false, message: 'Disabled - using static fallback' });
 const logger = require('./lib/logger');
 
 // Configuration
