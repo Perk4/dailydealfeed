@@ -27,6 +27,17 @@ const STAGING_DIR = path.join(PROJECT_DIR, 'staging');
 const PRODUCTION_DIR = path.join(PROJECT_DIR, 'production');
 const OUTPUT_DIR = path.join(PROJECT_DIR, 'output');
 
+// Retry configuration
+const RETRY_CONFIG = {
+  maxAttempts: 3,
+  baseDelayMs: 5000,      // 5 seconds
+  maxDelayMs: 60000,      // 1 minute max
+  backoffMultiplier: 2    // Exponential backoff
+};
+
+// Stuck item threshold (5 minutes)
+const STUCK_THRESHOLD_MS = 5 * 60 * 1000;
+
 const PATHS = {
   // Phase 1-2 manifest structure
   productsManifest: path.join(STAGING_DIR, 'products', 'manifest.json'),
@@ -58,6 +69,77 @@ const VIBE_MAPPING = {
 // ============================================
 // UTILITY FUNCTIONS
 // ============================================
+
+/**
+ * Sleep for specified milliseconds
+ */
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Calculate backoff delay for retry attempt
+ */
+function getBackoffDelay(attempt) {
+  const delay = RETRY_CONFIG.baseDelayMs * Math.pow(RETRY_CONFIG.backoffMultiplier, attempt - 1);
+  return Math.min(delay, RETRY_CONFIG.maxDelayMs);
+}
+
+/**
+ * Recover stuck items (in-progress > 5 minutes)
+ * Resets them to pending status for retry
+ */
+function recoverStuckItems() {
+  const queueData = loadManifest(PATHS.queueFile);
+  if (!queueData || !queueData.items) {
+    log('No queue found', '⚠️');
+    return { recovered: 0, items: [] };
+  }
+  
+  const now = Date.now();
+  const recoveredItems = [];
+  
+  for (const item of queueData.items) {
+    if (item.status === 'in-progress' && item.startedAt) {
+      const startTime = new Date(item.startedAt).getTime();
+      const elapsed = now - startTime;
+      
+      if (elapsed > STUCK_THRESHOLD_MS) {
+        const elapsedMin = (elapsed / 60000).toFixed(1);
+        
+        logger.queue('WARN', `Recovering stuck item ${item.id} (stuck for ${elapsedMin}m)`, {
+          itemId: item.id,
+          asin: item.product?.asin,
+          stuckMinutes: elapsedMin,
+          startedAt: item.startedAt
+        });
+        
+        // Reset to pending with retry metadata
+        item.status = 'pending';
+        item.retryCount = (item.retryCount || 0) + 1;
+        item.lastStuckRecovery = new Date().toISOString();
+        item.stuckDuration = elapsedMin + 'm';
+        delete item.startedAt;
+        
+        recoveredItems.push({
+          id: item.id,
+          asin: item.product?.asin,
+          name: item.product?.name,
+          stuckMinutes: elapsedMin
+        });
+        
+        log(`Recovered stuck item ${item.id}: ${item.product?.name} (was stuck ${elapsedMin}m)`, '🔄');
+      }
+    }
+  }
+  
+  if (recoveredItems.length > 0) {
+    saveJSON(PATHS.queueFile, queueData);
+    logger.queue('INFO', `Recovered ${recoveredItems.length} stuck items`, { items: recoveredItems });
+  }
+  
+  return { recovered: recoveredItems.length, items: recoveredItems };
+}
 
 function ensureDirs() {
   [PATHS.queue, PATHS.inProgress, PATHS.completed, PATHS.outputApproved, PATHS.outputRejected]
@@ -372,6 +454,67 @@ async function generateVideo(queueItem) {
   }
 }
 
+/**
+ * Generate video with retry logic
+ * Retries up to maxAttempts times with exponential backoff
+ */
+async function generateVideoWithRetry(queueItem, enableRetry = false) {
+  const maxAttempts = enableRetry ? RETRY_CONFIG.maxAttempts : 1;
+  let lastError = null;
+  
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    if (attempt > 1) {
+      const delay = getBackoffDelay(attempt);
+      logger.queue('INFO', `Retry attempt ${attempt}/${maxAttempts} for item ${queueItem.id} after ${delay}ms`, {
+        itemId: queueItem.id,
+        asin: queueItem.product?.asin,
+        attempt,
+        maxAttempts,
+        delayMs: delay
+      });
+      log(`Retry ${attempt}/${maxAttempts} for ${queueItem.product?.name} (waiting ${delay}ms)...`, '🔄');
+      await sleep(delay);
+    }
+    
+    try {
+      const videoPath = await generateVideo(queueItem);
+      
+      if (videoPath) {
+        if (attempt > 1) {
+          logger.queue('INFO', `Item ${queueItem.id} succeeded on attempt ${attempt}`, {
+            itemId: queueItem.id,
+            asin: queueItem.product?.asin,
+            attempt
+          });
+        }
+        return videoPath;
+      }
+      
+      lastError = new Error('Video generation returned null');
+    } catch (err) {
+      lastError = err;
+      logger.queue('WARN', `Attempt ${attempt}/${maxAttempts} failed for item ${queueItem.id}: ${err.message}`, {
+        itemId: queueItem.id,
+        asin: queueItem.product?.asin,
+        attempt,
+        error: err.message
+      });
+    }
+    
+    // Track retry count on item
+    queueItem.retryCount = attempt;
+  }
+  
+  // All retries exhausted
+  logger.queue('ERROR', `All ${maxAttempts} attempts failed for item ${queueItem.id}`, {
+    itemId: queueItem.id,
+    asin: queueItem.product?.asin,
+    lastError: lastError?.message
+  });
+  
+  return null;
+}
+
 // ============================================
 // QA EVALUATION
 // ============================================
@@ -504,10 +647,25 @@ function runQA(videoPath) {
 
 async function main() {
   const args = process.argv.slice(2);
+  const enableRetry = args.includes('--retry');
   
   ensureDirs();
   
-  if (args.includes('--build-queue')) {
+  // Check for stuck items on any generate command
+  if (args.includes('--generate-one') || args.includes('--generate-all')) {
+    const recovery = recoverStuckItems();
+    if (recovery.recovered > 0) {
+      log(`Auto-recovered ${recovery.recovered} stuck items`, '🔄');
+    }
+  }
+  
+  if (args.includes('--recover-stuck')) {
+    // Manual stuck item recovery
+    const recovery = recoverStuckItems();
+    console.log(JSON.stringify(recovery, null, 2));
+    return;
+    
+  } else if (args.includes('--build-queue')) {
     // Build queue from manifests
     const queue = buildQueue();
     saveQueue(queue);
@@ -528,7 +686,16 @@ async function main() {
     }
     
     const item = pending[0];
-    const videoPath = await generateVideo(item);
+    
+    // Mark as in-progress
+    item.status = 'in-progress';
+    item.startedAt = new Date().toISOString();
+    saveJSON(PATHS.queueFile, queueData);
+    
+    // Generate with retry if flag is set
+    const videoPath = enableRetry 
+      ? await generateVideoWithRetry(item, true)
+      : await generateVideo(item);
     
     if (videoPath) {
       const qa = runQA(videoPath);
@@ -538,6 +705,14 @@ async function main() {
       item.status = qa.passed ? 'completed' : 'needs-review';
       item.outputPath = videoPath;
       item.qaScore = qa.score;
+      item.completedAt = new Date().toISOString();
+      if (enableRetry && item.retryCount > 1) {
+        log(`Succeeded after ${item.retryCount} attempts`, '🔄');
+      }
+      saveJSON(PATHS.queueFile, queueData);
+    } else {
+      item.status = 'failed';
+      item.failedAt = new Date().toISOString();
       saveJSON(PATHS.queueFile, queueData);
     }
     
@@ -568,14 +743,18 @@ async function main() {
       const item = pending[i];
       const itemStartTime = Date.now();
       
-      log(`\n[${i + 1}/${pending.length}] ${item.product.name}`, '🔄');
+      const retryInfo = enableRetry ? ` (retry enabled, max ${RETRY_CONFIG.maxAttempts} attempts)` : '';
+      log(`\n[${i + 1}/${pending.length}] ${item.product.name}${retryInfo}`, '🔄');
       
       // Mark as in-progress
       item.status = 'in-progress';
       item.startedAt = new Date().toISOString();
       saveJSON(PATHS.queueFile, queueData);
       
-      const videoPath = await generateVideo(item);
+      // Generate with retry if flag is set
+      const videoPath = enableRetry 
+        ? await generateVideoWithRetry(item, true)
+        : await generateVideo(item);
       
       if (videoPath) {
         const qa = runQA(videoPath);
@@ -584,11 +763,24 @@ async function main() {
         item.qaScore = qa.score;
         item.completedAt = new Date().toISOString();
         successCount++;
-        log(`QA: ${qa.score}/10 ${qa.passed ? '✅' : '⚠️'}`, '📊');
+        
+        const retryNote = (enableRetry && item.retryCount > 1) 
+          ? ` (after ${item.retryCount} attempts)` 
+          : '';
+        log(`QA: ${qa.score}/10 ${qa.passed ? '✅' : '⚠️'}${retryNote}`, '📊');
       } else {
         item.status = 'failed';
         item.failedAt = new Date().toISOString();
         failCount++;
+        
+        // Log retry exhaustion if retries were enabled
+        if (enableRetry) {
+          logger.queue('ERROR', `Item ${item.id} failed after ${RETRY_CONFIG.maxAttempts} retry attempts`, {
+            itemId: item.id,
+            asin: item.product.asin,
+            retryCount: item.retryCount || 1
+          });
+        }
         
         // Check if stuck (took too long without producing output)
         const elapsedMin = (Date.now() - itemStartTime) / 60000;
@@ -654,16 +846,32 @@ async function main() {
     
   } else {
     console.log('Usage:');
-    console.log('  node queue-manager.js --build-queue    Build queue from manifests');
-    console.log('  node queue-manager.js --generate-one   Generate first video');
-    console.log('  node queue-manager.js --generate-all   Generate all videos');
-    console.log('  node queue-manager.js --status         Show queue status');
-    console.log('  node queue-manager.js --qa             Run QA on output videos');
+    console.log('  node queue-manager.js --build-queue      Build queue from manifests');
+    console.log('  node queue-manager.js --generate-one     Generate first video');
+    console.log('  node queue-manager.js --generate-all     Generate all videos');
+    console.log('  node queue-manager.js --status           Show queue status');
+    console.log('  node queue-manager.js --qa               Run QA on output videos');
+    console.log('  node queue-manager.js --recover-stuck    Reset stuck items to pending');
+    console.log('');
+    console.log('Options:');
+    console.log('  --retry                                  Enable retry (3 attempts with backoff)');
+    console.log('');
+    console.log('Examples:');
+    console.log('  node queue-manager.js --generate-all --retry    Generate with auto-retry');
   }
 }
 
 // Exports
-module.exports = { buildQueue, saveQueue, generateVideo, runQA };
+module.exports = { 
+  buildQueue, 
+  saveQueue, 
+  generateVideo, 
+  generateVideoWithRetry,
+  runQA,
+  recoverStuckItems,
+  RETRY_CONFIG,
+  STUCK_THRESHOLD_MS
+};
 
 // Run if called directly
 if (require.main === module) {
