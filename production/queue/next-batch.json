@@ -1,0 +1,170 @@
+{
+  "version": "2.0",
+  "batchName": "February 2026 Trending Batch",
+  "createdAt": "2026-02-20T17:03:00.000Z",
+  "createdBy": "product-scout-subagent",
+  "researchSources": [
+    "TikTok #TikTokMadeMeBuyIt trends",
+    "Amazon Movers & Shakers",
+    "Cosmopolitan viral product roundups",
+    "CJDropshipping TikTok product tracker",
+    "BuzzFeed Amazon trending lists"
+  ],
+  "totalItems": 14,
+  "items": [
+    {
+      "asin": "B0CQVWT2NH",
+      "name": "HydroJug Spill-Proof Tumbler with Handle",
+      "price": "$34.99",
+      "category": "drinkware",
+      "rating": "4.5 stars",
+      "whyItWorks": "Stanley alternative with unique spill-proof design. Clear top shows water level, fold-down spout. Currently trending on Amazon Movers & Shakers. Great for desk setup/hydration content.",
+      "hookStyle": "discovery",
+      "bestStat": "Spill-proof fold-down straw design",
+      "affiliate_link": "https://www.amazon.com/dp/B0CQVWT2NH?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B0DJ18ZWYQ",
+      "name": "LEGO Lucky Bamboo Plant Building Kit",
+      "price": "$23.99",
+      "category": "home-decor",
+      "rating": "4.8 stars",
+      "whyItWorks": "LEGO botanicals are hugely popular. Perfect gift item, stress-relief building, and aesthetic decor. Appeals to adults wanting creative relaxation content.",
+      "hookStyle": "story",
+      "bestStat": "No watering needed - permanent zen decor",
+      "affiliate_link": "https://www.amazon.com/dp/B0DJ18ZWYQ?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B0DC156Y5X",
+      "name": "JiYu Niacinamide Toning Polish Pads",
+      "price": "$16.99",
+      "category": "skincare",
+      "rating": "4.6 stars",
+      "whyItWorks": "#1 facial exfoliator on Amazon right now. Contains niacinamide, peptides, and snail mucin. Dual-textured pads make for satisfying demo content. K-beauty trend continuation.",
+      "hookStyle": "social-proof",
+      "bestStat": "Currently #1 facial exfoliator on Amazon",
+      "affiliate_link": "https://www.amazon.com/dp/B0DC156Y5X?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B0FPX4XWKG",
+      "name": "Folding Walking Pad Treadmill",
+      "price": "$89.99",
+      "category": "fitness",
+      "rating": "4.4 stars",
+      "whyItWorks": "Winter fitness hack trending on TikTok. Work-from-home essential. Foldable design perfect for small spaces. Great for 'get ready with me' and desk setup content.",
+      "hookStyle": "problem",
+      "bestStat": "Folds flat - fits under bed or couch",
+      "affiliate_link": "https://www.amazon.com/dp/B0FPX4XWKG?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B09KDMFMX4",
+      "name": "Sol de Janeiro Brazilian Bum Bum Cream",
+      "price": "$48.00",
+      "category": "beauty",
+      "rating": "4.7 stars",
+      "whyItWorks": "Iconic TikTok viral brand with cult following. Signature pistachio-caramel scent people are obsessed with. Perfect for 'smell this' style content.",
+      "hookStyle": "social-proof",
+      "bestStat": "70K+ 5-star reviews - cult favorite scent",
+      "affiliate_link": "https://www.amazon.com/dp/B09KDMFMX4?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B0CGVGVS8N",
+      "name": "Wavytalk Thermal Styling Brush",
+      "price": "$39.99",
+      "category": "beauty",
+      "rating": "4.5 stars",
+      "whyItWorks": "TikTok-viral hair tool. Creates salon blowout in minutes. Before/after transformations are extremely shareable. Dyson dupe energy at fraction of price.",
+      "hookStyle": "direct-flex",
+      "bestStat": "Salon blowout in 5 minutes flat",
+      "affiliate_link": "https://www.amazon.com/dp/B0CGVGVS8N?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B08RD6S5HF",
+      "name": "Gua Sha Facial Massage Tool Set",
+      "price": "$8.99",
+      "category": "beauty",
+      "rating": "4.6 stars",
+      "whyItWorks": "Evergreen TikTok beauty trend. Lymphatic drainage videos get millions of views. Low price point makes it impulse buy. Great before/after depuffing content.",
+      "hookStyle": "discovery",
+      "bestStat": "Visible depuffing in under 5 minutes",
+      "affiliate_link": "https://www.amazon.com/dp/B08RD6S5HF?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B0BTCZ2RR9",
+      "name": "Digital Camera for Beginners 48MP",
+      "price": "$45.99",
+      "category": "tech",
+      "rating": "4.3 stars",
+      "whyItWorks": "Retro digital camera aesthetic is huge on TikTok. Y2K revival trend. Creates Insta-worthy photos without iPhone. Gen Z loves the vintage look.",
+      "hookStyle": "social-proof",
+      "bestStat": "48MP photos with retro aesthetic",
+      "affiliate_link": "https://www.amazon.com/dp/B0BTCZ2RR9?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B0CST2L73B",
+      "name": "Cross-Legged Desk Chair Armless",
+      "price": "$59.99",
+      "category": "home-office",
+      "rating": "4.4 stars",
+      "whyItWorks": "Went viral for letting you sit cross-legged at your desk. WFH essential. Ergonomic for people who can't sit normally. Relatable problem/solution content.",
+      "hookStyle": "problem",
+      "bestStat": "Finally sit cross-legged at your desk",
+      "affiliate_link": "https://www.amazon.com/dp/B0CST2L73B?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B002XZLAWM",
+      "name": "Bioderma Sensibio Micellar Water",
+      "price": "$14.99",
+      "category": "skincare",
+      "rating": "4.7 stars",
+      "whyItWorks": "Iconic French pharmacy staple. Satisfying makeup removal videos. Dermatologist recommended. Classic that keeps trending for good reason.",
+      "hookStyle": "value",
+      "bestStat": "The #1 micellar water in France",
+      "affiliate_link": "https://www.amazon.com/dp/B002XZLAWM?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B00PR82UC6",
+      "name": "Gripstic Bag Sealer Clips",
+      "price": "$19.99",
+      "category": "kitchen",
+      "rating": "4.7 stars",
+      "whyItWorks": "Satisfying clamp-and-slide mechanism keeps snacks fresh. Organizational content gold. Before/after of stale vs fresh chips. TikTok kitchen hack essential.",
+      "hookStyle": "problem",
+      "bestStat": "Airtight seal - no more stale chips",
+      "affiliate_link": "https://www.amazon.com/dp/B00PR82UC6?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B09C8VNWBP",
+      "name": "Sol de Janeiro Cheirosa 62 Perfume Mist",
+      "price": "$19.99",
+      "category": "fragrance",
+      "rating": "4.6 stars",
+      "whyItWorks": "TikTok fragrance obsession. Sweet vanilla-caramel scent. 'You'll get so many compliments' content angle. Affordable luxury vibes.",
+      "hookStyle": "question",
+      "bestStat": "The scent that gets you compliments",
+      "affiliate_link": "https://www.amazon.com/dp/B09C8VNWBP?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B0D1FVR95R",
+      "name": "Platform Fuzzy Slippers with Arch Support",
+      "price": "$29.99",
+      "category": "footwear",
+      "rating": "4.5 stars",
+      "whyItWorks": "Influencer-approved cozy footwear. Slip-resistant sole for indoor/outdoor. Pairs great with flared leggings trend. Cozy aesthetic content.",
+      "hookStyle": "discovery",
+      "bestStat": "Indoor/outdoor with arch support",
+      "affiliate_link": "https://www.amazon.com/dp/B0D1FVR95R?tag=dailydealfeed-20"
+    },
+    {
+      "asin": "B0D9B96TBX",
+      "name": "13-Piece Colorful Kitchen Knife Set",
+      "price": "$19.99",
+      "category": "kitchen",
+      "rating": "4.5 stars",
+      "whyItWorks": "Rainbow aesthetic kitchen trend. Currently trending on Amazon. Makes cooking content more visually appealing. Gift-worthy at low price point.",
+      "hookStyle": "value",
+      "bestStat": "Full knife set for under $20",
+      "affiliate_link": "https://www.amazon.com/dp/B0D9B96TBX?tag=dailydealfeed-20"
+    }
+  ]
+}
