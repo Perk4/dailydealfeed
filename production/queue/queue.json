@@ -262,9 +262,9 @@
         "vibe": "funny",
         "score": 9.2
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.118Z",
-      "outputPath": "/root/dailydealfeed/output/video_12_1771518569572.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_12_1771557621403.mp4",
       "qaScore": 10
     },
     {
@@ -284,9 +284,9 @@
         "vibe": "satisfying",
         "score": 8.3
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.118Z",
-      "outputPath": "/root/dailydealfeed/output/video_13_1771518678244.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_13_1771557730676.mp4",
       "qaScore": 10
     },
     {
@@ -306,9 +306,9 @@
         "vibe": "satisfying",
         "score": 7.8
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.118Z",
-      "outputPath": "/root/dailydealfeed/output/video_14_1771518747675.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_14_1771557794585.mp4",
       "qaScore": 10
     },
     {
@@ -328,9 +328,9 @@
         "vibe": "cozy",
         "score": 8.9
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.118Z",
-      "outputPath": "/root/dailydealfeed/output/video_15_1771518822258.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_15_1771557863997.mp4",
       "qaScore": 10
     },
     {
@@ -350,9 +350,9 @@
         "vibe": "cozy",
         "score": 7.9
       },
-      "status": "pending",
+      "status": "needs-review",
       "createdAt": "2026-02-17T12:23:08.118Z",
-      "outputPath": "/root/dailydealfeed/output/video_16_1771518920353.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_16_1771557954680.mp4",
       "qaScore": 8
     },
     {
@@ -372,9 +372,9 @@
         "vibe": "satisfying",
         "score": 7.7
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.118Z",
-      "outputPath": "/root/dailydealfeed/output/video_17_1771518963739.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_17_1771557993912.mp4",
       "qaScore": 10
     },
     {
@@ -394,9 +394,9 @@
         "vibe": "cozy",
         "score": 7.8
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.118Z",
-      "outputPath": "/root/dailydealfeed/output/video_18_1771519040931.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_18_1771558065213.mp4",
       "qaScore": 10
     },
     {
@@ -416,9 +416,9 @@
         "vibe": "satisfying",
         "score": 7.6
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.119Z",
-      "outputPath": "/root/dailydealfeed/output/video_19_1771519120856.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_19_1771558141602.mp4",
       "qaScore": 10
     },
     {
@@ -438,9 +438,9 @@
         "vibe": "funny",
         "score": 7.6
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.119Z",
-      "outputPath": "/root/dailydealfeed/output/video_20_1771519197753.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_20_1771558214984.mp4",
       "qaScore": 10
     },
     {
@@ -460,9 +460,9 @@
         "vibe": "funny",
         "score": 7.6
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.119Z",
-      "outputPath": "/root/dailydealfeed/output/video_21_1771519266957.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_21_1771558280515.mp4",
       "qaScore": 10
     },
     {
@@ -482,9 +482,9 @@
         "vibe": "satisfying",
         "score": 7.6
       },
-      "status": "pending",
+      "status": "completed",
       "createdAt": "2026-02-17T12:23:08.119Z",
-      "outputPath": "/root/dailydealfeed/output/video_22_1771519328128.mp4",
+      "outputPath": "/root/dailydealfeed/output/video_22_1771558334985.mp4",
       "qaScore": 10
     }
   ]
