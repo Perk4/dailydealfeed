@@ -178,6 +178,8 @@ async function generateEmbed(productId, options = {}) {
       <a class="buy-btn" href="https://www.amazon.com/dp/${product.asin}?tag=dailydealfeed-20" target="_blank" rel="noopener">Shop on Amazon</a>
     </div>
   </div>
+  <!-- DailyDealFeed Analytics -->
+  <script src="track.js"></script>
 </body>
 </html>`;
 
