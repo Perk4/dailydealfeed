@@ -77,6 +77,7 @@ const http = require('http');
 // const { recordAmazonProduct } = require('./amazon-recorder');
 const recordAmazonProduct = async () => ({ success: false, message: 'Disabled - using static fallback' });
 const logger = require('./lib/logger');
+const { selectHook } = require('./lib/hooks');
 
 // Configuration
 const SCRIPT_DIR = __dirname;
@@ -453,7 +454,13 @@ function generateVoiceoverScript(input) {
   const parts = [];
   
   // Hook (0-3 seconds) - Short, attention-grabbing
-  const hook = input.hook_angle || input.voiceover_script || 'Check this out';
+  // Use provided hook_angle, or select category-aware hook from library
+  const hook = input.hook_angle || input.voiceover_script || selectHook({
+    category: input.product_category || 'default',
+    price: input.product_price || '$20',
+    productName: input.product_name || '',
+    isOnSale: !!input.original_price
+  });
   parts.push({
     text: hook,
     section: 'hook',
@@ -494,8 +501,13 @@ function getCombinedVoiceoverText(input) {
     return script.full_script;
   }
   
-  // Fallback to generating from input
-  const hook = input.hook_angle || input.voiceover_script || 'Check this out';
+  // Fallback to generating from input with category-aware hook
+  const hook = input.hook_angle || input.voiceover_script || selectHook({
+    category: input.product_category || 'default',
+    price: input.product_price || '$20',
+    productName: input.product_name || '',
+    isOnSale: !!input.original_price
+  });
   const productDesc = `${input.product_name}. Only ${input.product_price || 'a few bucks'}.`;
   const cta = 'Link in bio.';
   
