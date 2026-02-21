@@ -90,13 +90,14 @@ const MUSIC_DIR = path.join(SCRIPT_DIR, '..', 'music');
 const VIDEO_WIDTH = 1080;
 const VIDEO_HEIGHT = 1920;
 
-// Timing (in seconds) - V8: Simplified 12-second format
-// Structure: [0-5s] AFV clip | [5-10s] Product + Price | [10-12s] CTA
-const DEFAULT_HOOK_DURATION = 5;    // V8: 4-6s clip (was 3s)
-const DEFAULT_PRODUCT_DURATION = 5; // V8: 5s product showcase (was 8s)
-const DEFAULT_CTA_DURATION = 2;     // V8: 2s CTA (unchanged)
-const MIN_TOTAL_DURATION = 10;
-const MAX_TOTAL_DURATION = 14;      // V8: Tighter max (was 18)
+// Timing (in seconds) - V14: Tighter, TikTok-optimized
+// Structure: [0-3s] Hook | [3-8s] Product + Price | [8-10s] CTA
+// Target: 10 seconds total (sweet spot for retention)
+const DEFAULT_HOOK_DURATION = 3;    // V14: Tighter hook (was 5s)
+const DEFAULT_PRODUCT_DURATION = 5; // V14: Product showcase
+const DEFAULT_CTA_DURATION = 2;     // V14: CTA
+const MIN_TOTAL_DURATION = 8;       // V14: Allow shorter videos
+const MAX_TOTAL_DURATION = 12;      // V14: Cap at 12s (was 14)
 
 // Dynamic timing will be calculated based on voiceover audio length
 let HOOK_DURATION = DEFAULT_HOOK_DURATION;
@@ -126,25 +127,29 @@ const MUSIC_CONFIG = {
   fadeOut: 1.0,        // Fade out duration (seconds)
 };
 
-// Edit Style Configuration (TikTok-organic feel)
+// Edit Style Configuration - V14: Faster pacing, TikTok-native
 const EDIT_STYLE = {
-  // Ken Burns zoom - reduced for subtler, organic feel
-  zoomIntensity: 0.05,       // 1.0 to 1.05 (was 0.12 - reduced by 58%)
+  // Ken Burns zoom - subtle movement keeps attention
+  zoomIntensity: 0.08,       // V14: Slightly more zoom (was 0.05)
   
-  // Text timing - delay after audio cue for spontaneous feel
-  textDelaySeconds: 0.15,    // Text appears 0.15s AFTER the spoken word
+  // Text timing - immediate for TikTok (no delay)
+  textDelaySeconds: 0.05,    // V14: Near-instant text (was 0.15)
   
-  // Progress bar - can distract from content
-  progressBarEnabled: false, // Disabled for more organic feel
+  // Progress bar - disabled for organic feel
+  progressBarEnabled: false,
   
-  // Segment transitions - crossfade for smoother flow
-  crossfadeDuration: 0.3,    // Crossfade between segments (seconds)
+  // Segment transitions - V14: Hard cuts > crossfades for energy
+  crossfadeDuration: 0.15,   // V14: Faster transitions (was 0.3)
+  useHardCuts: false,        // V14: Set true for pure jump cuts
   
   // Camera shake - subtle energy on hook
-  shakeIntensity: 3,         // Reduced from 4 for subtler movement
+  shakeIntensity: 4,         // V14: Slightly more energy (was 3)
   
-  // Pacing variation
-  hookDurationVariance: 0.3, // Allow ±30% variance in timing
+  // Pacing variation - tighter variance
+  hookDurationVariance: 0.2, // V14: Allow ±20% variance (was 0.3)
+  
+  // V14: Cut frequency target
+  targetCutSeconds: 2.0,     // Target a cut every 2 seconds
 };
 
 // Colors (hex without #)
