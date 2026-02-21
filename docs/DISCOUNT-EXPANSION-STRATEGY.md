@@ -2,7 +2,7 @@
 
 **Goal:** Build a sustainable pipeline of promo codes and discounts like @codesinred
 **Owner:** discount-strategist (spawned agent)
-**Check-in:** Daily at 2 PM EST via cron
+**Check-in:** Daily via cron
 
 ---
 
@@ -18,52 +18,63 @@ We're starting from zero. This is a **long-term play** (3-6 months to reach thei
 
 ---
 
-## Phase 1: Foundation (Week 1-2)
+## Phase 1: Foundation (Week 1-2) ✅ IN PROGRESS
 
 ### 1.1 Amazon Associates Setup
 - [ ] Verify Associates account is active
 - [ ] Access Promo Hub (associates.amazon.com → Promotions)
 - [ ] Document available promotions
-- [ ] Set up daily check routine
+- [x] Set up daily check routine → See `DAILY-CODE-CHECKLIST.md`
 
 ### 1.2 Tool Setup
+- [x] Research SimplyCodes (browser extension, 9M+ users, real-time verification)
+- [x] Research Vipon (seller-to-buyer promo code platform)
+- [x] Research other aggregators: Rebaid, JumpSend, Snagshout
 - [ ] Create SimplyCodes account
 - [ ] Create Vipon account  
-- [ ] Install Honey extension (research purposes)
+- [ ] Install browser extensions
 - [ ] Bookmark key deal pages
 
 ### 1.3 Initial Monitoring
-- [ ] Daily SimplyCodes check for our product categories
-- [ ] Daily Vipon check for seller codes
-- [ ] Track which codes work vs expire
+- [x] Document daily SimplyCodes check process
+- [x] Document daily Vipon check process
+- [x] Create code tracking template
+- [ ] Begin active daily monitoring
 
-**Deliverable:** `docs/DAILY-CODE-CHECKLIST.md`
+**Deliverables:**
+- [x] `docs/DAILY-CODE-CHECKLIST.md` — Created 2026-02-21
+- [x] `docs/COMMUNITY-SOURCES.md` — Created 2026-02-21
 
 ---
 
 ## Phase 2: Community Entry (Week 2-4)
 
 ### 2.1 Facebook Groups
-Target groups to join:
+Target groups to join (researched):
 - Amazon Deals & Steals
 - Secret Amazon Deals
 - Extreme Couponing & Deals
 - Budget Shopping Tips
-- Amazon Reviewer Groups
+- Amazon FBA Sellers (to understand seller side)
+- Amazon Moms & Deals (niche)
 
 ### 2.2 Discord Servers
 - Deal-focused Discord communities
 - Amazon seller communities
 - Affiliate marketing servers
+- Check Disboard.org for current servers
 
 ### 2.3 Reddit
-- r/AmazonDeals
-- r/DealsReddit
-- r/frugalmalefashion (for category ideas)
+- r/AmazonDiscounts — Active deal/code community
+- r/GetADiscount — Promo code focused
+- r/couponing — General, some Amazon
+- r/SavingMoney — Code sharing happens
+- r/DealsReddit — Cross-platform
+- r/frugalmalefashion — Category ideas
 
 **Goal:** Identify where sellers post codes directly
 
-**Deliverable:** `docs/COMMUNITY-SOURCES.md` with links and posting patterns
+**Deliverable:** `docs/COMMUNITY-SOURCES.md` with links and posting patterns ✅
 
 ---
 
@@ -128,6 +139,8 @@ Weekly (30 min):
 3. Plan seller outreach
 ```
 
+See `docs/DAILY-CODE-CHECKLIST.md` for detailed procedures.
+
 ---
 
 ## Success Metrics
@@ -141,15 +154,69 @@ Weekly (30 min):
 
 ---
 
+## Key Resources Discovered
+
+### Code Aggregators
+| Site | URL | Notes |
+|------|-----|-------|
+| SimplyCodes | simplycodes.com | Browser extension, 400k+ stores, community-verified |
+| Vipon | myvipon.com | Seller-posted codes, 50-100% off |
+| Rebaid | rebaid.com | Rebate model |
+| JumpSend | jumpsend.com | Product launch codes |
+| Snagshout | snagshout.com | Instant claim deals |
+
+### Amazon Official
+- **Associates Promo Hub:** affiliate-program.amazon.com → Promotions
+- Codes auto-apply via affiliate links
+- Updated daily with new promotions
+
+### Community Sources
+See `docs/COMMUNITY-SOURCES.md` for full list of:
+- Facebook groups
+- Reddit subreddits
+- Discord servers
+- Deal websites
+
+---
+
 ## Progress Log
 
 *Updated by discount-strategist agent during check-ins*
 
-### 2026-02-21 — Strategy Created
-- Initial strategy document created
-- Cron job set up for daily check-ins (2 PM EST)
-- discount-strategist agent spawned for Phase 1 work
-- **Next:** Complete Phase 1 foundation tasks
+### 2026-02-21 — Phase 1 Foundation Work
+**Status:** Research & Documentation Complete
+
+**Completed:**
+- ✅ Researched SimplyCodes (browser extension, 9M+ users, real-time verification)
+- ✅ Researched Vipon (seller promo codes, mixed reliability)
+- ✅ Researched Amazon Associates Promo Hub
+- ✅ Found additional aggregators: Rebaid, JumpSend, Snagshout, AMZDiscover
+- ✅ Created `docs/DAILY-CODE-CHECKLIST.md`
+- ✅ Created `docs/COMMUNITY-SOURCES.md`
+- ✅ Identified Reddit communities: r/AmazonDiscounts, r/GetADiscount
+- ✅ Identified Facebook group targets
+- ✅ Updated this strategy document
+
+**Key Findings:**
+1. **SimplyCodes** is the most reliable - 9M+ real shoppers verify codes in real-time
+2. **Vipon** has reliability issues (user reports of codes not working), but worth checking
+3. **Amazon Associates Promo Hub** should be priority #1 - official codes always work
+4. **Reddit communities** actively share codes (r/GetADiscount has dedicated Amazon threads)
+5. **Facebook deal groups** are where sellers post codes to get initial sales/reviews
+6. **@codesinred's edge** is seller relationships built over years - this is the long game
+
+**Blockers:**
+- No products.json or next-batch.json found in project (project appears new)
+- Cannot search for codes without knowing which products we're featuring
+- Need Associates account access to check Promo Hub
+
+**Next Actions:**
+1. [ ] Set up product tracking files
+2. [ ] Create SimplyCodes account + install extension
+3. [ ] Create Vipon account
+4. [ ] Join 2-3 Facebook deal groups
+5. [ ] Subscribe to Reddit deal subreddits
+6. [ ] Begin daily monitoring routine
 
 ---
 
