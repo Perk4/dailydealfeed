@@ -1,7 +1,15 @@
 {
   "version": "1.0",
-  "lastEpisode": 3,
+  "lastEpisode": 4,
   "episodes": [
+    {
+      "number": 4,
+      "name": "Integration Test",
+      "date": "Sat, Feb 21, 2026",
+      "timestamp": "2026-02-21T04:32:58.612Z",
+      "productCount": 7,
+      "file": "episode-4.json"
+    },
     {
       "number": 3,
       "name": "Evening Steals",

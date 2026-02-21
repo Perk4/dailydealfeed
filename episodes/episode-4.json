@@ -1,0 +1,108 @@
+{
+  "number": 4,
+  "name": "Integration Test",
+  "date": "Sat, Feb 21, 2026",
+  "timestamp": "2026-02-21T04:32:58.612Z",
+  "products": [
+    {
+      "asin": "B0CQVWT2NH",
+      "name": "HydroJug Spill-Proof Tumbler with Handle",
+      "price": "$34.99",
+      "category": "drinkware",
+      "rating": "4.5 stars",
+      "bestStat": "Spill-proof fold-down straw design",
+      "affiliate_link": "https://www.amazon.com/dp/B0CQVWT2NH?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CQVWT2NH.jpg",
+      "promoCodes": [],
+      "savingsNote": "Check for Lightning Deals - drinkware often discounted",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B0BTCZ2RR9",
+      "name": "Digital Camera for Beginners 48MP",
+      "price": "$45.99",
+      "category": "tech",
+      "rating": "4.3 stars",
+      "bestStat": "48MP photos with retro aesthetic",
+      "affiliate_link": "https://www.amazon.com/dp/B0BTCZ2RR9?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BTCZ2RR9.jpg",
+      "promoCodes": [],
+      "savingsNote": "Third-party seller - check SimplyCodes for camera promo codes",
+      "clippableCoupon": "Often has 10-15% clip coupon"
+    },
+    {
+      "asin": "B07JM39NS1",
+      "name": "Laneige Lip Sleeping Mask",
+      "price": "$24.00",
+      "category": "beauty",
+      "rating": "4.5 stars",
+      "bestStat": "Berry extract + vitamin C",
+      "affiliate_link": "https://www.amazon.com/dp/B07JM39NS1?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07JM39NS1.jpg",
+      "promoCodes": [],
+      "savingsNote": "Premium K-beauty brand. Best savings through Subscribe & Save.",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B002XZLAWM",
+      "name": "Bioderma Sensibio Micellar Water",
+      "price": "$14.99",
+      "category": "skincare",
+      "rating": "4.7 stars",
+      "bestStat": "The #1 micellar water in France",
+      "affiliate_link": "https://www.amazon.com/dp/B002XZLAWM?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B002XZLAWM.jpg",
+      "promoCodes": [],
+      "savingsNote": "Established brand - Subscribe & Save 5-15% best option",
+      "clippableCoupon": "Sometimes has $1-2 coupon"
+    },
+    {
+      "asin": "B07GXDZ5VZ",
+      "name": "Ice Roller for Face & Eye Puffiness Relief",
+      "price": "$9.99",
+      "category": "beauty",
+      "rating": "4.5 stars",
+      "bestStat": "Stays cold for 10+ minutes",
+      "affiliate_link": "https://www.amazon.com/dp/B07GXDZ5VZ?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07GXDZ5VZ.jpg",
+      "promoCodes": [],
+      "savingsNote": "Low price point item. Check SimplyCodes for beauty tool codes.",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B09C8VNWBP",
+      "name": "Sol de Janeiro Cheirosa 62 Perfume Mist",
+      "price": "$19.99",
+      "category": "fragrance",
+      "rating": "4.6 stars",
+      "bestStat": "The scent that gets you compliments",
+      "affiliate_link": "https://www.amazon.com/dp/B09C8VNWBP?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09C8VNWBP.jpg",
+      "promoCodes": [],
+      "savingsNote": "Subscribe & Save 5-15% available",
+      "clippableCoupon": "Check for occasional $2-3 coupon"
+    },
+    {
+      "asin": "B08RD6S5HF",
+      "name": "Gua Sha Facial Massage Tool Set",
+      "price": "$8.99",
+      "category": "beauty",
+      "rating": "4.6 stars",
+      "bestStat": "Visible depuffing in under 5 minutes",
+      "affiliate_link": "https://www.amazon.com/dp/B08RD6S5HF?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08RD6S5HF.jpg",
+      "promoCodes": [],
+      "savingsNote": "Already low price. Check Vipon for similar items with codes.",
+      "clippableCoupon": "Sometimes has 5% off coupon"
+    }
+  ],
+  "usedAsins": [
+    "B0CQVWT2NH",
+    "B0BTCZ2RR9",
+    "B07JM39NS1",
+    "B002XZLAWM",
+    "B07GXDZ5VZ",
+    "B09C8VNWBP",
+    "B08RD6S5HF"
+  ]
+}
