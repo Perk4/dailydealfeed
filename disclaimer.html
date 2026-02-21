@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disclaimer - DailyDealFeed</title>
+  <meta name="description" content="Important disclosure and disclaimer information for DailyDealFeed.">
+  <meta name="theme-color" content="#e71818">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <a href="/" class="logo">
+        💰 DailyDealFeed
+      </a>
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a>
+        <a href="/#deals">Top Deals</a>
+        <a href="about.html">About</a>
+        <a href="disclaimer.html" class="active">Disclaimer</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="page-container">
+    <div class="page-card">
+      <h1>Disclaimer & Disclosure</h1>
+      
+      <h2>Affiliate Disclosure</h2>
+      <p>DailyDealFeed is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
+      
+      <p><strong>As an Amazon Associate, we earn from qualifying purchases.</strong> This means that if you click on a link to an Amazon product on this site and make a purchase, we may receive a small commission at no additional cost to you.</p>
+      
+      <h2>Price & Availability</h2>
+      <p>All prices, discount codes, and product availability are accurate at the time of posting. However, prices and promotions can change at any time without notice. We recommend verifying the current price and availability on the retailer's website before making a purchase.</p>
+      
+      <h2>Promo Codes</h2>
+      <p>Promo codes featured on this site are verified at the time of posting, but they may expire or be discontinued by the retailer at any time. We are not responsible for codes that no longer work. If you find an expired code, please let us know!</p>
+      
+      <h2>Product Endorsement</h2>
+      <p>While we strive to feature quality products, our listing of a deal does not constitute an endorsement of the product or seller. We encourage you to read product reviews and do your own research before making purchasing decisions.</p>
+      
+      <h2>Limitation of Liability</h2>
+      <p>DailyDealFeed provides deal information on an "as is" basis. We make no warranties, expressed or implied, and hereby disclaim all other warranties including, without limitation, implied warranties of merchantability or fitness for a particular purpose.</p>
+      
+      <p>We shall not be held liable for any damages of any kind arising from the use of this site or the purchase of any products linked from this site.</p>
+      
+      <h2>Contact</h2>
+      <p>If you have any questions about this disclaimer, please reach out through our social media channels.</p>
+      
+      <p style="margin-top: 2rem; text-align: center;">
+        <a href="/" class="btn btn-deal" style="display: inline-flex; width: auto; padding: 0.75rem 2rem;">← Back to Deals</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="about.html">About</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+    <p class="footer-copy">As an Amazon Associate I earn from qualifying purchases. Prices and codes valid at time of posting.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav');
+      nav.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

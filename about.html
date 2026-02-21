@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - DailyDealFeed</title>
+  <meta name="description" content="Learn about DailyDealFeed - your daily source for Amazon deals, promo codes, and savings.">
+  <meta name="theme-color" content="#e71818">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <a href="/" class="logo">
+        💰 DailyDealFeed
+      </a>
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a>
+        <a href="/#deals">Top Deals</a>
+        <a href="about.html" class="active">About</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="page-container">
+    <div class="page-card">
+      <h1>About DailyDealFeed</h1>
+      
+      <p>Welcome to DailyDealFeed! 💰 We're dedicated to helping you save money every single day by curating the best deals, promo codes, and discounts from across the internet.</p>
+      
+      <h2>Our Mission</h2>
+      <p>We believe everyone deserves access to great savings. Our team works around the clock to find and verify the best deals, so you don't have to spend hours searching. From electronics to home goods, fashion to fitness, we've got you covered.</p>
+      
+      <h2>How It Works</h2>
+      <ul>
+        <li><strong>Daily Updates:</strong> New deals are added every day, organized by episode for easy browsing</li>
+        <li><strong>Promo Codes:</strong> Simply click the code button to copy it to your clipboard</li>
+        <li><strong>Direct Links:</strong> Click "Go to Deal" to be taken directly to the product page</li>
+        <li><strong>Verified Savings:</strong> We verify deals before posting to ensure they're active</li>
+      </ul>
+      
+      <h2>Stay Connected</h2>
+      <p>Don't miss out on the hottest deals! Subscribe to our newsletter and follow us on social media for instant deal alerts and exclusive savings.</p>
+      
+      <h2>Contact Us</h2>
+      <p>Have questions, suggestions, or want to share a deal you found? We'd love to hear from you! Reach out through our social media channels.</p>
+      
+      <p style="margin-top: 2rem; text-align: center;">
+        <a href="/" class="btn btn-deal" style="display: inline-flex; width: auto; padding: 0.75rem 2rem;">← Back to Deals</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="about.html">About</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+    <p class="footer-copy">As an Amazon Associate I earn from qualifying purchases. Prices and codes valid at time of posting.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav');
+      nav.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
