@@ -1,14 +1,22 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "batchName": "February 2026 Trending Batch",
   "createdAt": "2026-02-20T17:03:00.000Z",
+  "updatedAt": "2026-02-21T04:25:00.000Z",
   "createdBy": "product-scout-subagent",
+  "updatedBy": "code-hunter-subagent",
   "researchSources": [
     "TikTok #TikTokMadeMeBuyIt trends",
     "Amazon Movers & Shakers",
     "Cosmopolitan viral product roundups",
     "CJDropshipping TikTok product tracker",
     "BuzzFeed Amazon trending lists"
+  ],
+  "promoCodeSources": [
+    "SimplyCodes",
+    "CouponFollow",
+    "Vipon",
+    "Amazon Coupons Page"
   ],
   "totalItems": 14,
   "items": [
@@ -21,7 +29,9 @@
       "whyItWorks": "Stanley alternative with unique spill-proof design. Clear top shows water level, fold-down spout. Currently trending on Amazon Movers & Shakers. Great for desk setup/hydration content.",
       "hookStyle": "discovery",
       "bestStat": "Spill-proof fold-down straw design",
-      "affiliate_link": "https://www.amazon.com/dp/B0CQVWT2NH?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0CQVWT2NH?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Check for Lightning Deals - drinkware often discounted"
     },
     {
       "asin": "B0DJ18ZWYQ",
@@ -32,7 +42,9 @@
       "whyItWorks": "LEGO botanicals are hugely popular. Perfect gift item, stress-relief building, and aesthetic decor. Appeals to adults wanting creative relaxation content.",
       "hookStyle": "story",
       "bestStat": "No watering needed - permanent zen decor",
-      "affiliate_link": "https://www.amazon.com/dp/B0DJ18ZWYQ?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0DJ18ZWYQ?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "LEGO rarely has third-party codes. Watch for 20% off sales."
     },
     {
       "asin": "B0DC156Y5X",
@@ -43,7 +55,10 @@
       "whyItWorks": "#1 facial exfoliator on Amazon right now. Contains niacinamide, peptides, and snail mucin. Dual-textured pads make for satisfying demo content. K-beauty trend continuation.",
       "hookStyle": "social-proof",
       "bestStat": "Currently #1 facial exfoliator on Amazon",
-      "affiliate_link": "https://www.amazon.com/dp/B0DC156Y5X?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0DC156Y5X?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Check SimplyCodes for skincare seller codes. Subscribe & Save available.",
+      "clippableCoupon": "Often has 10-20% clip coupon on product page"
     },
     {
       "asin": "B0FPX4XWKG",
@@ -54,7 +69,10 @@
       "whyItWorks": "Winter fitness hack trending on TikTok. Work-from-home essential. Foldable design perfect for small spaces. Great for 'get ready with me' and desk setup content.",
       "hookStyle": "problem",
       "bestStat": "Folds flat - fits under bed or couch",
-      "affiliate_link": "https://www.amazon.com/dp/B0FPX4XWKG?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0FPX4XWKG?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Check Vipon - fitness equipment sellers often post codes there",
+      "clippableCoupon": "Frequently has $10-20 off clip coupon"
     },
     {
       "asin": "B09KDMFMX4",
@@ -65,7 +83,10 @@
       "whyItWorks": "Iconic TikTok viral brand with cult following. Signature pistachio-caramel scent people are obsessed with. Perfect for 'smell this' style content.",
       "hookStyle": "social-proof",
       "bestStat": "70K+ 5-star reviews - cult favorite scent",
-      "affiliate_link": "https://www.amazon.com/dp/B09KDMFMX4?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B09KDMFMX4?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Premium brand - Subscribe & Save 5-15% is best option",
+      "clippableCoupon": "Occasionally has $5 off coupon"
     },
     {
       "asin": "B0CGVGVS8N",
@@ -76,7 +97,10 @@
       "whyItWorks": "TikTok-viral hair tool. Creates salon blowout in minutes. Before/after transformations are extremely shareable. Dyson dupe energy at fraction of price.",
       "hookStyle": "direct-flex",
       "bestStat": "Salon blowout in 5 minutes flat",
-      "affiliate_link": "https://www.amazon.com/dp/B0CGVGVS8N?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0CGVGVS8N?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Hair tools often have 20-40% Lightning Deals",
+      "clippableCoupon": "Check product page for 10-20% coupon"
     },
     {
       "asin": "B08RD6S5HF",
@@ -87,7 +111,10 @@
       "whyItWorks": "Evergreen TikTok beauty trend. Lymphatic drainage videos get millions of views. Low price point makes it impulse buy. Great before/after depuffing content.",
       "hookStyle": "discovery",
       "bestStat": "Visible depuffing in under 5 minutes",
-      "affiliate_link": "https://www.amazon.com/dp/B08RD6S5HF?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B08RD6S5HF?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Already low price. Check Vipon for similar items with codes.",
+      "clippableCoupon": "Sometimes has 5% off coupon"
     },
     {
       "asin": "B0BTCZ2RR9",
@@ -98,7 +125,10 @@
       "whyItWorks": "Retro digital camera aesthetic is huge on TikTok. Y2K revival trend. Creates Insta-worthy photos without iPhone. Gen Z loves the vintage look.",
       "hookStyle": "social-proof",
       "bestStat": "48MP photos with retro aesthetic",
-      "affiliate_link": "https://www.amazon.com/dp/B0BTCZ2RR9?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0BTCZ2RR9?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Third-party seller - check SimplyCodes for camera promo codes",
+      "clippableCoupon": "Often has 10-15% clip coupon"
     },
     {
       "asin": "B0CST2L73B",
@@ -109,7 +139,10 @@
       "whyItWorks": "Went viral for letting you sit cross-legged at your desk. WFH essential. Ergonomic for people who can't sit normally. Relatable problem/solution content.",
       "hookStyle": "problem",
       "bestStat": "Finally sit cross-legged at your desk",
-      "affiliate_link": "https://www.amazon.com/dp/B0CST2L73B?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0CST2L73B?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Furniture sellers often post Vipon codes. Watch for 10-20% off.",
+      "clippableCoupon": "Check for $5-10 clip coupon"
     },
     {
       "asin": "B002XZLAWM",
@@ -120,7 +153,10 @@
       "whyItWorks": "Iconic French pharmacy staple. Satisfying makeup removal videos. Dermatologist recommended. Classic that keeps trending for good reason.",
       "hookStyle": "value",
       "bestStat": "The #1 micellar water in France",
-      "affiliate_link": "https://www.amazon.com/dp/B002XZLAWM?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B002XZLAWM?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Established brand - Subscribe & Save 5-15% best option",
+      "clippableCoupon": "Sometimes has $1-2 coupon"
     },
     {
       "asin": "B00PR82UC6",
@@ -131,7 +167,16 @@
       "whyItWorks": "Satisfying clamp-and-slide mechanism keeps snacks fresh. Organizational content gold. Before/after of stale vs fresh chips. TikTok kitchen hack essential.",
       "hookStyle": "problem",
       "bestStat": "Airtight seal - no more stale chips",
-      "affiliate_link": "https://www.amazon.com/dp/B00PR82UC6?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B00PR82UC6?tag=dailydealfeed-20",
+      "promoCodes": [
+        {
+          "code": "STOCKUPSAVE",
+          "discount": "$15 off $50+ household items",
+          "verified": "2026-02-21",
+          "notes": "Combine with other kitchen/household items"
+        }
+      ],
+      "savingsNote": "Use STOCKUPSAVE when bundling with other kitchen products"
     },
     {
       "asin": "B09C8VNWBP",
@@ -142,7 +187,10 @@
       "whyItWorks": "TikTok fragrance obsession. Sweet vanilla-caramel scent. 'You'll get so many compliments' content angle. Affordable luxury vibes.",
       "hookStyle": "question",
       "bestStat": "The scent that gets you compliments",
-      "affiliate_link": "https://www.amazon.com/dp/B09C8VNWBP?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B09C8VNWBP?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Subscribe & Save 5-15% available",
+      "clippableCoupon": "Check for occasional $2-3 coupon"
     },
     {
       "asin": "B0D1FVR95R",
@@ -153,7 +201,10 @@
       "whyItWorks": "Influencer-approved cozy footwear. Slip-resistant sole for indoor/outdoor. Pairs great with flared leggings trend. Cozy aesthetic content.",
       "hookStyle": "discovery",
       "bestStat": "Indoor/outdoor with arch support",
-      "affiliate_link": "https://www.amazon.com/dp/B0D1FVR95R?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0D1FVR95R?tag=dailydealfeed-20",
+      "promoCodes": [],
+      "savingsNote": "Check Vipon - footwear sellers often post codes",
+      "clippableCoupon": "Often has 10-15% clip coupon"
     },
     {
       "asin": "B0D9B96TBX",
@@ -164,7 +215,32 @@
       "whyItWorks": "Rainbow aesthetic kitchen trend. Currently trending on Amazon. Makes cooking content more visually appealing. Gift-worthy at low price point.",
       "hookStyle": "value",
       "bestStat": "Full knife set for under $20",
-      "affiliate_link": "https://www.amazon.com/dp/B0D9B96TBX?tag=dailydealfeed-20"
+      "affiliate_link": "https://www.amazon.com/dp/B0D9B96TBX?tag=dailydealfeed-20",
+      "promoCodes": [
+        {
+          "code": "STOCKUPSAVE",
+          "discount": "$15 off $50+ household items",
+          "verified": "2026-02-21",
+          "notes": "Combine with other kitchen items to reach $50"
+        }
+      ],
+      "savingsNote": "Already great value. Stack with STOCKUPSAVE if buying more kitchen items.",
+      "clippableCoupon": "Check for 5-10% additional coupon"
     }
+  ],
+  "globalCodes": [
+    {
+      "code": "STOCKUPSAVE",
+      "discount": "$15 off $50+ household items",
+      "applicableCategories": ["kitchen", "cleaning", "household"],
+      "verified": "2026-02-21",
+      "source": "Amazon Official via CouponFollow"
+    }
+  ],
+  "codeHuntingTips": [
+    "SimplyCodes for verified working codes with health scores",
+    "Vipon for seller-direct discount codes",
+    "Amazon Coupons page for clippable coupons",
+    "Check product page directly - look for orange 'Clip Coupon' button"
   ]
 }
