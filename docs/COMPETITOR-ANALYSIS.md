@@ -8,31 +8,45 @@
 
 | Platform | Handle | Notes |
 |----------|--------|-------|
+| **Website** | codesinred.com | Custom site (not Linktree!) |
 | Instagram | @codesinred | Main focus |
-| TikTok | @mr.krabsamazondeals | Same content |
-| YouTube | @CodesInRed | Extended content? |
+| TikTok | @codesinred | (also @mr.krabsamazondeals) |
+| YouTube | @thecodesinred | Extended content |
 | Telegram | t.me/CodesInRed | Deal alerts |
-| Facebook | CodesInRed | Cross-posting |
+| Threads | @codesinred | |
 | X/Twitter | @codesinred | |
-| Snapchat | codesinred | |
 
 ---
 
 ## Link Site Strategy
 
-**URL:** linktr.ee/CodesInRed
+**URL:** https://codesinred.com/
 
-### Structure
-- **Episode numbering system** (currently at Episode 465)
-- Each episode = batch of 5-8 deals
-- Format: `Product Name | Code: PROMOCODE`
-- Direct Amazon affiliate links (amzn.to)
+### Structure (MASSIVE)
+- **Custom website** (not Linktree!)
+- **Episode numbering system** — currently at **Episode 1413**
+- Each episode = 6-8 deals in collapsible sections
+- Per-product display:
+  - Product name + image
+  - Sale price + original price + % OFF
+  - Promo code displayed prominently
+  - "Go to deal" button
+- Uses **joylink.io** for affiliate link tracking
+- Newsletter signup
+- Blog section
+- About/Disclaimer pages
 
-### Observations
-- ~465 episodes = posting consistently for 1.5+ years
-- Heavy promo code usage (codes like `50Z5MDRQ`, `40EYMR4U`)
-- Categories: home, tech, furniture, beauty, kitchen, electronics
-- Price range: $8.99 - $89.99 (mostly impulse buys)
+### Key Features to Match
+1. **Episode system** — numbered batches create consistency
+2. **Price display** — $XX.XX / ~~$YY.YY~~ / XX% OFF
+3. **Promo codes** — prominently displayed with each deal
+4. **Affiliate link shortener** — joylink.io (tracks clicks)
+5. **Collapsible episodes** — clean UX, not overwhelming
+
+### Scale
+- **1413 episodes** = ~4 years of daily posting
+- Heavy promo code sourcing
+- Multi-platform distribution
 
 ---
 
@@ -67,22 +81,57 @@ See: `scripts/competitor-tracker.js`
 
 | Dimension | Us | Them | Gap |
 |-----------|-----|------|-----|
-| Episodes | 0 | 465+ | 🔴 Start posting |
-| Promo codes | No | Yes | 🔴 Source codes |
-| Link site | Basic | Polished Linktree | 🟡 Improve |
-| Video quality | 8.25/10 | TBD | 🟡 Analyze |
+| Episodes | 0 | **1413** | 🔴 Start posting NOW |
+| Website | GitHub Pages embed | Custom site w/ episodes | 🔴 Major rebuild needed |
+| Promo codes | No | Yes (every product) | 🔴 Source codes |
+| Link tracking | None | joylink.io | 🟡 Add tracking |
+| Video quality | 8.25/10 | TBD | 🟡 Analyze their videos |
 | Platforms | 2 (IG+TT) | 7 | 🟡 Expand later |
-| Consistency | N/A | Daily | 🔴 Start |
+| Consistency | N/A | Daily for 4 years | 🔴 Build the habit |
+
+---
+
+## Site Architecture to Build
+
+Their site has:
+```
+codesinred.com/
+├── index.html (homepage with latest episodes)
+├── top-daily-deals/
+├── about/
+├── disclaimer/
+├── blog/
+└── [episodes displayed as collapsible sections]
+```
+
+Each product card shows:
+- Product image
+- Title
+- Sale price (large) / Original price (strikethrough) / % OFF
+- Promo code (highlighted)
+- "Go to deal" button → joylink.io shortened link
 
 ---
 
 ## Action Items
 
-1. [ ] Download 10 recent @codesinred videos
-2. [ ] Analyze each video component
-3. [ ] Document their exact style
-4. [ ] Identify gaps in our pipeline
-5. [ ] Build matching capabilities
+### Immediate (This Week)
+1. [ ] Download 10 recent @codesinred videos manually
+2. [ ] Analyze their video style (hooks, audio, overlays)
+3. [ ] Redesign our link site to match their episode format
+4. [ ] Set up affiliate link tracking (joylink or similar)
+5. [ ] Start sourcing promo codes
+
+### Short Term
+6. [ ] Build episode-based posting system
+7. [ ] Create product card template matching their style
+8. [ ] Add newsletter signup
+9. [ ] Post first 3 episodes (3x/day)
+
+### Ongoing
+10. [ ] Monitor their new posts weekly
+11. [ ] Match their consistency (daily episodes)
+12. [ ] Track what products perform best
 
 ---
 
