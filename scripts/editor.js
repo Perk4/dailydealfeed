@@ -772,25 +772,12 @@ async function generateVoiceover(input, outputPath) {
     console.log(`⚠️  Cloudflare TTS failed: ${err.message}`);
   }
   
-  // Last resort: espeak-ng
-  logger.tts('WARN', `Falling back to espeak-ng (robotic voice)`, { productId });
-  console.log('⚠️  Falling back to espeak-ng (robotic voice)');
-  
-  try {
-    const result = generateTTSEspeak(voiceoverText, outputPath);
-    if (result && fs.existsSync(outputPath)) {
-      const stats = fs.statSync(outputPath);
-      if (stats.size > 0) {
-        logger.tts('INFO', `espeak-ng TTS succeeded`, { productId, size: stats.size });
-        return result;
-      }
-    }
-    logger.tts('ERROR', `espeak-ng produced empty or no file`, { productId, outputPath });
-    return null;
-  } catch (espeakErr) {
-    logger.tts('ERROR', `espeak-ng TTS failed`, { productId, error: espeakErr.message });
-    return null;
-  }
+  // BLOCKED: espeak-ng produces robotic voice that destroys credibility
+  // Better to fail than ship bad audio
+  logger.tts('ERROR', `All quality TTS providers failed - BLOCKING video generation`, { productId });
+  console.log('❌ BLOCKED: No quality TTS available. Video generation stopped to protect brand quality.');
+  console.log('   → Configure ElevenLabs API key or ensure Cloudflare Workers AI is available');
+  throw new Error('TTS_QUALITY_GATE: No quality TTS provider available. Refusing to use robotic espeak-ng voice.');
 }
 
 // ============================================
