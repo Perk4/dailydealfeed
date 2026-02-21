@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DailyDealFeed - Video Preview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .header { text-align: center; margin-bottom: 24px; }
+        .header h1 { font-size: 24px; margin-bottom: 8px; }
+        .header p { color: #888; font-size: 14px; }
+        .badge { 
+            display: inline-block;
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%); 
+            padding: 4px 12px; 
+            border-radius: 12px; 
+            font-size: 11px; 
+            margin-left: 8px;
+            color: #000;
+            font-weight: 600;
+        }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card { 
+            background: #1a1a1a; 
+            border-radius: 16px; 
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .card-header {
+            padding: 16px;
+            border-bottom: 1px solid #333;
+        }
+        .card-header h3 { font-size: 14px; margin-bottom: 4px; }
+        .card-header .price { color: #4ade80; font-weight: 700; font-size: 16px; }
+        .video-container {
+            position: relative;
+            background: #000;
+            aspect-ratio: 9/16;
+            max-height: 500px;
+        }
+        .card video { 
+            width: 100%; 
+            height: 100%;
+            object-fit: contain;
+        }
+        .card-footer {
+            padding: 12px 16px;
+            background: #111;
+        }
+        .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+        .meta span { 
+            background: #333; 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            font-size: 11px; 
+        }
+        .meta .voice { background: #4ade80; color: #000; }
+        .meta .amazon { background: #ff9900; color: #000; }
+        .footer { 
+            text-align: center; 
+            padding: 32px; 
+            color: #666; 
+            font-size: 12px;
+        }
+        .loading { text-align: center; padding: 40px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📦 DailyDealFeed Preview <span class="badge" id="count">Loading...</span></h1>
+        <p>Automated affiliate videos • 9:16 vertical • Ready to post</p>
+    </div>
+    
+    <div class="grid" id="grid">
+        <div class="loading">Loading videos...</div>
+    </div>
+    
+    <div class="footer">
+        <p>🔊 Turn on sound for voiceover</p>
+    </div>
+
+    <script>
+        const BASE = 'https://raw.githubusercontent.com/Perk4/dailydealfeed/main';
+        
+        async function loadVideos() {
+            try {
+                // Get list of all files in approved folder
+                const res = await fetch('https://api.github.com/repos/Perk4/dailydealfeed/contents/output/approved');
+                const files = await res.json();
+                
+                if (!Array.isArray(files)) {
+                    throw new Error('Failed to load file list');
+                }
+                
+                // Find videos
+                const videos = files.filter(f => f.name.startsWith('video_') && f.name.endsWith('.mp4'));
+                
+                // Find post JSON files for metadata
+                const posts = files.filter(f => f.name.startsWith('post_') && f.name.endsWith('.json'));
+                
+                // Update count
+                document.getElementById('count').textContent = `${videos.length} VIDEOS`;
+                
+                const grid = document.getElementById('grid');
+                grid.innerHTML = '';
+                
+                // Sort videos by timestamp (newest first)
+                videos.sort((a, b) => {
+                    const tsA = parseInt(a.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
+                    const tsB = parseInt(b.name.match(/_(\d+)\.mp4$/)?.[1] || 0);
+                    return tsB - tsA;
+                });
+                
+                for (const video of videos) {
+                    // Try to get product info from corresponding post JSON
+                    const postName = video.name.replace('video_', 'post_').replace('.mp4', '.json');
+                    const postFile = posts.find(p => p.name === postName);
+                    
+                    let productName = 'Product';
+                    let productPrice = '';
+                    
+                    if (postFile) {
+                        try {
+                            const postRes = await fetch(postFile.download_url);
+                            const postData = await postRes.json();
+                            productName = postData.product?.name || postData.productName || 'Product';
+                            productPrice = postData.product?.price || postData.price || '';
+                        } catch (e) {
+                            console.warn('Could not load post data:', e);
+                        }
+                    }
+                    
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <h3>${truncate(productName, 50)}</h3>
+                            ${productPrice ? `<div class="price">${productPrice}</div>` : ''}
+                        </div>
+                        <div class="video-container">
+                            <video controls playsinline preload="metadata">
+                                <source src="${BASE}/output/approved/${video.name}" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="card-footer">
+                            <div class="meta">
+                                <span class="voice">🎙️ TTS</span>
+                                <span class="amazon">🛒 Amazon</span>
+                                <span>9:16</span>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+                
+                if (grid.children.length === 0) {
+                    grid.innerHTML = '<div class="loading">No videos found in output/approved/</div>';
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('grid').innerHTML = `<div class="loading">Error loading videos: ${err.message}</div>`;
+            }
+        }
+        
+        function truncate(str, len) {
+            return str.length > len ? str.substring(0, len) + '...' : str;
+        }
+        
+        loadVideos();
+    </script>
+</body>
+</html>
+<!-- deploy trigger Sat Feb 21 04:52:56 UTC 2026 -->
