@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "lastEpisode": 3,
+  "episodes": [
+    {
+      "number": 3,
+      "name": "Evening Steals",
+      "date": "Sat, Feb 21, 2026",
+      "timestamp": "2026-02-21T04:29:44.287Z",
+      "productCount": 6,
+      "file": "episode-3.json"
+    },
+    {
+      "number": 2,
+      "name": "Afternoon Finds",
+      "date": "Sat, Feb 21, 2026",
+      "timestamp": "2026-02-21T04:29:44.223Z",
+      "productCount": 7,
+      "file": "episode-2.json"
+    },
+    {
+      "number": 1,
+      "name": "Morning Deals",
+      "date": "Sat, Feb 21, 2026",
+      "timestamp": "2026-02-21T04:29:41.213Z",
+      "productCount": 7,
+      "file": "episode-1.json"
+    }
+  ]
+}

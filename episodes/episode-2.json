@@ -1,0 +1,122 @@
+{
+  "number": 2,
+  "name": "Afternoon Finds",
+  "date": "Sat, Feb 21, 2026",
+  "timestamp": "2026-02-21T04:29:44.223Z",
+  "products": [
+    {
+      "asin": "B0FPX4XWKG",
+      "name": "Folding Walking Pad Treadmill",
+      "price": "$89.99",
+      "category": "fitness",
+      "rating": "4.4 stars",
+      "bestStat": "Folds flat - fits under bed or couch",
+      "affiliate_link": "https://www.amazon.com/dp/B0FPX4XWKG?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FPX4XWKG.jpg",
+      "promoCodes": [],
+      "savingsNote": "Check Vipon - fitness equipment sellers often post codes there",
+      "clippableCoupon": "Frequently has $10-20 off clip coupon"
+    },
+    {
+      "asin": "B00PR82UC6",
+      "name": "Gripstic Bag Sealer Clips",
+      "price": "$19.99",
+      "category": "kitchen",
+      "rating": "4.7 stars",
+      "bestStat": "Airtight seal - no more stale chips",
+      "affiliate_link": "https://www.amazon.com/dp/B00PR82UC6?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00PR82UC6.jpg",
+      "promoCodes": [
+        {
+          "code": "STOCKUPSAVE",
+          "discount": "$15 off $50+ household items",
+          "verified": "2026-02-21",
+          "notes": "Combine with other kitchen/household items"
+        }
+      ],
+      "savingsNote": "Use STOCKUPSAVE when bundling with other kitchen products",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B0BQ83Q8JN",
+      "name": "Stanley Quencher H2.0 Tumbler 40oz",
+      "price": "$45.00",
+      "category": "drinkware",
+      "rating": "4.5 stars",
+      "bestStat": "Keeps ice 2+ days",
+      "affiliate_link": "https://www.amazon.com/dp/B0BQ83Q8JN?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BQ83Q8JN.jpg",
+      "promoCodes": [],
+      "savingsNote": "Rarely has direct promo codes. Watch for Prime Day/Black Friday deals.",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B0D9B96TBX",
+      "name": "13-Piece Colorful Kitchen Knife Set",
+      "price": "$19.99",
+      "category": "kitchen",
+      "rating": "4.5 stars",
+      "bestStat": "Full knife set for under $20",
+      "affiliate_link": "https://www.amazon.com/dp/B0D9B96TBX?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D9B96TBX.jpg",
+      "promoCodes": [
+        {
+          "code": "STOCKUPSAVE",
+          "discount": "$15 off $50+ household items",
+          "verified": "2026-02-21",
+          "notes": "Combine with other kitchen items to reach $50"
+        }
+      ],
+      "savingsNote": "Already great value. Stack with STOCKUPSAVE if buying more kitchen items.",
+      "clippableCoupon": "Check for 5-10% additional coupon"
+    },
+    {
+      "asin": "B00PBX3L7K",
+      "name": "COSRX Snail Mucin 96% Power Repairing Essence",
+      "price": "$21.99",
+      "category": "skincare",
+      "rating": "4.5 stars",
+      "bestStat": "96% snail secretion filtrate",
+      "affiliate_link": "https://www.amazon.com/dp/B00PBX3L7K?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00PBX3L7K.jpg",
+      "promoCodes": [],
+      "savingsNote": "No active third-party codes found. Best deal: Subscribe & Save for 15% off.",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B0CQVWT2NH",
+      "name": "HydroJug Spill-Proof Tumbler with Handle",
+      "price": "$34.99",
+      "category": "drinkware",
+      "rating": "4.5 stars",
+      "bestStat": "Spill-proof fold-down straw design",
+      "affiliate_link": "https://www.amazon.com/dp/B0CQVWT2NH?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CQVWT2NH.jpg",
+      "promoCodes": [],
+      "savingsNote": "Check for Lightning Deals - drinkware often discounted",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B0DC156Y5X",
+      "name": "JiYu Niacinamide Toning Polish Pads",
+      "price": "$16.99",
+      "category": "skincare",
+      "rating": "4.6 stars",
+      "bestStat": "Currently #1 facial exfoliator on Amazon",
+      "affiliate_link": "https://www.amazon.com/dp/B0DC156Y5X?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DC156Y5X.jpg",
+      "promoCodes": [],
+      "savingsNote": "Check SimplyCodes for skincare seller codes. Subscribe & Save available.",
+      "clippableCoupon": "Often has 10-20% clip coupon on product page"
+    }
+  ],
+  "usedAsins": [
+    "B0FPX4XWKG",
+    "B00PR82UC6",
+    "B0BQ83Q8JN",
+    "B0D9B96TBX",
+    "B00PBX3L7K",
+    "B0CQVWT2NH",
+    "B0DC156Y5X"
+  ]
+}

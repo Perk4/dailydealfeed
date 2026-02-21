@@ -14,6 +14,8 @@
   
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+  <!-- Click Tracking -->
+  <script src="js/tracking.js"></script>
 </head>
 <body>
   <!-- Header -->
@@ -63,43 +65,12 @@
       </form>
     </div>
 
-    <!-- Featured Deals (pinned/top deals) -->
-    <div class="featured-deal">
-      <div class="featured-deal-inner">
-        <img src="https://m.media-amazon.com/images/I/61iTxgGSglL._AC_SL1500_.jpg" alt="Clear Shoe Box" class="featured-image">
-        <div class="featured-content">
-          <div class="featured-title">6-Pack Clear Shoe Box Containers with Magnetic Door</div>
-          <div class="featured-pricing">
-            <span class="sale-price">$45.59</span>
-            <span class="original-price">$79.99</span>
-            <span class="discount-badge">43% OFF</span>
-          </div>
-          <div class="featured-actions">
-            <button class="btn btn-code" onclick="copyCode('KOBE4EVER', this)">
-              Code: KOBE4EVER
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="8" y="8" width="14" height="14" rx="2"/>
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="featured-link">
-          <a href="https://amzn.to/example" target="_blank" rel="noopener">
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Episode 1 (Latest) -->
-    <div class="episode open" id="episode1">
-      <button class="episode-header" onclick="toggleEpisode('episode1')">
+    <!-- Episode 3 -->
+    <div class="episode open" id="episode3">
+      <button class="episode-header" onclick="toggleEpisode('episode3')">
         <div>
-          <div class="episode-title">Episode 1 - Latest Deals</div>
-          <div class="episode-subtitle">Click to open</div>
+          <div class="episode-title">Episode 3 - Evening Steals</div>
+          <div class="episode-subtitle">Sat, Feb 21, 2026 • 6 deals</div>
         </div>
         <svg class="episode-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="m6 9 6 6 6-6"/>
@@ -107,150 +78,121 @@
       </button>
       <div class="episode-content">
         <div class="product-grid">
-          
-          <!-- Product 1 -->
+
+          <!-- Folding Walking Pad Treadmill -->
           <div class="product-card">
             <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/71NvtG-K09L._AC_SL1500_.jpg" alt="Gaming Monitor" loading="lazy">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0FPX4XWKG.jpg" alt="Folding Walking Pad Treadmill" loading="lazy">
             </div>
-            <div class="product-title">27 Inch Curved Gaming Monitor 200Hz 1ms with Speakers FHD 1080P</div>
+            <div class="product-title">Folding Walking Pad Treadmill</div>
             <div class="product-pricing">
-              <span class="discount-badge">20% OFF</span>
+              <span class="discount-badge">HOT DEAL</span>
               <div class="price-row">
-                <span class="sale-price">$118.74</span>
-                <span class="original-price">$147.99</span>
+                <span class="sale-price">$89.99</span>
               </div>
             </div>
-            <button class="btn btn-code" onclick="copyCode('IAE3LSTT', this)">
-              Code: IAE3LSTT
+            <div class="savings-note">💡 Check Vipon - fitness equipment sellers often post codes there</div>
+            <a href="https://www.amazon.com/dp/B0FPX4XWKG?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- COSRX Snail Mucin 96% Power Repairing Essence -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B00PBX3L7K.jpg" alt="COSRX Snail Mucin 96% Power Repairing Essence" loading="lazy">
+            </div>
+            <div class="product-title">COSRX Snail Mucin 96% Power Repairing Essence</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$21.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 No active third-party codes found. Best deal: Subscribe & Save for 15% off.</div>
+            <a href="https://www.amazon.com/dp/B00PBX3L7K?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- Digital Camera for Beginners 48MP -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0BTCZ2RR9.jpg" alt="Digital Camera for Beginners 48MP" loading="lazy">
+            </div>
+            <div class="product-title">Digital Camera for Beginners 48MP</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$45.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Third-party seller - check SimplyCodes for camera promo codes</div>
+            <a href="https://www.amazon.com/dp/B0BTCZ2RR9?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- Gripstic Bag Sealer Clips -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B00PR82UC6.jpg" alt="Gripstic Bag Sealer Clips" loading="lazy">
+            </div>
+            <div class="product-title">Gripstic Bag Sealer Clips</div>
+            <div class="product-pricing">
+              <span class="discount-badge">$15 off $50+ household items</span>
+              <div class="price-row">
+                <span class="sale-price">$19.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Use STOCKUPSAVE when bundling with other kitchen products</div>
+            <button class="btn btn-code" onclick="copyCode('STOCKUPSAVE', this)">
+              Code: STOCKUPSAVE
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="8" y="8" width="14" height="14" rx="2"/>
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
               </svg>
             </button>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
+            <a href="https://www.amazon.com/dp/B00PR82UC6?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
               Go to Deal →
             </a>
           </div>
 
-          <!-- Product 2 -->
+          <!-- LEGO Lucky Bamboo Plant Building Kit -->
           <div class="product-card">
             <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/61+SNFKotTL._AC_SL1500_.jpg" alt="Indoor Camera" loading="lazy">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0DJ18ZWYQ.jpg" alt="LEGO Lucky Bamboo Plant Building Kit" loading="lazy">
             </div>
-            <div class="product-title">Indoor Camera 3K HD 360° Pan/Tilt Pet Camera with 2-Way Audio</div>
+            <div class="product-title">LEGO Lucky Bamboo Plant Building Kit</div>
             <div class="product-pricing">
-              <span class="discount-badge">60% OFF</span>
+              <span class="discount-badge">HOT DEAL</span>
               <div class="price-row">
-                <span class="sale-price">$6.79</span>
-                <span class="original-price">$16.99</span>
+                <span class="sale-price">$23.99</span>
               </div>
             </div>
-            <button class="btn btn-code" onclick="copyCode('KHLFFN7N', this)">
-              Code: KHLFFN7N
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="8" y="8" width="14" height="14" rx="2"/>
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-              </svg>
-            </button>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
+            <div class="savings-note">💡 LEGO rarely has third-party codes. Watch for 20% off sales.</div>
+            <a href="https://www.amazon.com/dp/B0DJ18ZWYQ?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
               Go to Deal →
             </a>
           </div>
 
-          <!-- Product 3 -->
+          <!-- Cloud Slides Pillow Slippers -->
           <div class="product-card">
             <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/712orSqYIQL._AC_SL1500_.jpg" alt="Batteries" loading="lazy">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B09TKMK2RW.jpg" alt="Cloud Slides Pillow Slippers" loading="lazy">
             </div>
-            <div class="product-title">Energizer MAX AAA Batteries (20 Pack) Triple A Alkaline</div>
+            <div class="product-title">Cloud Slides Pillow Slippers</div>
             <div class="product-pricing">
-              <span class="discount-badge">62% OFF</span>
+              <span class="discount-badge">HOT DEAL</span>
               <div class="price-row">
-                <span class="sale-price">$7.93</span>
-                <span class="original-price">$20.87</span>
+                <span class="sale-price">$23.99</span>
               </div>
             </div>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
-              See Deal →
-            </a>
-          </div>
-
-          <!-- Product 4 -->
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/71ot9PsZC+L._AC_SL1500_.jpg" alt="Air Fryer" loading="lazy">
-            </div>
-            <div class="product-title">Indoor Grill Air Fryer Combo 7-in-1 Smokeless Electric Grill</div>
-            <div class="product-pricing">
-              <span class="discount-badge">50% OFF</span>
-              <div class="price-row">
-                <span class="sale-price">$50.00</span>
-                <span class="original-price">$99.99</span>
-              </div>
-            </div>
-            <button class="btn btn-code" onclick="copyCode('RBY77VLH', this)">
-              Code: RBY77VLH
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="8" y="8" width="14" height="14" rx="2"/>
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-              </svg>
-            </button>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
+            <div class="savings-note">💡 Popular item - check Vipon for seller codes on similar cloud slides.</div>
+            <a href="https://www.amazon.com/dp/B09TKMK2RW?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
               Go to Deal →
             </a>
           </div>
-
-          <!-- Product 5 -->
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/81lmSvdd54L._AC_SL1500_.jpg" alt="Photo Printer" loading="lazy">
-            </div>
-            <div class="product-title">Photo Printer Color Mini Portable Instant Smartphone Inkjet</div>
-            <div class="product-pricing">
-              <span class="discount-badge">50% OFF</span>
-              <div class="price-row">
-                <span class="sale-price">$49.99</span>
-                <span class="original-price">$99.99</span>
-              </div>
-            </div>
-            <button class="btn btn-code" onclick="copyCode('UWX34BM8', this)">
-              Code: UWX34BM8
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="8" y="8" width="14" height="14" rx="2"/>
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-              </svg>
-            </button>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
-              Go to Deal →
-            </a>
-          </div>
-
-          <!-- Product 6 -->
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/71HaVraXrqL._AC_SL1500_.jpg" alt="Card Shuffler" loading="lazy">
-            </div>
-            <div class="product-title">Automatic Card Shuffler 2 Deck Dual Mode UNO Poker Texas Hold'em</div>
-            <div class="product-pricing">
-              <span class="discount-badge">40% OFF</span>
-              <div class="price-row">
-                <span class="sale-price">$19.19</span>
-                <span class="original-price">$31.99</span>
-              </div>
-            </div>
-            <button class="btn btn-code" onclick="copyCode('W5PK5F8E', this)">
-              Code: W5PK5F8E
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="8" y="8" width="14" height="14" rx="2"/>
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-              </svg>
-            </button>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
-              Go to Deal →
-            </a>
-          </div>
-
         </div>
       </div>
     </div>
@@ -259,8 +201,8 @@
     <div class="episode" id="episode2">
       <button class="episode-header" onclick="toggleEpisode('episode2')">
         <div>
-          <div class="episode-title">Episode 2 - More Great Deals</div>
-          <div class="episode-subtitle">Click to open</div>
+          <div class="episode-title">Episode 2 - Afternoon Finds</div>
+          <div class="episode-subtitle">Sat, Feb 21, 2026 • 7 deals</div>
         </div>
         <svg class="episode-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="m6 9 6 6 6-6"/>
@@ -268,100 +210,296 @@
       </button>
       <div class="episode-content">
         <div class="product-grid">
-          
-          <!-- Product 1 -->
+
+          <!-- Folding Walking Pad Treadmill -->
           <div class="product-card">
             <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/71ukdEPiyLL._AC_SL1500_.jpg" alt="Monitor Mount" loading="lazy">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0FPX4XWKG.jpg" alt="Folding Walking Pad Treadmill" loading="lazy">
             </div>
-            <div class="product-title">Acer Single Monitor Mount Fully Adjustable 17-34 Inch Gas Spring</div>
+            <div class="product-title">Folding Walking Pad Treadmill</div>
             <div class="product-pricing">
-              <span class="discount-badge">28% OFF</span>
+              <span class="discount-badge">HOT DEAL</span>
               <div class="price-row">
-                <span class="sale-price">$24.47</span>
-                <span class="original-price">$33.98</span>
+                <span class="sale-price">$89.99</span>
               </div>
             </div>
-            <button class="btn btn-code" onclick="copyCode('28OFMS101', this)">
-              Code: 28OFMS101
+            <div class="savings-note">💡 Check Vipon - fitness equipment sellers often post codes there</div>
+            <a href="https://www.amazon.com/dp/B0FPX4XWKG?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- Gripstic Bag Sealer Clips -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B00PR82UC6.jpg" alt="Gripstic Bag Sealer Clips" loading="lazy">
+            </div>
+            <div class="product-title">Gripstic Bag Sealer Clips</div>
+            <div class="product-pricing">
+              <span class="discount-badge">$15 off $50+ household items</span>
+              <div class="price-row">
+                <span class="sale-price">$19.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Use STOCKUPSAVE when bundling with other kitchen products</div>
+            <button class="btn btn-code" onclick="copyCode('STOCKUPSAVE', this)">
+              Code: STOCKUPSAVE
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="8" y="8" width="14" height="14" rx="2"/>
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
               </svg>
             </button>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
+            <a href="https://www.amazon.com/dp/B00PR82UC6?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
               Go to Deal →
             </a>
           </div>
 
-          <!-- Product 2 -->
+          <!-- Stanley Quencher H2.0 Tumbler 40oz -->
           <div class="product-card">
             <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/61w2Tj7r0BL._AC_SL1500_.jpg" alt="Magic Bullet" loading="lazy">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0BQ83Q8JN.jpg" alt="Stanley Quencher H2.0 Tumbler 40oz" loading="lazy">
             </div>
-            <div class="product-title">Magic Bullet Blender Small Silver 11 Piece Set</div>
+            <div class="product-title">Stanley Quencher H2.0 Tumbler 40oz</div>
             <div class="product-pricing">
-              <span class="discount-badge">40% OFF</span>
+              <span class="discount-badge">HOT DEAL</span>
               <div class="price-row">
-                <span class="sale-price">$29.95</span>
-                <span class="original-price">$49.92</span>
+                <span class="sale-price">$45.00</span>
               </div>
             </div>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
-              See Deal →
+            <div class="savings-note">💡 Rarely has direct promo codes. Watch for Prime Day/Black Friday deals.</div>
+            <a href="https://www.amazon.com/dp/B0BQ83Q8JN?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
             </a>
           </div>
 
-          <!-- Product 3 -->
+          <!-- 13-Piece Colorful Kitchen Knife Set -->
           <div class="product-card">
             <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/6151PANTwdL._AC_SL1500_.jpg" alt="Baking Set" loading="lazy">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0D9B96TBX.jpg" alt="13-Piece Colorful Kitchen Knife Set" loading="lazy">
             </div>
-            <div class="product-title">Ceramic Nonstick Baking Pans Set 33 PCS Stackable Bakeware</div>
+            <div class="product-title">13-Piece Colorful Kitchen Knife Set</div>
             <div class="product-pricing">
-              <span class="discount-badge">50% OFF</span>
+              <span class="discount-badge">$15 off $50+ household items</span>
               <div class="price-row">
-                <span class="sale-price">$62.99</span>
-                <span class="original-price">$104.99</span>
+                <span class="sale-price">$19.99</span>
               </div>
             </div>
-            <button class="btn btn-code" onclick="copyCode('LY3ZQ7UY', this)">
-              Code: LY3ZQ7UY
+            <div class="savings-note">💡 Already great value. Stack with STOCKUPSAVE if buying more kitchen items.</div>
+            <button class="btn btn-code" onclick="copyCode('STOCKUPSAVE', this)">
+              Code: STOCKUPSAVE
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="8" y="8" width="14" height="14" rx="2"/>
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
               </svg>
             </button>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
+            <a href="https://www.amazon.com/dp/B0D9B96TBX?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
               Go to Deal →
             </a>
           </div>
 
-          <!-- Product 4 -->
+          <!-- COSRX Snail Mucin 96% Power Repairing Essence -->
           <div class="product-card">
             <div class="product-image">
-              <img src="https://m.media-amazon.com/images/I/71Gt6PDs7NL._AC_SL1500_.jpg" alt="Dresser" loading="lazy">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B00PBX3L7K.jpg" alt="COSRX Snail Mucin 96% Power Repairing Essence" loading="lazy">
             </div>
-            <div class="product-title">Dresser with Hanging Rack Black 5 Fabric Drawers LED Lights</div>
+            <div class="product-title">COSRX Snail Mucin 96% Power Repairing Essence</div>
             <div class="product-pricing">
-              <span class="discount-badge">50% OFF</span>
+              <span class="discount-badge">HOT DEAL</span>
               <div class="price-row">
-                <span class="sale-price">$50.00</span>
-                <span class="original-price">$99.99</span>
+                <span class="sale-price">$21.99</span>
               </div>
             </div>
-            <button class="btn btn-code" onclick="copyCode('PVRCEC5S', this)">
-              Code: PVRCEC5S
+            <div class="savings-note">💡 No active third-party codes found. Best deal: Subscribe & Save for 15% off.</div>
+            <a href="https://www.amazon.com/dp/B00PBX3L7K?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- HydroJug Spill-Proof Tumbler with Handle -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0CQVWT2NH.jpg" alt="HydroJug Spill-Proof Tumbler with Handle" loading="lazy">
+            </div>
+            <div class="product-title">HydroJug Spill-Proof Tumbler with Handle</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$34.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Check for Lightning Deals - drinkware often discounted</div>
+            <a href="https://www.amazon.com/dp/B0CQVWT2NH?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- JiYu Niacinamide Toning Polish Pads -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0DC156Y5X.jpg" alt="JiYu Niacinamide Toning Polish Pads" loading="lazy">
+            </div>
+            <div class="product-title">JiYu Niacinamide Toning Polish Pads</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$16.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Check SimplyCodes for skincare seller codes. Subscribe & Save available.</div>
+            <a href="https://www.amazon.com/dp/B0DC156Y5X?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Episode 1 -->
+    <div class="episode" id="episode1">
+      <button class="episode-header" onclick="toggleEpisode('episode1')">
+        <div>
+          <div class="episode-title">Episode 1 - Morning Deals</div>
+          <div class="episode-subtitle">Sat, Feb 21, 2026 • 7 deals</div>
+        </div>
+        <svg class="episode-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </button>
+      <div class="episode-content">
+        <div class="product-grid">
+
+          <!-- Digital Camera for Beginners 48MP -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0BTCZ2RR9.jpg" alt="Digital Camera for Beginners 48MP" loading="lazy">
+            </div>
+            <div class="product-title">Digital Camera for Beginners 48MP</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$45.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Third-party seller - check SimplyCodes for camera promo codes</div>
+            <a href="https://www.amazon.com/dp/B0BTCZ2RR9?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- Folding Walking Pad Treadmill -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0FPX4XWKG.jpg" alt="Folding Walking Pad Treadmill" loading="lazy">
+            </div>
+            <div class="product-title">Folding Walking Pad Treadmill</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$89.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Check Vipon - fitness equipment sellers often post codes there</div>
+            <a href="https://www.amazon.com/dp/B0FPX4XWKG?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- Wavytalk Thermal Styling Brush -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0CGVGVS8N.jpg" alt="Wavytalk Thermal Styling Brush" loading="lazy">
+            </div>
+            <div class="product-title">Wavytalk Thermal Styling Brush</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$39.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Hair tools often have 20-40% Lightning Deals</div>
+            <a href="https://www.amazon.com/dp/B0CGVGVS8N?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- Ice Roller for Face & Eye Puffiness Relief -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B07GXDZ5VZ.jpg" alt="Ice Roller for Face & Eye Puffiness Relief" loading="lazy">
+            </div>
+            <div class="product-title">Ice Roller for Face & Eye Puffiness Relief</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$9.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Low price point item. Check SimplyCodes for beauty tool codes.</div>
+            <a href="https://www.amazon.com/dp/B07GXDZ5VZ?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- Cloud Slides Pillow Slippers -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B09TKMK2RW.jpg" alt="Cloud Slides Pillow Slippers" loading="lazy">
+            </div>
+            <div class="product-title">Cloud Slides Pillow Slippers</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$23.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Popular item - check Vipon for seller codes on similar cloud slides.</div>
+            <a href="https://www.amazon.com/dp/B09TKMK2RW?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
+
+          <!-- 13-Piece Colorful Kitchen Knife Set -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0D9B96TBX.jpg" alt="13-Piece Colorful Kitchen Knife Set" loading="lazy">
+            </div>
+            <div class="product-title">13-Piece Colorful Kitchen Knife Set</div>
+            <div class="product-pricing">
+              <span class="discount-badge">$15 off $50+ household items</span>
+              <div class="price-row">
+                <span class="sale-price">$19.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Already great value. Stack with STOCKUPSAVE if buying more kitchen items.</div>
+            <button class="btn btn-code" onclick="copyCode('STOCKUPSAVE', this)">
+              Code: STOCKUPSAVE
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="8" y="8" width="14" height="14" rx="2"/>
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
               </svg>
             </button>
-            <a href="https://amzn.to/example" target="_blank" rel="noopener" class="btn btn-deal">
+            <a href="https://www.amazon.com/dp/B0D9B96TBX?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
               Go to Deal →
             </a>
           </div>
 
+          <!-- HydroJug Spill-Proof Tumbler with Handle -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/P/B0CQVWT2NH.jpg" alt="HydroJug Spill-Proof Tumbler with Handle" loading="lazy">
+            </div>
+            <div class="product-title">HydroJug Spill-Proof Tumbler with Handle</div>
+            <div class="product-pricing">
+              <span class="discount-badge">HOT DEAL</span>
+              <div class="price-row">
+                <span class="sale-price">$34.99</span>
+              </div>
+            </div>
+            <div class="savings-note">💡 Check for Lightning Deals - drinkware often discounted</div>
+            <a href="https://www.amazon.com/dp/B0CQVWT2NH?tag=dailydealfeed-20" target="_blank" rel="noopener" class="btn btn-deal">
+              Go to Deal →
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -374,6 +512,7 @@
       <a href="/">Home</a>
       <a href="about.html">About</a>
       <a href="disclaimer.html">Disclaimer</a>
+      <a href="analytics.html">📊</a>
     </div>
     <p class="footer-copy">As an Amazon Associate I earn from qualifying purchases. Prices and codes valid at time of posting.</p>
   </footer>

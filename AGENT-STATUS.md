@@ -17,6 +17,7 @@
 
 | Agent | Phase | Deliverables | Completed |
 |-------|-------|--------------|-----------|
+| episode-producer | 5. Episode Production | create-episode.js, episodes/, EPISODE-WORKFLOW.md | 2026-02-21 04:30 UTC |
 | code-hunter | 2. Promo Codes | PROMO-CODE-SOURCES.md, CODE-VERIFICATION.md, Updated products | 2026-02-21 04:25 UTC |
 | video-analyst | 4. Video Analysis | CODESINRED-VIDEO-STYLE.md, VIDEO-STYLE-GAPS.md | 2026-02-21 02:38 UTC |
 
@@ -35,6 +36,28 @@
 ---
 
 ## Recent Updates
+
+### 2026-02-21 04:30 UTC
+- **episode-producer completed Phase 5**: Episode Production System
+- Created `scripts/create-episode.js` — Generates new episodes from product queue
+- Created `episodes/` directory with manifest system
+- Created `docs/EPISODE-WORKFLOW.md` — Daily 3x posting checklist
+- Generated first 3 test episodes (Episode 1, 2, 3)
+- Site auto-updates when episodes are created
+
+**Episode System Features:**
+1. Episode numbering (starts at Episode 1, auto-increments)
+2. Pulls products from `next-batch.json` and `products.json`
+3. Automatically rebuilds `index.html` with latest episode first
+4. Shows promo codes with copy-to-clipboard button
+5. Includes savings notes for each product
+6. Collapsed accordion - latest at top, expands on click
+
+**Usage:**
+```bash
+node scripts/create-episode.js --name "Morning Deals"
+git add -A && git commit -m "Episode X" && git push
+```
 
 ### 2026-02-21 04:25 UTC
 - **code-hunter completed Phase 2**: Promo Code Sourcing

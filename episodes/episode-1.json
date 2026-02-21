@@ -1,0 +1,115 @@
+{
+  "number": 1,
+  "name": "Morning Deals",
+  "date": "Sat, Feb 21, 2026",
+  "timestamp": "2026-02-21T04:29:41.213Z",
+  "products": [
+    {
+      "asin": "B0BTCZ2RR9",
+      "name": "Digital Camera for Beginners 48MP",
+      "price": "$45.99",
+      "category": "tech",
+      "rating": "4.3 stars",
+      "bestStat": "48MP photos with retro aesthetic",
+      "affiliate_link": "https://www.amazon.com/dp/B0BTCZ2RR9?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BTCZ2RR9.jpg",
+      "promoCodes": [],
+      "savingsNote": "Third-party seller - check SimplyCodes for camera promo codes",
+      "clippableCoupon": "Often has 10-15% clip coupon"
+    },
+    {
+      "asin": "B0FPX4XWKG",
+      "name": "Folding Walking Pad Treadmill",
+      "price": "$89.99",
+      "category": "fitness",
+      "rating": "4.4 stars",
+      "bestStat": "Folds flat - fits under bed or couch",
+      "affiliate_link": "https://www.amazon.com/dp/B0FPX4XWKG?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FPX4XWKG.jpg",
+      "promoCodes": [],
+      "savingsNote": "Check Vipon - fitness equipment sellers often post codes there",
+      "clippableCoupon": "Frequently has $10-20 off clip coupon"
+    },
+    {
+      "asin": "B0CGVGVS8N",
+      "name": "Wavytalk Thermal Styling Brush",
+      "price": "$39.99",
+      "category": "beauty",
+      "rating": "4.5 stars",
+      "bestStat": "Salon blowout in 5 minutes flat",
+      "affiliate_link": "https://www.amazon.com/dp/B0CGVGVS8N?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CGVGVS8N.jpg",
+      "promoCodes": [],
+      "savingsNote": "Hair tools often have 20-40% Lightning Deals",
+      "clippableCoupon": "Check product page for 10-20% coupon"
+    },
+    {
+      "asin": "B07GXDZ5VZ",
+      "name": "Ice Roller for Face & Eye Puffiness Relief",
+      "price": "$9.99",
+      "category": "beauty",
+      "rating": "4.5 stars",
+      "bestStat": "Stays cold for 10+ minutes",
+      "affiliate_link": "https://www.amazon.com/dp/B07GXDZ5VZ?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07GXDZ5VZ.jpg",
+      "promoCodes": [],
+      "savingsNote": "Low price point item. Check SimplyCodes for beauty tool codes.",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B09TKMK2RW",
+      "name": "Cloud Slides Pillow Slippers",
+      "price": "$23.99",
+      "category": "footwear",
+      "rating": "4.5 stars",
+      "bestStat": "4.5cm thick EVA cushion",
+      "affiliate_link": "https://www.amazon.com/dp/B09TKMK2RW?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09TKMK2RW.jpg",
+      "promoCodes": [],
+      "savingsNote": "Popular item - check Vipon for seller codes on similar cloud slides.",
+      "clippableCoupon": ""
+    },
+    {
+      "asin": "B0D9B96TBX",
+      "name": "13-Piece Colorful Kitchen Knife Set",
+      "price": "$19.99",
+      "category": "kitchen",
+      "rating": "4.5 stars",
+      "bestStat": "Full knife set for under $20",
+      "affiliate_link": "https://www.amazon.com/dp/B0D9B96TBX?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D9B96TBX.jpg",
+      "promoCodes": [
+        {
+          "code": "STOCKUPSAVE",
+          "discount": "$15 off $50+ household items",
+          "verified": "2026-02-21",
+          "notes": "Combine with other kitchen items to reach $50"
+        }
+      ],
+      "savingsNote": "Already great value. Stack with STOCKUPSAVE if buying more kitchen items.",
+      "clippableCoupon": "Check for 5-10% additional coupon"
+    },
+    {
+      "asin": "B0CQVWT2NH",
+      "name": "HydroJug Spill-Proof Tumbler with Handle",
+      "price": "$34.99",
+      "category": "drinkware",
+      "rating": "4.5 stars",
+      "bestStat": "Spill-proof fold-down straw design",
+      "affiliate_link": "https://www.amazon.com/dp/B0CQVWT2NH?tag=dailydealfeed-20",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CQVWT2NH.jpg",
+      "promoCodes": [],
+      "savingsNote": "Check for Lightning Deals - drinkware often discounted",
+      "clippableCoupon": ""
+    }
+  ],
+  "usedAsins": [
+    "B0BTCZ2RR9",
+    "B0FPX4XWKG",
+    "B0CGVGVS8N",
+    "B07GXDZ5VZ",
+    "B09TKMK2RW",
+    "B0D9B96TBX",
+    "B0CQVWT2NH"
+  ]
+}

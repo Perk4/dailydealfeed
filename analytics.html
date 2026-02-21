@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - DailyDealFeed</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <style>
+    .analytics-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    
+    .analytics-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: white;
+    }
+    
+    .analytics-header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+    }
+    
+    .section-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .product-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .product-row:last-child {
+      border-bottom: none;
+    }
+    
+    .product-name {
+      flex: 1;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 1rem;
+    }
+    
+    .product-clicks {
+      font-weight: 700;
+      color: var(--primary-color);
+      min-width: 60px;
+      text-align: right;
+    }
+    
+    .chart-container {
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      padding-top: 1rem;
+    }
+    
+    .chart-bar-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .chart-bar {
+      width: 100%;
+      background: linear-gradient(to top, var(--primary-color), var(--primary-dark));
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      min-height: 4px;
+      transition: height 0.3s ease;
+    }
+    
+    .chart-label {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+    
+    .chart-value {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+    
+    .source-grid, .device-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.75rem;
+    }
+    
+    .source-item, .device-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem;
+      background: var(--bg-light);
+      border-radius: var(--radius-sm);
+    }
+    
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    
+    .btn-action {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      border: 1px solid var(--border-color);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--border-color);
+    }
+    
+    .btn-danger {
+      background: #dc2626;
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background: #b91c1c;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-light);
+    }
+    
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .meta-info {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 640px) {
+      .stat-value {
+        font-size: 1.75rem;
+      }
+      
+      .product-name {
+        max-width: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <a href="/" class="logo">💰 DailyDealFeed</a>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a>
+        <a href="analytics.html" class="active">📊 Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="analytics-container">
+    <div class="analytics-header">
+      <h1>📊 Click Analytics</h1>
+      <p>Track which products get the most clicks</p>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card">
+        <div class="stat-value" id="totalClicks">0</div>
+        <div class="stat-label">Total Clicks</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="todayClicks">0</div>
+        <div class="stat-label">Today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="weekClicks">0</div>
+        <div class="stat-label">Last 7 Days</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="topSource">-</div>
+        <div class="stat-label">Top Source</div>
+      </div>
+    </div>
+
+    <!-- 7-Day Chart -->
+    <div class="section-card">
+      <h2 class="section-title">📈 Last 7 Days</h2>
+      <div class="chart-container" id="chart">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="section-card">
+      <h2 class="section-title">🔥 Top Products</h2>
+      <div id="topProducts">
+        <div class="empty-state">
+          <div class="empty-state-icon">📭</div>
+          <p>No click data yet. Click some deals!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Traffic Sources -->
+    <div class="section-card">
+      <h2 class="section-title">🌐 Traffic Sources</h2>
+      <div class="source-grid" id="sourceGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- Device Breakdown -->
+    <div class="section-card">
+      <h2 class="section-title">📱 Devices</h2>
+      <div class="device-grid" id="deviceGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="section-card">
+      <h2 class="section-title">⚙️ Data Management</h2>
+      <div class="action-buttons">
+        <button class="btn-action btn-primary" onclick="downloadAnalytics()">📥 Export JSON</button>
+        <button class="btn-action btn-secondary" onclick="document.getElementById('importFile').click()">📤 Import Data</button>
+        <button class="btn-action btn-secondary" onclick="refreshData()">🔄 Refresh</button>
+        <button class="btn-action btn-danger" onclick="clearAnalytics()">🗑️ Clear Data</button>
+      </div>
+      <input type="file" id="importFile" accept=".json" style="display: none" onchange="importAnalytics(event)">
+      <div class="meta-info" id="metaInfo"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="analytics.html">Analytics</a>
+    </div>
+    <p class="footer-copy">Click tracking for internal analytics only.</p>
+  </footer>
+
+  <script src="js/tracking.js"></script>
+  <script>
+    function refreshData() {
+      const summary = DealTracker.getSummary();
+      
+      // Update stat cards
+      document.getElementById('totalClicks').textContent = summary.totalClicks;
+      document.getElementById('todayClicks').textContent = summary.todayClicks;
+      
+      const weekTotal = summary.last7Days.reduce((sum, d) => sum + d.clicks, 0);
+      document.getElementById('weekClicks').textContent = weekTotal;
+      
+      // Top source
+      const sources = Object.entries(summary.sources);
+      if (sources.length > 0) {
+        sources.sort((a, b) => b[1] - a[1]);
+        document.getElementById('topSource').textContent = sources[0][0];
+      }
+      
+      // Chart
+      const chartEl = document.getElementById('chart');
+      const maxClicks = Math.max(...summary.last7Days.map(d => d.clicks), 1);
+      chartEl.innerHTML = summary.last7Days.map(day => {
+        const height = (day.clicks / maxClicks) * 150;
+        const dayName = new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' });
+        return `
+          <div class="chart-bar-container">
+            <div class="chart-value">${day.clicks}</div>
+            <div class="chart-bar" style="height: ${Math.max(height, 4)}px"></div>
+            <div class="chart-label">${dayName}</div>
+          </div>
+        `;
+      }).join('');
+      
+      // Top products
+      const productsEl = document.getElementById('topProducts');
+      if (summary.topProducts.length > 0) {
+        productsEl.innerHTML = summary.topProducts.map((p, i) => `
+          <div class="product-row">
+            <span class="product-name">${i + 1}. ${p.name}</span>
+            <span class="product-clicks">${p.clicks} clicks</span>
+          </div>
+        `).join('');
+      } else {
+        productsEl.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📭</div>
+            <p>No click data yet. Click some deals!</p>
+          </div>
+        `;
+      }
+      
+      // Traffic sources
+      const sourceGrid = document.getElementById('sourceGrid');
+      if (sources.length > 0) {
+        sourceGrid.innerHTML = sources.map(([source, count]) => `
+          <div class="source-item">
+            <span>${source}</span>
+            <span><strong>${count}</strong></span>
+          </div>
+        `).join('');
+      } else {
+        sourceGrid.innerHTML = '<div class="source-item"><span>No data</span><span>-</span></div>';
+      }
+      
+      // Devices
+      const devices = Object.entries(summary.devices);
+      const deviceGrid = document.getElementById('deviceGrid');
+      if (devices.length > 0) {
+        const icons = { desktop: '🖥️', mobile: '📱', tablet: '📱' };
+        deviceGrid.innerHTML = devices.map(([device, count]) => `
+          <div class="device-item">
+            <span>${icons[device] || '📱'} ${device}</span>
+            <span><strong>${count}</strong></span>
+          </div>
+        `).join('');
+      } else {
+        deviceGrid.innerHTML = '<div class="device-item"><span>No data</span><span>-</span></div>';
+      }
+      
+      // Meta info
+      document.getElementById('metaInfo').innerHTML = `
+        First visit: ${summary.firstVisit ? new Date(summary.firstVisit).toLocaleString() : 'N/A'}<br>
+        Last updated: ${summary.lastUpdated ? new Date(summary.lastUpdated).toLocaleString() : 'N/A'}
+      `;
+    }
+    
+    function downloadAnalytics() {
+      DealTracker.downloadData();
+    }
+    
+    function importAnalytics(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          if (DealTracker.importData(e.target.result)) {
+            alert('Data imported successfully!');
+            refreshData();
+          } else {
+            alert('Failed to import data. Check file format.');
+          }
+        };
+        reader.readAsText(file);
+      }
+      event.target.value = '';
+    }
+    
+    function clearAnalytics() {
+      DealTracker.clearData();
+      refreshData();
+    }
+    
+    // Initial load
+    refreshData();
+  </script>
+</body>
+</html>
