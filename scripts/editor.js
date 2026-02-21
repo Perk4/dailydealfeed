@@ -886,47 +886,26 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
   // 0.2-0.4s: Settle to final position with slight bounce
   // 0.4s+:    Static
   
-  // Sticker colors (vibrant, not corporate)
-  const stickerBgColor = 'ff1493'; // Hot pink / deep pink
-  const stickerTextColor = 'ffffff'; // White text
-  const stickerShadowColor = '000000'; // Black shadow
-  const fireEmoji = '🔥';
+  // V14: Clean overlay style (TikTok-native, not corporate)
+  // - White text with black stroke
+  // - No colored background box
+  // - Simple fade-in (no bounce)
+  // - No fire emoji (feels spammy)
+  const overlayTextColor = 'ffffff'; // White text
+  const overlayStrokeColor = '000000'; // Black stroke
+  const overlayStrokeWidth = 4; // Thick stroke for visibility
+  const overlayFontSize = 64; // Large, readable price
   
-  // V11: Sticker dimensions - smaller and less intrusive
-  const stickerPadH = 28; // Horizontal padding (reduced)
-  const stickerPadV = 14; // Vertical padding (reduced)
-  const stickerFontSize = 54; // Smaller, cleaner (was 72)
-  const emojiSize = 48;
+  // Clean price text (no emoji)
+  const cleanPrice = price;
+  const escapedCleanPrice = escapeText(cleanPrice);
   
-  // Price with emoji: "🔥 $19.95"
-  const priceWithEmoji = `${fireEmoji} ${price}`;
-  const escapedPriceEmoji = escapeText(priceWithEmoji);
+  // V14: Simple fade-in animation (not bounce - feels more organic)
+  const fadeStart = 0.2; // When price appears
+  const fadeDur = 0.3; // Fade duration
   
-  // Bounce animation for sticker (pop-in effect)
-  // Y position: starts 80px below, overshoots by 10px, settles
-  const bounceStart = 0.1; // When bounce starts
-  const bounceDur = 0.35; // Bounce duration
-  const overshoot = 12; // Pixels to overshoot
-  const startOffset = 60; // Pixels below final position
-  
-  // Complex bounce expression:
-  // t < 0.1: hidden below
-  // 0.1 < t < 0.25: moving up (fast)
-  // 0.25 < t < 0.35: slight overshoot bounce
-  // t > 0.35: settled
-  const priceYBounce = `${priceY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,` +
-    `if(lt(t\\,${bounceStart + bounceDur * 0.5})\\,` +
-      `${startOffset}*(1-(t-${bounceStart})/(${bounceDur * 0.5}))-${overshoot}*(t-${bounceStart})/(${bounceDur * 0.5})\\,` +
-    `if(lt(t\\,${bounceStart + bounceDur})\\,` +
-      `-${overshoot}*(1-(t-${bounceStart + bounceDur * 0.5})/(${bounceDur * 0.5}))\\,` +
-    `0)))`;
-  
-  // Alpha for price sticker (quick pop-in)
-  const priceAlpha = `if(lt(t\\,${bounceStart})\\,0\\,if(lt(t\\,${bounceStart + 0.1})\\,(t-${bounceStart})/0.1\\,1))`;
-  
-  // Shadow offset
-  const shadowOffsetX = 4;
-  const shadowOffsetY = 4;
+  // Simple alpha fade: 0 -> 1 over fadeDur
+  const priceAlpha = `if(lt(t\\,${fadeStart})\\,0\\,if(lt(t\\,${fadeStart + fadeDur})\\,(t-${fadeStart})/${fadeDur}\\,1))`;
   
   // Build the filter complex
   // Layer order: bg -> image -> name -> sticker shadow -> sticker bg -> sticker text
@@ -941,17 +920,9 @@ function createProductSegment(imagePath, productName, price, outputPath, duratio
     // Product name (subtle, smaller)
     `[v1]drawtext=fontfile=${FONT_PATH}:text='${escapedName}':fontsize=44:fontcolor=${COLORS.textSecondary}:x=(w-text_w)/2:y='${nameYExpr}':alpha='${nameAlpha}'[v2]`,
     
-    // === STICKER LAYER 1: Drop shadow (offset dark box) - V11: smaller box ===
-    `[v2]drawbox=x='(w-280)/2+${shadowOffsetX}':y='${priceY}-18+${shadowOffsetY}+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=280:h=70:color=${stickerShadowColor}@0.4:t=fill[v3]`,
-    
-    // === STICKER LAYER 2: Main background (vibrant pink) - V11: smaller, with subtle rounded feel ===
-    `[v3]drawbox=x='(w-280)/2':y='${priceY}-18+if(lt(t\\,${bounceStart})\\,${startOffset}\\,if(lt(t\\,${bounceStart+bounceDur})\\,${startOffset}*(1-((t-${bounceStart})/${bounceDur}))\\,0))':w=280:h=70:color=${stickerBgColor}:t=fill[v4]`,
-    
-    // === STICKER LAYER 3: Text shadow (subtle depth) - V11 uses stickerFontSize variable ===
-    `[v4]drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=${stickerFontSize}:fontcolor=${stickerShadowColor}@0.5:x=(w-text_w)/2+2:y='${priceYBounce}+2':alpha='${priceAlpha}'[v5]`,
-    
-    // === STICKER LAYER 4: Main price text (white on pink) - V11 uses stickerFontSize variable ===
-    `[v5]drawtext=fontfile=${FONT_PATH}:text='${escapedPriceEmoji}':fontsize=${stickerFontSize}:fontcolor=${stickerTextColor}:x=(w-text_w)/2:y='${priceYBounce}':alpha='${priceAlpha}'`
+    // === V14: CLEAN PRICE OVERLAY (no box, just stroked text) ===
+    // White text with black stroke - TikTok native style
+    `[v2]drawtext=fontfile=${FONT_PATH}:text='${escapedCleanPrice}':fontsize=${overlayFontSize}:fontcolor=${overlayTextColor}:borderw=${overlayStrokeWidth}:bordercolor=${overlayStrokeColor}:x=(w-text_w)/2:y=${priceY}:alpha='${priceAlpha}'`
   ].join(';');
   
   ffmpeg(`-f lavfi -i "color=c=${COLORS.background}:s=${VIDEO_WIDTH}x${VIDEO_HEIGHT}:d=${duration}" -i "${imagePath}" -filter_complex "${filter}" -c:v libx264 -pix_fmt yuv420p -t ${duration} "${outputPath}"`);
