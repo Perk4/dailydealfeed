@@ -1,327 +1,335 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DailyDealFeed - Video Preview</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyDealFeed - Hot Deals & Promo Codes</title>
     
-    <!-- Social Meta Tags -->
-    <meta property="og:title" content="DailyDealFeed - Hot Deals Gallery">
-    <meta property="og:description" content="Curated Amazon deals with video previews 🎬🛒">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover the hottest Amazon deals, promo codes, and discounts updated daily. Save money with DailyDealFeed!">
+    <meta name="keywords" content="deals, promo codes, Amazon deals, discounts, coupons, daily deals">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="DailyDealFeed - Hot Deals & Promo Codes">
+    <meta property="og:description" content="Discover the hottest Amazon deals updated daily. Save money with exclusive promo codes!">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="DailyDealFeed">
     <meta property="og:url" content="https://perk4.github.io/dailydealfeed/">
+    <meta property="og:site_name" content="DailyDealFeed">
+    
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DailyDealFeed - Hot Deals Gallery">
-    <meta name="twitter:description" content="Curated Amazon deals with video previews 🎬🛒">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            background: #0a0a0a; 
-            color: #fff; 
-            padding: 20px;
-            min-height: 100vh;
-        }
-        .header { text-align: center; margin-bottom: 24px; }
-        .header h1 { font-size: 24px; margin-bottom: 8px; }
-        .header p { color: #888; font-size: 14px; }
-        .badge { 
-            display: inline-block;
-            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%); 
-            padding: 4px 12px; 
-            border-radius: 12px; 
-            font-size: 11px; 
-            margin-left: 8px;
-            color: #000;
-            font-weight: 600;
-        }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 20px; 
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .card { 
-            background: #1a1a1a; 
-            border-radius: 16px; 
-            overflow: hidden;
-            border: 1px solid #333;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: #4ade80;
-        }
-        .card-header {
-            padding: 16px;
-            border-bottom: 1px solid #333;
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        .product-img {
-            width: 56px;
-            height: 56px;
-            object-fit: contain;
-            background: #fff;
-            border-radius: 10px;
-            padding: 4px;
-            flex-shrink: 0;
-        }
-        .product-img-fallback {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #ff9900, #ffb347);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-        .product-info {
-            flex: 1;
-            min-width: 0;
-        }
-        .card-header h3 { 
-            font-size: 14px; 
-            margin-bottom: 4px;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .card-header .price { 
-            color: #4ade80; 
-            font-weight: 700; 
-            font-size: 18px; 
-        }
-        .video-container {
-            position: relative;
-            background: #000;
-            aspect-ratio: 9/16;
-            max-height: 500px;
-        }
-        .card video { 
-            width: 100%; 
-            height: 100%;
-            object-fit: contain;
-        }
-        .card-footer {
-            padding: 12px 16px;
-            background: #111;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        }
-        .meta { display: flex; gap: 6px; flex-wrap: wrap; }
-        .meta span { 
-            background: #333; 
-            padding: 4px 8px; 
-            border-radius: 4px; 
-            font-size: 11px; 
-        }
-        .meta .voice { background: #4ade80; color: #000; }
-        .meta .amazon { background: #ff9900; color: #000; }
-        .buy-link {
-            background: linear-gradient(135deg, #ff9900, #ffb347);
-            color: #000;
-            padding: 8px 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 12px;
-            white-space: nowrap;
-            transition: transform 0.2s ease;
-        }
-        .buy-link:hover {
-            transform: scale(1.05);
-        }
-        .footer { 
-            text-align: center; 
-            padding: 32px; 
-            color: #666; 
-            font-size: 12px;
-        }
-        .loading { text-align: center; padding: 40px; color: #888; }
-        .embed-url {
-            background: #222;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 10px;
-            color: #888;
-            margin-top: 8px;
-            word-break: break-all;
-            cursor: pointer;
-        }
-        .embed-url:hover {
-            color: #4ade80;
-        }
-    </style>
+    <meta name="twitter:title" content="DailyDealFeed - Hot Deals & Promo Codes">
+    <meta name="twitter:description" content="Discover the hottest Amazon deals updated daily. Save money with exclusive promo codes!">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="header">
-        <h1>📦 DailyDealFeed Preview <span class="badge" id="count">Loading...</span></h1>
-        <p>Automated affiliate videos • 9:16 vertical • Ready to post</p>
-    </div>
-    
-    <div class="grid" id="grid">
-        <div class="loading">Loading videos...</div>
-    </div>
-    
-    <div class="footer">
-        <p>🔊 Turn on sound for voiceover</p>
-        <p style="margin-top: 8px; color: #555;">As an Amazon Associate I earn from qualifying purchases</p>
-    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                🔥 Daily<span>DealFeed</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="top-deals.html">Top Deals</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+            </ul>
+            <div class="nav-toggle" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🔥 Daily<span>DealFeed</span></h1>
+        <p class="tagline">💰 DEALS TO HELP YOU SAVE MONEY MONEY MONEY 💰</p>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="https://youtube.com/@dailydealfeed" target="_blank" class="social-link" title="YouTube">📺</a>
+            <a href="https://instagram.com/dailydealfeed" target="_blank" class="social-link" title="Instagram">📷</a>
+            <a href="https://tiktok.com/@dailydealfeed" target="_blank" class="social-link" title="TikTok">🎵</a>
+            <a href="https://twitter.com/dailydealfeed" target="_blank" class="social-link" title="Twitter">🐦</a>
+            <a href="mailto:contact@dailydealfeed.com" class="social-link" title="Email">✉️</a>
+        </div>
+        
+        <!-- Newsletter Signup -->
+        <div class="newsletter">
+            <h3>📬 DailyDealFeed Newsletter</h3>
+            <p style="color: #888; font-size: 0.9rem; margin-bottom: 16px;">Get the best deals delivered to your inbox!</p>
+            <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Featured Deals (Pinned) -->
+        <section class="featured-section">
+            <h2 class="section-title">🌟 Featured Deals</h2>
+            <div class="featured-grid" id="featured-deals">
+                <!-- Featured deals loaded dynamically or manually curated -->
+            </div>
+        </section>
+
+        <!-- Episodes Container -->
+        <div id="episodes-container">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading deals...</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🔥 DailyDealFeed</h4>
+                <p style="color: #888; font-size: 0.9rem;">Your daily source for the best Amazon deals and promo codes.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="top-deals.html">Top Deals</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://youtube.com/@dailydealfeed" target="_blank">YouTube</a></li>
+                    <li><a href="https://instagram.com/dailydealfeed" target="_blank">Instagram</a></li>
+                    <li><a href="https://tiktok.com/@dailydealfeed" target="_blank">TikTok</a></li>
+                    <li><a href="https://twitter.com/dailydealfeed" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DailyDealFeed. All rights reserved.</p>
+            <p class="affiliate-disclosure">As an Amazon Associate I earn from qualifying purchases.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
     <script>
+        // Configuration
         const AFFILIATE_TAG = 'dailydealfeed-20';
-        const BASE = 'https://raw.githubusercontent.com/Perk4/dailydealfeed/main';
-        const EMBED_BASE = 'https://perk4.github.io/dailydealfeed';
-        
-        let manifestProducts = [];
-        
-        async function loadVideos() {
-            try {
-                // First load the manifest for ASIN data
-                const manifestRes = await fetch(`${BASE}/staging/products/manifest.json?t=${Date.now()}`);
-                const manifest = await manifestRes.json();
-                manifestProducts = manifest.products || [];
-                
-                // Get list of all files in approved folder
-                const res = await fetch('https://api.github.com/repos/Perk4/dailydealfeed/contents/output/approved');
-                const files = await res.json();
-                
-                if (!Array.isArray(files)) {
-                    throw new Error('Failed to load file list');
-                }
-                
-                // Find videos (support both naming conventions)
-                const videos = files.filter(f => f.name.endsWith('.mp4'));
-                
-                // Find post JSON files for metadata
-                const posts = files.filter(f => f.name.startsWith('post_') && f.name.endsWith('.json'));
-                
-                // Update count
-                document.getElementById('count').textContent = `${videos.length} VIDEOS`;
-                
-                const grid = document.getElementById('grid');
-                grid.innerHTML = '';
-                
-                // Sort videos alphabetically (newest ASIN-based format first, then legacy)
-                videos.sort((a, b) => b.name.localeCompare(a.name));
-                
-                for (const video of videos) {
-                    // Extract ASIN from filename (amazon_B00PBX3L7K.mp4 -> B00PBX3L7K)
-                    const asinMatch = video.name.match(/^amazon_([A-Z0-9]+)/i);
-                    // Also support legacy format (video_10_123456.mp4)
-                    const productIdMatch = video.name.match(/^video_(\d+)_/);
-                    
-                    let productName = 'Product';
-                    let productPrice = '';
-                    let asin = asinMatch ? asinMatch[1] : null;
-                    let productId = productIdMatch ? parseInt(productIdMatch[1]) : null;
-                    
-                    // For ASIN-based videos, find product in manifest
-                    if (asin) {
-                        const product = manifestProducts.find(p => p.asin === asin);
-                        if (product) {
-                            productName = product.name;
-                            productPrice = product.price;
-                            productId = manifestProducts.indexOf(product) + 1;
-                        }
-                    }
-                    
-                    // For legacy format, look up by product_id
-                    if (!asin && productId && manifestProducts[productId - 1]) {
-                        const product = manifestProducts[productId - 1];
-                        asin = product.asin;
-                        productName = product.name;
-                        productPrice = product.price;
-                    }
-                    
-                    // Also try to get data from post JSON (legacy support)
-                    const postName = video.name.replace('video_', 'post_').replace('.mp4', '.json');
-                    const postFile = posts.find(p => p.name === postName);
-                    if (postFile) {
-                        try {
-                            const postRes = await fetch(postFile.download_url);
-                            const postData = await postRes.json();
-                            if (postData.product_name) productName = postData.product_name;
-                            if (postData.product_price) productPrice = postData.product_price;
-                        } catch (e) {
-                            console.warn('Could not load post data:', e);
-                        }
-                    }
-                    
-                    const imageUrl = asin 
-                        ? `https://images-na.ssl-images-amazon.com/images/P/${asin}.jpg`
-                        : null;
-                    const affiliateLink = asin 
-                        ? `https://www.amazon.com/dp/${asin}?tag=${AFFILIATE_TAG}`
-                        : '#';
-                    const embedUrl = productId 
-                        ? `${EMBED_BASE}/video-embed.html?id=${productId}`
-                        : null;
-                    
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                        <div class="card-header">
-                            ${imageUrl 
-                                ? `<img class="product-img" src="${imageUrl}" alt="${truncate(productName, 30)}" onerror="this.outerHTML='<div class=\\'product-img-fallback\\'>📦</div>'">`
-                                : '<div class="product-img-fallback">📦</div>'
-                            }
-                            <div class="product-info">
-                                <h3>${truncate(productName, 50)}</h3>
-                                ${productPrice ? `<div class="price">${productPrice}</div>` : ''}
-                            </div>
-                        </div>
-                        <div class="video-container">
-                            <video controls playsinline preload="metadata">
-                                <source src="${BASE}/output/approved/${video.name}" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="card-footer">
-                            <div class="meta">
-                                <span class="voice">🎙️ TTS</span>
-                                <span class="amazon">🛒 Amazon</span>
-                                <span>9:16</span>
-                            </div>
-                            ${asin ? `<a class="buy-link" href="${affiliateLink}" target="_blank" rel="noopener">Shop →</a>` : ''}
-                        </div>
-                        ${embedUrl ? `<div class="embed-url" onclick="copyToClipboard('${embedUrl}')" title="Click to copy embed URL">${embedUrl}</div>` : ''}
-                    `;
-                    grid.appendChild(card);
-                }
-                
-                if (grid.children.length === 0) {
-                    grid.innerHTML = '<div class="loading">No videos found in output/approved/</div>';
-                }
-            } catch (err) {
-                console.error(err);
-                document.getElementById('grid').innerHTML = `<div class="loading">Error loading videos: ${err.message}</div>`;
+        const BASE_URL = 'https://raw.githubusercontent.com/Perk4/dailydealfeed/main';
+
+        // Sample episode data structure (will be replaced with actual data loading)
+        const sampleDeals = [
+            {
+                id: 1,
+                title: "6-Pack Clear Shoe Box Containers with Air Ventilation & Magnetic Door",
+                salePrice: "$45.59",
+                originalPrice: "$79.99",
+                discount: "43% OFF",
+                promoCode: "KOBE4EVER",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71nQRvJCjvL._AC_SL1500_.jpg",
+                asin: "B0CP3JXMZ3",
+                link: "https://amazon.com/dp/B0CP3JXMZ3?tag=dailydealfeed-20"
+            },
+            {
+                id: 2,
+                title: "Gaming Audio Mixer, RGB Audio Interface with 48V Phantom Power, Bluetooth",
+                salePrice: "$25.00",
+                originalPrice: "$49.99",
+                discount: "50% OFF",
+                promoCode: "TRV9G76X",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71YA+LlRdwL._AC_SL1500_.jpg",
+                asin: "B0BVMH4W7P",
+                link: "https://amazon.com/dp/B0BVMH4W7P?tag=dailydealfeed-20"
+            },
+            {
+                id: 3,
+                title: "Rain Shower Head with Handheld Spray Combo Set, 12\" Rainfall Dual",
+                salePrice: "$34.99",
+                originalPrice: "$69.99",
+                discount: "50% OFF",
+                promoCode: "G9NFO5V5",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71y8PfpHJ3L._AC_SL1500_.jpg",
+                asin: "B0C9X5DZXL",
+                link: "https://amazon.com/dp/B0C9X5DZXL?tag=dailydealfeed-20"
+            },
+            {
+                id: 4,
+                title: "Wireless Keyboard Ultra Slim Full Size with Numeric Keypad",
+                salePrice: "$21.59",
+                originalPrice: "$29.99",
+                discount: "28% OFF",
+                promoCode: "ARTECK20POFF",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71w3zBMJwpL._AC_SL1500_.jpg",
+                asin: "B07FDNYMST",
+                link: "https://amazon.com/dp/B07FDNYMST?tag=dailydealfeed-20"
+            },
+            {
+                id: 5,
+                title: "48\" Fluted Lift Top Coffee Table with Hidden Storage",
+                salePrice: "$45.00",
+                originalPrice: "$89.99",
+                discount: "50% OFF",
+                promoCode: "WB63B2SZ",
+                image: "https://images-na.ssl-images-amazon.com/images/I/81qZd4S9dJL._AC_SL1500_.jpg",
+                asin: "B0CWWX6R1H",
+                link: "https://amazon.com/dp/B0CWWX6R1H?tag=dailydealfeed-20"
+            },
+            {
+                id: 6,
+                title: "Indoor Camera, 3K HD Indoor Security Camera, 360° Pan/Tilt Pet Camera",
+                salePrice: "$6.79",
+                originalPrice: "$16.99",
+                discount: "60% OFF",
+                promoCode: "KHLFFN7N",
+                image: "https://images-na.ssl-images-amazon.com/images/I/61Qf8h2e8DL._AC_SL1500_.jpg",
+                asin: "B0BWYV7VJD",
+                link: "https://amazon.com/dp/B0BWYV7VJD?tag=dailydealfeed-20"
             }
+        ];
+
+        // Generate episodes from deals
+        function generateEpisodes() {
+            const today = new Date();
+            const episodes = [];
+            
+            // Create 3 sample episodes
+            for (let i = 0; i < 3; i++) {
+                const episodeDate = new Date(today);
+                episodeDate.setDate(today.getDate() - i);
+                
+                episodes.push({
+                    number: 100 - i,
+                    date: episodeDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                    deals: sampleDeals.slice(i * 2, (i * 2) + 2)
+                });
+            }
+            
+            return episodes;
         }
-        
-        function truncate(str, len) {
-            if (!str) return '';
-            return str.length > len ? str.substring(0, len) + '...' : str;
+
+        // Render a single deal card
+        function renderDealCard(deal) {
+            return `
+                <div class="deal-card">
+                    <div class="deal-card-image">
+                        <span class="discount-badge">${deal.discount}</span>
+                        <img src="${deal.image}" alt="${deal.title}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>'">
+                    </div>
+                    <div class="deal-card-body">
+                        <h3 class="deal-card-title">${deal.title}</h3>
+                        <div class="deal-card-pricing">
+                            <span class="sale-price">${deal.salePrice}</span>
+                            <span class="original-price">${deal.originalPrice}</span>
+                        </div>
+                        ${deal.promoCode ? `
+                        <div class="promo-code" onclick="copyCode('${deal.promoCode}')">
+                            <span class="promo-code-label">Code:</span>
+                            <span class="promo-code-value">${deal.promoCode}</span>
+                            <span class="copy-icon">📋</span>
+                        </div>
+                        ` : ''}
+                        <a href="${deal.link}" target="_blank" rel="noopener" class="deal-card-cta">
+                            Go to Deal →
+                        </a>
+                    </div>
+                </div>
+            `;
         }
-        
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Embed URL copied!');
-            }).catch(err => {
-                console.error('Failed to copy:', err);
+
+        // Render an episode section
+        function renderEpisode(episode, isOpen = false) {
+            return `
+                <div class="episode ${isOpen ? 'open' : ''}" id="episode-${episode.number}">
+                    <div class="episode-header" onclick="toggleEpisode(${episode.number})">
+                        <div class="episode-title">
+                            <span class="episode-number">Episode ${episode.number}</span>
+                            <span class="episode-date">${episode.date}</span>
+                        </div>
+                        <div class="episode-toggle">
+                            <span>Click to ${isOpen ? 'close' : 'open'}</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                    </div>
+                    <div class="episode-content">
+                        <div class="deals-grid">
+                            ${episode.deals.map(deal => renderDealCard(deal)).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Toggle episode open/close
+        function toggleEpisode(number) {
+            const episode = document.getElementById(`episode-${number}`);
+            episode.classList.toggle('open');
+            const toggleText = episode.querySelector('.episode-toggle span:first-child');
+            toggleText.textContent = episode.classList.contains('open') ? 'Click to close' : 'Click to open';
+        }
+
+        // Copy promo code to clipboard
+        function copyCode(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                showToast(`Code "${code}" copied! 📋`);
+            }).catch(() => {
+                showToast('Failed to copy code');
             });
         }
-        
-        loadVideos();
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // Toggle mobile navigation
+        function toggleNav() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Handle newsletter signup
+        function handleNewsletter(event) {
+            event.preventDefault();
+            showToast('Thanks for subscribing! 🎉');
+            event.target.reset();
+        }
+
+        // Initialize page
+        function init() {
+            const episodes = generateEpisodes();
+            const container = document.getElementById('episodes-container');
+            
+            // Render episodes (first one open by default)
+            container.innerHTML = episodes.map((ep, index) => 
+                renderEpisode(ep, index === 0)
+            ).join('');
+            
+            // Render featured deals
+            const featuredContainer = document.getElementById('featured-deals');
+            featuredContainer.innerHTML = sampleDeals.slice(0, 3).map(deal => renderDealCard(deal)).join('');
+        }
+
+        // Run on load
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>

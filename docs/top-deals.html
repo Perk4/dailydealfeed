@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Deals - DailyDealFeed</title>
+    
+    <meta name="description" content="Browse the top Amazon deals with the biggest discounts. Updated daily with fresh promo codes!">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                🔥 Daily<span>DealFeed</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="top-deals.html" class="active">Top Deals</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+            </ul>
+            <div class="nav-toggle" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 40px 20px;">
+        <h1>🏆 Top Deals</h1>
+        <p class="tagline">The biggest discounts, curated just for you!</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterDeals('all', this)">All Deals</button>
+            <button class="filter-btn" onclick="filterDeals('50', this)">50%+ OFF</button>
+            <button class="filter-btn" onclick="filterDeals('40', this)">40%+ OFF</button>
+            <button class="filter-btn" onclick="filterDeals('30', this)">30%+ OFF</button>
+        </div>
+
+        <!-- Deals Grid -->
+        <div class="deals-grid" id="top-deals-grid">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading top deals...</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🔥 DailyDealFeed</h4>
+                <p style="color: #888; font-size: 0.9rem;">Your daily source for the best Amazon deals and promo codes.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="top-deals.html">Top Deals</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://youtube.com/@dailydealfeed" target="_blank">YouTube</a></li>
+                    <li><a href="https://instagram.com/dailydealfeed" target="_blank">Instagram</a></li>
+                    <li><a href="https://tiktok.com/@dailydealfeed" target="_blank">TikTok</a></li>
+                    <li><a href="https://twitter.com/dailydealfeed" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DailyDealFeed. All rights reserved.</p>
+            <p class="affiliate-disclosure">As an Amazon Associate I earn from qualifying purchases.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // All top deals - sorted by discount percentage
+        const topDeals = [
+            {
+                id: 1,
+                title: "Indoor Camera, 3K HD Indoor Security Camera, 360° Pan/Tilt Pet Camera",
+                salePrice: "$6.79",
+                originalPrice: "$16.99",
+                discount: 60,
+                discountText: "60% OFF",
+                promoCode: "KHLFFN7N",
+                image: "https://images-na.ssl-images-amazon.com/images/I/61Qf8h2e8DL._AC_SL1500_.jpg",
+                asin: "B0BWYV7VJD",
+                link: "https://amazon.com/dp/B0BWYV7VJD?tag=dailydealfeed-20"
+            },
+            {
+                id: 2,
+                title: "Led Strip Lights Bluetooth - 65.6Ft RGB 5050 Led Music Sync Color Changing",
+                salePrice: "$13.50",
+                originalPrice: "$32.92",
+                discount: 59,
+                discountText: "59% OFF",
+                promoCode: "Z4L5QEB2",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71GWXJ-YDPL._AC_SL1500_.jpg",
+                asin: "B09DCNWCV3",
+                link: "https://amazon.com/dp/B09DCNWCV3?tag=dailydealfeed-20"
+            },
+            {
+                id: 3,
+                title: "Gaming Audio Mixer, RGB Audio Interface with 48V Phantom Power, Bluetooth",
+                salePrice: "$25.00",
+                originalPrice: "$49.99",
+                discount: 50,
+                discountText: "50% OFF",
+                promoCode: "TRV9G76X",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71YA+LlRdwL._AC_SL1500_.jpg",
+                asin: "B0BVMH4W7P",
+                link: "https://amazon.com/dp/B0BVMH4W7P?tag=dailydealfeed-20"
+            },
+            {
+                id: 4,
+                title: "Rain Shower Head with Handheld Spray Combo Set, 12\" Rainfall Dual",
+                salePrice: "$34.99",
+                originalPrice: "$69.99",
+                discount: 50,
+                discountText: "50% OFF",
+                promoCode: "G9NFO5V5",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71y8PfpHJ3L._AC_SL1500_.jpg",
+                asin: "B0C9X5DZXL",
+                link: "https://amazon.com/dp/B0C9X5DZXL?tag=dailydealfeed-20"
+            },
+            {
+                id: 5,
+                title: "48\" Fluted Lift Top Coffee Table with Hidden Storage",
+                salePrice: "$45.00",
+                originalPrice: "$89.99",
+                discount: 50,
+                discountText: "50% OFF",
+                promoCode: "WB63B2SZ",
+                image: "https://images-na.ssl-images-amazon.com/images/I/81qZd4S9dJL._AC_SL1500_.jpg",
+                asin: "B0CWWX6R1H",
+                link: "https://amazon.com/dp/B0CWWX6R1H?tag=dailydealfeed-20"
+            },
+            {
+                id: 6,
+                title: "Heated Electric Blanket Queen Size - 84x90 with 10 Heating Levels",
+                salePrice: "$23.75",
+                originalPrice: "$47.49",
+                discount: 50,
+                discountText: "50% OFF",
+                promoCode: "H2IBUXSP",
+                image: "https://images-na.ssl-images-amazon.com/images/I/81e0k0H-WtL._AC_SL1500_.jpg",
+                asin: "B0BKX4RV4D",
+                link: "https://amazon.com/dp/B0BKX4RV4D?tag=dailydealfeed-20"
+            },
+            {
+                id: 7,
+                title: "Photo Printer, PP01 Color Mini Portable Printer, Instant Smartphone",
+                salePrice: "$49.99",
+                originalPrice: "$99.99",
+                discount: 50,
+                discountText: "50% OFF",
+                promoCode: "UWX34BM8",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71GWXJ-YDPL._AC_SL1500_.jpg",
+                asin: "B0BVGKTQJJ",
+                link: "https://amazon.com/dp/B0BVGKTQJJ?tag=dailydealfeed-20"
+            },
+            {
+                id: 8,
+                title: "6-Pack Clear Shoe Box Containers with Air Ventilation & Magnetic Door",
+                salePrice: "$45.59",
+                originalPrice: "$79.99",
+                discount: 43,
+                discountText: "43% OFF",
+                promoCode: "KOBE4EVER",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71nQRvJCjvL._AC_SL1500_.jpg",
+                asin: "B0CP3JXMZ3",
+                link: "https://amazon.com/dp/B0CP3JXMZ3?tag=dailydealfeed-20"
+            },
+            {
+                id: 9,
+                title: "4K Night Vision Goggles for Adults, 16X Zoom with 1000FT Infrared Range",
+                salePrice: "$47.99",
+                originalPrice: "$79.99",
+                discount: 40,
+                discountText: "40% OFF",
+                promoCode: "TM6ABIJQ",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71bS1zE2KUL._AC_SL1500_.jpg",
+                asin: "B0CZGXQR99",
+                link: "https://amazon.com/dp/B0CZGXQR99?tag=dailydealfeed-20"
+            },
+            {
+                id: 10,
+                title: "45W iPhone Fast Charger with 10FT Cable, USB C Quick Adapter",
+                salePrice: "$14.99",
+                originalPrice: "$24.99",
+                discount: 40,
+                discountText: "40% OFF",
+                promoCode: "BG5FGYJN",
+                image: "https://images-na.ssl-images-amazon.com/images/I/61L5QgPvgqL._AC_SL1500_.jpg",
+                asin: "B0CSHWRQV1",
+                link: "https://amazon.com/dp/B0CSHWRQV1?tag=dailydealfeed-20"
+            },
+            {
+                id: 11,
+                title: "Wireless Keyboard Ultra Slim Full Size with Numeric Keypad",
+                salePrice: "$21.59",
+                originalPrice: "$29.99",
+                discount: 28,
+                discountText: "28% OFF",
+                promoCode: "ARTECK20POFF",
+                image: "https://images-na.ssl-images-amazon.com/images/I/71w3zBMJwpL._AC_SL1500_.jpg",
+                asin: "B07FDNYMST",
+                link: "https://amazon.com/dp/B07FDNYMST?tag=dailydealfeed-20"
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        // Render a deal card
+        function renderDealCard(deal) {
+            return `
+                <div class="deal-card" data-discount="${deal.discount}">
+                    <div class="deal-card-image">
+                        <span class="discount-badge">${deal.discountText}</span>
+                        <img src="${deal.image}" alt="${deal.title}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>'">
+                    </div>
+                    <div class="deal-card-body">
+                        <h3 class="deal-card-title">${deal.title}</h3>
+                        <div class="deal-card-pricing">
+                            <span class="sale-price">${deal.salePrice}</span>
+                            <span class="original-price">${deal.originalPrice}</span>
+                        </div>
+                        ${deal.promoCode ? `
+                        <div class="promo-code" onclick="copyCode('${deal.promoCode}')">
+                            <span class="promo-code-label">Code:</span>
+                            <span class="promo-code-value">${deal.promoCode}</span>
+                            <span class="copy-icon">📋</span>
+                        </div>
+                        ` : ''}
+                        <a href="${deal.link}" target="_blank" rel="noopener" class="deal-card-cta">
+                            Go to Deal →
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Filter deals by discount percentage
+        function filterDeals(minDiscount, btn) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const grid = document.getElementById('top-deals-grid');
+            let filteredDeals = topDeals;
+            
+            if (minDiscount !== 'all') {
+                const min = parseInt(minDiscount);
+                filteredDeals = topDeals.filter(d => d.discount >= min);
+            }
+            
+            if (filteredDeals.length === 0) {
+                grid.innerHTML = '<div class="loading"><p>No deals match this filter. Try a different one!</p></div>';
+            } else {
+                grid.innerHTML = filteredDeals.map(deal => renderDealCard(deal)).join('');
+            }
+        }
+
+        // Copy promo code to clipboard
+        function copyCode(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                showToast(`Code "${code}" copied! 📋`);
+            }).catch(() => {
+                showToast('Failed to copy code');
+            });
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // Toggle mobile navigation
+        function toggleNav() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Initialize page
+        function init() {
+            const grid = document.getElementById('top-deals-grid');
+            grid.innerHTML = topDeals.map(deal => renderDealCard(deal)).join('');
+        }
+
+        // Run on load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
